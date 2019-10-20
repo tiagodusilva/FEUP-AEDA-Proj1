@@ -1,6 +1,7 @@
-#ifndef DATE_H
-#define DATE_H
+#ifndef __DATE_H__
+#define __DATE_H__
 
+#include <ctime>
 #include <iostream>
 #include <fstream>
 
@@ -76,4 +77,4 @@ private:
 
 std::ostream& operator<< (std::ostream& stream, const Date& date);
 
-#endif //DATE_H
+#endif  // __DATE_H__

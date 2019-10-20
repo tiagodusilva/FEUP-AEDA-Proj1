@@ -1,5 +1,5 @@
-#ifndef FEUP_AEDA_PROJ1_CARDS_H
-#define FEUP_AEDA_PROJ1_CARDS_H
+#ifndef __CARDS_H__
+#define __CARDS_H__
 
 #include "date.h"
 
@@ -35,4 +35,4 @@ public:
     explicit IndividualCard(Date c_date): Card(c_date) {};
 };
 
-#endif //FEUP_AEDA_PROJ1_CARDS_H
+#endif  // __CARDS_H__
