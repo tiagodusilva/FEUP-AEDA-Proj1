@@ -1,4 +1,4 @@
-#include "cards.h"
+#include "../include/cards.h"
 
 // We were careful and this call will never throw an exception (except if the system doesn't have any memory allocated)
 Date Card::expiration = Date(1, 0, 0);
