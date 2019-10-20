@@ -34,6 +34,5 @@
 *.app
 
 # C-Lion extra useless stuff
-FEUP-AEDA-Proj1
 cmake-build-debug/*
 .idea/*
