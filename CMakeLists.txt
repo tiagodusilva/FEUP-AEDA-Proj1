@@ -3,4 +3,4 @@ project(FEUP-AEDA-Proj1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(FEUP-AEDA-Proj1 main.cpp src/date.cpp include/date.h src/cards.cpp include/cards.h src/utilities.cpp include/utilities.h)
+add_executable(FEUP-AEDA-Proj1 main.cpp src/cards.cpp src/date.cpp src/utilities.cpp include/cards.h include/date.h include/utilities.h)
