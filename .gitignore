@@ -1,4 +1,5 @@
 .gitignore
+.ccls-cache/*
 
 # Prerequisites
 *.d

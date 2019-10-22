@@ -7,9 +7,7 @@
 class Date
 {
 public:
-    /**
-        Defaults Date to Epoch (1970/01/01)
-    */
+    /* Defaults Date to Epoch (1970/01/01) */
     Date();
 
     /**

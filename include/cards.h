@@ -1,5 +1,5 @@
-#ifndef FEUP_AEDA_PROJ1_CARDS_H
-#define FEUP_AEDA_PROJ1_CARDS_H
+#ifndef CARDS_H
+#define CARDS_H
 
 #include "date.h"
 
@@ -7,32 +7,38 @@ class Date;
 
 class Card {
 private:
-    static Date expiration;
-    static short discount;
-    Date creation_date, expiration_date;
+	static Date expiration;
+	static short discount;
+	Date creation_date, expiration_date;
 public:
-    explicit Card(Date c_date);
+	// rapido imagina o construtor com explicit imagina.. AI puta que pareu o windows update
+	Card(Date c_date);
+	bool isvalid() const;
+	void renew() const;
 };
 
 class UniCard: Card {
 private:
-    static float cost;
+	static float cost;
+	static short type;
 public:
-    explicit UniCard(Date c_date): Card(c_date) {};
+	UniCard(Date c_date): Card(c_date) {};
 };
 
 class SilverCard: Card {
 private:
-    static float cost;
+	static float cost;
+	static short type;
 public:
-    explicit SilverCard(Date c_date): Card(c_date) {};
+	SilverCard(Date c_date): Card(c_date) {};
 };
 
 class IndividualCard: Card {
 private:
-    static float cost;
+	static float cost;
+	static short type;
 public:
-    explicit IndividualCard(Date c_date): Card(c_date) {};
+	IndividualCard(Date c_date): Card(c_date) {};
 };
 
-#endif //FEUP_AEDA_PROJ1_CARDS_H
+#endif  // CARDS_H
