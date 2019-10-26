@@ -1,6 +1,4 @@
 #include "../include/date.h"
-#include <iostream>
-#include <iomanip>
 
 using namespace std;
 
@@ -8,12 +6,12 @@ bool
 Date::syncmembers()
 {
 	/* sync information in tm struct to the time_t member */
-	time_t temp_time_int = mktime(&time_tm);
+	time_t temp_date_int = mktime(&date_tm);
 
-	if (temp_time_int == -1)
+	if (temp_date_int == -1)
 		return 1;
 	else {
-		time_int = temp_time_int;
+		date_int = temp_date_int;
 		return 0;
 	}
 }
@@ -22,48 +20,21 @@ Date::syncmembers()
 Date::Date()
 {
 	/* current localTime for gcc/gcc based compiler */
-	time(&time_int);
+	time(&date_int);
 
 	/* we need to "normalize" the information about hours, minutes and seconds */
-	tm *temp_tm = localtime(&time_int);
+	tm *temp_tm = gmtime(&date_int);
 	temp_tm->tm_sec = temp_tm->tm_min = temp_tm->tm_hour = 0;
 
 	/* save info */
-	time_tm = *temp_tm;
+	date_tm = *temp_tm;
 	syncmembers();
 }
 
 Date::Date(short year, short month, short day)
 {
 	/* mktime will adjust out-of-range / unitialized members automaticaly */
-	time_tm	= {
-			.tm_mday=day,
-			.tm_mon=month - 1,
-			.tm_year=year - 1900
-		  };
-
-	syncmembers();
-}
-
-Date::Date(short year, short month, short day, short hour)
-{
-	/* mktime will adjust out-of-range / unitialized members automaticaly */
-	time_tm = {
-			.tm_hour=hour,
-			.tm_mday=day,
-			.tm_mon=month - 1,
-			.tm_year=year - 1900
-		  };
-
-	syncmembers();
-}
-
-Date::Date(short year, short month, short day, short hour, short minute)
-{
-	/* mktime will adjust out-of-range / unitialized members automaticaly */
-	time_tm = {
-			.tm_min=minute,
-			.tm_hour=hour,
+	date_tm	= {
 			.tm_mday=day,
 			.tm_mon=month - 1,
 			.tm_year=year - 1900
@@ -75,33 +46,27 @@ Date::Date(short year, short month, short day, short hour, short minute)
 #pragma region GETTERS
 
 int
-Date::getMinute() const
-{
-	return time_tm.tm_min;
-}
-
-int
-Date::getHour() const
-{
-	return time_tm.tm_hour;
-}
-
-int
 Date::getDay() const
 {
-	return time_tm.tm_mday;
+	return date_tm.tm_mday;
 }
 
 int
 Date::getMonth() const
 {
-	return time_tm.tm_mon + 1;
+	return date_tm.tm_mon + 1;
 }
 
 int
 Date::getYear() const
 {
-	return time_tm.tm_year + 1900;
+	return date_tm.tm_year + 1900;
+}
+
+int
+Date::getWeekday() const
+{
+	return date_tm.tm_wday + 1;
 }
 
 #pragma endregion
@@ -120,94 +85,78 @@ Date::isLeapYear() const
 	return year % 400 == 0;
 }
 
-bool
-Date::readFromFile(std::ifstream& file, unsigned int& lineTracker, std::string & error)
-{
-	return true;
-}
-
 ostream&
-operator<< (ostream& outstream, const Date& d)
+operator<<(ostream& outstream, const Date &d)
 {
 	outstream << setfill('0') <<
 	    setw(4) << d.getYear() << "/" <<
 	    setw(2) << d.getMonth() << "/" <<
-	    setw(2) << d.getDay() << " " <<
-	    setw(2) << d.getHour() << ":" <<
-	    setw(2) << d.getMinute() <<
+	    setw(2) << d.getDay() <<
 	    setfill(' ');
 
 	return outstream;
 }
 
+
+/* compare */
+
 bool
-Date::operator==(const Date & d) const
+Date::operator==(const Date &d) const
 {
 
-	return (this->time_int == d.time_int);
+	return (this->date_int == d.date_int);
 }
 
 bool
-Date::operator!=(const Date & d) const
+Date::operator!=(const Date &d) const
 {
-	return (this->time_int != d.time_int);
+	return (this->date_int != d.date_int);
 }
 
 bool
-Date::operator<(const Date& d) const
+Date::operator< (const Date &d) const
 {
-	return (this->time_int < d.time_int);
+	return (this->date_int < d.date_int);
 }
 
 bool
-Date::operator<=(const Date & d) const
+Date::operator<=(const Date &d) const
 {
-	return (this->time_int <= d.time_int);
+	return (this->date_int <= d.date_int);
 }
 
 bool
-Date::operator>(const Date & d) const
+Date::operator> (const Date &d) const
 {
-	return (this->time_int > d.time_int);
+	return (this->date_int > d.date_int);
 }
 
 bool
-Date::operator>=(const Date & d) const
+Date::operator>=(const Date &d) const
 {
-	return (this->time_int >= d.time_int);
+	return (this->date_int >= d.date_int);
 }
+
+/* fast forward */
 
 void
-Date::fforwardyear()
+Date::ffyear(short years)
 {
-	this->time_tm.tm_year++;
+	this->date_tm.tm_year += years;
 	syncmembers();
 }
 
-/*
-Date
-Date::operator+ (const Date& d)
+void
+Date::ffmonth(short months)
 {
-	this->time_tm.tm_min  += d.time_tm.tm_min;
-	this->time_tm.tm_hour += d.time_tm.tm_hour;
-	this->time_tm.tm_mday += d.time_tm.tm_mday;
-	this->time_tm.tm_mon  += d.time_tm.tm_mon;
-	this->time_tm.tm_year += d.time_tm.tm_year + 1900;
-
-	this->syncmembers();
-	return *this;
+	this->date_tm.tm_mon += months;
+	syncmembers();
 }
 
-Date
-Date::operator- (const Date& d)
+void
+Date::ffday(short days)
 {
-	this->time_tm.tm_min  -= d.time_tm.tm_min;
-	this->time_tm.tm_hour -= d.time_tm.tm_hour;
-	this->time_tm.tm_mday -= d.time_tm.tm_mday;
-	this->time_tm.tm_mon  -= d.time_tm.tm_mon;
-	this->time_tm.tm_year -= d.time_tm.tm_year;
+	this->date_tm.tm_mday += days;
+	syncmembers();
 
-	this->syncmembers();
-	return *this;
 }
-*/

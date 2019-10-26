@@ -1,17 +1,22 @@
 #ifndef DATE_H
 #define DATE_H
 
-#include <iostream>
+#include <ctime>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
 
 class Date
 {
 private:
-	time_t time_int;
-	tm time_tm;
+	time_t date_int;
+	tm date_tm;
+
+	/* sync time_tm info to time_t */
+	bool syncmembers();
 
 public:
-	/* Defaults Date to current date */
+	/* defaults Date to current date */
 	Date();
 
 	/*
@@ -26,35 +31,33 @@ public:
 
 	// GETTERS
 
-	int getMinute() const;
-	int getHour() const;
 	int getDay() const;
 	int getMonth() const;
 	int getYear() const;
+	int getWeekday() const;  // 1 is Sunday ([1, 7])
 
 	// OTHER PUBLIC METHODS
 
-	bool readFromFile(std::ifstream& file, unsigned int& lineTracker, std::string & error);
-
-	/* sync time_tm info to time_t */
-	bool syncmembers();
-
-	/* Returns true if it's a leap year */
+	/* returns true if it's a leap year */
 	bool isLeapYear() const;
 
-	/* 1 year forward */
-	void fforwardyear();
+	/* fast forwards x years */
+	void ffyear(short years=1);
 
-	bool operator== (const Date& d) const;
-	bool operator!= (const Date& d) const;
-	bool operator< (const Date& d) const;
-	bool operator<= (const Date& d) const;
-	bool operator> (const Date& d) const;
-	bool operator>= (const Date& d) const;
-	//Date operator+ (const Date& d);
-	//Date operator- (const Date& d);
+	/* fast forwards x months */
+	void ffmonth(short months=1);
+
+	/* fast forwards x days */
+	void ffday(short days=1);
+
+	bool operator==(const Date &d) const;
+	bool operator!=(const Date &d) const;
+	bool operator< (const Date &d) const;
+	bool operator<=(const Date &d) const;
+	bool operator> (const Date &d) const;
+	bool operator>=(const Date &d) const;
 };
 
-std::ostream& operator<< (std::ostream& stream, const Date& date);
+std::ostream& operator<<(std::ostream& stream, const Date &d);
 
 #endif  // DATE_H
