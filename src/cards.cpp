@@ -21,7 +21,6 @@ Card::isvalid() const
 {
 	/* get current date */
 	Date currentdate;
-	currentdate.now();
 
 	if (expiration_date < currentdate)
 		return true;
@@ -29,18 +28,16 @@ Card::isvalid() const
 	return false;
 }
 
-void
-Card::renew() const
-{
-	// TODO SO PODER RENOVAR A QUANDO FALTAR 2 MESES PARA FIM DO PRAZO
-	/* check is card is already expired */
-	if (this->isvalid())
-		this->expiration_date = this->expiration_date + expiration;
+//void
+//Card::renew() const
+//{
+	//// TODO SO PODER RENOVAR A QUANDO FALTAR 2 MESES PARA FIM DO PRAZO
+	//[> check is card is already expired <]
+	//if (this->isvalid())
+		//this->expiration_date = this->expiration_date + expiration;
 
-	else {
-		Date currentdate;
-		currentdate.now();  // get current date
-
-		this->expiration_date = currentdate + expiration;
-	}
-}
+	//else {
+		//Date currentdate;  // get current date
+		//this->expiration_date = currentdate + expiration;
+	//}
+//}

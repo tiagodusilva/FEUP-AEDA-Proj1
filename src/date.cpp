@@ -4,244 +4,126 @@
 
 using namespace std;
 
+/* WARNING: current date is compiler dependent */
 Date::Date()
 {
-    day = 1;
-    month = 1;
-    year = 1970;
+	/* current localTime for gcc/gcc based compiler */
+	time(&time_int);
 }
 
-Date::Date(short aYear, short aMonth, short aDay)
+Date::Date(short year, short month, short day)
 {
-    year = aYear;
-    month = aMonth;
-    day = aDay;
+	/* mktime will adjust out-of-range / unitialized members automaticaly */
+	tm temp_tm = {.tm_mday=day, .tm_mon=month - 1, .tm_year=year - 1900};
+	time_int = mktime(&temp_tm);
 }
 
-Date::Date(const string& s, bool & isValid)
+Date::Date(short year, short month, short day, short hour)
 {
-    *this = Date();
-//    try
-//    {
-//	  int start = 0, end = s.find('/');
-//	  string sub;
-//	  if (end != string::npos)
-//	  {
-//	      sub = s.substr(0, end);
-//	      cu::strTrim(sub);
-//	      this->year = stoi(s);
-//
-//	      start = end + 1;
-//	      end = s.find('/', start);
-//	      if (end != string::npos)
-//	      {
-//		  sub = s.substr(start, end - start);
-//		  cu::strTrim(sub);
-//		  this->month = stoi(sub);
-//
-//		  sub = s.substr(end + 1, string::npos);
-//		  cu::strTrim(sub);
-//		  this->day = stoi(sub);
-//
-//		  isValid = this->isValid();
-//		  return;
-//	      }
-//	  }
-//    }
-//    catch (std::exception& e) {} // Does nothing on purpuose
-//
-//    // Only executes if a verification has failed above
-//    this->year = 0;
-//    this->month = 0;
-//    this->day = 0;
-//    isValid = false;
-
+	/* mktime will adjust out-of-range / unitialized members automaticaly */
+	tm temp_tm = {.tm_hour=hour, .tm_mday=day, .tm_mon=month - 1, .tm_year=year - 1900};
+	time_int = mktime(&temp_tm);
 }
 
 #pragma region GETTERS
 
-short
+int
+Date::getHour() const
+{
+	return localtime(&time_int)->tm_hour;
+}
+
+int
 Date::getDay() const
 {
-	return day;
+	return localtime(&time_int)->tm_mday;
 }
 
-short
+int
 Date::getMonth() const
 {
-	return month;
+	return localtime(&time_int)->tm_mon + 1;
 }
 
-short
+int
 Date::getYear() const
 {
-	return year;
+	return localtime(&time_int)->tm_year + 1900;
 }
 
 #pragma endregion
 
-// OTHER PUBLIC METHODS
-
-// WARNING: Date::now() is compiler dependent
-Date Date::now()
+bool
+Date::readUserInput()
 {
-    /* current date/time based on current system */
-
-    /* LocalTime for MinGW compiler */
-    time_t now = time(nullptr);
-    tm* ltm = localtime(&now);
-
-    /* LocalTime for Microsoft Visual Studio compiler */
-//    time_t now = time(0);
-//    tm* ltm = new tm();
-//    localtime_s(ltm, &now);
-
-    // Localtime_s returns time in a specific form.
-    // Year is number of years since 1900
-    // Month is number of month [0, 11] starting in January
-    // Day is already correct [1, 31]
-    Date currentDate = Date( 1900 + ltm->tm_year, 1 + ltm->tm_mon, ltm->tm_mday );
-    return currentDate;
-}
-
-bool Date::readUserInput()
-{
-//    unsigned y, m, d;
-//    bool fail;
-//
-//    do
-//    {
-//	  if (!cu::readUnsigned(y, "Year"))
-//	      return false;
-//	  if (!cu::readUnsigned(m, "Month"))
-//	      return false;
-//	  if (!cu::readUnsigned(d, "Day"))
-//	      return false;
-//
-//	  *this = Date(y, m, d);
-//	  fail = !this->isValid();
-//
-//	  if (fail)
-//	      cout << "Date invalid (example: 2019/05/32)" << endl;
-//    } while (fail);
-//
-      return true;
-
+	return true;
 }
 
 bool
 Date::readFromFile(std::ifstream& file, unsigned int& lineTracker, std::string & error)
 {
-//    string s;
-//    getline(file, s);
-//    if (!cu::checkStream(file, error)) return false;
-//
-//    bool isValid;
-//    *this = Date(s, isValid);
-//
-//    if (!isValid)
-//    {
-//	  error = "Date has an invalid format or has values out of range (ex: 2018/5/32)";
-//	  return false;
-//    }
-//
-//    lineTracker++;
-      return true;
+	return true;
 }
 
 ostream&
-operator<< (ostream& stream, const Date& date)
+operator<< (ostream& outstream, const Date& date)
 {
-	stream << setfill('0') <<
+	outstream << setfill('0') <<
 	    setw(4) << date.getYear() << "/" <<
 	    setw(2) << date.getMonth() << "/" <<
 	    setw(2) << date.getDay() <<
 	    setfill(' ');
 
-	return stream;
+	return outstream;
 }
 
 bool
-Date::isLeapYear() const // Evaluate if a given year is a leap year
+Date::isLeapYear() const
 {
-	if (this->year % 4 != 0)
+	/* check if this year is a leap year */
+	int year = getYear();
+	if (year % 4 != 0)
 		return false;
 
-	if (this->year % 100 != 0)
+	if (year % 100 != 0)
 		return true;
 
-	return this->year % 400 == 0;
-}
-
-bool
-Date::isValid() const {
-	const unsigned daysInMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-	if (this->month >= 1 && this->month <= 12) {
-		if (this->month == 2 && this->isLeapYear())
-			return this->day >= 1 && this->day <= 29;
-		else
-			return this->day >= (unsigned) 1 && this->day <= daysInMonth[this->month];
-	}
-	else
-		return false;
-}
-
-
-bool
-Date::operator<(const Date& d) const
-{
-	if (this->year > d.getYear())
-		return false;
-	if (this->year < d.getYear())
-		return true;
-
-	// Both years are the same
-	if (this->month > d.getMonth())
-		return false;
-	if (this->month < d.getMonth())
-		return true;
-
-	// Both months are the same
-	return this->day < d.getDay();
-}
-
-bool
-Date::operator>=(const Date & d) const
-{
-    return !(*this < d);
-}
-
-bool
-Date::operator>(const Date & d) const
-{
-    if (this->year > d.getYear())
-	return true;
-    if (this->year < d.getYear())
-	return false;
-    // Both years are the same
-    if (this->month > d.getMonth())
-	return true;
-    if (this->month < d.getMonth())
-	return false;
-    // Both months are the same
-    return this->day > d.getDay();
-}
-
-bool
-Date::operator<=(const Date & d) const
-{
-    return !(*this > d);
+	return year % 400 == 0;
 }
 
 bool
 Date::operator==(const Date & d) const
 {
-    return !(this->year != d.getYear() || this->month != d.getMonth() || this->day != d.getDay());
+
+	return (this->time_int == d.time_int);
 }
 
 bool
 Date::operator!=(const Date & d) const
 {
-    return !(*this == d);
+	return (this->time_int != d.time_int);
+}
+
+bool
+Date::operator<(const Date& d) const
+{
+	return (this->time_int < d.time_int);
+}
+
+bool
+Date::operator<=(const Date & d) const
+{
+	return (this->time_int <= d.time_int);
+}
+
+bool
+Date::operator>(const Date & d) const
+{
+	return (this->time_int > d.time_int);
+}
+
+bool
+Date::operator>=(const Date & d) const
+{
+	return (this->time_int >= d.time_int);
 }
