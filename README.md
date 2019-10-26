@@ -7,6 +7,7 @@ Our [UML file](AEDA_Proj1.drawio) was drawn using [draw.io](https://www.draw.io)
 ### TODO List
 - [ ] Only allow renew x days/months before expiration
 - [ ] Custom interfaces for each card type
+- [ ] Decidirmos qual a estrutura de excecoes
 
 ### Authors
 List of [collaborators](https://github.com/tiagodusilva/FEUP-AEDA-Proj1/contributors)
