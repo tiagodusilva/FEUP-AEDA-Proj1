@@ -9,15 +9,8 @@ main()
 	Date a;
 	cout << a << '\n';
 
-	Date b(0, 1, 1);
-	cout << b << '\n';
+	cout << a.getWeekday() << '\n';
 
-	if (a > b)
-		cout << "a > b\n";
-	else if (a < b)
-		cout << "a < b\n";
-	else
-		cout << "a == b\n";
 	return 0;
 }
 
