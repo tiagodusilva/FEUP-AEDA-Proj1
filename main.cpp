@@ -9,13 +9,15 @@ main()
 	Date a;
 	cout << a << '\n';
 
-	Date b(2019, 10, 26);
+	Date b(0, 1, 1);
 	cout << b << '\n';
 
-	if (a == b)
-		cout << "a == b";
+	if (a > b)
+		cout << "a > b\n";
+	else if (a < b)
+		cout << "a < b\n";
 	else
-		cout << "a != b";
+		cout << "a == b\n";
 	return 0;
 }
 
