@@ -1,5 +1,6 @@
 #include <iostream>
 #include "include/date.h"
+#include <ctime>
 
 using namespace std;
 
@@ -7,9 +8,13 @@ int
 main()
 {
 	Date a;
-	cout << a << '\n';
+	Date b(2019, 10, 29);
+	cout << a << '\n' << b << '\n';
 
-	cout << a.getWeekday() << '\n';
+	if (a==b)
+		cout << "==" << '\n';
+
+	cout << a - b << '\n';
 
 	return 0;
 }

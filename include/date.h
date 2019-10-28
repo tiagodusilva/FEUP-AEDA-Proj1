@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <iostream>
 
+#define SECONDS_IN_DAY 86400  // 60 * 60 * 24
+
 class Date
 {
 private:
@@ -25,10 +27,6 @@ public:
 	*/
 	Date(short year, short month, short day);
 
-	Date(short year, short month, short day, short hour);
-
-	Date(short year, short month, short day, short hour, short minute);
-
 	// GETTERS
 
 	int getDay() const;
@@ -40,6 +38,7 @@ public:
 
 	/* returns true if it's a leap year */
 	bool isLeapYear() const;
+	unsigned int diffdays(const Date &b) const;  // get the number of days between 2 Dates
 
 	/* fast forwards x years */
 	void ffyear(short years=1);
@@ -56,6 +55,8 @@ public:
 	bool operator<=(const Date &d) const;
 	bool operator> (const Date &d) const;
 	bool operator>=(const Date &d) const;
+
+	unsigned int operator-(const Date &b);
 };
 
 std::ostream& operator<<(std::ostream& stream, const Date &d);

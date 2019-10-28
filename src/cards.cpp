@@ -1,43 +1,101 @@
 #include "../include/cards.h"
 
-/* We were careful and this call will never throw an exception (except if the system doesn't have any memory allocated) */
-Date Card::expiration = Date(1, 0, 0);
-short Card::discount = 25;
 float IndividualCard::cost = 54.90;
+float IndividualCard::discount = 0.25;
 float UniCard::cost = 32.45;
+float UniCard::discount = 0.25;
 float SilverCard::cost = 30.00;
-short IndividualCard::type = 0;
-short UniCard::type = 1;
-short SilverCard::type = 2;
+float SilverCard::discount = 0.25;
 
-Card::Card(Date c_date)
+Card::Card(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+	:creation_date(), expiration_date()
 {
-	creation_date = c_date;
-	expiration_date = c_date;
+	this->name = name;
+	this->contact = contact;
+	this->cc = cc;
+	this->birth_date = birth_date;
+
+	this->expiration_date.ffyear();  // expiration date is 1 year from creation date
 }
 
 bool
 Card::isvalid() const
 {
-	/* get current date */
-	Date currentdate;
-
-	if (expiration_date < currentdate)
-		return true;
-
-	return false;
+	/* compare expiration date with current date */
+	return this->expiration_date <= Date();
 }
 
-//void
-//Card::renew() const
-//{
-	//// TODO SO PODER RENOVAR A QUANDO FALTAR 2 MESES PARA FIM DO PRAZO
-	//[> check is card is already expired <]
-	//if (this->isvalid())
-		//this->expiration_date = this->expiration_date + expiration;
+void
+Card::renew()
+{
+	/* check is card is already expired */
+	if (this->isvalid()){
+		if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
+			this->expiration_date.ffyear();
+		else
+			cout << "cant renew\n";  // TODO EXCEPTION
+	}
+	else {
+		this->expiration_date = Date();  // compare with current date
 
-	//else {
-		//Date currentdate;  // get current date
-		//this->expiration_date = currentdate + expiration;
-	//}
-//}
+		this->expiration_date.ffyear();  // move expiration date to 1 year from now
+	}
+}
+
+unsigned int
+Card::get_cc() const
+{
+	return this->cc;
+}
+
+string
+Card::get_contact() const
+{
+	return this->contact;
+}
+
+string
+Card::get_name() const
+{
+	return this->name;
+}
+
+Date
+Card::get_creation_date() const
+{
+	return this->creation_date;
+}
+
+Date
+Card::get_birth_date() const
+{
+	return this->birth_date;
+}
+
+Date
+Card::get_expiration_date() const
+{
+	return this->expiration_date;
+}
+
+Address
+Card::get_address() const
+{
+	return this->address;
+}
+
+
+ostream&
+operator<<(ostream& outstream, const Card &c)
+{
+	outstream <<
+	    "Name:"	       << c.get_name()		  << endl <<
+	    "CC:"	       << c.get_cc()		  << endl <<
+	    "Contact:"	       << c.get_contact()	  << endl <<
+	    "Address:"	       << c.get_address()	  << endl <<
+	    "Birth date:"      << c.get_birth_date()	  << endl <<
+	    "Creation date:"   << c.get_creation_date()   << endl <<
+	    "Expiration date:" << c.get_expiration_date() << endl;
+
+	return outstream;
+}

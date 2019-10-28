@@ -1,44 +1,75 @@
 #ifndef CARDS_H
 #define CARDS_H
 
+#include <string>
+
+#include "address.h"
 #include "date.h"
 
-class Date;
+using namespace std;
+
+#define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
 
 class Card {
 private:
-	static Date expiration;
-	static short discount;
-	Date creation_date, expiration_date;
+	unsigned int cc;
+	string contact, name;
+	Date creation_date, birth_date, expiration_date;
+	Address address;
 public:
 	// rapido imagina o construtor com explicit imagina.. AI puta que pareu o windows update
-	Card(Date c_date);
+	/* constructures */
+	Card() = default;
+	Card(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address);
+	~Card() = default;
+
 	bool isvalid() const;
-	void renew() const;
+	void renew();
+
+	/* getters */
+	unsigned int get_cc() const;
+	string get_contact() const;
+	string get_name() const;
+	Date get_creation_date() const;
+	Date get_birth_date() const;
+	Date get_expiration_date() const;
+	Address get_address() const;
+	//virtual short get_type() const;
 };
 
 class UniCard: Card {
 private:
+	static float discount;
 	static float cost;
-	static short type;
 public:
-	UniCard(Date c_date): Card(c_date) {};
+	UniCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+		:Card(name, contact, cc, birth_date, address) {};
+
+	short get_type() const {return 1;};
 };
 
 class SilverCard: Card {
 private:
+	static float discount;
 	static float cost;
-	static short type;
 public:
-	SilverCard(Date c_date): Card(c_date) {};
+	SilverCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+		:Card(name, contact, cc, birth_date, address) {};
+
+	short get_type() const {return 2;};
 };
 
 class IndividualCard: Card {
 private:
+	static float discount;
 	static float cost;
-	static short type;
 public:
-	IndividualCard(Date c_date): Card(c_date) {};
+	IndividualCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+		:Card(name, contact, cc, birth_date, address) {};
+
+	short get_type() const {return 0;};
 };
+
+std::ostream& operator<<(std::ostream& stream, const Card &c);
 
 #endif  // CARDS_H

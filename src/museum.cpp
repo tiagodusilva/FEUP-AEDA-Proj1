@@ -1,6 +1,6 @@
 #include "../include/museum.h"
 
-using  namespace std;
+using namespace std;
 
 Museum::Museum(const string &name, const Time &open, const Time &close, int current_capacity, int max_capacity,
                float entry_fee, const Address &address) {
@@ -14,7 +14,7 @@ Museum::Museum(const string &name, const Time &open, const Time &close, int curr
 }
 
 string Museum::getName() const {
-    return std::__cxx11::string();
+    return this->name;
 }
 
 Time Museum::getOpen() const {
