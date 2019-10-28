@@ -68,4 +68,6 @@ public:
 	short get_type() const {return 0;};
 };
 
+std::ostream& operator<<(std::ostream& stream, const Card &c);
+
 #endif  // CARDS_H

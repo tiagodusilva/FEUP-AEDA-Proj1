@@ -85,3 +85,19 @@ Card::get_address() const
 {
 	return this->address;
 }
+
+
+ostream&
+operator<<(ostream& outstream, const Card &c)
+{
+	outstream <<
+	    "Name:"	       << c.get_name()		  << endl <<
+	    "CC:"	       << c.get_cc()		  << endl <<
+	    "Contact:"	       << c.get_contact()	  << endl <<
+	    "Address:"	       << c.get_address()	  << endl <<
+	    "Birth date:"      << c.get_birth_date()	  << endl <<
+	    "Creation date:"   << c.get_creation_date()   << endl <<
+	    "Expiration date:" << c.get_expiration_date() << endl
+
+	return outstream;
+}
