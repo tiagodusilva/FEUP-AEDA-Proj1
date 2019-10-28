@@ -32,7 +32,7 @@ public:
 	Date get_birth_date() const;
 	Date get_expiration_date() const;
 	Address get_address() const;
-	virtual short get_type() const;
+	//virtual short get_type() const;
 };
 
 class UniCard: Card {

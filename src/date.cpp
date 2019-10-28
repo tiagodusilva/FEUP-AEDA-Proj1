@@ -85,18 +85,36 @@ Date::isLeapYear() const
 	return year % 400 == 0;
 }
 
-ostream&
-operator<<(ostream& outstream, const Date &d)
+unsigned int
+Date::diffdays(const Date &b) const
 {
-	outstream << setfill('0') <<
-	    setw(4) << d.getYear() << "/" <<
-	    setw(2) << d.getMonth() << "/" <<
-	    setw(2) << d.getDay() <<
-	    setfill(' ');
-
-	return outstream;
+	/* get the number of days between 2 Dates */
+	return abs(this->date_int - b.date_int) / (60 * 60 * 24);
 }
 
+/* fast forward */
+
+void
+Date::ffyear(short years)
+{
+	this->date_tm.tm_year += years;
+	syncmembers();
+}
+
+void
+Date::ffmonth(short months)
+{
+	this->date_tm.tm_mon += months;
+	syncmembers();
+}
+
+void
+Date::ffday(short days)
+{
+	this->date_tm.tm_mday += days;
+	syncmembers();
+
+}
 
 /* compare */
 
@@ -137,26 +155,22 @@ Date::operator>=(const Date &d) const
 	return (this->date_int >= d.date_int);
 }
 
-/* fast forward */
-
-void
-Date::ffyear(short years)
+unsigned int
+Date::operator-(const Date &b)
 {
-	this->date_tm.tm_year += years;
-	syncmembers();
+	/* get the number of days between 2 Dates */
+	return this->diffdays(b);
 }
 
-void
-Date::ffmonth(short months)
-{
-	this->date_tm.tm_mon += months;
-	syncmembers();
-}
 
-void
-Date::ffday(short days)
+ostream&
+operator<<(ostream& outstream, const Date &d)
 {
-	this->date_tm.tm_mday += days;
-	syncmembers();
+	outstream << setfill('0') <<
+	    setw(4) << d.getYear() << "/" <<
+	    setw(2) << d.getMonth() << "/" <<
+	    setw(2) << d.getDay() <<
+	    setfill(' ');
 
+	return outstream;
 }

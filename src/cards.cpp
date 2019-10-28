@@ -30,8 +30,12 @@ Card::renew()
 {
 	/* check is card is already expired */
 	if (this->isvalid()){
-		// TODO TODO diff dates be less than 2 months thx
-		this->expiration_date.ffyear();
+		unsigned short const MAX_DAYS_BEFORE_RENEW = 60;  // can only renew card with max 60 days until expiration
+
+		if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
+			this->expiration_date.ffyear();
+		else
+			cout << "cant renew\n";  // TODO EXCEPTION
 	}
 	else {
 		this->expiration_date = Date();  // compare with current date
