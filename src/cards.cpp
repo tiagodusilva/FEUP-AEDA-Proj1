@@ -30,8 +30,6 @@ Card::renew()
 {
 	/* check is card is already expired */
 	if (this->isvalid()){
-		unsigned short const MAX_DAYS_BEFORE_RENEW = 60;  // can only renew card with max 60 days until expiration
-
 		if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
 			this->expiration_date.ffyear();
 		else
@@ -97,7 +95,7 @@ operator<<(ostream& outstream, const Card &c)
 	    "Address:"	       << c.get_address()	  << endl <<
 	    "Birth date:"      << c.get_birth_date()	  << endl <<
 	    "Creation date:"   << c.get_creation_date()   << endl <<
-	    "Expiration date:" << c.get_expiration_date() << endl
+	    "Expiration date:" << c.get_expiration_date() << endl;
 
 	return outstream;
 }

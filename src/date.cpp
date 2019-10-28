@@ -89,7 +89,7 @@ unsigned int
 Date::diffdays(const Date &b) const
 {
 	/* get the number of days between 2 Dates */
-	return abs(this->date_int - b.date_int) / (60 * 60 * 24);
+	return abs(this->date_int - b.date_int) / SECONDS_IN_DAY;
 }
 
 /* fast forward */

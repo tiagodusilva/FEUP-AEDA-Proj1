@@ -8,6 +8,8 @@
 
 using namespace std;
 
+#define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
+
 class Card {
 private:
 	unsigned int cc;
