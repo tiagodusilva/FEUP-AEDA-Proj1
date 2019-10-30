@@ -2,7 +2,9 @@
 #define UTILITIES_H
 
 #include <string>
+#include <iostream>
 #include <fstream>
+#include <istream>
 
 // TODO: GET EVERYTHING TO USE EXCEPTIONS
 
@@ -50,6 +52,12 @@ namespace utl
     */
     bool checkStream(std::istream & stream, std::string & error);
 
+    /**
+    * Forces user to write an integer.
+    * If a minimun or maximum number are given it forces the user to write an integer
+    * between the given range [min, max] (inclusive).
+    */
+    int getInt(std::istream &stream, int min=INT32_MIN, int max=INT32_MAX);
 }
 
 #endif //UTILITIES_H

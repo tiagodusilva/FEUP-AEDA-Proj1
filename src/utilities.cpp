@@ -1,5 +1,4 @@
 #include "../include/utilities.h"
-#include <iostream>
 
 using namespace std;
 
@@ -88,6 +87,24 @@ namespace utl
             return false;
         }
         return true;
+    }
+
+    int getInt(istream &stream, int min, int max){
+        string res;
+        int res_num;
+        bool valid=false;
+
+        do{
+            getline(stream, res);
+            clearConsole();
+            if(isNum(res)) {
+                res_num = stoi(res);
+                if (res_num >= min && res_num <= max)
+                    valid = true;
+            }
+        } while(!valid);
+
+        return res_num;
     }
 
 }

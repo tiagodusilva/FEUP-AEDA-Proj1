@@ -1,21 +1,9 @@
-#include <iostream>
-#include "include/date.h"
-#include <ctime>
+#include <gtest/gtest.h>
+#include <gtest/gtest.h>
 
-using namespace std;
-
-int
-main()
-{
-	Date a;
-	Date b(2019, 10, 29);
-	cout << a << '\n' << b << '\n';
-
-	if (a==b)
-		cout << "==" << '\n';
-
-	cout << a - b << '\n';
-
-	return 0;
+int main(int argc, char* argv[]) {
+    testing::InitGoogleTest(&argc, argv);
+    // Specify test name by setting filter to TESTNAME*
+    testing::GTEST_FLAG(filter) = "menu*";
+    return RUN_ALL_TESTS();
 }
-
