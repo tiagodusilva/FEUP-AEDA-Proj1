@@ -20,10 +20,11 @@ private:
 public:
 	/* defaults Date to current date */
 	Date();
+	Date(time_t date_int);
 
 	/*
 	* WARNING: Does not check if created Date is valid
-	* (a check needs to be made before calling the constructor)
+	* (tries to automaticaly fixes mistakes in date inputs)
 	*/
 	Date(short year, short month, short day);
 
@@ -33,6 +34,7 @@ public:
 	int getMonth() const;
 	int getYear() const;
 	int getWeekday() const;  // 1 is Sunday ([1, 7])
+	time_t getRaw() const;
 
 	// OTHER PUBLIC METHODS
 
@@ -57,8 +59,12 @@ public:
 	bool operator>=(const Date &d) const;
 
 	unsigned int operator-(const Date &b);
+
 };
 
-std::ostream& operator<<(std::ostream& stream, const Date &d);
+std::ostream& operator<<(std::ostream& outstream, const Date &d);
+std::ofstream& operator<<(std::ofstream& outstream, const Date &d);
+
+std::ifstream& operator>>(std::ifstream &instream, Date &d);
 
 #endif  // DATE_H

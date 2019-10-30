@@ -39,17 +39,6 @@ Time::getHour() const
 
 #pragma endregion
 
-ostream&
-operator<<(ostream& outstream, const Time &t)
-{
-	outstream << setfill('0') <<
-	    setw(2) << t.getHour() << ":" <<
-	    setw(2) << t.getMin() <<
-	    setfill(' ');
-
-	return outstream;
-}
-
 /* compare */
 
 bool
@@ -96,4 +85,49 @@ bool
 Time::operator>=(const Time &t) const
 {
 	return !(*this < t);
+}
+
+ostream&
+operator<<(ostream& outstream, const Time &t)
+{
+	outstream << setfill('0') <<
+	    setw(2) << t.hour << ':' <<
+	    setw(2) << t.min <<
+	    setfill(' ');
+
+	return outstream;
+}
+
+ofstream&
+operator<<(std::ofstream& outstream, const Time &t)
+{
+	outstream << t.hour << ':' << t.min;
+
+	return outstream;
+}
+
+ifstream&
+operator>>(std::ifstream &instream, Time &t)
+{
+	//TODO cool exception
+	try {
+		string temp_str;
+		getline(instream, temp_str);
+
+		int div = temp_str.find(':');
+		if (div == string::npos)
+			instream.setstate(ios::failbit);
+			//TODO throw algo
+		else {
+			t.hour = stoi(temp_str.substr(0, div));
+			t.min = stoi(temp_str.substr(div + 1));
+		}
+
+	}catch(const std::exception& e) {
+		std::cout << e.what();
+		instream.setstate(ios::failbit);
+	}
+
+
+	return instream;
 }

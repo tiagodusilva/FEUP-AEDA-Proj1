@@ -31,6 +31,14 @@ Date::Date()
 	syncmembers();
 }
 
+Date::Date(time_t date_int)
+{
+	tm *temp_tm = gmtime(&date_int);
+	date_tm = *temp_tm;
+
+	syncmembers();
+}
+
 Date::Date(short year, short month, short day)
 {
 	/* mktime will adjust out-of-range / unitialized members automaticaly */
@@ -67,6 +75,12 @@ int
 Date::getWeekday() const
 {
 	return date_tm.tm_wday + 1;
+}
+
+time_t
+Date::getRaw() const
+{
+	return this->date_int;
 }
 
 #pragma endregion
@@ -155,6 +169,7 @@ Date::operator>=(const Date &d) const
 	return (this->date_int >= d.date_int);
 }
 
+
 unsigned int
 Date::operator-(const Date &b)
 {
@@ -167,10 +182,37 @@ ostream&
 operator<<(ostream& outstream, const Date &d)
 {
 	outstream << setfill('0') <<
-	    setw(4) << d.getYear() << "/" <<
-	    setw(2) << d.getMonth() << "/" <<
+	    setw(4) << d.getYear() << '/' <<
+	    setw(2) << d.getMonth() << '/' <<
 	    setw(2) << d.getDay() <<
 	    setfill(' ');
 
 	return outstream;
+}
+
+
+ofstream&
+operator<<(std::ofstream& outstream, const Date &d)
+{
+	outstream << to_string(d.getRaw());
+
+	return outstream;
+}
+
+
+ifstream&
+operator>>(ifstream &instream, Date &d)
+{
+	// TODO cool exception
+	try {
+		time_t temp_time;
+		instream >> temp_time;
+
+		d = Date(temp_time);
+	}catch(const std::exception& e) {
+		std::cout << e.what();
+		instream.setstate(ios::failbit);
+	}
+
+	return instream;
 }

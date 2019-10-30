@@ -26,8 +26,11 @@ public:
 	bool operator<=(const Time& t) const;
 	bool operator> (const Time& t) const;
 	bool operator>=(const Time& t) const;
-};
 
-std::ostream& operator<<(std::ostream& stream, const Time &t);
+	friend std::ostream& operator<<(std::ostream& outstream, const Time &t);
+	friend std::ofstream& operator<<(std::ofstream& outstream, const Time &t);
+
+	friend std::ifstream& operator>>(std::ifstream &instream, Time &t);
+};
 
 #endif  // TIME_H
