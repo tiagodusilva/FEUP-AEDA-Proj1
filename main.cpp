@@ -1,21 +1,21 @@
 #include <iostream>
 #include "include/date.h"
-#include <ctime>
+#include "include/cards.h"
 
 using namespace std;
 
 int
 main()
 {
+	//IndividualCard a("abc", "123", 123, Date(), Address());
 	Date a;
-	Date b(2019, 10, 29);
-	cout << a << '\n' << b << '\n';
 
-	if (a==b)
-		cout << "==" << '\n';
+	ifstream myfile;
+	myfile.open("output_test.txt");
+	myfile >> a;
+	myfile.close();
 
-	cout << a - b << '\n';
-
+	cout << a << '\n';
 	return 0;
 }
 

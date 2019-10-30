@@ -86,16 +86,116 @@ Card::get_address() const
 
 
 ostream&
-operator<<(ostream& outstream, const Card &c)
+operator<<(ostream &outstream, const IndividualCard &c)
 {
 	outstream <<
-	    "Name:"	       << c.get_name()		  << endl <<
-	    "CC:"	       << c.get_cc()		  << endl <<
-	    "Contact:"	       << c.get_contact()	  << endl <<
-	    "Address:"	       << c.get_address()	  << endl <<
-	    "Birth date:"      << c.get_birth_date()	  << endl <<
-	    "Creation date:"   << c.get_creation_date()   << endl <<
-	    "Expiration date:" << c.get_expiration_date() << endl;
+	    "Name: "		<< c.get_name()		    << endl <<
+	    "CC: "		<< c.get_cc()		    << endl <<
+	    "Contact: "		<< c.get_contact()	    << endl <<
+	    "Address: "		<< c.get_address()	    << endl <<
+	    "Birth date: "	<< c.get_birth_date()	    << endl <<
+	    "Creation date: "	<< c.get_creation_date()    << endl <<
+	    "Expiration date: " << c.get_expiration_date()  << endl <<
+	    "Discount: "	<< c.get_discount()	    << endl <<
+	    "Cost: "		<< c.get_cost();
 
 	return outstream;
 }
+
+
+std::ofstream&
+operator<<(std::ofstream &outstream, const IndividualCard &c)
+{
+	outstream <<
+	    c.get_name()	    << endl <<
+	    c.get_cc()		    << endl <<
+	    c.get_contact()	    << endl <<
+	    c.get_address()	    << endl <<
+	    c.get_birth_date()	    << endl <<
+	    c.get_creation_date()   << endl <<
+	    c.get_expiration_date() << endl <<
+	    c.get_discount()	    << endl <<
+	    c.get_cost();
+
+	return outstream;
+}
+
+
+ostream&
+operator<<(ostream &outstream, const UniCard &c)
+{
+	outstream <<
+	    "Name: "		<< c.get_name()		    << endl <<
+	    "CC: "		<< c.get_cc()		    << endl <<
+	    "Contact: "		<< c.get_contact()	    << endl <<
+	    "Address: "		<< c.get_address()	    << endl <<
+	    "Birth date: "	<< c.get_birth_date()	    << endl <<
+	    "Creation date: "	<< c.get_creation_date()    << endl <<
+	    "Expiration date: " << c.get_expiration_date()  << endl <<
+	    "Discount: "	<< c.get_discount()	    << endl <<
+	    "Cost: "		<< c.get_cost();
+
+	return outstream;
+}
+
+
+std::ofstream&
+operator<<(std::ofstream &outstream, const UniCard &c)
+{
+	outstream <<
+	    c.get_name()	    << endl <<
+	    c.get_cc()		    << endl <<
+	    c.get_contact()	    << endl <<
+	    c.get_address()	    << endl <<
+	    c.get_birth_date()	    << endl <<
+	    c.get_creation_date()   << endl <<
+	    c.get_expiration_date() << endl <<
+	    c.get_discount()	    << endl <<
+	    c.get_cost();
+
+	return outstream;
+}
+
+
+ostream&
+operator<<(ostream &outstream, const SilverCard &c)
+{
+	outstream <<
+	    "Name: "		<< c.get_name()		    << endl <<
+	    "CC: "		<< c.get_cc()		    << endl <<
+	    "Contact: "		<< c.get_contact()	    << endl <<
+	    "Address: "		<< c.get_address()	    << endl <<
+	    "Birth date: "	<< c.get_birth_date()	    << endl <<
+	    "Creation date: "	<< c.get_creation_date()    << endl <<
+	    "Expiration date: " << c.get_expiration_date()  << endl <<
+	    "Discount: "	<< c.get_discount()	    << endl <<
+	    "Cost: "		<< c.get_cost();
+
+	return outstream;
+}
+
+
+std::ofstream&
+operator<<(std::ofstream &outstream, const SilverCard &c)
+{
+	outstream <<
+	    c.get_name()	    << endl <<
+	    c.get_cc()		    << endl <<
+	    c.get_contact()	    << endl <<
+	    c.get_address()	    << endl <<
+	    c.get_birth_date()	    << endl <<
+	    c.get_creation_date()   << endl <<
+	    c.get_expiration_date() << endl <<
+	    c.get_discount()	    << endl <<
+	    c.get_cost();
+
+	return outstream;
+}
+
+
+//std::ifstream&
+//operator>>(std::ifstream &instream, const Card &c)
+//{
+
+	//return instream;
+//}

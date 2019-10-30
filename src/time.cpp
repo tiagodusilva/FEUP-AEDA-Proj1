@@ -39,17 +39,6 @@ Time::getHour() const
 
 #pragma endregion
 
-ostream&
-operator<<(ostream& outstream, const Time &t)
-{
-	outstream << setfill('0') <<
-	    setw(2) << t.getHour() << ":" <<
-	    setw(2) << t.getMin() <<
-	    setfill(' ');
-
-	return outstream;
-}
-
 /* compare */
 
 bool
@@ -96,4 +85,26 @@ bool
 Time::operator>=(const Time &t) const
 {
 	return !(*this < t);
+}
+
+ostream&
+operator<<(ostream& outstream, const Time &t)
+{
+	outstream << setfill('0') <<
+	    setw(2) << t.hour << ':' <<
+	    setw(2) << t.min <<
+	    setfill(' ');
+
+	return outstream;
+}
+
+ofstream&
+operator<<(std::ofstream& outstream, const Time &t)
+{
+	outstream << setfill('0') <<
+	    setw(2) << t.hour << ':' <<
+	    setw(2) << t.min <<
+	    setfill(' ');
+
+	return outstream;
 }
