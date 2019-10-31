@@ -203,15 +203,17 @@ operator<<(std::ofstream& outstream, const Date &d)
 ifstream&
 operator>>(ifstream &instream, Date &d)
 {
-	// TODO cool exception
 	try {
 		time_t temp_time;
 		instream >> temp_time;
 
 		d = Date(temp_time);
+
 	}catch(const std::exception& e) {
-		std::cout << e.what();
 		instream.setstate(ios::failbit);
+		d = Date(0, 0, 0);
+
+		cerr << e.what() << endl;
 	}
 
 	return instream;

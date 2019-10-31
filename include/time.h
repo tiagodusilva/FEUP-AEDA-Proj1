@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <iostream>
 
+#include "exceptions.h"
+
 class Time
 {
 private:

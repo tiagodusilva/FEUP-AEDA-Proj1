@@ -109,23 +109,25 @@ operator<<(std::ofstream& outstream, const Time &t)
 ifstream&
 operator>>(std::ifstream &instream, Time &t)
 {
-	//TODO cool exception
 	try {
 		string temp_str;
 		getline(instream, temp_str);
 
 		int div = temp_str.find(':');
-		if (div == string::npos)
+		if (div == string::npos) {
 			instream.setstate(ios::failbit);
-			//TODO throw algo
+			throw FileReadingFailed("date file");
+		}
 		else {
 			t.hour = stoi(temp_str.substr(0, div));
 			t.min = stoi(temp_str.substr(div + 1));
 		}
 
 	}catch(const std::exception& e) {
-		std::cout << e.what();
 		instream.setstate(ios::failbit);
+		t.hour = t.min = 0;
+
+		cerr << e.what() << endl;
 	}
 
 
