@@ -3,10 +3,7 @@
 
 #include <ctime>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-
-#include "exceptions.h"
 
 #define SECONDS_IN_DAY 86400  // 60 * 60 * 24
 

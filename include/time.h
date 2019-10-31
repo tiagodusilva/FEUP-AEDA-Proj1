@@ -1,12 +1,8 @@
 #ifndef TIME_H
 #define TIME_H
 
-#include <ctime>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-
-#include "exceptions.h"
 
 class Time
 {

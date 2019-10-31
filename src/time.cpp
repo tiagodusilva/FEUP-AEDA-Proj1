@@ -1,5 +1,10 @@
 #include "../include/time.h"
 
+#include <ctime>
+#include <iomanip>
+
+#include "../include/exceptions.h"
+
 using namespace std;
 
 /* WARNING: current date is compiler dependent */
@@ -114,10 +119,9 @@ operator>>(std::ifstream &instream, Time &t)
 		getline(instream, temp_str);
 
 		int div = temp_str.find(':');
-		if (div == string::npos) {
-			instream.setstate(ios::failbit);
-			throw FileReadingFailed("date file");
-		}
+		if (div == string::npos)
+			throw FileReadingFailed("time: " + temp_str);
+
 		else {
 			t.hour = stoi(temp_str.substr(0, div));
 			t.min = stoi(temp_str.substr(div + 1));
@@ -129,7 +133,6 @@ operator>>(std::ifstream &instream, Time &t)
 
 		cerr << e.what() << endl;
 	}
-
 
 	return instream;
 }

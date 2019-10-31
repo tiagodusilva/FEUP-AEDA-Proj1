@@ -1,5 +1,10 @@
 #include "../include/date.h"
 
+#include <iomanip>
+
+#include "../include/exceptions.h"
+#include "../include/utilities.h"
+
 using namespace std;
 
 bool
@@ -205,7 +210,7 @@ operator>>(ifstream &instream, Date &d)
 {
 	try {
 		time_t temp_time;
-		instream >> temp_time;
+		instream >> temp_time; utl::ignore(instream);  // clear '\n' char from stream
 
 		d = Date(temp_time);
 

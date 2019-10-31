@@ -1,14 +1,16 @@
 #ifndef CARDS_H
 #define CARDS_H
 
+#include <fstream>
+#include <iostream>
 #include <string>
 
 #include "address.h"
 #include "date.h"
 
-using namespace std;
-
 #define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
+
+using namespace std;
 
 class Card {
 private:
@@ -26,6 +28,13 @@ public:
 	bool isvalid() const;
 	void renew();
 
+	/* setters */
+	void set_cc(unsigned int cc) { this->cc = cc; };
+	void set_contact(string &contact) { this->contact = contact; };
+	void set_name(string &name) { this->name = name; };
+	void set_birth_date(Date &d) { this->birth_date = d; };
+	void set_address(Address &a) { this->address = a; }
+
 	/* getters */
 	unsigned int get_cc() const;
 	string get_contact() const;
@@ -34,60 +43,64 @@ public:
 	Date get_birth_date() const;
 	Date get_expiration_date() const;
 	Address get_address() const;
-	virtual short get_type() const = 0;
+	virtual int get_type() const = 0;
+	virtual float get_discount() const = 0;
+	virtual float get_cost() const = 0;
+
+	friend std::ostream& operator<<(std::ostream &outstream, const Card &c);
+	friend std::ofstream& operator<<(std::ofstream &outstream, const Card &c);
+	friend std::ifstream& operator>>(std::ifstream &instream, Card* &c);
 };
 
-class IndividualCard: public Card {
+
+class IndividualCard: public Card {  // type 0
 private:
 	static float discount;
 	static float cost;
 public:
-	IndividualCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+	IndividualCard() = default;
+	IndividualCard(const string &name, const string &contact, unsigned int cc,
+				const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
+	int get_type() const { return 0; };
 	float get_discount() const { return IndividualCard::discount; };
 	float get_cost() const { return IndividualCard::cost; };
-	short get_type() const { return 0; };
 };
 
-class UniCard: public Card {
+
+class UniCard: public Card {  // type 1
 private:
 	static float discount;
 	static float cost;
 public:
-	UniCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+	UniCard() = default;
+	UniCard(const string &name, const string &contact, unsigned int cc,
+			const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
+	int get_type() const { return 1; };
 	float get_discount() const { return UniCard::discount; };
 	float get_cost() const { return UniCard::cost; };
-	short get_type() const { return 1; };
 };
 
-class SilverCard: public Card {
+
+class SilverCard: public Card {  // type 2
 private:
 	static float discount;
 	static float cost;
 public:
-	SilverCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+	SilverCard() = default;
+	SilverCard(const string &name, const string &contact, unsigned int cc,
+			const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
+	int get_type() const { return 2; };
 	float get_discount() const { return SilverCard::discount; };
 	float get_cost() const { return SilverCard::cost; };
-	short get_type() const { return 2; };
 };
-
-std::ostream& operator<<(std::ostream &outstream, const IndividualCard &c);
-std::ofstream& operator<<(std::ofstream &outstream, const IndividualCard &c);
-
-std::ostream& operator<<(std::ostream &outstream, const UniCard &c);
-std::ofstream& operator<<(std::ofstream &outstream, const UniCard &c);
-
-std::ostream& operator<<(std::ostream &outstream, const SilverCard &c);
-std::ofstream& operator<<(std::ofstream &outstream, const SilverCard &c);
-
-//std::ifstream& operator>>(std::ifstream &instream, const Card &c);
 
 #endif  // CARDS_H

@@ -1,5 +1,8 @@
 #include "../include/cards.h"
 
+#include "../include/exceptions.h"
+#include "../include/utilities.h"
+
 float IndividualCard::cost = 54.90;
 float IndividualCard::discount = 0.25;
 float UniCard::cost = 32.45;
@@ -14,7 +17,7 @@ Card::Card(const string &name, const string &contact, unsigned int cc, const Dat
 	this->contact = contact;
 	this->cc = cc;
 	this->birth_date = birth_date;
-
+	this->address = address;
 	this->expiration_date.ffyear();  // expiration date is 1 year from creation date
 }
 
@@ -28,18 +31,25 @@ Card::isvalid() const
 void
 Card::renew()
 {
-	/* check is card is already expired */
-	if (this->isvalid()){
-		if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
-			this->expiration_date.ffyear();
-		else
-			cout << "cant renew\n";  // TODO EXCEPTION
-	}
-	else {
-		this->expiration_date = Date();  // compare with current date
+	/* renewing adds 1 more year to the validity period of a card */
+	try {
+		/* check is card is already expired */
+		if (this->isvalid()){
+			if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
+				this->expiration_date.ffyear();
+			else
+				throw TooEarlyToRenewCard(this->name);
+		}
+		else {
+			this->expiration_date = Date();  // compare with current date
+			this->expiration_date.ffyear();  // move expiration date to 1 year from now
+		}
 
-		this->expiration_date.ffyear();  // move expiration date to 1 year from now
+	}catch(const std::exception& e) {
+		// Do stuff here if necessary
+		cerr << e.what() << endl;
 	}
+
 }
 
 unsigned int
@@ -86,116 +96,71 @@ Card::get_address() const
 
 
 ostream&
-operator<<(ostream &outstream, const IndividualCard &c)
+operator<<(ostream &outstream, const Card &c)
 {
+	const string type[3] = {"Individual Card", "University Card", "Silver Card"};
+
 	outstream <<
-	    "Name: "		<< c.get_name()		    << endl <<
-	    "CC: "		<< c.get_cc()		    << endl <<
-	    "Contact: "		<< c.get_contact()	    << endl <<
-	    "Address: "		<< c.get_address()	    << endl <<
-	    "Birth date: "	<< c.get_birth_date()	    << endl <<
-	    "Creation date: "	<< c.get_creation_date()    << endl <<
-	    "Expiration date: " << c.get_expiration_date()  << endl <<
-	    "Discount: "	<< c.get_discount()	    << endl <<
-	    "Cost: "		<< c.get_cost();
+	    "Name: "		<< c.name	      << endl <<
+	    "Type: "		<< type[c.get_type()] << endl <<
+	    "CC: "		<< c.cc		      << endl <<
+	    "Contact: "		<< c.contact	      << endl <<
+	    "Address: "		<< c.address	      << endl <<
+	    "Birth date: "	<< c.birth_date	      << endl <<
+	    "Creation date: "	<< c.creation_date    << endl <<
+	    "Expiration date: " << c.expiration_date;
 
 	return outstream;
 }
 
 
 std::ofstream&
-operator<<(std::ofstream &outstream, const IndividualCard &c)
+operator<<(std::ofstream &outstream, const Card &c)
 {
-	outstream <<
-	    c.get_name()	    << endl <<
-	    c.get_cc()		    << endl <<
-	    c.get_contact()	    << endl <<
-	    c.get_address()	    << endl <<
-	    c.get_birth_date()	    << endl <<
-	    c.get_creation_date()   << endl <<
-	    c.get_expiration_date() << endl <<
-	    c.get_discount()	    << endl <<
-	    c.get_cost();
+	outstream << c.name		     << endl;
+	outstream << to_string(c.get_type()) << endl;
+	outstream << to_string(c.cc)	     << endl;
+	outstream << c.contact		     << endl;
+	outstream << c.address		     << endl;
+	outstream << c.birth_date	     << endl;
+	outstream << c.creation_date	     << endl;
+	outstream << c.expiration_date;
 
 	return outstream;
 }
 
 
-ostream&
-operator<<(ostream &outstream, const UniCard &c)
+std::ifstream&
+operator>>(std::ifstream &instream, Card* &c)
 {
-	outstream <<
-	    "Name: "		<< c.get_name()		    << endl <<
-	    "CC: "		<< c.get_cc()		    << endl <<
-	    "Contact: "		<< c.get_contact()	    << endl <<
-	    "Address: "		<< c.get_address()	    << endl <<
-	    "Birth date: "	<< c.get_birth_date()	    << endl <<
-	    "Creation date: "	<< c.get_creation_date()    << endl <<
-	    "Expiration date: " << c.get_expiration_date()  << endl <<
-	    "Discount: "	<< c.get_discount()	    << endl <<
-	    "Cost: "		<< c.get_cost();
+	try {
+		string temp_name;
+		getline(instream, temp_name);
 
-	return outstream;
+		/* instanciate right class */
+		int type;
+		instream >> type; utl::ignore(instream);
+		if (type == 0)
+			c = new IndividualCard;
+		else if (type == 1)
+			c = new UniCard;
+		else if (type == 2)
+			c = new SilverCard;
+		else
+			throw FileReadingFailed("No such card type");
+
+		c->name = temp_name;
+		instream >> c->cc; utl::ignore(instream);
+		getline(instream, c->contact);
+		instream >> c->address;
+		instream >> c->birth_date;
+		instream >> c->creation_date;
+		instream >> c->expiration_date;
+
+	}catch(const std::exception& e) {
+		instream.setstate(ios::failbit);
+
+		cerr << e.what();
+	}
+	return instream;
 }
-
-
-std::ofstream&
-operator<<(std::ofstream &outstream, const UniCard &c)
-{
-	outstream <<
-	    c.get_name()	    << endl <<
-	    c.get_cc()		    << endl <<
-	    c.get_contact()	    << endl <<
-	    c.get_address()	    << endl <<
-	    c.get_birth_date()	    << endl <<
-	    c.get_creation_date()   << endl <<
-	    c.get_expiration_date() << endl <<
-	    c.get_discount()	    << endl <<
-	    c.get_cost();
-
-	return outstream;
-}
-
-
-ostream&
-operator<<(ostream &outstream, const SilverCard &c)
-{
-	outstream <<
-	    "Name: "		<< c.get_name()		    << endl <<
-	    "CC: "		<< c.get_cc()		    << endl <<
-	    "Contact: "		<< c.get_contact()	    << endl <<
-	    "Address: "		<< c.get_address()	    << endl <<
-	    "Birth date: "	<< c.get_birth_date()	    << endl <<
-	    "Creation date: "	<< c.get_creation_date()    << endl <<
-	    "Expiration date: " << c.get_expiration_date()  << endl <<
-	    "Discount: "	<< c.get_discount()	    << endl <<
-	    "Cost: "		<< c.get_cost();
-
-	return outstream;
-}
-
-
-std::ofstream&
-operator<<(std::ofstream &outstream, const SilverCard &c)
-{
-	outstream <<
-	    c.get_name()	    << endl <<
-	    c.get_cc()		    << endl <<
-	    c.get_contact()	    << endl <<
-	    c.get_address()	    << endl <<
-	    c.get_birth_date()	    << endl <<
-	    c.get_creation_date()   << endl <<
-	    c.get_expiration_date() << endl <<
-	    c.get_discount()	    << endl <<
-	    c.get_cost();
-
-	return outstream;
-}
-
-
-//std::ifstream&
-//operator>>(std::ifstream &instream, const Card &c)
-//{
-
-	//return instream;
-//}

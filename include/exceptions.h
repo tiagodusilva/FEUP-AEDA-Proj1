@@ -4,18 +4,32 @@
 #include <exception>
 #include <string>
 
+
 class FileReadingFailed: public std::exception
 {
-	std::string failed_file;
+	std::string fail_elem;
 public:
-	FileReadingFailed(std::string failed_file) { this->failed_file = failed_file; }
+	FileReadingFailed(std::string fail_elem) { this->fail_elem = fail_elem; }
 
 	virtual const char* what() const throw()
 	{
-		return "There was a problem reading the files";
+		std::string what = "There was a problem reading the files: " + fail_elem;
+		return what.c_str();
 	}
+};
 
-	std::string show() const { return this->failed_file; }
+
+class TooEarlyToRenewCard: public std::exception
+{
+	std::string fail_elem;
+public:
+	TooEarlyToRenewCard(std::string fail_elem) { this->fail_elem = fail_elem; }
+
+	virtual const char* what() const throw()
+	{
+		std::string what = "It's too early to renew this card: " + fail_elem;
+		return what.c_str();
+	}
 };
 
 #endif  // EXCEPTION_H

@@ -9,8 +9,8 @@ file(GLOB FEUP-AEDA-Proj1_FILES
         "include/*.h"
         "src/*.cpp"
         "tests/*.cpp"
-        "lib/googletest-master/googlemock/include"
-        "lib/googletest-master/googletest/include"
+        "lib/googletest-master/googlemock/include/*"
+        "lib/googletest-master/googletest/include/*"
         )
 
 add_executable(FEUP-AEDA-Proj1 ${FEUP-AEDA-Proj1_FILES} main.cpp)
