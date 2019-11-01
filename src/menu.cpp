@@ -19,7 +19,7 @@ void MenuOptions::show() const {
 
     do{
         cout << *this;
-        int selection = utl::getInt(cin, 0, options.size());
+        int selection = utl::getInt(cin, 0, options.size(), "Insira um numero entre 0 e " + to_string(options.size()));
         if(selection == 0)
             go_back = true;
         else

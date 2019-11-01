@@ -20,7 +20,6 @@ TEST(menu, construtor){
         vector<Menu*> menu_princ_opt = {&menu_sec, &m3, &m4};
         MenuOptions menu_princ("Menu Primário", menu_princ_opt);
         menu_princ.show();
-        // m.show(); So that when testing user doesn't have to type anything
     }
     catch(...) {
         EXPECT_EQ(true, false);

@@ -89,15 +89,16 @@ namespace utl
         return true;
     }
 
-    int getInt(istream &stream, int min, int max){
+    int getInt(istream &stream, int min, int max, string message){
         string res;
         int res_num;
         bool valid=false;
 
         do{
+	    cout << message << endl;
             getline(stream, res);
             clearConsole();
-            if(isNum(res)) {
+            if(isNum(res) && res != "") {
                 res_num = stoi(res);
                 if (res_num >= min && res_num <= max)
                     valid = true;
