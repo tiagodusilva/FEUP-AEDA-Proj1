@@ -39,6 +39,17 @@ bool Address::verify_zip_code(const string &zip) {
            isdigit(zip[3]) && isdigit(zip[5]) && isdigit(zip[6]) && isdigit(zip[7]);
 }
 
+bool
+Address::operator==(const Address &a) const
+{
+	if (this->getRegion() != a.getRegion() ||
+	    this->getStreet() != a.getStreet() ||
+	    this->getZipCode() != a.getZipCode())
+		return false;
+
+	return true;
+}
+
 std::ostream&
 operator<<(std::ostream& stream, const Address& address)
 {

@@ -24,6 +24,7 @@ public:
 	static bool verify_zip_code(const string &string);
 
 	/* operator overloads */
+	bool operator==(const Address &a) const;
 	friend std::ostream& operator<< (std::ostream& stream, const Address& address);
 	friend std::ofstream& operator<< (std::ofstream& outstream, const Address& address);
 	friend std::ifstream& operator>>(std::ifstream &instream, Address &a);
