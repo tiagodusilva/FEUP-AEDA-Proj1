@@ -19,27 +19,21 @@ private:
 	string contact, name;
 	Date creation_date, birth_date, expiration_date;
 	Address address;
-	vector<unsigned int> bought_events;
 public:
 	// rapido imagina o construtor com explicit imagina.. AI puta que pareu o windows update
 	/* constructures */
 	Card() = default;
 	Card(const string &name, const string &contact, const unsigned int cc, const Date &birth_date, const Address &address);
-	Card(const string &name, const string &contact, const unsigned int cc, const Date &birth_date, const Address &address,
-			const vector<unsigned int> &bought_events);
 	~Card() = default;
 
 	bool isvalid() const;
 	void renew();
-	void add_event(const unsigned int event);  // add an event to list of events bought by this user
-	void add_event(const vector<unsigned int> &event);  // add an event to list of events bought by this user
 
 	/* setters */
 	void set_contact(const string &contact) { this->contact = contact; };
 	void set_name(const string &name) { this->name = name; };
 	void set_birth_date(const Date &d) { this->birth_date = d; };
 	void set_address(const Address &a) { this->address = a; }
-	void set_bought_events(const vector<unsigned int> &bought_events) { this->bought_events = bought_events; };
 
 	/* getters */
 	unsigned int get_cc() const;
@@ -49,7 +43,6 @@ public:
 	Date get_birth_date() const;
 	Date get_expiration_date() const;
 	Address get_address() const;
-	vector<unsigned int> get_bought_events() const;
 	virtual int get_type() const = 0;
 	virtual float get_discount() const = 0;
 	virtual float get_cost() const = 0;
@@ -69,9 +62,6 @@ public:
 	IndividualCard() = default;
 	IndividualCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		: Card(name, contact, cc, birth_date, address) {};
-	IndividualCard(const string &name, const string &contact, const unsigned int cc, const Date &birth_date,
-			const Address &address, const vector<unsigned int> &bought_events):
-		Card(name, contact, cc, birth_date, address, bought_events) {};
 
 	/* getters */
 	int get_type() const { return 0; };
@@ -88,9 +78,6 @@ public:
 	UniCard() = default;
 	UniCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
-	UniCard(const string &name, const string &contact, const unsigned int cc, const Date &birth_date,
-			const Address &address, const vector<unsigned int> &bought_events):
-		Card(name, contact, cc, birth_date, address, bought_events) {};
 
 	/* getters */
 	int get_type() const { return 1; };
@@ -107,9 +94,6 @@ public:
 	SilverCard() = default;
 	SilverCard(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
-	SilverCard(const string &name, const string &contact, const unsigned int cc, const Date &birth_date,
-			const Address &address, const vector<unsigned int> &bought_events):
-		Card(name, contact, cc, birth_date, address, bought_events) {};
 
 	/* getters */
 	int get_type() const { return 2; };

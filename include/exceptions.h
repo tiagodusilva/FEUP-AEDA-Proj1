@@ -45,4 +45,5 @@ public:
 		return what.c_str();
 	}
 };
+
 #endif  // EXCEPTION_H
