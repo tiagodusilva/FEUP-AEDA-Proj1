@@ -57,7 +57,7 @@ namespace utl
 	* If a minimun or maximum number are given it forces the user to write an integer
 	* between the given range [min, max] (inclusive).
 	*/
-	int getInt(std::istream &stream, int min=INT32_MIN, int max=INT32_MAX);
+	int getInt(std::istream &stream, int min=INT32_MIN, int max=INT32_MAX, std::string message="");
 
 	/*
 	 * ignore istream or ifstream 1000 chars or until '\n'
