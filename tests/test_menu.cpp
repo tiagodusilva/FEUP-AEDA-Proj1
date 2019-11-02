@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <gtest/gtest.h>
 #include "../include/menu.h"
 
 using namespace std;
@@ -16,9 +15,9 @@ TEST(menu, construtor){
         MenuSelelect m3("This is a fun3", &test3);
         MenuSelelect m4("This is a fun4", &test4);
         vector<Menu*> menu_sec_opt = {&m1, &m2};
-        MenuOptions menu_sec = {"Menu Secundário", menu_sec_opt};
+        MenuOptions menu_sec = {"Menu Secundario", menu_sec_opt};
         vector<Menu*> menu_princ_opt = {&menu_sec, &m3, &m4};
-        MenuOptions menu_princ("Menu Primário", menu_princ_opt);
+        MenuOptions menu_princ("Menu Primario", menu_princ_opt);
         menu_princ.show();
     }
     catch(...) {

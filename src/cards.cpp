@@ -1,7 +1,13 @@
 #include "../include/cards.h"
 
+#include <algorithm>
+#include <sstream>
+#include <iomanip>
+
 #include "../include/exceptions.h"
 #include "../include/utilities.h"
+
+using namespace std;
 
 float IndividualCard::cost = 54.90;
 float IndividualCard::discount = 0.25;
@@ -10,7 +16,7 @@ float UniCard::discount = 0.25;
 float SilverCard::cost = 30.00;
 float SilverCard::discount = 0.25;
 
-Card::Card(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+Card::Card(const string &name, const string &contact, const unsigned int cc, const Date &birth_date, const Address &address)
 	:creation_date(), expiration_date()
 {
 	this->name = name;
@@ -18,8 +24,10 @@ Card::Card(const string &name, const string &contact, unsigned int cc, const Dat
 	this->cc = cc;
 	this->birth_date = birth_date;
 	this->address = address;
+
 	this->expiration_date.ffyear();  // expiration date is 1 year from creation date
 }
+
 
 bool
 Card::isvalid() const
@@ -27,6 +35,7 @@ Card::isvalid() const
 	/* compare expiration date with current date */
 	return this->expiration_date <= Date();
 }
+
 
 void
 Card::renew()
@@ -52,6 +61,8 @@ Card::renew()
 
 }
 
+
+/* getters */
 unsigned int
 Card::get_cc() const
 {
@@ -94,21 +105,22 @@ Card::get_address() const
 	return this->address;
 }
 
-
+/* operator overload */
 ostream&
 operator<<(ostream &outstream, const Card &c)
 {
-	const string type[3] = {"Individual Card", "University Card", "Silver Card"};
+	static const string type[3] = {"Individual Card", "University Card", "Silver Card"};
 
-	outstream <<
-	    "Name: "		<< c.name	      << endl <<
-	    "Type: "		<< type[c.get_type()] << endl <<
-	    "CC: "		<< c.cc		      << endl <<
-	    "Contact: "		<< c.contact	      << endl <<
-	    "Address: "		<< c.address	      << endl <<
-	    "Birth date: "	<< c.birth_date	      << endl <<
-	    "Creation date: "	<< c.creation_date    << endl <<
-	    "Expiration date: " << c.expiration_date;
+	outstream << left
+	    << setw(CARDS_OUTPUT_DELIM) << "Name" << " : " << c.name << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Type" << " : " << type[c.get_type()] << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "CC" << " : " << c.cc << endl
+	    << setw(CARDS_OUTPUT_DELIM) <<"Contact" << " : " << c.contact  << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Address" << " : " << c.address << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Birth date" << " : " << c.birth_date << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Creation date" << " : " << c.creation_date << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Expiration date" << " : " << c.expiration_date
+	    << right;
 
 	return outstream;
 }
@@ -134,8 +146,8 @@ std::ifstream&
 operator>>(std::ifstream &instream, Card* &c)
 {
 	try {
-		string temp_name;
-		getline(instream, temp_name);
+		string temp_str;
+		getline(instream, temp_str);
 
 		/* instanciate right class */
 		int type;
@@ -149,7 +161,7 @@ operator>>(std::ifstream &instream, Card* &c)
 		else
 			throw FileReadingFailed("No such card type");
 
-		c->name = temp_name;
+		c->name = temp_str;
 		instream >> c->cc; utl::ignore(instream);
 		getline(instream, c->contact);
 		instream >> c->address;
@@ -158,6 +170,7 @@ operator>>(std::ifstream &instream, Card* &c)
 		instream >> c->expiration_date;
 
 	}catch(const std::exception& e) {
+		c = nullptr;
 		instream.setstate(ios::failbit);
 
 		cerr << e.what();

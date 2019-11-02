@@ -5,24 +5,23 @@
 #include <string>
 #include <vector>
 #include "utilities.h"
-using namespace std;
 
 class Menu {
 protected:
-    string title;
+    std::string title;
 public:
-    Menu(string t) : title(t) {};
-    const string get_title() const { return this->title;};
+    Menu(std::string t) : title(t) {};
+    const std::string get_title() const { return this->title;};
     void operator()() const{ this->show();};
     virtual void show() const = 0;
 };
 
 class MenuOptions : public Menu{
 private:
-    const vector<Menu*> options;
+    const std::vector<Menu*> options;
 public:
-    MenuOptions(string t, vector<Menu*> opt) : Menu(t), options(opt) {};
-    friend ostream& operator<< (ostream &out, MenuOptions menu);
+    MenuOptions(std::string t, std::vector<Menu*> opt) : Menu(t), options(opt) {};
+    friend std::ostream& operator<< (std::ostream &out, MenuOptions menu);
     void show() const override;
 };
 
@@ -30,7 +29,7 @@ class MenuSelelect : public Menu{
 private:
     void (*function)();
 public:
-    MenuSelelect(string title, void (*fun)()) : Menu(title) , function(fun) {};
+    MenuSelelect(std::string title, void (*fun)()) : Menu(title) , function(fun) {};
     void show() const override;
 };
 

@@ -10,15 +10,27 @@
 
 namespace utl
 {
+    #define CLEAR_CONSOLE_NEW_LINES 66
+
 	/**
 	Returns true if all characters from string s are digits
 	*/
 	bool isNum(const std::string& s);
 
 	/**
-	Trims all whitespace from the right and left of string s
+	Return a string with all whitespace from the right and left trimmed
 	*/
-	void strTrim(std::string & s);
+    std::string& ltrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
+
+    /**
+    Return a string with all whitespace from the right and left trimmed
+    */
+    std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
+
+    /**
+    Return a string with all whitespace from the right and left trimmed
+    */
+    std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
 
 	/**
 	Returns trrue if a given filestream is empty
@@ -57,7 +69,7 @@ namespace utl
 	* If a minimun or maximum number are given it forces the user to write an integer
 	* between the given range [min, max] (inclusive).
 	*/
-	int getInt(std::istream &stream, int min=INT32_MIN, int max=INT32_MAX, std::string message="");
+	int getInt(std::istream &stream, int min=INT32_MIN, int max=INT32_MAX, const std::string &message="");
 
 	/*
 	 * ignore istream or ifstream 1000 chars or until '\n'

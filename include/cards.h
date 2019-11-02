@@ -4,41 +4,40 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "address.h"
 #include "date.h"
 
 #define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
-
-using namespace std;
+#define CARDS_OUTPUT_DELIM 15
 
 class Card {
 private:
 	unsigned int cc;
-	string contact, name;
+    std::string contact, name;
 	Date creation_date, birth_date, expiration_date;
 	Address address;
 public:
 	// rapido imagina o construtor com explicit imagina.. AI puta que pareu o windows update
 	/* constructures */
 	Card() = default;
-	Card(const string &name, const string &contact, unsigned int cc, const Date &birth_date, const Address &address);
+	Card(const std::string &name, const std::string &contact, const unsigned int cc, const Date &birth_date, const Address &address);
 	~Card() = default;
 
 	bool isvalid() const;
 	void renew();
 
 	/* setters */
-	void set_cc(unsigned int cc) { this->cc = cc; };
-	void set_contact(string &contact) { this->contact = contact; };
-	void set_name(string &name) { this->name = name; };
-	void set_birth_date(Date &d) { this->birth_date = d; };
-	void set_address(Address &a) { this->address = a; }
+	void set_contact(const std::string &contact) { this->contact = contact; };
+	void set_name(const std::string &name) { this->name = name; };
+	void set_birth_date(const Date &d) { this->birth_date = d; };
+	void set_address(const Address &a) { this->address = a; }
 
 	/* getters */
 	unsigned int get_cc() const;
-	string get_contact() const;
-	string get_name() const;
+    std::string get_contact() const;
+    std::string get_name() const;
 	Date get_creation_date() const;
 	Date get_birth_date() const;
 	Date get_expiration_date() const;
@@ -47,6 +46,7 @@ public:
 	virtual float get_discount() const = 0;
 	virtual float get_cost() const = 0;
 
+	/* operator overloads */
 	friend std::ostream& operator<<(std::ostream &outstream, const Card &c);
 	friend std::ofstream& operator<<(std::ofstream &outstream, const Card &c);
 	friend std::ifstream& operator>>(std::ifstream &instream, Card* &c);
@@ -59,9 +59,8 @@ private:
 	static float cost;
 public:
 	IndividualCard() = default;
-	IndividualCard(const string &name, const string &contact, unsigned int cc,
-				const Date &birth_date, const Address &address)
-		:Card(name, contact, cc, birth_date, address) {};
+	IndividualCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
+		: Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
 	int get_type() const { return 0; };
@@ -76,8 +75,7 @@ private:
 	static float cost;
 public:
 	UniCard() = default;
-	UniCard(const string &name, const string &contact, unsigned int cc,
-			const Date &birth_date, const Address &address)
+	UniCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
@@ -93,8 +91,7 @@ private:
 	static float cost;
 public:
 	SilverCard() = default;
-	SilverCard(const string &name, const string &contact, unsigned int cc,
-			const Date &birth_date, const Address &address)
+	SilverCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */

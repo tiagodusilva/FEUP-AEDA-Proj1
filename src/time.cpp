@@ -18,8 +18,8 @@ Time::Time()
 	tm *temp_tm = localtime(&time_now);
 
 	/* save info */
-	hour = temp_tm->tm_hour;
-	min = temp_tm->tm_min;
+	hour = (short) temp_tm->tm_hour;
+	min = (short) temp_tm->tm_min;
 }
 
 Time::Time(short hour, short min)
@@ -123,8 +123,8 @@ operator>>(std::ifstream &instream, Time &t)
 			throw FileReadingFailed("time: " + temp_str);
 
 		else {
-			t.hour = stoi(temp_str.substr(0, div));
-			t.min = stoi(temp_str.substr(div + 1));
+			t.hour = (short) stoi(temp_str.substr(0, div));
+			t.min = (short) stoi(temp_str.substr(div + 1));
 		}
 
 	}catch(const std::exception& e) {

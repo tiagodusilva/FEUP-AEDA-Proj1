@@ -4,25 +4,24 @@
 #include "../include/address.h"
 #include "../include/event.h"
 #include <string>
-#include <vector>
-
-using namespace std;
 
 class Enterprise {
 private:
-    string name;
-    string contact;
+    std::string name;
+    std::string contact;
     Address address;
-    vector<Event> events;
+    std::set<Event> events;
 public:
     Enterprise() = default;
-    Enterprise(const string &name, const string &contact, const Address &address, const vector<Event> &events);
+    Enterprise(const std::string &name, const std::string &contact, const Address &address, const std::set<Event> &events);
     ~Enterprise() = default;
 
-    string getName() const;
-    string getContact() const;
+    std::string getName() const;
+    std::string getContact() const;
     Address getAddress() const;
-    const vector<Event>& getEvents() const;
+    const std::set<Event>& getEvents() const;
+    const Event& getEvent(unsigned id) const;
+
 };
 
 #endif // ENTERPRISE_H
