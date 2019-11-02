@@ -26,7 +26,6 @@ public:
     void show() const override;
 };
 
-
 class MenuSelelect : public Menu{
 private:
     void (*function)();
