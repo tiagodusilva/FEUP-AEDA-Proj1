@@ -42,12 +42,10 @@ bool Address::verify_zip_code(const string &zip) {
 bool
 Address::operator==(const Address &a) const
 {
-	if (this->getRegion() != a.getRegion() ||
-	    this->getStreet() != a.getStreet() ||
-	    this->getZipCode() != a.getZipCode())
-		return false;
+    return !(this->getRegion() != a.getRegion() ||
+             this->getStreet() != a.getStreet() ||
+             this->getZipCode() != a.getZipCode());
 
-	return true;
 }
 
 std::ostream&

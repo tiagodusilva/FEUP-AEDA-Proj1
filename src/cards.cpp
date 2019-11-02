@@ -2,9 +2,12 @@
 
 #include <algorithm>
 #include <sstream>
+#include <iomanip>
 
 #include "../include/exceptions.h"
 #include "../include/utilities.h"
+
+using namespace std;
 
 float IndividualCard::cost = 54.90;
 float IndividualCard::discount = 0.25;
@@ -106,17 +109,18 @@ Card::get_address() const
 ostream&
 operator<<(ostream &outstream, const Card &c)
 {
-	const string type[3] = {"Individual Card", "University Card", "Silver Card"};
+	static const string type[3] = {"Individual Card", "University Card", "Silver Card"};
 
-	outstream <<
-	    "Name: "		<< c.name	      << endl <<
-	    "Type: "		<< type[c.get_type()] << endl <<
-	    "CC: "		<< c.cc		      << endl <<
-	    "Contact: "		<< c.contact	      << endl <<
-	    "Address: "		<< c.address	      << endl <<
-	    "Birth date: "	<< c.birth_date	      << endl <<
-	    "Creation date: "	<< c.creation_date    << endl <<
-	    "Expiration date: " << c.expiration_date;
+	outstream << left
+	    << setw(CARDS_OUTPUT_DELIM) << "Name" << " : " << c.name << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Type" << " : " << type[c.get_type()] << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "CC" << " : " << c.cc << endl
+	    << setw(CARDS_OUTPUT_DELIM) <<"Contact" << " : " << c.contact  << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Address" << " : " << c.address << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Birth date" << " : " << c.birth_date << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Creation date" << " : " << c.creation_date << endl
+	    << setw(CARDS_OUTPUT_DELIM) << "Expiration date" << " : " << c.expiration_date
+	    << right;
 
 	return outstream;
 }

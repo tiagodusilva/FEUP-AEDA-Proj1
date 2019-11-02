@@ -30,10 +30,21 @@ namespace utl
         }
     }
 
-    void strTrim(string& s)
+    string& ltrim(std::string& str, const std::string& chars)
     {
-        s.erase(0, s.find_first_not_of(' ')); // Trims spaces on the left
-        s.erase(s.find_last_not_of(' '), string::npos); // Trims spaces on the right
+        str.erase(0, str.find_first_not_of(chars));
+        return str;
+    }
+
+    string& rtrim(std::string& str, const std::string& chars)
+    {
+        str.erase(str.find_last_not_of(chars) + 1);
+        return str;
+    }
+
+    string& trim(std::string& str, const std::string& chars)
+    {
+        return ltrim(rtrim(str, chars), chars);
     }
 
     bool isFileEmpty(ifstream & fin)
@@ -41,7 +52,7 @@ namespace utl
         return fin.peek() == ifstream::traits_type::eof();
     }
 
-    bool readConfirmation(char & c, string msg)
+    bool readConfirmation(char & c, const std::string &msg)
     {
         string s;
         do
@@ -71,10 +82,10 @@ namespace utl
     {
         // Most portable way without using system(), conio.h, ncurses or an OS specific implementation
         // Saldy just moves everything up 40 lines...
-        cout << string(40, '\n');
+        cout << string(CLEAR_CONSOLE_NEW_LINES, '\n');
     }
 
-    bool checkStream(std::istream & stream, std::string & error)
+    bool checkStream(std::istream & stream, string & error)
     {
         if (stream.eof())
         {
@@ -89,20 +100,21 @@ namespace utl
         return true;
     }
 
-    int getInt(istream &stream, int min, int max, string message){
-        string res;
+    int getInt(istream &stream, int min, int max, const string &message){
         int res_num;
         bool valid=false;
 
         do{
-	    cout << message << endl;
-            getline(stream, res);
+	        cout << message << endl;
+            stream >> res_num;
             clearConsole();
-            if(isNum(res) && res != "") {
-                res_num = stoi(res);
-                if (res_num >= min && res_num <= max)
-                    valid = true;
+            if (stream.fail()) {
+                stream.clear();
+                ignore(stream);
             }
+            else if((stream.peek() == ' ' || stream.peek() == '\n' || stream.eof()) && res_num >= min && res_num <= max)
+                valid = true;
+
         } while(!valid);
 
         return res_num;

@@ -5,15 +5,13 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class Address
 {
 private:
 	std::string street, zipCode, region;
 public:
 	Address();
-	Address(const string &street, const string &zipCode, const string &region);
+	Address(const std::string &street, const std::string &zipCode, const std::string &region);
 
 	/* getters */
 	std::string getStreet() const;
@@ -21,7 +19,7 @@ public:
 	std::string getRegion() const;
 
 	/* other member functions */
-	static bool verify_zip_code(const string &string);
+	static bool verify_zip_code(const std::string &string);
 
 	/* operator overloads */
 	bool operator==(const Address &a) const;

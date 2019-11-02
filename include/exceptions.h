@@ -33,17 +33,53 @@ public:
 };
 
 
-class DuplicatedEvent: public std::exception
-{
-	std::string fail_elem;
+class DuplicatedEvent: public std::exception {
+    std::string fail_elem;
 public:
-	DuplicatedEvent(std::string fail_elem) { this->fail_elem = fail_elem; }
+    DuplicatedEvent(std::string fail_elem) { this->fail_elem = fail_elem; }
 
-	virtual const char* what() const noexcept
-	{
-		std::string what = "This event has already been registered/bought: " + fail_elem;
-		return what.c_str();
-	}
+    virtual const char *what() const noexcept {
+        std::string what = "This event has already been registered/bought: " + fail_elem;
+        return what.c_str();
+    }
+};
+
+
+class EventFull: public std::exception {
+private:
+    unsigned event_id;
+public:
+    EventFull(unsigned event_id) { this->event_id = event_id; };
+
+    virtual const char* what() noexcept {
+        std::string what = "Event with ID " + std::to_string(event_id) + " is full, it cannot be booked any more";
+        return what.c_str();
+    }
+};
+
+class EventNotFound: public std::exception {
+private:
+    unsigned event_id;
+public:
+    EventNotFound(unsigned event_id) { this->event_id = event_id; };
+
+    virtual const char* what() noexcept {
+        std::string what = "Event with ID " + std::to_string(event_id) + " was not found";
+        return what.c_str();
+    }
+};
+
+class EventAlreadyBought: public std::exception {
+private:
+    unsigned event_id, cc;
+public:
+    EventAlreadyBought(unsigned event_id, unsigned cc) { this->event_id = event_id; this->cc = cc; };
+
+    virtual const char* what() noexcept {
+        std::string what = "Event " + std::to_string(event_id) +
+                " has already been bought by user with cc " + std::to_string(cc);
+        return what.c_str();
+    }
 };
 
 #endif  // EXCEPTION_H
