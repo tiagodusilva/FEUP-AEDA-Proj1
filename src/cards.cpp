@@ -111,16 +111,15 @@ operator<<(ostream &outstream, const Card &c)
 {
 	static const string type[3] = {"Individual Card", "University Card", "Silver Card"};
 
-	outstream << left
-	    << setw(CARDS_OUTPUT_DELIM) << "Name" << " : " << c.name << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "Type" << " : " << type[c.get_type()] << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "CC" << " : " << c.cc << endl
-	    << setw(CARDS_OUTPUT_DELIM) <<"Contact" << " : " << c.contact  << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "Address" << " : " << c.address << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "Birth date" << " : " << c.birth_date << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "Creation date" << " : " << c.creation_date << endl
-	    << setw(CARDS_OUTPUT_DELIM) << "Expiration date" << " : " << c.expiration_date
-	    << right;
+	outstream <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Name"	      << " : " << right << c.name << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Type"	      << " : " << right << type[c.get_type()] << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "CC"	      << " : " << right << c.cc << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Contact"	      << " : " << right << c.contact  << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Address"	      << " : " << right << c.address << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Birth date"      << " : " << right << c.birth_date << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Creation date"   << " : " << right << c.creation_date << endl <<
+		left << setw(CARDS_OUTPUT_DELIM) << "Expiration date" << " : " << right << c.expiration_date;
 
 	return outstream;
 }

@@ -4,68 +4,85 @@
 
 using namespace std;
 
-Address::Address() {
-    this->street = "Undefined Street";
-    this->zipCode = "XXXX-XXX";
-    this->region = "Undefined Region";
+Address::Address()
+{
+	this->street = "Undefined Street";
+	this->zipCode = "XXXX-XXX";
+	this->region = "Undefined Region";
 }
 
-Address::Address(const string &street, const string &zipCode, const string &region) {
-    this->street = street;
-    this->zipCode = zipCode;
-    this->region = region;
+Address::Address(const string &region)
+{
+	this->street = "Undefined Street";
+	this->zipCode = "XXXX-XXX";
+	this->region = region;
 }
 
-string Address::getStreet() const {
-    return this->street;
+Address::Address(const string &street, const string &zipCode, const string &region)
+{
+	this->street = street;
+	this->zipCode = zipCode;
+	this->region = region;
 }
 
-string Address::getZipCode() const {
-    return this->zipCode;
+string
+Address::getStreet() const
+{
+	return this->street;
 }
 
-string Address::getRegion() const {
-    return this->region;
+string
+Address::getZipCode() const
+{
+	return this->zipCode;
 }
 
-bool Address::verify_zip_code(const string &zip) {
-    if (zip.size() != 8)
-        return false;
+string
+Address::getRegion() const
+{
+	return this->region;
+}
 
-    if (zip[4] != '-')
-        return false;
+bool
+Address::verify_zip_code(const string &zip)
+{
+	if (zip.size() != 8)
+		return false;
 
-    return isdigit(zip[0]) && isdigit(zip[1]) && isdigit(zip[2]) &&
-           isdigit(zip[3]) && isdigit(zip[5]) && isdigit(zip[6]) && isdigit(zip[7]);
+	if (zip[4] != '-')
+		return false;
+
+	return isdigit(zip[0]) && isdigit(zip[1]) && isdigit(zip[2]) &&
+		isdigit(zip[3]) && isdigit(zip[5]) && isdigit(zip[6]) && isdigit(zip[7]);
 }
 
 bool
 Address::operator==(const Address &a) const
 {
     return !(this->getRegion() != a.getRegion() ||
-             this->getStreet() != a.getStreet() ||
-             this->getZipCode() != a.getZipCode());
+	     this->getStreet() != a.getStreet() ||
+	     this->getZipCode() != a.getZipCode());
 
 }
 
 std::ostream&
-operator<<(std::ostream& stream, const Address& address)
+operator<<(std::ostream& outstream, const Address &a)
 {
-	stream <<
-	    address.street << " / " <<
-	    address.zipCode << " / " <<
-	    address.region;
+	outstream <<
+		a.street << " / " <<
+		a.zipCode << " / " <<
+		a.region;
 
-	return stream;
+	return outstream;
 }
 
 std::ofstream&
-operator<< (std::ofstream& outstream, const Address& address)
+operator<< (std::ofstream& outstream, const Address &a)
 {
-	outstream <<
-		address.street << " :::::: " <<
-		address.zipCode << " :::::: " <<
-		address.region;
+	outstream << "" <<
+		a.street << " :::::: " <<
+		a.zipCode << " :::::: " <<
+		a.region;
 
 	return outstream;
 }
@@ -86,7 +103,8 @@ operator>>(std::ifstream &instream, Address &a)
 		a.zipCode = temp_str.substr(div + 8, div2 - div - 8);
 		a.region = temp_str.substr(div2 + 8);
 
-		if (!Address::verify_zip_code(a.zipCode))  // check if a valid zip-code was read
+		/* check if a valid zip-code was read */
+		if (!Address::verify_zip_code(a.zipCode))
 			throw FileReadingFailed("address: " + temp_str);
 
 	}catch(const std::exception& e) {

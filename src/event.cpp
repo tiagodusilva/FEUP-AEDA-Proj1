@@ -92,18 +92,20 @@ bool Event::operator<(const Event &ev) const {
     return this->id < ev.id;
 }
 
-std::ostream &operator<<(std::ostream &outstream, const Event &ev) {
-    outstream << left
-        << setw(EVENT_OUPUT_DELIM) << "Name" << " : " << ev.name << endl
-        << setw(EVENT_OUPUT_DELIM) << "Id" << " : " << ev.id << endl
-        << setw(EVENT_OUPUT_DELIM) << "Entry Fee" << " : " << ev.ticket_fee << endl
-        << setw(EVENT_OUPUT_DELIM) << "Max Capacity" << " : " << ev.max_capacity << endl
-        << setw(EVENT_OUPUT_DELIM) << "Percentage sold" << " : " << setprecision(2) << ev.getCapacityPercentage() * 100 << " %" << endl
-        << setw(EVENT_OUPUT_DELIM) << "Location" << " : " << ev.address << endl
-        << setw(EVENT_OUPUT_DELIM) << "Date" << " : " << ev.date << endl
-        << setw(EVENT_OUPUT_DELIM) << "Time" << " : " << ev.time
-        << right;
-    return outstream;
+std::ostream&
+operator<<(std::ostream &outstream, const Event &ev)
+{
+	outstream <<
+		left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << ev.name << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << ev.id << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << ev.ticket_fee << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Max Capacity"    << " : " << right << ev.max_capacity << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Percentage sold" << " : " << right << setprecision(2) << ev.getCapacityPercentage() * 100 << " %" << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Date"	     << " : " << right << ev.date << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time;
+
+	return outstream;
 }
 
 void Event::show(const set<Event> &events) {

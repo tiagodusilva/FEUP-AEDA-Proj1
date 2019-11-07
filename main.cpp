@@ -9,7 +9,8 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	testing::InitGoogleTest(&argc, argv);
 	//Specify test name by setting filter to TESTNAME*
-	testing::GTEST_FLAG(filter) = "menu*";
+	//testing::GTEST_FLAG(filter) = "menu*";
+	testing::GTEST_FLAG(filter) = "card*";
 	return RUN_ALL_TESTS();
 
 //	const vector<int> a = {1, 2, 3, 4, 5, 6};

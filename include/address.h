@@ -11,6 +11,7 @@ private:
 	std::string street, zipCode, region;
 public:
 	Address();
+	Address(const std::string &region);
 	Address(const std::string &street, const std::string &zipCode, const std::string &region);
 
 	/* getters */
@@ -23,8 +24,8 @@ public:
 
 	/* operator overloads */
 	bool operator==(const Address &a) const;
-	friend std::ostream& operator<< (std::ostream& stream, const Address& address);
-	friend std::ofstream& operator<< (std::ofstream& outstream, const Address& address);
+	friend std::ostream& operator<< (std::ostream& outstream, const Address &a);
+	friend std::ofstream& operator<< (std::ofstream& outstream, const Address &a);
 	friend std::ifstream& operator>>(std::ifstream &instream, Address &a);
 };
 
