@@ -106,6 +106,13 @@ Card::get_address() const
 }
 
 /* operator overload */
+bool
+Card::operator==(const Card &c) const
+{
+	return this->cc == c.get_cc();
+}
+
+
 ostream&
 operator<<(ostream &outstream, const Card &c)
 {

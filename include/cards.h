@@ -15,7 +15,7 @@
 class Card {
 private:
 	unsigned int cc;
-    std::string contact, name;
+	std::string contact, name;
 	Date creation_date, birth_date, expiration_date;
 	Address address;
 public:
@@ -36,8 +36,8 @@ public:
 
 	/* getters */
 	unsigned int get_cc() const;
-    std::string get_contact() const;
-    std::string get_name() const;
+	std::string get_contact() const;
+	std::string get_name() const;
 	Date get_creation_date() const;
 	Date get_birth_date() const;
 	Date get_expiration_date() const;
@@ -47,6 +47,7 @@ public:
 	virtual float get_cost() const = 0;
 
 	/* operator overloads */
+	bool operator==(const Card &c) const;
 	friend std::ostream& operator<<(std::ostream &outstream, const Card &c);
 	friend std::ofstream& operator<<(std::ofstream &outstream, const Card &c);
 	friend std::ifstream& operator>>(std::ifstream &instream, Card* &c);
@@ -100,4 +101,4 @@ public:
 	float get_cost() const { return SilverCard::cost; };
 };
 
-#endif  // CARDS_H
+#endif	// CARDS_H
