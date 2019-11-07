@@ -15,10 +15,16 @@ class Menu {
 protected:
     std::string title;
 public:
+	/* Constructors */
 	Menu() = default;
     Menu(std::string t) : title(t) {};
+
     const std::string getTitle() const { return this->title;};
+
+	/* TODO Maybe delete () idk yet */
     void operator()() { this->show();};
+
+	/* Show function that will be called when instancing a given menu */
     virtual void show() = 0;
 };
 
@@ -29,6 +35,8 @@ private:
 	std::function<void()> func;
 public:
     MenuSelelect(std::string title, std::function<void()> fun) : Menu(title){ this->func = fun; };
+
+	/* Call the function that the menu is pointing to */
     void show() override { this->func(); utl::pauseConsole(); utl::ignore(std::cin); return; };
 };
 
@@ -41,16 +49,21 @@ public:
 	MenuOptions() : Menu() { options.clear(); };
     MenuOptions(std::string t, std::vector<Menu*> opt) : Menu(t), options(opt) {};
 	std::string getMessage() const;
+
     friend std::ostream& operator<< (std::ostream &out, MenuOptions menu) { out << menu.getMessage(); return out; };
+
+	/* Invokes and displays all of the menus in options and waits for user input to call them */
     void show() override;
 };
 
 
-BAZINGA<typename Arg> // Abstract class used to modify an argument (by using different filters)
+BAZINGA<typename Arg> // Abstract class used for specifyiing menus that modify an argument (by using different filters)
 class MenuFilter : public Menu{
 public:
 	MenuFilter<Arg>() : Menu() {};
 	MenuFilter<Arg>(std::string title) : Menu(title) {};
+
+	/* same as show() from Menu but that takes a reference to an argument */
 	virtual void show(Arg&) = 0;
     void show() override { return; };
 };
@@ -60,8 +73,10 @@ BAZINGA<typename Arg> // Wrapper to function that modifies an argument
 class MenuSelelectFilter : public MenuFilter<Arg>{
 private:
 	std::function<void(Arg&)> func;
+
 public:
     MenuSelelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) : MenuFilter<Arg>(title){ this->func = fun; };
+
     void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); utl::ignore(std::cin); return; };
 };
 
@@ -69,20 +84,35 @@ public:
 BAZINGA<typename Arg> // Menu that controls MenuSelelectFilter and other MenuOptionsFilter (all derived from MenuFilter)
 class MenuOptionsFilter : public MenuFilter<Arg>{
 private:
+	/* Argument that is passed and modified */
 	Arg argument;
-    std::vector<MenuFilter<Arg>*> options;
-    const std::vector<MenuFilter<Arg>*> options_backup; // Store options in a backup vector (used when menus are one time run).
-	std::function<void(Arg&)> exit_func = [](Arg){ return;}; // Initialize exit_func as a dead function to ensure that it points to something
-	bool select_one_menu; // Specifies if only one menu can be chosen
-	bool repeat_menus; // Specifies if menus in options are run only once
-public:
-	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt, std::function<void(Arg&)> e_fun=[](Arg){return;}, bool exclusive_selection=false, bool repeat=false)
-		: MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun),select_one_menu(exclusive_selection), repeat_menus(repeat){};
 
+	/* Function that will be called when menu is exiting. */
+	std::function<void(Arg&)> exit_func = [](Arg){ return;}; // Initialize as a dead function to ensure that it points to something
+
+    std::vector<MenuFilter<Arg>*> options;
+	/* Backup vector (used when user can't select a menu more than once). */
+    const std::vector<MenuFilter<Arg>*> options_backup;
+
+	/* Specifies if only one menu from options can be chosen (will exit from the menu when user selects any option) */
+	bool select_one_menu;
+	/* Specifies if the same menu can be selected more than once (when a user selects an option it won't be deleted) */
+	bool repeat_menus;
+
+public:
+	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt, std::function<void(Arg&)> e_fun=[](Arg){return;},
+		bool exclusive_selection=false, bool repeat=false):
+		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), select_one_menu(exclusive_selection), repeat_menus(repeat){};
+
+	/* Returns the menu select message */
 	std::string getMessage() const;
-	void show() override;
-	void show(Arg&) override;
+
     friend std::ostream& operator<<(std::ostream &os, const MenuOptionsFilter<Arg> menu){ os << menu.getMessage(); return os; }
+
+	/* Instanciate menu with no initial value of arg. */
+	void show() override;
+	/* Instanciate menu with a given arg. When calling any of its options, pass Arg as an argument to be modified. */
+	void show(Arg&) override;
 };
 
 BAZINGA<typename Arg>
@@ -108,7 +138,7 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 			utl::clearConsole();
 
 			int selection = utl::getInt(std::cin, 0, options.size(),
-					this->getMessage() + "Insira um numero entre 0 e "); //+ to_string(options.size());
+					this->getMessage() + "Insira um numero entre 0 e "+ std::to_string(options.size()));
 			if(selection == 0)
 				//if(this->options.size() == this->options_backup.size()) // if the user hasn't selected any menu yet
 						if(this->options.size() == this->options_backup.size()) // if the user hasn't selected any menu yet
