@@ -10,7 +10,7 @@
 
 namespace utl
 {
-    #define CLEAR_CONSOLE_NEW_LINES 66
+    #define CLEAR_CONSOLE_NEW_LINES 150
 
 	/**
 	Returns true if all characters from string s are digits

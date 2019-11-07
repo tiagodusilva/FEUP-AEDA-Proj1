@@ -2,30 +2,33 @@
 
 using namespace std;
 
-ostream& operator<< (ostream &os, MenuOptions menu){
-    os << menu.get_title() << endl << endl;
-    for (int i = 0; i < menu.options.size(); ++i)
-        os << i+1 << "- " << menu.options.at(i)->get_title() << endl;
-    os << "0- Go back" << endl;
-    return os;
+string MenuOptions::getMessage() const{
+	string res="";
+    res+= getTitle() + "\n\n";
+    for (int i=0; i < options.size(); ++i){
+        res += to_string(i+1) + "- " + options.at(i)->getTitle() + '\n';
+	}
+    res += "0- Go back\n";
+    return res;
 }
 
-void MenuOptions::show() const {
+void MenuOptions::show() {
     bool go_back = false;
 
     do{
-        cout << *this;
-        int selection = utl::getInt(cin, 0, options.size(), "Insira um numero entre 0 e " + to_string(options.size()));
+        int selection = utl::getInt(cin, 0, options.size(), this->getMessage() + "Insira um numero entre 0 e " + to_string(options.size()));
         if(selection == 0)
             go_back = true;
         else
-            options.at(selection - 1)->show();
+			try {
+				options.at(selection - 1)->show();
+
+			} catch(const MenuExitWithNoFunctionCall &err) {
+				// ignore if a menu exits without calling anything
+			} catch(const exception &err) {
+				cerr << err.what();
+			}
     } while (!go_back);
 
     return;
-}
-
-void MenuSelelect::show() const {
-    this->function();
-    utl::pauseConsole();
 }

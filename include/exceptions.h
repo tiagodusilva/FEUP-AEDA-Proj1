@@ -82,4 +82,15 @@ public:
     }
 };
 
+class MenuExitWithNoFunctionCall : public std::exception{
+private:
+	std::string title;
+public:
+	MenuExitWithNoFunctionCall(std::string t) : title(t) {};
+    virtual const char* what() noexcept {
+        std::string what = "Exited from menu " + title;
+        return what.c_str();
+    }
+};
+
 #endif  // EXCEPTION_H
