@@ -3,6 +3,7 @@
 
 #include "../include/address.h"
 #include "../include/event.h"
+#include "set"
 #include <string>
 
 class Enterprise {
@@ -21,6 +22,8 @@ public:
     Address getAddress() const;
     const std::set<Event>& getEvents() const;
     const Event& getEvent(unsigned id) const;
+
+
 
 };
 

@@ -84,11 +84,11 @@ bool Event::isOver() const {
     return this->date >= Date();
 }
 
-bool Event::operator==(const Event &ev) const {
+inline bool Event::operator==(const Event &ev) const {
     return this->id == ev.id;
 }
 
-bool Event::operator<(const Event &ev) const {
+inline bool Event::operator<(const Event &ev) const {
     return this->id < ev.id;
 }
 
@@ -108,8 +108,17 @@ operator<<(std::ostream &outstream, const Event &ev)
 	return outstream;
 }
 
-void Event::show(const set<Event> &events) {
-    for (const auto &event: events) {
-        cout << event << endl;
-    }
+std::ofstream &operator<<(std::ofstream &outfstream, const Event & ev) {
+    outfstream << ev.name << endl;
+    outfstream << to_string(ev.ticket_fee) << endl;
+    outfstream << to_string(ev.current_capacity) << endl;
+    outfstream << to_string(ev.max_capacity) << endl;
+    outfstream << ev.address << endl;
+    outfstream << ev.date << endl;
+    outfstream << ev.time;
+    return outfstream;
+}
+
+std::ifstream &operator>>(std::ifstream &infstream, Event & ev) {
+    return infstream;
 }

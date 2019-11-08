@@ -46,11 +46,18 @@ public:
     float getCapacityPercentage() const;
     bool isOver() const;
 
-    bool operator==(const Event &ev) const;
-    bool operator<(const Event &ev) const;
+    inline bool operator==(const Event &ev) const;
+    inline bool operator<(const Event &ev) const;
 
     friend std::ostream& operator<<(std::ostream &outstream, const Event &ev);
-    static void show(const std::set<Event> &events);
+    friend std::ofstream& operator <<(std::ofstream &outfstream, const Event &ev);
+    friend std::ifstream &operator>>(std::ifstream &infstream, Event & ev);
+    
 };
+
+inline bool operator==(const Event& ev, const unsigned id) { return ev.getId() == id; };
+inline bool operator==(const unsigned id, const Event& ev) { return operator==(ev, id); };
+inline bool operator!=(const Event& ev, const unsigned id) { return ev.getId() != id; };
+inline bool operator!=(const unsigned id, const Event& ev) { return operator!=(ev, id); };
 
 #endif // EVENT_H

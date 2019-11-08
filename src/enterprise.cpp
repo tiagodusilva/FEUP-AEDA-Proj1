@@ -27,9 +27,9 @@ const set<Event> &Enterprise::getEvents() const {
 }
 
 const Event &Enterprise::getEvent(unsigned id) const {
-    for (const auto &x: this->events) {
-        if (x.getId() == id)
-            return x;
+    for (const auto &ev: this->events) {
+        if (ev == id)
+            return ev;
     }
 
     throw EventNotFound(id);
