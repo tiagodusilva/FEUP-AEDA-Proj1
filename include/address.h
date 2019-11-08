@@ -23,10 +23,12 @@ public:
 	static bool verify_zip_code(const std::string &string);
 
 	/* operator overloads */
-	bool operator==(const Address &a) const;
-	friend std::ostream& operator<< (std::ostream& outstream, const Address &a);
-	friend std::ofstream& operator<< (std::ofstream& outstream, const Address &a);
+	friend std::ostream& operator<<(std::ostream& outstream, const Address &a);
+	friend std::ofstream& operator<<(std::ofstream& outstream, const Address &a);
 	friend std::ifstream& operator>>(std::ifstream &instream, Address &a);
 };
+
+
+bool operator==(const Address& lhs, const Address& rhs);
 
 #endif // ADDRESS_H

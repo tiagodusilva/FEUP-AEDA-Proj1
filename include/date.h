@@ -50,12 +50,12 @@ public:
 	/* fast forwards x days */
 	void ffday(short days=1);
 
-	bool operator==(const Date &d) const;
-	bool operator!=(const Date &d) const;
-	bool operator< (const Date &d) const;
-	bool operator<=(const Date &d) const;
-	bool operator> (const Date &d) const;
-	bool operator>=(const Date &d) const;
+	friend bool operator==(const Date& lhs, const Date& rhs);
+	friend bool operator!=(const Date& lhs, const Date& rhs);
+	friend bool operator< (const Date& lhs, const Date& rhs);
+	friend bool operator<=(const Date& lhs, const Date& rhs);
+	friend bool operator> (const Date& lhs, const Date& rhs);
+	friend bool operator>=(const Date& lhs, const Date& rhs);
 
 	unsigned int operator-(const Date &b);
 

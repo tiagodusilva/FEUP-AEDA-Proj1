@@ -138,40 +138,39 @@ Date::ffday(short days)
 /* compare */
 
 bool
-Date::operator==(const Date &d) const
+operator==(const Date& lhs, const Date& rhs)
 {
-
-	return (this->date_int == d.date_int);
+	return (lhs.date_int == rhs.date_int);
 }
 
 bool
-Date::operator!=(const Date &d) const
+operator!=(const Date& lhs, const Date& rhs)
 {
-	return (this->date_int != d.date_int);
+	return !(lhs == rhs);
 }
 
 bool
-Date::operator< (const Date &d) const
+operator< (const Date& lhs, const Date& rhs)
 {
-	return (this->date_int < d.date_int);
+	return (lhs.date_int < rhs.date_int);
 }
 
 bool
-Date::operator<=(const Date &d) const
+operator<=(const Date& lhs, const Date& rhs)
 {
-	return (this->date_int <= d.date_int);
+	return (lhs.date_int <= rhs.date_int);
 }
 
 bool
-Date::operator> (const Date &d) const
+operator> (const Date& lhs, const Date& rhs)
 {
-	return (this->date_int > d.date_int);
+	return !(lhs <= rhs);
 }
 
 bool
-Date::operator>=(const Date &d) const
+operator>=(const Date& lhs, const Date& rhs)
 {
-	return (this->date_int >= d.date_int);
+	return !(lhs < rhs);
 }
 
 

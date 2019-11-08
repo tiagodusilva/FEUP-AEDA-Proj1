@@ -18,12 +18,12 @@ public:
 	short getMin() const;
 	short getHour() const;
 
-	bool operator==(const Time& t) const;
-	bool operator!=(const Time& t) const;
-	bool operator< (const Time& t) const;
-	bool operator<=(const Time& t) const;
-	bool operator> (const Time& t) const;
-	bool operator>=(const Time& t) const;
+	friend bool operator==(const Time& lhs, const Time& rhs);
+	friend bool operator!=(const Time& lhs, const Time& rhs);
+	friend bool operator< (const Time& lhs, const Time& rhs);
+	friend bool operator<=(const Time& lhs, const Time& rhs);
+	friend bool operator> (const Time& lhs, const Time& rhs);
+	friend bool operator>=(const Time& lhs, const Time& rhs);
 
 	friend std::ostream& operator<<(std::ostream& outstream, const Time &t);
 	friend std::ofstream& operator<<(std::ofstream& outstream, const Time &t);

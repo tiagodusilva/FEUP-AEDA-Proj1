@@ -47,7 +47,6 @@ public:
 	virtual float get_cost() const = 0;
 
 	/* operator overloads */
-	bool operator==(const Card &c) const;
 	friend std::ostream& operator<<(std::ostream &outstream, const Card &c);
 	friend std::ofstream& operator<<(std::ofstream &outstream, const Card &c);
 	friend std::ifstream& operator>>(std::ifstream &instream, Card* &c);
@@ -100,5 +99,9 @@ public:
 	float get_discount() const { return SilverCard::discount; };
 	float get_cost() const { return SilverCard::cost; };
 };
+
+
+bool operator==(const Card& lhs, const Card& rhs);
+bool operator!=(const Card& lhs, const Card& rhs);
 
 #endif	// CARDS_H

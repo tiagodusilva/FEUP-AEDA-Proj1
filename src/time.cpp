@@ -47,49 +47,50 @@ Time::getHour() const
 /* compare */
 
 bool
-Time::operator==(const Time &t) const
+operator==(const Time& lhs, const Time& rhs)
 {
-	return (this->hour == t.hour) && (this->min == t.min);
+	return ((lhs.hour == rhs.hour) && (lhs.min == rhs.min));
 }
 
 bool
-Time::operator!=(const Time &t) const
+operator!=(const Time& lhs, const Time& rhs)
 {
-	return !(*this == t);
+	return !(lhs == rhs);
 }
 
 bool
-Time::operator< (const Time &t) const
+operator< (const Time& lhs, const Time& rhs)
 {
-	if (this->hour < t.hour)
+	if (lhs.hour < rhs.hour)
 		return true;
-	else if (this->min < t.min)
-		return true;
-
-	return false;
-}
-
-bool
-Time::operator> (const Time &t) const
-{
-	if (this->hour > t.hour)
-		return true;
-	else if (this->min > t.min)
+	else if (lhs.min < rhs.min)
 		return true;
 
 	return false;
 }
 
 bool
-Time::operator<=(const Time &t) const
+operator<=(const Time& lhs, const Time& rhs)
 {
-	return !(*this > t);
+	if (lhs.hour < rhs.hour)
+		return true;
+	else if (lhs.min < rhs.min)
+		return true;
+
+	return (lhs == rhs);
 }
 
 bool
-Time::operator>=(const Time &t) const
+operator> (const Time& lhs, const Time& rhs)
 {
-	return !(*this < t);
+	return !(lhs <= rhs);
+}
+
+
+bool
+operator>=(const Time& lhs, const Time& rhs)
+{
+	return !(lhs < rhs);
 }
 
 ostream&

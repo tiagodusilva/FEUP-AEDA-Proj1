@@ -107,9 +107,16 @@ Card::get_address() const
 
 /* operator overload */
 bool
-Card::operator==(const Card &c) const
+operator==(const Card& lhs, const Card& rhs)
 {
-	return this->cc == c.get_cc();
+	return lhs.get_cc() == rhs.get_cc();
+}
+
+
+bool
+operator!=(const Card& lhs, const Card& rhs)
+{
+	return !(lhs == rhs);
 }
 
 

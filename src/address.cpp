@@ -57,11 +57,14 @@ Address::verify_zip_code(const string &zip)
 }
 
 bool
-Address::operator==(const Address &a) const
+operator==(const Address& lhs, const Address& rhs)
 {
-    return !(this->getRegion() != a.getRegion() ||
-	     this->getStreet() != a.getStreet() ||
-	     this->getZipCode() != a.getZipCode());
+	if (lhs.getZipCode() == "XXXX-XXX" || rhs.getZipCode() == "XXXX-XXX")
+		return lhs.getRegion() == rhs.getRegion();
+
+	return (lhs.getRegion() == rhs.getRegion() &&
+		lhs.getStreet() == rhs.getStreet() &&
+		lhs.getZipCode() == rhs.getZipCode());
 
 }
 
@@ -77,7 +80,7 @@ operator<<(std::ostream& outstream, const Address &a)
 }
 
 std::ofstream&
-operator<< (std::ofstream& outstream, const Address &a)
+operator<<(std::ofstream& outstream, const Address &a)
 {
 	outstream << "" <<
 		a.street << " :::::: " <<
