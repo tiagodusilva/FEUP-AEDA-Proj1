@@ -23,7 +23,7 @@ public:
 	/* constructures */
 	Card() = default;
 	Card(const std::string &name, const std::string &contact, const unsigned int cc, const Date &birth_date, const Address &address);
-	~Card() = default;
+	virtual ~Card() = default;
 
 	bool isvalid() const;
 	void renew();

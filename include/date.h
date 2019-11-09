@@ -50,20 +50,19 @@ public:
 	/* fast forwards x days */
 	void ffday(short days=1);
 
-	friend bool operator==(const Date& lhs, const Date& rhs);
-	friend bool operator!=(const Date& lhs, const Date& rhs);
-	friend bool operator< (const Date& lhs, const Date& rhs);
-	friend bool operator<=(const Date& lhs, const Date& rhs);
-	friend bool operator> (const Date& lhs, const Date& rhs);
-	friend bool operator>=(const Date& lhs, const Date& rhs);
 
 	unsigned int operator-(const Date &b);
-
 };
+
+bool operator==(const Date& lhs, const Date& rhs);
+bool operator!=(const Date& lhs, const Date& rhs);
+bool operator< (const Date& lhs, const Date& rhs);
+bool operator<=(const Date& lhs, const Date& rhs);
+bool operator> (const Date& lhs, const Date& rhs);
+bool operator>=(const Date& lhs, const Date& rhs);
 
 std::ostream& operator<<(std::ostream& outstream, const Date &d);
 std::ofstream& operator<<(std::ofstream& outstream, const Date &d);
-
 std::ifstream& operator>>(std::ifstream &instream, Date &d);
 
 #endif  // DATE_H

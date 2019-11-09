@@ -183,6 +183,7 @@ operator>>(std::ifstream &instream, Card* &c)
 		instream >> c->expiration_date;
 
 	}catch(const std::exception& e) {
+		delete(c);
 		c = nullptr;
 		instream.setstate(ios::failbit);
 

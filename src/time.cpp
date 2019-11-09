@@ -24,6 +24,13 @@ Time::Time()
 
 Time::Time(short hour, short min)
 {
+	if (min == 0) {
+		if (hour < 0 || hour > 24)
+			throw InvalidTime();
+	}
+	else if (min < 0 || min > 59 || hour < 0 || hour > 23)
+		throw InvalidTime();
+
 	this->hour = hour;
 	this->min = min;
 }
@@ -49,7 +56,7 @@ Time::getHour() const
 bool
 operator==(const Time& lhs, const Time& rhs)
 {
-	return ((lhs.hour == rhs.hour) && (lhs.min == rhs.min));
+	return ((lhs.getHour() == rhs.getHour()) && (lhs.getMin() == rhs.getMin()));
 }
 
 bool
@@ -61,9 +68,9 @@ operator!=(const Time& lhs, const Time& rhs)
 bool
 operator< (const Time& lhs, const Time& rhs)
 {
-	if (lhs.hour < rhs.hour)
+	if (lhs.getHour() < rhs.getHour())
 		return true;
-	else if (lhs.min < rhs.min)
+	else if (lhs.getMin() < rhs.getMin())
 		return true;
 
 	return false;
@@ -72,9 +79,9 @@ operator< (const Time& lhs, const Time& rhs)
 bool
 operator<=(const Time& lhs, const Time& rhs)
 {
-	if (lhs.hour < rhs.hour)
+	if (lhs.getHour() < rhs.getHour())
 		return true;
-	else if (lhs.min < rhs.min)
+	else if (lhs.getMin() < rhs.getMin())
 		return true;
 
 	return (lhs == rhs);

@@ -33,6 +33,17 @@ public:
 };
 
 
+class InvalidTime: public std::exception
+{
+public:
+	InvalidTime() = default;
+	virtual const char* what() const noexcept
+	{
+		return "Time is out-of-bounds";
+	}
+};
+
+
 class DuplicatedEvent: public std::exception {
     std::string fail_elem;
 public:

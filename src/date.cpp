@@ -140,7 +140,7 @@ Date::ffday(short days)
 bool
 operator==(const Date& lhs, const Date& rhs)
 {
-	return (lhs.date_int == rhs.date_int);
+	return (lhs.getRaw() == rhs.getRaw());
 }
 
 bool
@@ -152,13 +152,13 @@ operator!=(const Date& lhs, const Date& rhs)
 bool
 operator< (const Date& lhs, const Date& rhs)
 {
-	return (lhs.date_int < rhs.date_int);
+	return (lhs.getRaw() < rhs.getRaw());
 }
 
 bool
 operator<=(const Date& lhs, const Date& rhs)
 {
-	return (lhs.date_int <= rhs.date_int);
+	return (lhs.getRaw() <= rhs.getRaw());
 }
 
 bool
