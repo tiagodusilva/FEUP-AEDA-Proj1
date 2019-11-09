@@ -28,6 +28,10 @@ public:
 
     bool has_event(unsigned id) const;
 
+    // As all of our enterprises must be registered in our country, their names will ALWAYS be different by law,
+    // therefore we only compare their names
+    inline bool operator== (const Enterprise &ent) { return this->name == ent.name; };
+
     friend std::ostream& operator<<(std::ostream &outstream, const Enterprise &ent);
     friend std::ofstream& operator<<(std::ofstream &outfstream, const Enterprise &ent);
     friend std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent);
