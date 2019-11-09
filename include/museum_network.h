@@ -28,12 +28,16 @@ public:
 	void removeCards(const std::vector<const Card*> &cards_to_be_removed);
 	void modifyCard(Card* card_to_be_changed);
 	void listCards(const std::vector<const Card*> &cards_to_be_listed);
+	void importCards(std::string cards_file_name);
+	void exportCards(std::string cards_file_name);
 
 	/* Methods for Enterprises */
 	void addEnterprise(Enterprise enterprise);
 	void removeEnterprises(const std::vector<Enterprise> &enterprises_to_be_removed);
 	void modifyEnterprise(Enterprise enterprise_to_be_changed);
 	void listEnterprise(const std::vector<Enterprise> &enterprises_to_be_listed);
+	void importEnterprises(std::string enterprise_file_name);
+	void exportEnterprises(std::string enterprise_file_name);
 	// First three are low priority
 
 	/* Methods for Museums */
@@ -41,13 +45,13 @@ public:
 	void removeMuseums(const std::vector<Museum> &museum_to_be_removed);
 	void modifyMuseum(Museum museum_to_be_changed);
 	void listMuseum(const std::vector<Museum> &museum_to_be_listed);
+	void importMuseums(std::string museum_file_name);
+	void exportMuseums(std::string museum_file_name);
 	// First three are low priority
 
 	/* Methods for Events */
 	void listEvents(const std::vector<Event> &events_to_be_listed);
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
-	void importMuseums(std::string museum_file_name);
-	void exportMuseums(std::string museum_file_name);
 
 	/* Getters for Menus */
 	std::vector<const Card*> getCards() const;
