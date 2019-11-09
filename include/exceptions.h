@@ -93,15 +93,57 @@ public:
     }
 };
 
+class FileDoesntExist : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileDoesntExist(std::string file) : file_name(file) {};
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			"does not exist";
+		return what.c_str();
+	}
+};
+
+class FileAlreadyExists : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileAlreadyExists(std::string file) : file_name(file) {};
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			"already exists";
+		return what.c_str();
+	}
+};
+
 class MenuExitWithNoFunctionCall : public std::exception{
 private:
 	std::string title;
 public:
 	MenuExitWithNoFunctionCall(std::string t) : title(t) {};
+
     virtual const char* what() noexcept {
         std::string what = "Exited from menu " + title;
         return what.c_str();
     }
 };
+
+
+class CardAlreadyExists : public std::exception {
+private:
+	unsigned cc;
+public:
+	CardAlreadyExists(unsigned cc) { this->cc = cc; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already an user with cc number " + std::to_string(cc) +
+			" in the network";
+		return what.c_str();
+	}
+};
+//TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H
