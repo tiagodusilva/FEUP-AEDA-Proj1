@@ -14,7 +14,7 @@ Address::Address()
 Address::Address(const string &region)
 {
 	this->street = "Undefined Street";
-	this->zipCode = "XXXX-XXX";
+	this->zipCode = "0000-000";
 	this->region = region;
 }
 
@@ -59,7 +59,7 @@ Address::verify_zip_code(const string &zip)
 bool
 operator==(const Address& lhs, const Address& rhs)
 {
-	if (lhs.getZipCode() == "XXXX-XXX" || rhs.getZipCode() == "XXXX-XXX")
+	if (lhs.getZipCode() == "0000-000" || rhs.getZipCode() == "0000-000")
 		return lhs.getRegion() == rhs.getRegion();
 
 	return (lhs.getRegion() == rhs.getRegion() &&
@@ -113,7 +113,7 @@ operator>>(std::ifstream &instream, Address &a)
 	}catch(const std::exception& e) {
 		instream.setstate(ios::failbit);
 		a.street = "Undefined Street";
-		a.zipCode = "XXXX-XXX";
+		a.zipCode = "0000-000";
 		a.region = "Undefined Region";
 
 		cerr << e.what() << endl;
