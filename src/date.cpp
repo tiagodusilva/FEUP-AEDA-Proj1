@@ -209,6 +209,7 @@ std::istream&
 operator>>(std::istream &instream, Date &d)
 {
 	try {
+		//cout << "Date (year/month/day)? ";
 		/* check if date is well formed */
 		string temp_date;
 		getline(cin, temp_date);

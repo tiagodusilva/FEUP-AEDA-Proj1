@@ -101,6 +101,7 @@ std::istream&
 operator>>(std::istream &instream, Address &a)
 {
 	try {
+		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
 		/* check if address is well formed */
 		string temp_address;
 		getline(instream, temp_address);
