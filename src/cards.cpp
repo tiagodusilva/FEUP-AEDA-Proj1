@@ -1,11 +1,6 @@
 #include "../include/cards.h"
 
-#include <algorithm>
-#include <sstream>
 #include <iomanip>
-
-#include "../include/exceptions.h"
-#include "../include/utilities.h"
 
 using namespace std;
 
@@ -190,4 +185,67 @@ operator>>(std::ifstream &instream, Card* &c)
 		cerr << e.what();
 	}
 	return instream;
+}
+
+
+void
+Card::cin_read_card(Card* &c)
+{
+	try {
+		/* instanciate right class */
+
+		/* get birth date */
+		cout << "When were you born (year/month/day)? ";
+		Date temp_bday;
+		std::cin >> temp_bday;
+		if (Date() - temp_bday >= ELDERY_MIN_AGE)
+			c = new SilverCard;
+		else {
+			std::cout << "Are you an university student (Y/N)? ";
+			char is_uni;
+			std::cin >> is_uni; utl::ignore(std::cin);
+
+			if (is_uni == 'Y' || is_uni == 'y')
+				c = new UniCard;
+			else
+				c = new IndividualCard;
+		}
+		c->birth_date = temp_bday;
+
+		/* name */
+		std::cout << "Name? ";
+		getline(std::cin, c->name);
+
+		/* CC */
+		std::cout << "CC (without control characters)? ";
+		std::string temp_cc;
+		getline(std::cin, temp_cc);
+		if (utl::isNum(temp_cc))
+			c->cc = stoi(temp_cc);
+		else
+			throw UserInputReadingFailure("given CC is not a number: " + temp_cc);
+
+		/* contact */
+		std::cout << "Contact (email or phone number prefered)? ";
+		getline(std::cin, c->contact);
+
+		/* address */
+		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+		std::cin >> c->address;
+
+		/* creation date is now */
+		Date temp_now;
+		c->creation_date = temp_now;
+
+		/* expiration date is 1 year from now */
+		temp_now.ffyear();
+		c->expiration_date = temp_now;
+
+	}catch(const std::exception& e) {
+		delete(c);
+		c = nullptr;
+		std::cin.setstate(std::ios::failbit);
+
+		std::cerr << e.what();
+	}
 }

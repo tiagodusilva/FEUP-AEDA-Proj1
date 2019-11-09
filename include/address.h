@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#define HALF_ADDR_ZIPCODE "0000-000"
+
 class Address
 {
 private:
@@ -25,6 +27,7 @@ public:
 	/* operator overloads */
 	friend std::ostream& operator<<(std::ostream& outstream, const Address &a);
 	friend std::ofstream& operator<<(std::ofstream& outstream, const Address &a);
+	friend std::istream& operator>>(std::istream &instream, Address &a);
 	friend std::ifstream& operator>>(std::ifstream &instream, Address &a);
 };
 

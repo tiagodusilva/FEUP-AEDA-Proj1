@@ -104,15 +104,20 @@ std::ofstream &operator<<(std::ofstream &outfstream, const Event & ev) {
     outfstream << to_string(ev.ticket_fee) << endl;
 
     outfstream << to_string(ev.reservations.size()) << endl;
-    for (const auto &cc: ev.reservations) {
-        outfstream << to_string(cc) << ' ';
+
+    if (ev.reservations.size() > 0) {
+	for (const auto &cc: ev.reservations) {
+	    outfstream << to_string(cc) << ' ';
+	}
+        outfstream << endl;
     }
-    outfstream << endl;
 
     outfstream << to_string(ev.max_capacity) << endl;
     outfstream << ev.address << endl;
     outfstream << ev.date << endl;
-    outfstream << ev.time;
+    outfstream << ev.time << endl;
+    outfstream << to_string(ev.is_valid);
+
     return outfstream;
 }
 
@@ -132,16 +137,18 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
         int num_reservations;
         infstream >> num_reservations; utl::ignore(infstream);
 
-        string tempStr;
-        getline(infstream, tempStr);
+	if (num_reservations > 0) {
+		string tempStr;
+		getline(infstream, tempStr);
 
-        istringstream ss(tempStr);
-        int tempInt;
-        for (; num_reservations > 0; --num_reservations) {
-            ss >> tempInt;
-            // As this is a set, there will never be repeated elements *winks*
-            ev.reservations.insert(tempInt);
-        }
+		istringstream ss(tempStr);
+		int tempInt;
+		for (; num_reservations > 0; --num_reservations) {
+		    ss >> tempInt;
+		    // As this is a set, there will never be repeated elements *winks*
+		    ev.reservations.insert(tempInt);
+		}
+	}
 
         // MAX CAPACITY
         infstream >> ev.max_capacity; utl::ignore(infstream);
@@ -155,6 +162,8 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
         // TIME
         infstream >> ev.time;
 
+	// IS_VALID
+	infstream >> ev.is_valid; utl::ignore(infstream);
     }
     catch (std::exception &e) {
         infstream.setstate(ios::failbit);

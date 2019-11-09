@@ -20,6 +20,7 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& outstream, const Time &t);
 	friend std::ofstream& operator<<(std::ofstream& outstream, const Time &t);
+	friend std::istream& operator>>(std::istream &instream, Time &t);
 	friend std::ifstream& operator>>(std::ifstream &instream, Time &t);
 };
 

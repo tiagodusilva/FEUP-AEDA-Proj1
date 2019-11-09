@@ -8,9 +8,12 @@
 
 #include "address.h"
 #include "date.h"
+#include "../include/exceptions.h"
+#include "../include/utilities.h"
 
+#define ELDERY_MIN_AGE (65 * 365) // how old (in days) do you have to be in order to be able to get a Silver card
 #define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
-#define CARDS_OUTPUT_DELIM 15
+#define CARDS_OUTPUT_DELIM 15  // for formatted outputs
 
 class Card {
 private:
@@ -19,11 +22,12 @@ private:
 	Date creation_date, birth_date, expiration_date;
 	Address address;
 public:
-	// rapido imagina o construtor com explicit imagina.. AI puta que pareu o windows update
 	/* constructures */
 	Card() = default;
 	Card(const std::string &name, const std::string &contact, const unsigned int cc, const Date &birth_date, const Address &address);
 	virtual ~Card() = default;
+
+	static void cin_read_card(Card* &c);  // read card from std::cin with prompts to std::cout
 
 	bool isvalid() const;
 	void renew();
@@ -103,5 +107,6 @@ public:
 
 bool operator==(const Card& lhs, const Card& rhs);
 bool operator!=(const Card& lhs, const Card& rhs);
+
 
 #endif	// CARDS_H

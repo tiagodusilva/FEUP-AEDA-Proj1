@@ -50,8 +50,8 @@ public:
 	/* fast forwards x days */
 	void ffday(short days=1);
 
-
 	unsigned int operator-(const Date &b);
+	friend std::istream& operator>>(std::istream &instream, Date &d);
 };
 
 bool operator==(const Date& lhs, const Date& rhs);

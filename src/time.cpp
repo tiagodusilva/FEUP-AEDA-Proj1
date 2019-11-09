@@ -119,20 +119,47 @@ operator<<(std::ofstream& outstream, const Time &t)
 	return outstream;
 }
 
+istream&
+operator>>(std::istream &instream, Time &t)
+{
+	try {
+		//cout << "Time (hour:min)?";
+		string temp_time;
+		getline(instream, temp_time);
+
+		int div = temp_time.find(':');
+		if (div == string::npos)
+			throw UserInputReadingFailure("time: " + temp_time);
+
+		else {
+			t.hour = (short) stoi(temp_time.substr(0, div));
+			t.min = (short) stoi(temp_time.substr(div + 1));
+		}
+
+	}catch(const std::exception& e) {
+		instream.setstate(ios::failbit);
+		t.hour = t.min = 0;
+
+		cerr << e.what() << endl;
+	}
+
+	return instream;
+}
+
 ifstream&
 operator>>(std::ifstream &instream, Time &t)
 {
 	try {
-		string temp_str;
-		getline(instream, temp_str);
+		string temp_time;
+		getline(instream, temp_time);
 
-		int div = temp_str.find(':');
+		int div = temp_time.find(':');
 		if (div == string::npos)
-			throw FileReadingFailed("time: " + temp_str);
+			throw FileReadingFailed("time: " + temp_time);
 
 		else {
-			t.hour = (short) stoi(temp_str.substr(0, div));
-			t.min = (short) stoi(temp_str.substr(div + 1));
+			t.hour = (short) stoi(temp_time.substr(0, div));
+			t.min = (short) stoi(temp_time.substr(div + 1));
 		}
 
 	}catch(const std::exception& e) {

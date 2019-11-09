@@ -18,6 +18,19 @@ public:
 	}
 };
 
+class UserInputReadingFailure: public std::exception
+{
+	std::string fail_elem;
+public:
+	UserInputReadingFailure(std::string fail_elem) { this->fail_elem = fail_elem; }
+
+	virtual const char* what() const noexcept
+	{
+		std::string what = "There was a problem reading the input from the user: " + fail_elem;
+		return what.c_str();
+	}
+};
+
 
 class TooEarlyToRenewCard: public std::exception
 {

@@ -1,6 +1,7 @@
 #include "../include/address.h"
 
 #include "../include/exceptions.h"
+#include "../include/utilities.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ Address::Address()
 Address::Address(const string &region)
 {
 	this->street = "Undefined Street";
-	this->zipCode = "0000-000";
+	this->zipCode = HALF_ADDR_ZIPCODE;
 	this->region = region;
 }
 
@@ -59,7 +60,7 @@ Address::verify_zip_code(const string &zip)
 bool
 operator==(const Address& lhs, const Address& rhs)
 {
-	if (lhs.getZipCode() == "0000-000" || rhs.getZipCode() == "0000-000")
+	if (lhs.getZipCode() == HALF_ADDR_ZIPCODE || rhs.getZipCode() == HALF_ADDR_ZIPCODE)
 		return lhs.getRegion() == rhs.getRegion();
 
 	return (lhs.getRegion() == rhs.getRegion() &&
@@ -71,13 +72,18 @@ operator==(const Address& lhs, const Address& rhs)
 std::ostream&
 operator<<(std::ostream& outstream, const Address &a)
 {
-	outstream <<
-		a.street << " / " <<
-		a.zipCode << " / " <<
-		a.region;
+	if (a.zipCode == HALF_ADDR_ZIPCODE)
+		outstream << a.region;
+	else {
+		outstream <<
+			a.street << " / " <<
+			a.zipCode << " / " <<
+			a.region;
+	}
 
 	return outstream;
 }
+
 
 std::ofstream&
 operator<<(std::ofstream& outstream, const Address &a)
@@ -89,6 +95,50 @@ operator<<(std::ofstream& outstream, const Address &a)
 
 	return outstream;
 }
+
+
+std::istream&
+operator>>(std::istream &instream, Address &a)
+{
+	try {
+		/* check if address is well formed */
+		string temp_address;
+		getline(instream, temp_address);
+		int div = temp_address.find("/");
+
+		if (div == string::npos) {  // half address (only region)
+			a.street = "Undefined Street";
+			a.zipCode = HALF_ADDR_ZIPCODE;
+			a.region = utl::trim(temp_address);
+			return instream;
+		}
+
+		/* full address */
+		int div2 = temp_address.find("/", div + 1);
+		if (div2 == string::npos)
+			throw UserInputReadingFailure("Address given by user is malformed: " + temp_address);
+
+		/* divide address into relevant parts */
+		a.street = temp_address.substr(0, div);
+		a.zipCode = temp_address.substr(div + 1, div2 - div - 1);
+		a.region = temp_address.substr(div2 + 1);
+
+		/* check if a valid zip-code was read */
+		if (a.zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(a.zipCode))
+			throw UserInputReadingFailure("Address given by user is malformed (or 0000-000): " + temp_address);
+
+	}catch(const std::exception& e) {
+		instream.setstate(ios::failbit);
+		a.street = "Undefined Street";
+		a.zipCode = "XXXX-XXX";
+		a.region = "Undefined Region";
+
+		cerr << e.what() << endl;
+	}
+
+	return instream;
+}
+
 
 std::ifstream&
 operator>>(std::ifstream &instream, Address &a)
@@ -113,7 +163,7 @@ operator>>(std::ifstream &instream, Address &a)
 	}catch(const std::exception& e) {
 		instream.setstate(ios::failbit);
 		a.street = "Undefined Street";
-		a.zipCode = "0000-000";
+		a.zipCode = "XXXX-XXX";
 		a.region = "Undefined Region";
 
 		cerr << e.what() << endl;

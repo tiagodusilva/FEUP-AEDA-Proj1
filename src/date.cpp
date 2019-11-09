@@ -1,6 +1,7 @@
 #include "../include/date.h"
 
 #include <iomanip>
+#include <sstream>
 
 #include "../include/exceptions.h"
 #include "../include/utilities.h"
@@ -204,6 +205,39 @@ operator<<(std::ofstream& outstream, const Date &d)
 }
 
 
+std::istream&
+operator>>(std::istream &instream, Date &d)
+{
+	try {
+		/* check if date is well formed */
+		string temp_date;
+		getline(cin, temp_date);
+		int div = temp_date.find("/");
+		int div2 = temp_date.find("/", div + 1);
+		if (div == string::npos || div2 == string::npos)
+			throw UserInputReadingFailure("Date given by user is malformed: " + temp_date);
+
+		/* read date from istringstream */
+		istringstream date_istream(temp_date);
+		short year, month, day;
+
+		date_istream >> year; date_istream.ignore(1000, '/');
+		date_istream >> month; date_istream.ignore(1000, '/');
+		date_istream >> day;
+
+		d = Date(year, month, day);
+
+	}catch(const std::exception& e) {
+		d = Date(0, 0, 0);
+		instream.setstate(ios::failbit);
+
+		cerr << e.what() << endl;
+	}
+
+	return instream;
+}
+
+
 ifstream&
 operator>>(ifstream &instream, Date &d)
 {
@@ -214,8 +248,8 @@ operator>>(ifstream &instream, Date &d)
 		d = Date(temp_time);
 
 	}catch(const std::exception& e) {
-		instream.setstate(ios::failbit);
 		d = Date(0, 0, 0);
+		instream.setstate(ios::failbit);
 
 		cerr << e.what() << endl;
 	}
