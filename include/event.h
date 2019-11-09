@@ -15,10 +15,9 @@ class DateTime;
 class Event {
 private:
     static unsigned id_tracker;
-    unsigned id;
+    unsigned id, max_capacity;
     std::string name;
     float ticket_fee;
-    int current_capacity, max_capacity;
     Address address;
     Time time;
     Date date;
@@ -27,37 +26,37 @@ private:
 
 public:
     Event() = default;
-    Event(const std::string& name, float cost, int current_capacity, int max_capacity, const Address& addres, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
+    Event(const std::string& name, float cost, unsigned max_capacity, const Address& addres, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
     ~Event() = default;
 
-    unsigned getId() const;
-    float getFee() const;
-    std::string getName() const;
-    int getCurrentCapacity() const;
-    int getMaxCapacity() const;
-    Address getAddress() const;
-    Time getTime() const;
-    Date getDate() const;
+    unsigned get_id() const;
+    float get_fee() const;
+    std::string get_name() const;
+    unsigned get_max_capacity() const;
+    unsigned get_current_capacity() const;
+    Address get_address() const;
+    Time get_time() const;
+    Date get_date() const;
 
     void purchase(unsigned cc);
 
-    bool isFull() const;
-    bool isHalfFull() const;
-    float getCapacityPercentage() const;
-    bool isOver() const;
+    bool is_full() const;
+    bool is_half_full() const;
+    float get_capacity_percentage() const;
+    bool is_over() const;
 
-    inline bool operator==(const Event &ev) const;
-    inline bool operator<(const Event &ev) const;
+    inline bool operator==(const Event &ev) const { return this->id == ev.id; };
+    inline bool operator<(const Event &ev) const { return this->id < ev.id; };
 
     friend std::ostream& operator<<(std::ostream &outstream, const Event &ev);
     friend std::ofstream& operator <<(std::ofstream &outfstream, const Event &ev);
-    friend std::ifstream &operator>>(std::ifstream &infstream, Event & ev);
-    
+    friend std::ifstream &operator>>(std::ifstream &infstream, Event &ev);
+
 };
 
-inline bool operator==(const Event& ev, const unsigned id) { return ev.getId() == id; };
+inline bool operator==(const Event& ev, const unsigned id) { return ev.get_id() == id; };
 inline bool operator==(const unsigned id, const Event& ev) { return operator==(ev, id); };
-inline bool operator!=(const Event& ev, const unsigned id) { return ev.getId() != id; };
+inline bool operator!=(const Event& ev, const unsigned id) { return ev.get_id() != id; };
 inline bool operator!=(const unsigned id, const Event& ev) { return operator!=(ev, id); };
 
 #endif // EVENT_H

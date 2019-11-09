@@ -1,17 +1,18 @@
 #include "../include/event.h"
 #include "../include/exceptions.h"
+#include "../include/utilities.h"
 
 #include <iomanip>
+#include <sstream>
 
 using namespace std;
 
 unsigned Event::id_tracker = 1;
 
-Event::Event(const string& name, float ticket_fee, int current_capacity, int max_capacity, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
+Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
     this->id = id_tracker++;
     this->name = name;
     this->ticket_fee = ticket_fee;
-    this->current_capacity = current_capacity;
     this->max_capacity = max_capacity;
     this->address = address;
     this->time = time;
@@ -20,76 +21,67 @@ Event::Event(const string& name, float ticket_fee, int current_capacity, int max
     this->is_valid = is_valid;
 }
 
-unsigned Event::getId() const {
+unsigned Event::get_id() const {
     return this->id;
 }
 
-float Event::getFee() const {
+float Event::get_fee() const {
     return this->ticket_fee;
 }
 
-string Event::getName() const {
+string Event::get_name() const {
     return this->name;
 }
 
-int Event::getCurrentCapacity() const {
-    return this->current_capacity;
-}
-
-int Event::getMaxCapacity() const {
+unsigned Event::get_max_capacity() const {
     return this->max_capacity;
 }
 
-Address Event::getAddress() const {
+unsigned Event::get_current_capacity() const {
+    return this->reservations.size();
+}
+
+Address Event::get_address() const {
     return this->address;
 }
 
-Time Event::getTime() const {
+Time Event::get_time() const {
     return this->time;
 }
 
-Date Event::getDate() const {
+Date Event::get_date() const {
     return this->date;
 }
 
 void Event::purchase(unsigned cc) {
 
-    if (this->isFull())
+    if (this->is_full())
         throw EventFull(this->id);
 
     if (this->reservations.find(cc) != this->reservations.end())
         throw EventAlreadyBought(this->id, cc);
 
     this->reservations.insert(cc);
-    ++current_capacity;
 }
 
-bool Event::isFull() const {
-    return this->current_capacity >= this->max_capacity;
+bool Event::is_full() const {
+    return this->reservations.size() >= this->max_capacity;
 }
 
-bool Event::isHalfFull() const {
-    return (this->current_capacity * 2 >= this->max_capacity); // Plz don't overflow
+bool Event::is_half_full() const {
+    return (this->reservations.size() * 2 >= this->max_capacity); // Plz don't overflow
 }
 
-float Event::getCapacityPercentage() const {
+float Event::get_capacity_percentage() const {
     if (this->max_capacity == 0)
         return 1;
-    return ((float) this->current_capacity / (float) this->max_capacity);
+    return ((float) this->reservations.size() / (float) this->max_capacity);
 }
 
-bool Event::isOver() const {
+bool Event::is_over() const {
     if (this->date == Date())
         return this->time >= Time();
     return this->date >= Date();
-}
-
-inline bool Event::operator==(const Event &ev) const {
-    return this->id == ev.id;
-}
-
-inline bool Event::operator<(const Event &ev) const {
-    return this->id < ev.id;
 }
 
 std::ostream&
@@ -99,10 +91,9 @@ operator<<(std::ostream &outstream, const Event &ev)
 		left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << ev.name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << ev.id << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << ev.ticket_fee << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Max Capacity"    << " : " << right << ev.max_capacity << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Percentage sold" << " : " << right << setprecision(2) << ev.getCapacityPercentage() * 100 << " %" << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << ev.get_capacity_percentage() * 100 << "% de "  << ev.max_capacity << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Date"	     << " : " << right << ev.date << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time;
 
 	return outstream;
@@ -111,7 +102,13 @@ operator<<(std::ostream &outstream, const Event &ev)
 std::ofstream &operator<<(std::ofstream &outfstream, const Event & ev) {
     outfstream << ev.name << endl;
     outfstream << to_string(ev.ticket_fee) << endl;
-    outfstream << to_string(ev.current_capacity) << endl;
+
+    outfstream << to_string(ev.reservations.size()) << endl;
+    for (const auto &cc: ev.reservations) {
+        outfstream << to_string(cc) << ' ';
+    }
+    outfstream << endl;
+
     outfstream << to_string(ev.max_capacity) << endl;
     outfstream << ev.address << endl;
     outfstream << ev.date << endl;
@@ -119,6 +116,50 @@ std::ofstream &operator<<(std::ofstream &outfstream, const Event & ev) {
     return outfstream;
 }
 
-std::ifstream &operator>>(std::ifstream &infstream, Event & ev) {
+std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
+
+    try {
+        // ID
+        ev.id = Event::id_tracker++;
+
+        // NAME
+        getline(infstream, ev.name);
+
+        // TICKETS
+        infstream >> ev.ticket_fee; utl::ignore(infstream);
+
+        // RESERVATIONS
+        int num_reservations;
+        infstream >> num_reservations; utl::ignore(infstream);
+
+        string tempStr;
+        getline(infstream, tempStr);
+
+        istringstream ss(tempStr);
+        int tempInt;
+        for (; num_reservations > 0; --num_reservations) {
+            ss >> tempInt;
+            // As this is a set, there will never be repeated elements *winks*
+            ev.reservations.insert(tempInt);
+        }
+
+        // MAX CAPACITY
+        infstream >> ev.max_capacity; utl::ignore(infstream);
+
+        // ADDRESS
+        infstream >> ev.address;
+
+        // DATE
+        infstream >> ev.date;
+
+        // TIME
+        infstream >> ev.time;
+
+    }
+    catch (std::exception &e) {
+        infstream.setstate(ios::failbit);
+        cerr << e.what();
+    }
+
     return infstream;
 }

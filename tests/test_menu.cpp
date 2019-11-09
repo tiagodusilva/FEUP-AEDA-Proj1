@@ -8,7 +8,7 @@ void test3() { cout << "1"; return;};
 void test2() { cout << "AHHHHHHHHHHHHHHHHHHHHH"; return;};
 void test4() { cout << "4"; return;};
 
-TEST(DISABLE_menu, normal){
+TEST(DISABLED_menu, normal){
     try {
         MenuSelelect m1("This is a fun1", test1);
        MenuSelelect m2("This is a fun2", test2);
@@ -26,7 +26,7 @@ TEST(DISABLE_menu, normal){
 }
 
 
-TEST(DISABLE_menu, filter){
+TEST(DISABLED_menu, filter){
 	int d=0;
 	MenuSelelectFilter<int> add1("Adiciona 1", [](int &a){ a++; });
 	MenuSelelectFilter<int> add2("Adiciona 2", [](int &a){ a+=2; });
@@ -46,7 +46,7 @@ TEST(DISABLE_menu, filter){
 }
 
 
-TEST(menu, mixture){
+TEST(DISABLED_menu, mixture){
     try {
 		MenuSelelect m1("This is a fun1", test1);
 		MenuSelelect m2("This is a fun2", test2);

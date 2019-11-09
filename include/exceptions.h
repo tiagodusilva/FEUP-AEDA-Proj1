@@ -33,10 +33,10 @@ public:
 };
 
 
-class DuplicatedEvent: public std::exception {
+class DuplicateEvent: public std::exception {
     std::string fail_elem;
 public:
-    DuplicatedEvent(std::string fail_elem) { this->fail_elem = fail_elem; }
+    DuplicateEvent(std::string fail_elem) { this->fail_elem = fail_elem; }
 
     virtual const char *what() const noexcept {
         std::string what = "This event has already been registered/bought: " + fail_elem;
