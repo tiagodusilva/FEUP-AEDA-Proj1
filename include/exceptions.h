@@ -106,15 +106,122 @@ public:
     }
 };
 
+class FileDoesntExist : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileDoesntExist(std::string file) : file_name(file) {};
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			"does not exist";
+		return what.c_str();
+	}
+};
+
+class FileAlreadyExists : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileAlreadyExists(std::string file) : file_name(file) {};
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			"already exists";
+		return what.c_str();
+	}
+};
+
 class MenuExitWithNoFunctionCall : public std::exception{
 private:
 	std::string title;
 public:
 	MenuExitWithNoFunctionCall(std::string t) : title(t) {};
+
     virtual const char* what() noexcept {
         std::string what = "Exited from menu " + title;
         return what.c_str();
     }
 };
+
+
+class CardAlreadyExists : public std::exception {
+private:
+	unsigned cc;
+public:
+	CardAlreadyExists(unsigned cc) { this->cc = cc; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already an user with cc number " + std::to_string(cc) +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class NoSuchCard : public std::exception {
+private:
+	unsigned cc;
+public:
+	NoSuchCard(unsigned cc) { this->cc = cc; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any user with cc number " + std::to_string(cc) +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class EnterpriseAlreadyExists : public std::exception {
+private:
+	std::string name;
+public:
+	EnterpriseAlreadyExists(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already an enterprise with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class NoSuchEnterprise : public std::exception {
+private:
+	std::string name;
+public:
+	NoSuchEnterprise(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any enterprise with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class MuseumAlreadyExists : public std::exception {
+private:
+	std::string name;
+public:
+	MuseumAlreadyExists(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already a museum with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class NoSuchMuseum : public std::exception {
+private:
+	std::string name;
+public:
+	NoSuchMuseum(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any museum with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+//TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H

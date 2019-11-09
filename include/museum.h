@@ -24,6 +24,9 @@ public:
     float get_fee() const;
     Address get_address() const;
 
+    // Two museums are equal if their name and address is the same
+    inline bool operator== (const Museum &museum) { return (this->name == museum.name) && (this->address == museum.address); }
+
     friend std::ostream& operator<<(std::ostream &outstream, const Museum &ent);
     friend std::ofstream& operator<<(std::ofstream &outfstream, const Museum &ent);
     friend std::ifstream &operator>>(std::ifstream &infstream, Museum &ent);
