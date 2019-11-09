@@ -157,6 +157,58 @@ public:
 		return what.c_str();
 	}
 };
+
+class EnterpriseAlreadyExists : public std::exception {
+private:
+	std::string name;
+public:
+	EnterpriseAlreadyExists(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already an enterprise with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class NoSuchEnterprise : public std::exception {
+private:
+	std::string name;
+public:
+	NoSuchEnterprise(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any enterprise with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class MuseumAlreadyExists : public std::exception {
+private:
+	std::string name;
+public:
+	MuseumAlreadyExists(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There is already a museum with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
+
+class NoSuchMuseum : public std::exception {
+private:
+	std::string name;
+public:
+	NoSuchMuseum(std::string name) { this->name = name; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any museum with name " + name +
+			" in the network";
+		return what.c_str();
+	}
+};
 //TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H
