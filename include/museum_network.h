@@ -5,8 +5,10 @@
 #include <vector>
 #include <string>
 
+#include "algorithm"
 #include "cards.h"
 #include "enterprise.h"
+#include "exceptions.h"
 #include "museum.h"
 
 class MuseumNetwork{
@@ -25,9 +27,10 @@ public:
 
 	/* Methods for Cards */
 	void addCard(Card* card);
-	void removeCards(const std::vector<const Card*> &cards_to_be_removed);
+	void removeCard(const Card* card_to_be_removed);
+	void removeCards(const std::vector<Card*> &cards_to_be_removed);
 	void modifyCard(Card* card_to_be_changed);
-	void listCards(const std::vector<const Card*> &cards_to_be_listed);
+	void listCards(const std::vector<Card*> &cards_to_be_listed, const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void importCards(std::string cards_file_name);
 	void exportCards(std::string cards_file_name);
 
@@ -54,9 +57,9 @@ public:
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
 
 	/* Getters for Menus */
-	std::vector<const Card*> getCards() const;
-	std::vector<Enterprise> getEnterprises() const;
-	std::vector<Museum> getMuseums() const;
+	std::vector<Card*> getCards() const { return this->cards; };
+	std::vector<Enterprise> getEnterprises() const { return this->enterprises; };
+	std::vector<Museum> getMuseums() const { return this->museums; };
 	std::vector<Event> getEvents() const; // Iterates through all enterprises to retreive all events
 
 	/* File input and output */

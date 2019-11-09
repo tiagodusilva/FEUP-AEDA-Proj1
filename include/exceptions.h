@@ -144,6 +144,19 @@ public:
 		return what.c_str();
 	}
 };
+
+class NoSuchCard : public std::exception {
+private:
+	unsigned cc;
+public:
+	NoSuchCard(unsigned cc) { this->cc = cc; };
+
+	virtual const char* what() noexcept {
+		std::string what = "There isn't any user with cc number " + std::to_string(cc) +
+			" in the network";
+		return what.c_str();
+	}
+};
 //TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H
