@@ -29,11 +29,11 @@ public:
 
 	// GETTERS
 
-	int getDay() const;
-	int getMonth() const;
-	int getYear() const;
-	int getWeekday() const;  // 1 is Sunday ([1, 7])
-	time_t getRaw() const;
+	int get_day() const;
+	int get_month() const;
+	int get_year() const;
+	int get_weekday() const;  // 1 is Sunday ([1, 7])
+	time_t get_raw() const;
 
 	// OTHER PUBLIC METHODS
 
