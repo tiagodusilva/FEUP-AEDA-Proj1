@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <istream>
+#include <sys/stat.h>
 
 // TODO: GET EVERYTHING TO USE EXCEPTIONS
 
@@ -75,6 +76,14 @@ namespace utl
 	 * ignore istream or ifstream 1000 chars or until '\n'
 	 */
 	inline void ignore(std::istream &i) { i.ignore(1000, '\n'); };
+
+	/*
+	 * Checks if a given file exists;
+	 * Takes a string specifing the path to the file to check as an argument;
+	 * Returns true in case the file exists and false in case the files doesn't exist;
+	 * Source: https://stackoverflow.com/a/12774387
+	*/
+	bool file_exists(const std::string& name);
 }
 
 #endif //UTILITIES_H

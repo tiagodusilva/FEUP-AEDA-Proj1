@@ -3,7 +3,6 @@
 using namespace std;
 
 
-
 /* Cards */
 
 void MuseumNetwork::addCard(Card* card) {
@@ -62,9 +61,9 @@ void MuseumNetwork::listCards(const std::vector<Card*> &cards_to_be_listed, cons
 	}
 }
 
-void importCards(std::string cards_file_name);
-void exportCards(std::string cards_file_name);
-
+void MuseumNetwork::listCards(const std::string &delim) const {
+	listCards(this->getCards(), delim);
+}
 
 
 /* Enterprises */
@@ -145,4 +144,164 @@ vector<Event> MuseumNetwork::getEvents() const {
 		}
 
 	return events;
+}
+
+
+
+/* File Methods */
+
+
+
+void MuseumNetwork::importCards(std::string cards_file_name) {
+	ifstream input_stream(cards_file_name);
+	int card_cnt;
+	vector<Card*> vec_cards;
+
+	input_stream >> card_cnt; utl::ignore(input_stream);
+	for (int i=0; i<card_cnt; ++i) {
+		Card *card;
+		input_stream >> card;
+		if(input_stream.fail())
+			throw(FileIncorrectFormatting(cards_file_name));
+		vec_cards.push_back(card);
+	}
+
+	this->cards = vec_cards;
+}
+
+
+void MuseumNetwork::importMuseums(std::string museum_file_name) {
+	ifstream input_stream(museum_file_name);
+	int museum_cnt;
+	vector<Museum> vec_museums;
+
+	input_stream >> museum_cnt; utl::ignore(input_stream);
+	for (int i=0; i<museum_cnt; ++i) {
+		Museum museum;
+		input_stream >> museum;
+		if(input_stream.fail())
+			throw(FileIncorrectFormatting(museum_file_name));
+		vec_museums.push_back(museum);
+	}
+
+	this->museums = vec_museums;
+}
+
+void MuseumNetwork::importEnterprises(std::string enterprise_file_name) {
+	ifstream input_stream(enterprise_file_name);
+	int enterprise_cnt;
+	vector<Enterprise> vec_enterprises;
+
+	input_stream >> enterprise_cnt; utl::ignore(input_stream);
+	for (int i=0; i<enterprise_cnt; ++i) {
+		Enterprise enterprise;
+		input_stream >> enterprise;
+		if(input_stream.fail())
+			throw(FileIncorrectFormatting(enterprise_file_name));
+		vec_enterprises.push_back(enterprise);
+	}
+
+	this->enterprises = vec_enterprises;
+}
+
+
+void MuseumNetwork::exportCards(std::string cards_file_name) const {
+	ofstream output_stream(cards_file_name);
+
+	unsigned int card_cnt = this->cards.size();
+	output_stream << "" << card_cnt << endl;
+	for (int i = 0; i < card_cnt; ++i)
+		output_stream << *(cards.at(i)) << endl;
+}
+
+
+void MuseumNetwork::exportMuseums(std::string museum_file_name) const {
+	ofstream output_stream(museum_file_name);
+
+	unsigned int museums_cnt = this->museums.size();
+	output_stream << "" << museums_cnt << endl;
+	for (int i = 0; i < museums_cnt; ++i)
+		output_stream << museums.at(i) << endl;
+}
+
+
+void MuseumNetwork::exportEnterprises(std::string enterprises_file_name) const {
+	ofstream output_stream(enterprises_file_name);
+
+	unsigned int enterprises_cnt = this->enterprises.size();
+	output_stream << "" << enterprises_cnt << endl;
+
+	for (int i = 0; i < enterprises_cnt; ++i)
+		output_stream << enterprises.at(i) << endl;
+}
+
+
+void MuseumNetwork::exportFiles(std::string cards_file_name, std::string museum_file_name,
+		std::string enterprise_file_name, std::string config_file_name) const {
+
+	ofstream output_stream(config_file_name);
+	output_stream << "cards_file_name: " << cards_file_name << endl;
+	output_stream << "museum_file_name: " << museum_file_name << endl;
+	output_stream << "enterprise_file_name: " << enterprise_file_name << endl;
+	output_stream << "individual::cost: " << this->individual_cost << endl;
+	output_stream << "individual::discount: " << individual_discount << endl;
+	output_stream << "silver::cost: " << silver_cost << endl;
+	output_stream << "silver::discount: " << silver_discount << endl;
+	output_stream << "uni::cost: " << uni_cost << endl;
+	output_stream << "uni::discount: " << uni_discount << endl;
+
+	this->exportCards(cards_file_name);
+	this->exportMuseums(museum_file_name);
+	this->exportEnterprises(enterprise_file_name);
+}
+
+void MuseumNetwork::importFiles(std::string network_file_name) {
+	ifstream input_stream(network_file_name);
+	string museum_file_name, enterprise_file_name, cards_file_name;
+	string temp_str;
+
+	input_stream >> temp_str;
+	input_stream >> cards_file_name; utl::ignore(input_stream);
+
+	input_stream >> temp_str;
+	input_stream >> museum_file_name; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
+	input_stream >> temp_str;
+	input_stream >> enterprise_file_name; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
+	input_stream >> temp_str;
+	input_stream >> this->individual_cost; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	input_stream >> temp_str;
+	input_stream >> this->individual_discount; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
+	input_stream >> temp_str;
+	input_stream >> this->silver_cost; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	input_stream >> temp_str;
+	input_stream >> this->silver_discount; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
+	input_stream >> temp_str;
+	input_stream >> this->uni_cost; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	input_stream >> temp_str;
+	input_stream >> this->uni_discount; utl::ignore(input_stream);
+	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
+	if(!utl::file_exists(network_file_name))
+		throw(FileNotFound(network_file_name));
+	if(!utl::file_exists(museum_file_name))
+		throw(FileNotFound(museum_file_name));
+	if(!utl::file_exists(enterprise_file_name))
+		throw(FileNotFound(enterprise_file_name));
+	if(!utl::file_exists(cards_file_name))
+		throw(FileNotFound(cards_file_name));
+
+	this->importCards(cards_file_name);
+	this->importMuseums(museum_file_name);
+	this->importEnterprises(enterprise_file_name);
 }

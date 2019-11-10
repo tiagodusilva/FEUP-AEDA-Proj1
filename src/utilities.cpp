@@ -100,7 +100,7 @@ namespace utl
         return true;
     }
 
-    int getInt(istream &stream, int min, int max, const string &message){
+    int getInt(istream &stream, int min, int max, const string &message) {
         int res_num;
         bool valid=false;
 
@@ -119,5 +119,10 @@ namespace utl
 
         return res_num;
     }
+
+	bool file_exists(const std::string& name) {
+		struct stat buffer;
+		return (stat (name.c_str(), &buffer) == 0);
+	}
 
 }

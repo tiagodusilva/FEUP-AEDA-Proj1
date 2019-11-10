@@ -2,6 +2,7 @@
 #define MUSEUM_NETWORK_H
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 
@@ -15,6 +16,12 @@
 
 class MuseumNetwork{
 private:
+	float individual_discount;
+	float individual_cost;
+	float silver_discount;
+	float silver_cost;
+	float uni_discount;
+	float uni_cost;
 	/* Containers */
 	std::vector<Card*> cards;
 	std::vector<Enterprise> enterprises;
@@ -38,11 +45,12 @@ public:
 
 	void modifyCard(Card* card);
 
+	void listCards(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listCards(const std::vector<Card*> &cards_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
 	void importCards(std::string cards_file_name);
-	void exportCards(std::string cards_file_name);
+	void exportCards(std::string cards_file_name) const;
 
 
 	/* Methods for Enterprises */
@@ -57,7 +65,7 @@ public:
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
 	void importEnterprises(std::string enterprise_file_name);
-	void exportEnterprises(std::string enterprise_file_name);
+	void exportEnterprises(std::string enterprise_file_name) const;
 	// First three are low priority
 
 
@@ -73,7 +81,7 @@ public:
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
 	void importMuseums(std::string museum_file_name);
-	void exportMuseums(std::string museum_file_name);
+	void exportMuseums(std::string museum_file_name) const;
 	// First three are low priority
 
 
@@ -94,8 +102,11 @@ public:
 
 	/* File input and output */
 	void importFiles(std::string network_file_name);
-	void exportFiles(std::string network_file_name, std::string museum_file_name, std::string enterprise_file_name, std::string cards_file_name);
+	void exportFiles( std::string cards_file_name, std::string museum_file_name,
+			std::string enterprise_file_name, std::string config_file_name="files/network_config.sadjson" ) const;
 
+    friend std::ofstream& operator<<(std::ofstream &outfstream, const MuseumNetwork &network);
+    friend std::ifstream &operator>>(std::ifstream &infstream, MuseumNetwork &network);
 };
 
 

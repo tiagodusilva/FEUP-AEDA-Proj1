@@ -47,8 +47,6 @@ public:
 	Date get_expiration_date() const;
 	Address get_address() const;
 	virtual int get_type() const = 0;
-	virtual float get_discount() const = 0;
-	virtual float get_cost() const = 0;
 
 	/* operator overloads */
 	friend std::ostream& operator<<(std::ostream &outstream, const Card &c);
@@ -58,9 +56,6 @@ public:
 
 
 class IndividualCard: public Card {  // type 0
-private:
-	static float discount;
-	static float cost;
 public:
 	IndividualCard() = default;
 	IndividualCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
@@ -68,15 +63,10 @@ public:
 
 	/* getters */
 	int get_type() const { return 0; };
-	float get_discount() const { return IndividualCard::discount; };
-	float get_cost() const { return IndividualCard::cost; };
 };
 
 
 class UniCard: public Card {  // type 1
-private:
-	static float discount;
-	static float cost;
 public:
 	UniCard() = default;
 	UniCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
@@ -84,15 +74,10 @@ public:
 
 	/* getters */
 	int get_type() const { return 1; };
-	float get_discount() const { return UniCard::discount; };
-	float get_cost() const { return UniCard::cost; };
 };
 
 
 class SilverCard: public Card {  // type 2
-private:
-	static float discount;
-	static float cost;
 public:
 	SilverCard() = default;
 	SilverCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
@@ -100,8 +85,6 @@ public:
 
 	/* getters */
 	int get_type() const { return 2; };
-	float get_discount() const { return SilverCard::discount; };
-	float get_cost() const { return SilverCard::cost; };
 };
 
 

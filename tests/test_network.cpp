@@ -104,7 +104,6 @@ TEST(network, DISABLED_enterprises){
 TEST(network, DISABLED_museums){
 	MuseumNetwork rnm;
 	string delim ="\n_---------------------_\n";
-	set<Event> e;
 
 	Museum  m1("M1", Time(9, 30), Time(19, 00), 2, Address("Evora")),
 			m2("M2", Time(10, 30), Time(20, 00), 2, Address("Porto")),
@@ -123,7 +122,7 @@ TEST(network, DISABLED_museums){
 	//rnm.listMuseums(vec);
 }
 
-TEST(network, getEvents) {
+TEST(network, DISABLED_getEvents) {
 	MuseumNetwork rnm;
 
 	Event e1("1", 23, 5, Address("Porto"), Time(9, 0), Date(2002, 9, 11)),
@@ -147,5 +146,142 @@ TEST(network, getEvents) {
 	rnm.addEnterprise(ent3);
 
 	ASSERT_EQ(rnm.getEvents().size(), 7);
+	//rnm.listEvents();
+}
+
+TEST(network, DISABLED_export_museums){
+	MuseumNetwork rnm;
+	string delim ="\n_---------------------_\n";
+	set<Event> e;
+
+	Museum  m1("M1", Time(9, 30), Time(19, 00), 2, Address("Evora")),
+			m2("M2", Time(10, 30), Time(20, 00), 2, Address("Porto")),
+	        m3("M3", Time(11, 20), Time(21, 30), 2, Address("Lisboa"));
+
+	vector<Museum> vec = {m3};
+
+	rnm.addMuseum(m1);
+	rnm.addMuseum(m2);
+	rnm.exportMuseums("files/museums.txt");
+}
+
+TEST(network, DISABLED_export_cards){
+	MuseumNetwork rnm;
+	string delim ="\n_---------------------_\n";
+	IndividualCard i1("Rosetta", "Stoned", 123, Date(), Address("Porto"));
+	UniCard u1("Fernando", "Namora", 134, Date(2000, 5, 27), Address("Lisboa"));
+	SilverCard s1("Pimenta", "Machado", 234567, Date(), Address("Evora")),
+			   s2("Opa", "Nsei", 123, Date(1000, 11, 1), Address("Braga")),
+			   s3("Leonel", "DAqules que e fixe", 12345, Date(2015, 12, 1), Address("Barcelos"));
+	rnm.addCard(&i1);
+	rnm.addCard(&u1);
+	rnm.addCard(&s1);
+	rnm.addCard(&s3);
+
+	rnm.exportCards("files/cards.txt");
+}
+
+TEST(network, DISABLED_export_enterprises){
+	MuseumNetwork rnm;
+
+	Event e1("1", 23, 5, Address("Porto"), Time(9, 0), Date(2002, 9, 11)),
+		  e2("2", 23, 2, Address("Asd"), Time(11, 0), Date(2011, 9, 21)),
+		  e3("3", 10, 3, Address("Opa"), Time(15, 0), Date(2019, 4, 4)),
+		  e4("4", 10, 6, Address("Nice"), Time(20, 0), Date(2020, 1, 11)),
+		  e5("5", 15, 8, Address("Evora"), Time(9, 50), Date(2030, 7, 15)),
+		  e6("6", 30, 9, Address("Aveirso"), Time(11, 10), Date(2001, 10, 5)),
+		  e7("7", 30, 8, Address("Faro"), Time(20, 30), Date(2001, 11, 3));
+
+	set<Event> set1 = {e1, e2, e3};
+	set<Event> set2 = {e4, e5, e6};
+	set<Event> set3 = {e7};
+
+	Enterprise ent1("Moreira", "912", Address("Porto"), set1),
+			   ent2("Noice", "123", Address("Porto"), set2),
+			   ent3("Lul", "132", Address("noice"), set3);
+
+	rnm.addEnterprise(ent1);
+	rnm.addEnterprise(ent2);
+	rnm.addEnterprise(ent3);
+
+	rnm.exportEnterprises("files/enterprises.txt");
+}
+
+TEST(network, DISABLED_export_network){
+	MuseumNetwork rnm;
+
+	Event e1("1", 23, 5, Address("Porto"), Time(9, 0), Date(2002, 9, 11)),
+		  e2("2", 23, 2, Address("Asd"), Time(11, 0), Date(2011, 9, 21)),
+		  e3("3", 10, 3, Address("Opa"), Time(15, 0), Date(2019, 4, 4)),
+		  e4("4", 10, 6, Address("Nice"), Time(20, 0), Date(2020, 1, 11)),
+		  e5("5", 15, 8, Address("Evora"), Time(9, 50), Date(2030, 7, 15)),
+		  e6("6", 30, 9, Address("Aveirso"), Time(11, 10), Date(2001, 10, 5)),
+		  e7("7", 30, 8, Address("Faro"), Time(20, 30), Date(2001, 11, 3));
+
+	set<Event> set1 = {e1, e2, e3};
+	set<Event> set2 = {e4, e5, e6};
+	set<Event> set3 = {e7};
+
+	Enterprise ent1("Moreira", "912", Address("Porto"), set1),
+			   ent2("Noice", "123", Address("Porto"), set2),
+			   ent3("Lul", "132", Address("noice"), set3);
+
+	rnm.addEnterprise(ent1);
+	rnm.addEnterprise(ent2);
+	rnm.addEnterprise(ent3);
+
+	IndividualCard i1("Rosetta", "Stoned", 123, Date(), Address("Porto"));
+	UniCard u1("Fernando", "Namora", 134, Date(2000, 5, 27), Address("Lisboa"));
+	SilverCard s1("Pimenta", "Machado", 234567, Date(), Address("Evora")),
+			   s2("Opa", "Nsei", 123, Date(1000, 11, 1), Address("Braga")),
+			   s3("Leonel", "DAqules que e fixe", 12345, Date(2015, 12, 1), Address("Barcelos"));
+	rnm.addCard(&i1);
+	rnm.addCard(&u1);
+	rnm.addCard(&s1);
+	rnm.addCard(&s3);
+
+	Museum  m1("M1", Time(9, 30), Time(19, 00), 2, Address("Evora")),
+			m2("M2", Time(10, 30), Time(20, 00), 2, Address("Porto")),
+	        m3("M3", Time(11, 20), Time(21, 30), 2, Address("Lisboa"));
+
+	vector<Museum> vec = {m3};
+
+	rnm.addMuseum(m1);
+	rnm.addMuseum(m2);
+
+	rnm.exportFiles("files/cards.txt", "files/museums.txt", "files/enterprises.txt");
+}
+
+TEST(network, DISABLED_import_cards){
+	MuseumNetwork rnm;
+
+	rnm.importCards("files/cards.txt");
+	ASSERT_EQ(rnm.getCards().size(), 4);
+	//rnm.listCards();
+}
+
+TEST(network, DISABLED_import_museums){
+	MuseumNetwork rnm;
+
+	rnm.importMuseums("files/museums.txt");
+	ASSERT_EQ(rnm.getMuseums().size(), 2);
+	//rnm.listMuseums();
+}
+
+TEST(network, DISABLED_import_enterprises){
+	MuseumNetwork rnm;
+
+	rnm.importEnterprises("files/enterprises.txt");
+	ASSERT_EQ(rnm.getEnterprises().size(), 3);
+	//rnm.listEnterprises();
+}
+
+TEST(network, import_network){
+	MuseumNetwork rnm;
+
+	rnm.importFiles("files/network_config.sadjson");
+	rnm.listEnterprises();
+	rnm.listMuseums();
+	rnm.listCards();
 	rnm.listEvents();
 }

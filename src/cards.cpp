@@ -4,13 +4,6 @@
 
 using namespace std;
 
-float IndividualCard::cost = 54.90;
-float IndividualCard::discount = 0.25;
-float UniCard::cost = 32.45;
-float UniCard::discount = 0.25;
-float SilverCard::cost = 30.00;
-float SilverCard::discount = 0.25;
-
 Card::Card(const string &name, const string &contact, const unsigned int cc, const Date &birth_date, const Address &address)
 	:creation_date(), expiration_date()
 {

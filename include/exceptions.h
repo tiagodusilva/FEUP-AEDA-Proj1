@@ -222,6 +222,32 @@ public:
 		return what.c_str();
 	}
 };
+
+class FileNotFound : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileNotFound(std::string file) { this->file_name = file; };
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			" not found";
+		return what.c_str();
+	}
+};
+
+class FileIncorrectFormatting : public std::exception {
+private:
+	std::string file_name;
+public:
+	FileIncorrectFormatting(std::string file) { this->file_name = file; };
+
+	virtual const char* what() noexcept {
+		std::string what = "File with name " + file_name +
+			" is formatted incorrectly";
+		return what.c_str();
+	}
+};
 //TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H
