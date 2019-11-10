@@ -29,6 +29,12 @@ public:
 	    std::runtime_error("Time is out-of-bounds") {};
 };
 
+class InvalidAddress: public std::runtime_error {
+public:
+	InvalidAddress() :
+	    std::runtime_error("Zip code is invalid") {};
+};
+
 class EventFull: public std::runtime_error {
 public:
     EventFull(unsigned event_id) :

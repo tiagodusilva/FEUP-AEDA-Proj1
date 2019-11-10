@@ -121,7 +121,7 @@ istream&
 operator>>(std::istream &instream, Time &t)
 {
 	try {
-		//cout << "Time (hour:min)?";
+		//cout << "Time (hour:min)? ";
 		string temp_time;
 		getline(instream, temp_time);
 

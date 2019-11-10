@@ -62,7 +62,7 @@ public:
 		: Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 0; };
+	int get_type() const { return 1; };
 };
 
 
@@ -73,7 +73,7 @@ public:
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 1; };
+	int get_type() const { return 2; };
 };
 
 
@@ -84,7 +84,7 @@ public:
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 2; };
+	int get_type() const { return 3; };
 };
 
 

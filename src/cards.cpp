@@ -146,11 +146,11 @@ operator>>(std::ifstream &instream, Card* &c)
 		/* instanciate right class */
 		int type;
 		instream >> type; utl::ignore(instream);
-		if (type == 0)
+		if (type == 1)
 			c = new IndividualCard;
-		else if (type == 1)
-			c = new UniCard;
 		else if (type == 2)
+			c = new UniCard;
+		else if (type == 3)
 			c = new SilverCard;
 		else
 			throw FileReadingFailed("No such card type");
