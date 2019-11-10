@@ -21,6 +21,10 @@ Address::Address(const string &region)
 
 Address::Address(const string &street, const string &zipCode, const string &region)
 {
+	/* 0000-000 is not valid for zipcodes inputed by the user */
+	if (zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(zipCode))
+		throw InvalidAddress()
+
 	this->street = street;
 	this->zipCode = zipCode;
 	this->region = region;
@@ -101,7 +105,8 @@ std::istream&
 operator>>(std::istream &instream, Address &a)
 {
 	try {
-		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+		//cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+
 		/* check if address is well formed */
 		string temp_address;
 		getline(instream, temp_address);
