@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <sstream>
 
 
 class FileReadingFailed: public std::exception
@@ -30,7 +31,7 @@ public:
 		return what.c_str();
 	}
 };
-
+#include <iostream>
 
 class TooEarlyToRenewCard: public std::exception
 {
@@ -81,16 +82,12 @@ public:
     }
 };
 
-class EventNotFound: public std::exception {
+class EventNotFound: public std::runtime_error {
 private:
     unsigned event_id;
 public:
-    EventNotFound(unsigned event_id) { this->event_id = event_id; };
-
-    virtual const char* what() noexcept {
-        std::string what = "Event with ID " + std::to_string(event_id) + " was not found";
-        return what.c_str();
-    }
+    EventNotFound(unsigned event_id) :
+		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found"){};
 };
 
 class EventAlreadyBought: public std::exception {
@@ -138,7 +135,7 @@ private:
 public:
 	MenuExitWithNoFunctionCall(std::string t) : title(t) {};
 
-    virtual const char* what() noexcept {
+    virtual const char* what() const noexcept {
         std::string what = "Exited from menu " + title;
         return what.c_str();
     }
@@ -164,10 +161,14 @@ private:
 public:
 	NoSuchCard(unsigned cc) { this->cc = cc; };
 
-	virtual const char* what() noexcept {
+	virtual const char* what() const noexcept {
 		std::string what = "There isn't any user with cc number " + std::to_string(cc) +
 			" in the network";
-		return what.c_str();
+		const char *p = what.c_str();
+		std::cout << p;
+		//return what.c_str();
+		//return "SO FKN GAY\n";
+		return p;
 	}
 };
 

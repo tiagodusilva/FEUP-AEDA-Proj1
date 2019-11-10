@@ -17,6 +17,7 @@ protected:
 public:
 	/* Constructors */
 	Menu() = default;
+	~Menu() = default;
     Menu(std::string t) : title(t) {};
 
     const std::string getTitle() const { return this->title;};
@@ -34,6 +35,8 @@ class MenuSelelect : public Menu{
 private:
 	std::function<void()> func;
 public:
+	MenuSelelect() = default;
+	~MenuSelelect() = default;
     MenuSelelect(std::string title, std::function<void()> fun) : Menu(title){ this->func = fun; };
 
 	/* Call the function that the menu is pointing to */
@@ -47,7 +50,9 @@ protected:
     std::vector<Menu*> options;
 public:
 	MenuOptions() : Menu() { options.clear(); };
+	~MenuOptions() = default;
     MenuOptions(std::string t, std::vector<Menu*> opt) : Menu(t), options(opt) {};
+
 	std::string getMessage() const;
 
     friend std::ostream& operator<< (std::ostream &out, MenuOptions menu) { out << menu.getMessage(); return out; };

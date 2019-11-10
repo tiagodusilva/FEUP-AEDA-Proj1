@@ -21,11 +21,12 @@ void MenuOptions::show() {
             go_back = true;
         else
 			try {
-				options.at(selection - 1)->show();
+				options.at(selection-1)->show();
 
 			} catch(const MenuExitWithNoFunctionCall &err) {
 				// ignore if a menu exits without calling anything
-			} catch(const exception &err) {
+			} catch(const std::exception &err) {
+				cout << "OPA\n";
 				cerr << err.what();
 			}
     } while (!go_back);

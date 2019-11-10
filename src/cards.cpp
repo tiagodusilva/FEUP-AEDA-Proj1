@@ -21,7 +21,7 @@ bool
 Card::isvalid() const
 {
 	/* compare expiration date with current date */
-	return this->expiration_date <= Date();
+	return this->expiration_date >= Date();
 }
 
 
@@ -29,24 +29,17 @@ void
 Card::renew()
 {
 	/* renewing adds 1 more year to the validity period of a card */
-	try {
-		/* check is card is already expired */
-		if (this->isvalid()){
-			if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
-				this->expiration_date.ffyear();
-			else
-				throw TooEarlyToRenewCard(this->name);
-		}
-		else {
-			this->expiration_date = Date();  // compare with current date
-			this->expiration_date.ffyear();  // move expiration date to 1 year from now
-		}
-
-	}catch(const std::exception& e) {
-		// Do stuff here if necessary
-		cerr << e.what() << endl;
+	/* check is card is already expired */
+	if (this->isvalid()){
+		if ((Date() - this->expiration_date) <= MAX_DAYS_BEFORE_RENEW)
+			this->expiration_date.ffyear();
+		else
+			throw TooEarlyToRenewCard(this->name);
 	}
-
+	else {
+		this->expiration_date = Date();  // compare with current date
+		this->expiration_date.ffyear();  // move expiration date to 1 year from now
+	}
 }
 
 

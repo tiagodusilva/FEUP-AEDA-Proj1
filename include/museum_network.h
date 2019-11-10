@@ -34,7 +34,7 @@ public:
 	MuseumNetwork(std::vector<Card*> card_vector, std::vector<Enterprise> enterprise_vector, std::vector<Museum> museum_vector) :
 		cards(card_vector), enterprises(enterprise_vector), museums(museum_vector) {};
 
-	MuseumNetwork(std::string museum_file_name) { this->importFiles(museum_file_name); };
+	MuseumNetwork(std::string config_file_name) { this->importFiles(config_file_name); };
 
 
 	/* Methods for Cards */
