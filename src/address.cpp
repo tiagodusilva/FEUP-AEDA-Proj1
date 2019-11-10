@@ -23,7 +23,7 @@ Address::Address(const string &street, const string &zipCode, const string &regi
 {
 	/* 0000-000 is not valid for zipcodes inputed by the user */
 	if (zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(zipCode))
-		throw InvalidAddress()
+		throw InvalidAddress();
 
 	this->street = street;
 	this->zipCode = zipCode;
