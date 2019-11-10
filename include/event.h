@@ -48,7 +48,7 @@ public:
     inline bool operator==(const Event &ev) const { return this->id == ev.id; };
     inline bool operator<(const Event &ev) const { return this->id < ev.id; };
 
-    void print_with_discount(float discount=1.0);
+    void print_with_discount(float discount=1.0) const;
     friend std::ostream& operator<<(std::ostream &outstream, const Event &ev);
     friend std::ofstream& operator <<(std::ofstream &outfstream, const Event &ev);
     friend std::ifstream &operator>>(std::ifstream &infstream, Event &ev);

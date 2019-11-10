@@ -84,12 +84,12 @@ bool Event::is_over() const {
     return this->date >= Date();
 }
 
-void Event::print_with_discount(float discount) {
+void Event::print_with_discount(float discount) const {
     cout <<
               left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << this->name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << this->id << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << this->ticket_fee << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << this->ticket_fee * discount << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << this->ticket_fee * (1-discount) << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << this->get_capacity_percentage() * 100 << "% de "  << this->max_capacity << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << this->address << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << this->date << endl <<

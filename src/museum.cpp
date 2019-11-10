@@ -37,7 +37,7 @@ std::ostream &operator<<(std::ostream &outstream, const Museum &museum) {
     outstream <<
               left << setw(MUSEUM_OUPUT_DELIM) << "Name"	      << " : " << right << museum.name << endl <<
               left << setw(MUSEUM_OUPUT_DELIM) << "Opening Hours"		  << " : " << right << museum.open << " to " << museum.close << endl <<
-              left << setw(MUSEUM_OUPUT_DELIM) << "Entry Fee"	      << " : " << right << museum.address << endl <<
+              left << setw(MUSEUM_OUPUT_DELIM) << "Entry Fee"	      << " : " << right << museum.entry_fee << endl <<
               left << setw(MUSEUM_OUPUT_DELIM) << "Address" << " : " << right << museum.address;
 
     return outstream;
