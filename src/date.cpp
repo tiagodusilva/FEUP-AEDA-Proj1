@@ -15,10 +15,10 @@ Date::syncmembers()
 	time_t temp_date_int = mktime(&date_tm);
 
 	if (temp_date_int == -1)
-		return 1;
+		return true;
 	else {
 		date_int = temp_date_int;
-		return 0;
+		return false;
 	}
 }
 
@@ -60,32 +60,29 @@ Date::Date(short year, short month, short day)
 #pragma region GETTERS
 
 int
-Date::getDay() const
+Date::get_day() const
 {
 	return date_tm.tm_mday;
 }
 
 int
-Date::getMonth() const
+Date::get_month() const
 {
 	return date_tm.tm_mon + 1;
 }
 
 int
-Date::getYear() const
-{
+Date::get_year() const {
 	return date_tm.tm_year + 1900;
 }
 
 int
-Date::getWeekday() const
-{
+Date::get_weekday() const {
 	return date_tm.tm_wday + 1;
 }
 
 time_t
-Date::getRaw() const
-{
+Date::get_raw() const {
 	return this->date_int;
 }
 
@@ -95,7 +92,7 @@ bool
 Date::isLeapYear() const
 {
 	/* check if this year is a leap year */
-	int year = getYear();
+	int year = this->get_year();
 	if (year % 4 != 0)
 		return false;
 
@@ -141,7 +138,7 @@ Date::ffday(short days)
 bool
 operator==(const Date& lhs, const Date& rhs)
 {
-	return (lhs.getRaw() == rhs.getRaw());
+	return (lhs.get_raw() == rhs.get_raw());
 }
 
 bool
@@ -153,13 +150,13 @@ operator!=(const Date& lhs, const Date& rhs)
 bool
 operator< (const Date& lhs, const Date& rhs)
 {
-	return (lhs.getRaw() < rhs.getRaw());
+	return (lhs.get_raw() < rhs.get_raw());
 }
 
 bool
 operator<=(const Date& lhs, const Date& rhs)
 {
-	return (lhs.getRaw() <= rhs.getRaw());
+	return (lhs.get_raw() <= rhs.get_raw());
 }
 
 bool
@@ -187,9 +184,9 @@ ostream&
 operator<<(ostream& outstream, const Date &d)
 {
 	outstream << setfill('0') <<
-	    setw(4) << d.getYear() << '/' <<
-	    setw(2) << d.getMonth() << '/' <<
-	    setw(2) << d.getDay() <<
+	    setw(4) << d.get_year() << '/' <<
+	    setw(2) << d.get_month() << '/' <<
+	    setw(2) << d.get_day() <<
 	    setfill(' ');
 
 	return outstream;
@@ -199,7 +196,7 @@ operator<<(ostream& outstream, const Date &d)
 ofstream&
 operator<<(std::ofstream& outstream, const Date &d)
 {
-	outstream << to_string(d.getRaw());
+	outstream << to_string(d.get_raw());
 
 	return outstream;
 }

@@ -274,6 +274,7 @@ void MuseumNetwork::importFiles(std::string network_file_name) {
 	input_stream >> temp_str;
 	input_stream >> this->individual_cost; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
 	input_stream >> temp_str;
 	input_stream >> this->individual_discount; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
@@ -281,6 +282,7 @@ void MuseumNetwork::importFiles(std::string network_file_name) {
 	input_stream >> temp_str;
 	input_stream >> this->silver_cost; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
 	input_stream >> temp_str;
 	input_stream >> this->silver_discount; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
@@ -288,6 +290,7 @@ void MuseumNetwork::importFiles(std::string network_file_name) {
 	input_stream >> temp_str;
 	input_stream >> this->uni_cost; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+
 	input_stream >> temp_str;
 	input_stream >> this->uni_discount; utl::ignore(input_stream);
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));

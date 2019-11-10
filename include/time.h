@@ -15,8 +15,8 @@ public:
 
 	Time(short hour, short min);
 
-	short getMin() const;
-	short getHour() const;
+	short get_min() const;
+	short get_hour() const;
 
 	friend std::ostream& operator<<(std::ostream& outstream, const Time &t);
 	friend std::ofstream& operator<<(std::ofstream& outstream, const Time &t);

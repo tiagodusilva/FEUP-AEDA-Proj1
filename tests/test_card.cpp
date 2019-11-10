@@ -31,6 +31,6 @@ TEST(cards, files) {
 	try {
 		Time t(24, 1);
 	}catch(const exception &e) {
-		ASSERT_EQ(e.what(), InvalidTime().what());
+		ASSERT_EQ(*(e.what()), *(InvalidTime().what()));
 	}
 }

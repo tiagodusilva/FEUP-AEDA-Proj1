@@ -38,14 +38,12 @@ Time::Time(short hour, short min)
 #pragma region GETTERS
 
 short
-Time::getMin() const
-{
+Time::get_min() const {
 	return min;
 }
 
 short
-Time::getHour() const
-{
+Time::get_hour() const {
 	return hour;
 }
 
@@ -56,7 +54,7 @@ Time::getHour() const
 bool
 operator==(const Time& lhs, const Time& rhs)
 {
-	return ((lhs.getHour() == rhs.getHour()) && (lhs.getMin() == rhs.getMin()));
+	return ((lhs.get_hour() == rhs.get_hour()) && (lhs.get_min() == rhs.get_min()));
 }
 
 bool
@@ -68,9 +66,9 @@ operator!=(const Time& lhs, const Time& rhs)
 bool
 operator< (const Time& lhs, const Time& rhs)
 {
-	if (lhs.getHour() < rhs.getHour())
+	if (lhs.get_hour() < rhs.get_hour())
 		return true;
-	else if (lhs.getMin() < rhs.getMin())
+	else if (lhs.get_min() < rhs.get_min())
 		return true;
 
 	return false;
@@ -79,9 +77,9 @@ operator< (const Time& lhs, const Time& rhs)
 bool
 operator<=(const Time& lhs, const Time& rhs)
 {
-	if (lhs.getHour() < rhs.getHour())
+	if (lhs.get_hour() < rhs.get_hour())
 		return true;
-	else if (lhs.getMin() < rhs.getMin())
+	else if (lhs.get_min() < rhs.get_min())
 		return true;
 
 	return (lhs == rhs);

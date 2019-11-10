@@ -3,252 +3,114 @@
 
 #include <exception>
 #include <string>
-#include <sstream>
 
 
-class FileReadingFailed: public std::exception
-{
-	std::string fail_elem;
+class FileReadingFailed: public std::runtime_error {
 public:
-	FileReadingFailed(std::string fail_elem) { this->fail_elem = fail_elem; }
-
-	virtual const char* what() const noexcept
-	{
-		std::string what = "There was a problem reading the files: " + fail_elem;
-		return what.c_str();
-	}
+	FileReadingFailed(std::string fail_elem) :
+	    std::runtime_error("There was a problem reading the files: " + fail_elem) {};
 };
 
-class UserInputReadingFailure: public std::exception
-{
-	std::string fail_elem;
+class UserInputReadingFailure: public std::runtime_error {
 public:
-	UserInputReadingFailure(std::string fail_elem) { this->fail_elem = fail_elem; }
-
-	virtual const char* what() const noexcept
-	{
-		std::string what = "There was a problem reading the input from the user: " + fail_elem;
-		return what.c_str();
-	}
-};
-#include <iostream>
-
-class TooEarlyToRenewCard: public std::exception
-{
-	std::string fail_elem;
-public:
-	TooEarlyToRenewCard(std::string fail_elem) { this->fail_elem = fail_elem; }
-
-	virtual const char* what() const noexcept
-	{
-		std::string what = "It's too early to renew this card: " + fail_elem;
-		return what.c_str();
-	}
+	UserInputReadingFailure(const std::string & fail_elem) :
+	    std::runtime_error("There was a problem reading the input from the user: " + fail_elem) {};
 };
 
-
-class InvalidTime: public std::exception
-{
+class TooEarlyToRenewCard: public std::runtime_error {
 public:
-	InvalidTime() = default;
-	virtual const char* what() const noexcept
-	{
-		return "Time is out-of-bounds";
-	}
+	TooEarlyToRenewCard(const std::string & fail_elem) :
+	    std::runtime_error("It's too early to renew this card: " + fail_elem) {};
 };
 
-
-class DuplicateEvent: public std::exception {
-    std::string fail_elem;
+class InvalidTime: public std::runtime_error {
 public:
-    DuplicateEvent(std::string fail_elem) { this->fail_elem = fail_elem; }
-
-    virtual const char *what() const noexcept {
-        std::string what = "This event has already been registered/bought: " + fail_elem;
-        return what.c_str();
-    }
+	InvalidTime() :
+	    std::runtime_error("Time is out-of-bounds") {};
 };
 
-
-class EventFull: public std::exception {
-private:
-    unsigned event_id;
+class EventFull: public std::runtime_error {
 public:
-    EventFull(unsigned event_id) { this->event_id = event_id; };
-
-    virtual const char* what() noexcept {
-        std::string what = "Event with ID " + std::to_string(event_id) + " is full, it cannot be booked any more";
-        return what.c_str();
-    }
+    EventFull(unsigned event_id) :
+        std::runtime_error("Event with ID " + std::to_string(event_id) + " is full, it cannot be booked any more") {};
 };
 
 class EventNotFound: public std::runtime_error {
-private:
-    unsigned event_id;
 public:
     EventNotFound(unsigned event_id) :
-		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found"){};
+		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found") {};
 };
 
-class EventAlreadyBought: public std::exception {
-private:
-    unsigned event_id, cc;
+class EventAlreadyBought: public std::runtime_error {
 public:
-    EventAlreadyBought(unsigned event_id, unsigned cc) { this->event_id = event_id; this->cc = cc; };
-
-    virtual const char* what() noexcept {
-        std::string what = "Event " + std::to_string(event_id) +
-                " has already been bought by user with cc " + std::to_string(cc);
-        return what.c_str();
-    }
+    EventAlreadyBought(unsigned event_id, unsigned cc):
+        std::runtime_error( "Event " + std::to_string(event_id) + " has already been bought by user with cc " + std::to_string(cc)) {};
 };
 
-class FileDoesntExist : public std::exception {
-private:
-	std::string file_name;
+class FileDoesntExist : public std::runtime_error {
 public:
-	FileDoesntExist(std::string file) : file_name(file) {};
-
-	virtual const char* what() noexcept {
-		std::string what = "File with name " + file_name +
-			"does not exist";
-		return what.c_str();
-	}
+	FileDoesntExist(const std::string & file_name) :
+	    std::runtime_error("File with name " + file_name + "does not exist") {};
 };
 
-class FileAlreadyExists : public std::exception {
-private:
-	std::string file_name;
+class FileAlreadyExists : public std::runtime_error {
 public:
-	FileAlreadyExists(std::string file) : file_name(file) {};
-
-	virtual const char* what() noexcept {
-		std::string what = "File with name " + file_name +
-			"already exists";
-		return what.c_str();
-	}
+	FileAlreadyExists(const std::string & file_name) :
+	    std::runtime_error("File with name " + file_name + "already exists") {};
 };
 
-class MenuExitWithNoFunctionCall : public std::exception{
-private:
-	std::string title;
+class MenuExitWithNoFunctionCall : public std::runtime_error{
 public:
-	MenuExitWithNoFunctionCall(std::string t) : title(t) {};
-
-    virtual const char* what() const noexcept {
-        std::string what = "Exited from menu " + title;
-        return what.c_str();
-    }
+	MenuExitWithNoFunctionCall(const std::string & title) :
+	    std::runtime_error("Exited from menu " + title) {};
 };
 
-
-class CardAlreadyExists : public std::exception {
-private:
-	unsigned cc;
+class CardAlreadyExists : public std::runtime_error {
 public:
-	CardAlreadyExists(unsigned cc) { this->cc = cc; };
-
-	virtual const char* what() noexcept {
-		std::string what = "There is already an user with cc number " + std::to_string(cc) +
-			" in the network";
-		return what.c_str();
-	}
+	CardAlreadyExists(unsigned cc) :
+	    std::runtime_error("There already is an user with cc number " + std::to_string(cc) + " in the network") {};
 };
 
-class NoSuchCard : public std::exception {
-private:
-	unsigned cc;
+class NoSuchCard : public std::runtime_error {
 public:
-	NoSuchCard(unsigned cc) { this->cc = cc; };
-
-	virtual const char* what() const noexcept {
-		std::string what = "There isn't any user with cc number " + std::to_string(cc) +
-			" in the network";
-		const char *p = what.c_str();
-		std::cout << p;
-		//return what.c_str();
-		//return "SO FKN GAY\n";
-		return p;
-	}
+	NoSuchCard(unsigned cc) :
+	    std::runtime_error("There isn't any user with cc number " + std::to_string(cc) + " in the network") {};
 };
 
-class EnterpriseAlreadyExists : public std::exception {
-private:
-	std::string name;
+class EnterpriseAlreadyExists : public std::runtime_error {
 public:
-	EnterpriseAlreadyExists(std::string name) { this->name = name; };
-
-	virtual const char* what() noexcept {
-		std::string what = "There is already an enterprise with name " + name +
-			" in the network";
-		return what.c_str();
-	}
+	EnterpriseAlreadyExists(const std::string & name) :
+	    std::runtime_error("There already is an enterprise with the name " + name + " in the network") {};
 };
 
-class NoSuchEnterprise : public std::exception {
-private:
-	std::string name;
+class NoSuchEnterprise : public std::runtime_error {
 public:
-	NoSuchEnterprise(std::string name) { this->name = name; };
-
-	virtual const char* what() noexcept {
-		std::string what = "There isn't any enterprise with name " + name +
-			" in the network";
-		return what.c_str();
-	}
+    NoSuchEnterprise(const std::string &name) :
+        std::runtime_error("There isn't any enterprise with the name " + name + "in the network") {};
 };
 
-class MuseumAlreadyExists : public std::exception {
-private:
-	std::string name;
+class MuseumAlreadyExists : public std::runtime_error {
 public:
-	MuseumAlreadyExists(std::string name) { this->name = name; };
-
-	virtual const char* what() noexcept {
-		std::string what = "There is already a museum with name " + name +
-			" in the network";
-		return what.c_str();
-	}
+	MuseumAlreadyExists(const std::string & name) :
+	    std::runtime_error("There already is a museum with the name " + name + "in the network") {};
 };
 
-class NoSuchMuseum : public std::exception {
-private:
-	std::string name;
+class NoSuchMuseum : public std::runtime_error {
 public:
-	NoSuchMuseum(std::string name) { this->name = name; };
-
-	virtual const char* what() noexcept {
-		std::string what = "There isn't any museum with name " + name +
-			" in the network";
-		return what.c_str();
-	}
+	NoSuchMuseum(const std::string & name) :
+	    std::runtime_error("There isn't any museum with name " + name + " in the network") {};
 };
 
-class FileNotFound : public std::exception {
-private:
-	std::string file_name;
+class FileNotFound : public std::runtime_error {
 public:
-	FileNotFound(std::string file) { this->file_name = file; };
-
-	virtual const char* what() noexcept {
-		std::string what = "File with name " + file_name +
-			" not found";
-		return what.c_str();
-	}
+	FileNotFound(const std::string & file_name) :
+	    std::runtime_error("File with name " + file_name + " not found") {};
 };
 
-class FileIncorrectFormatting : public std::exception {
-private:
-	std::string file_name;
+class FileIncorrectFormatting : public std::runtime_error {
 public:
-	FileIncorrectFormatting(std::string file) { this->file_name = file; };
-
-	virtual const char* what() noexcept {
-		std::string what = "File with name " + file_name +
-			" is formatted incorrectly";
-		return what.c_str();
-	}
+	FileIncorrectFormatting(const std::string & file_name) :
+	    std::runtime_error("File with name " + file_name + " is formatted incorrectly") {};
 };
-//TODO Do this exception but for museums and enterprises
 
 #endif  // EXCEPTION_H
