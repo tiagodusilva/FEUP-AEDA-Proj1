@@ -17,7 +17,7 @@ protected:
 public:
 	/* Constructors */
 	Menu() = default;
-	~Menu() = default;
+	virtual ~Menu() = default;
     Menu(std::string t) : title(t) {};
 
     const std::string getTitle() const { return this->title;};
@@ -40,7 +40,7 @@ public:
     MenuSelelect(std::string title, std::function<void()> fun) : Menu(title){ this->func = fun; };
 
 	/* Call the function that the menu is pointing to */
-    void show() override { this->func(); utl::pauseConsole(); utl::ignore(std::cin); return; };
+    void show() override { this->func(); utl::pauseConsole(); return; };
 };
 
 
@@ -49,7 +49,7 @@ class MenuOptions : public Menu{
 protected:
     std::vector<Menu*> options;
 public:
-	MenuOptions() : Menu() { options.clear(); };
+	MenuOptions() = default;
 	~MenuOptions() = default;
     MenuOptions(std::string t, std::vector<Menu*> opt) : Menu(t), options(opt) {};
 
@@ -65,7 +65,8 @@ public:
 BAZINGA<typename Arg> // Abstract class used for specifyiing menus that modify an argument (by using different filters)
 class MenuFilter : public Menu{
 public:
-	MenuFilter<Arg>() : Menu() {};
+	MenuFilter<Arg>() = default;
+	virtual ~MenuFilter<Arg>() = default;
 	MenuFilter<Arg>(std::string title) : Menu(title) {};
 
 	/* same as show() from Menu but that takes a reference to an argument */
@@ -80,9 +81,11 @@ private:
 	std::function<void(Arg&)> func;
 
 public:
+	MenuSelelectFilter<Arg>() = default;
+	~MenuSelelectFilter<Arg>() = default;
     MenuSelelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) : MenuFilter<Arg>(title){ this->func = fun; };
 
-    void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); utl::ignore(std::cin); return; };
+    void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); return; };
 };
 
 
@@ -91,6 +94,7 @@ class MenuOptionsFilter : public MenuFilter<Arg>{
 private:
 	/* Argument that is passed and modified */
 	Arg argument;
+	Arg argument_backup;
 
 	/* Function that will be called when menu is exiting. */
 	std::function<void(Arg&)> exit_func = [](Arg){ return;}; // Initialize as a dead function to ensure that it points to something
@@ -105,9 +109,12 @@ private:
 	bool repeat_menus;
 
 public:
+	MenuOptionsFilter<Arg>() : MenuFilter<Arg>(), options_backup() {};
+	~MenuOptionsFilter<Arg>() = default;
 	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt, std::function<void(Arg&)> e_fun=[](Arg){return;},
-		bool exclusive_selection=false, bool repeat=false):
-		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), select_one_menu(exclusive_selection), repeat_menus(repeat){};
+		Arg arg=Arg(), bool exclusive_selection=false, bool repeat=false):
+		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), argument(arg), argument_backup(arg),
+		select_one_menu(exclusive_selection), repeat_menus(repeat){};
 
 	/* Returns the menu select message */
 	std::string getMessage() const;
@@ -123,7 +130,7 @@ public:
 BAZINGA<typename Arg>
 void MenuOptionsFilter<Arg>::show(){
 	/* If show() is called then the object was instanciated by a Menu_Options object */
-	this->argument = Arg(0); // Reinitialize argument
+	this->argument = argument_backup; // Reinitialize argument
 	this->options = options_backup; // Reset all available options
 	this->show(argument);
     return;
@@ -145,9 +152,14 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 			int selection = utl::getInt(std::cin, 0, options.size(),
 					this->getMessage() + "Insira um numero entre 0 e "+ std::to_string(options.size()));
 			if(selection == 0)
-				//if(this->options.size() == this->options_backup.size()) // if the user hasn't selected any menu yet
-						if(this->options.size() == this->options_backup.size()) // if the user hasn't selected any menu yet
+				if(this->options.size() == this->options_backup.size()) { // if the user hasn't selected any menu yet
+					try {
+						this->exit_func(arg);
+					}catch(const std::exception &err) {
+						std::cerr << err.what();
+					}
 					throw(MenuExitWithNoFunctionCall(this->title));
+				}
 				else
 					go_back = true;
 			else {
@@ -162,6 +174,7 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 		}
 	} while (!go_back && !select_one_menu);
 
+	std::cout << "OPA\n";
 	utl::clearConsole();
 
 	try {

@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "cards.h"
+#include "filter_contains.h"
 #include "menu.h"
 #include "museum_network.h"
 
@@ -36,17 +37,11 @@ private:
 	MuseumNetwork museum_network;
 	Card *member_card;
 
-	MenuSelelect listEvents;
-	MenuSelelect listMuseums;
-	MenuSelelect renewCard;
-	MenuSelelect listUser;
-	MenuOptions list_network;
-	MenuOptions main_menu;
 public:
-	MemberInterface(MuseumNetwork &rnm, unsigned int cc);
 	MemberInterface() = default;
 	~MemberInterface() = default;
-	void show() { main_menu.show(); }
+	MemberInterface(MuseumNetwork &rnm, unsigned int cc);
+	void show();
 };
 
 #endif	// INTERFACES_H
