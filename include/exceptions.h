@@ -47,6 +47,12 @@ public:
 		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found") {};
 };
 
+class EventInvalid: public std::runtime_error {
+public:
+    EventInvalid(unsigned event_id) :
+		std::runtime_error("Event with ID " + std::to_string(event_id) + " is in an invalid state") {};
+};
+
 class EventAlreadyBought: public std::runtime_error {
 public:
     EventAlreadyBought(unsigned event_id, unsigned cc):
