@@ -172,7 +172,7 @@ operator>>(std::ifstream &instream, Time &t)
 
 
 long
-timespan_size(Date &d_lhs, Time &t_lhs, Date &d_rhs, Time &t_rhs)
+timespan_size(const Date &d_lhs,const Time &t_lhs,const Date &d_rhs,const Time &t_rhs)
 {
 	/* get time struct at the end of the interval */
 	time_t start_raw = d_lhs.get_raw();

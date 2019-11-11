@@ -40,13 +40,24 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 
-	/*inline void FilterEventByTime(vector<Event> &vec);
+	inline void FilterEventByTimeCin(vector<Event> &vec) {
+		Time time;
+		cin >> time;
+		if(cin.fail())
+			throw(UserInputReadingFailure("Invalid time"));
+		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&time](Event elem) {
+					return(timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) <= time.get_hour()*60+time.get_min()); });
+		vec.erase(iter, vec.end());
+
+	}
+	/* For use with silver cards checker */
 	inline void FilterEventByTime(vector<Event> &vec, Time max_time) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&max_time](Event elem)
-					{ return!(elem.get_date() == Date() && elem.get_time() >= Time() && (max_time + Time())) <= elem.get_time()); });
+				[&max_time](Event elem) {
+					return(timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) <= 60*8); });
 		vec.erase(iter, vec.end());
-	}*/
+	}
 
 	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),

@@ -161,6 +161,6 @@ bool operator> (const Time& lhs, const Time& rhs);
 bool operator>=(const Time& lhs, const Time& rhs);
 
 /* NON MEMBER FUNCTION */
-long timespan_size(Date &d_lhs, Time &t_lhs, Date &d_rhs, Time &t_rhs);
+long timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Time &t_rhs);
 
 #endif  // TIME_H

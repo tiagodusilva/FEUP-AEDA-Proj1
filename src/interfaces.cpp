@@ -27,6 +27,7 @@ void AdminInterface::show() {
 	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt, [](vector<Event> &a){},
 			[](){return(vector<Event>());}, true);
 	MenuSelelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocation<Event>);
+	MenuSelelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeCin);
 	MenuSelelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
 	MenuSelelectFilter<vector<Event>> EventsSelected("List current selected events",
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
@@ -45,7 +46,7 @@ void AdminInterface::show() {
 			[this](vector<Enterprise>&vec) { this->museum_network.listEnterprises(vec); });
 
 	/* List Events */
-	vector<MenuFilter<vector<Event>>*> listEventsOpt = {&EventsSelected, &EventsLocation, &EventsName, &EventsDate};
+	vector<MenuFilter<vector<Event>>*> listEventsOpt = {&EventsSelected, &EventsLocation, &EventsName, &EventsDate, &EventsTimeframe};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
 			[this](){ return(this->museum_network.getEvents());},
@@ -188,8 +189,20 @@ void MemberInterface::show() {
 
 	if(this->member_card->get_type() == 2) {
 		vector<Event> events_filtered = this->museum_network.getEvents();
+		flt::FilterByLocation<Event>(events_filtered);
 		flt::FilterEventByCapacity(events_filtered, 50);
-		//flt::FilterEventByTime(events_filtered, Time(8, 0));
+		flt::FilterEventByTime(events_filtered, Time(8, 0));
+		if(events_filtered.size() != 0) {
+			cout << "Notification: In the next 8 hours " << events_filtered.size() <<
+				" events will take place in your area of residence, " << this->member_card->get_address().getRegion() <<
+				".\nAll of them don't exceed a 50\% capacity";
+
+			cout << "Do you want to list them? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+			if(a == 'y' || a == 'Y') {
+				this->museum_network.listEvents(events_filtered);
+			}
+		}
 	}
 
 	/* Filter Events between Dates*/
