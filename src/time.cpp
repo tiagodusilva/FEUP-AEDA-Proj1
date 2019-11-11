@@ -169,3 +169,24 @@ operator>>(std::ifstream &instream, Time &t)
 
 	return instream;
 }
+
+
+long
+timespan_size(Date &d_lhs, Time &t_lhs, Date &d_rhs, Time &t_rhs)
+{
+	/* get time struct at the end of the interval */
+	time_t start_raw = d_lhs.get_raw();
+	tm *end_tm = gmtime(&start_raw);
+	end_tm->tm_sec = 0;
+	end_tm->tm_min = t_rhs.get_min();
+	end_tm->tm_hour = t_rhs.get_hour();
+
+	/* get time struct at the beggining of the interval */
+	time_t end_raw = d_rhs.get_raw();
+	tm *start_tm = gmtime(&end_raw);
+	end_tm->tm_sec = 0;
+	end_tm->tm_min = t_rhs.get_min();
+	end_tm->tm_hour = t_rhs.get_hour();
+
+	return (mktime(end_tm) - mktime(start_tm)) / MINS_IN_DAY;
+}

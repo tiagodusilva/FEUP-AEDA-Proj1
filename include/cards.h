@@ -15,6 +15,11 @@
 #define MAX_DAYS_BEFORE_RENEW 60  // can only renew card with max 60 days until expiration
 #define CARDS_OUTPUT_DELIM 15  // for formatted outputs
 
+#define INDIVIDUALCARD_TYPE 0
+#define UNICARD_TYPE 1
+#define SILVERCARD_TYPE 2
+
+
 class Card {
 private:
 	unsigned int cc;
@@ -62,7 +67,7 @@ public:
 		: Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 0; };
+	int get_type() const { return INDIVIDUALCARD_TYPE; };
 };
 
 
@@ -73,7 +78,7 @@ public:
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 1; };
+	int get_type() const { return UNICARD_TYPE; };
 };
 
 
@@ -84,7 +89,7 @@ public:
 		:Card(name, contact, cc, birth_date, address) {};
 
 	/* getters */
-	int get_type() const { return 2; };
+	int get_type() const { return SILVERCARD_TYPE; };
 };
 
 

@@ -5,6 +5,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "date.h"
+
 /**
  * @brief	Class that saves and handles time information in our project
  */
@@ -157,5 +159,8 @@ bool operator> (const Time& lhs, const Time& rhs);
  *		false, otherwise
  */
 bool operator>=(const Time& lhs, const Time& rhs);
+
+/* NON MEMBER FUNCTION */
+long timespan_size(Date &d_lhs, Time &t_lhs, Date &d_rhs, Time &t_rhs);
 
 #endif  // TIME_H

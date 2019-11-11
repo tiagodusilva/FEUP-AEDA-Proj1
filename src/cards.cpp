@@ -146,11 +146,11 @@ operator>>(std::ifstream &instream, Card* &c)
 		/* instanciate right class */
 		int type;
 		instream >> type; utl::ignore(instream);
-		if (type == 0)
+		if (type == INDIVIDUALCARD_TYPE)
 			c = new IndividualCard;
-		else if (type == 1)
+		else if (type == UNICARD_TYPE)
 			c = new UniCard;
-		else if (type == 2)
+		else if (type == SILVERCARD_TYPE)
 			c = new SilverCard;
 		else
 			throw FileReadingFailed("No such card type");
@@ -178,12 +178,14 @@ void
 Card::cin_read_card(Card* &c)
 {
 	try {
-		/* instanciate right class */
-
 		/* get birth date */
-		cout << "When were you born (year/month/day)? ";
+		cout << "Date of birth (year/month/day)? ";
 		Date temp_bday;
 		std::cin >> temp_bday;
+		if (cin.fail())
+			throw "Birth date reading failed";
+
+		/* instanciate right type of card */
 		if (Date() - temp_bday >= ELDERY_MIN_AGE)
 			c = new SilverCard;
 		else {
@@ -201,6 +203,8 @@ Card::cin_read_card(Card* &c)
 		/* name */
 		std::cout << "Name? ";
 		getline(std::cin, c->name);
+		if (utl::isStrEmpty(c->name))
+			throw UserInputReadingFailure("given name is empty");
 
 		/* CC */
 		std::cout << "CC (without control characters)? ";
@@ -214,10 +218,14 @@ Card::cin_read_card(Card* &c)
 		/* contact */
 		std::cout << "Contact (email or phone number prefered)? ";
 		getline(std::cin, c->contact);
+		if (utl::isStrEmpty(c->contact))
+			throw UserInputReadingFailure("given contact is empty");
 
 		/* address */
 		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
 		std::cin >> c->address;
+		if (cin.fail())
+			throw "Address reading failed";
 
 		/* creation date is now */
 		Date temp_now;
@@ -227,11 +235,15 @@ Card::cin_read_card(Card* &c)
 		temp_now.ffyear();
 		c->expiration_date = temp_now;
 
+	}catch(const char* e) {
+		delete(c);
+		c = nullptr;
+
 	}catch(const std::exception& e) {
 		delete(c);
 		c = nullptr;
 		std::cin.setstate(std::ios::failbit);
 
-		std::cerr << e.what();
+		std::cerr << e.what() << endl;
 	}
 }
