@@ -35,13 +35,12 @@ public:
 
 class UserInterface {
 private:
-	MuseumNetwork museum_network;
+	MuseumNetwork &museum_network;
 
 public:
-	UserInterface(MuseumNetwork &rnm) : museum_network(rnm) {};
-	UserInterface() = default;
 	~UserInterface() = default;
-	void show() { return; };
+	UserInterface(MuseumNetwork &rnm);
+	void show();
 };
 
 

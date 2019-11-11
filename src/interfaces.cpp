@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/* Member interface */
 
 MemberInterface::MemberInterface(MuseumNetwork &rnm, unsigned int cc) : museum_network(rnm) {
 	vector<Card*> cards = rnm.getCards();
@@ -79,6 +80,8 @@ void MemberInterface::show() {
 					this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
 					cout <<	"Event purchased successfully\n"; utl::pauseConsole();
 					}
+				else
+					cout << "Operation aborted" << endl;
 				},
 			[this](){ return(this->museum_network.getEvents()); });
 
@@ -108,6 +111,8 @@ void MemberInterface::show() {
 					this->museum_network.removeCard(this->member_card);
 					throw(MenuForceExit("Member menu"));
 				}
+				else
+					cout << "Operation aborted" << endl;
 			;});
 
 	MenuOptions main_menu("Logged in as " + to_string(this->member_card->get_cc()),
@@ -115,6 +120,76 @@ void MemberInterface::show() {
 
 	main_menu.show();
 }
+
+
+/* User Interface */
+
+UserInterface::UserInterface(MuseumNetwork &rnm) : museum_network(rnm) {
+	cout << "Login Success!" << endl;
+	utl::pauseConsole();
+}
+
+void UserInterface::show(){
+	/* Filter Events between Dates*/
+	MenuSelelectFilter<vector<Event>> EventsBetweenDates("Between dates", flt::FilterBetweenDates<Event>);
+	MenuSelelectFilter<vector<Event>> EventsInADate("In a date", flt::FilterInDate<Event>);
+	vector<MenuFilter<vector<Event>>*> dateOpt = {&EventsBetweenDates, &EventsInADate};
+
+	/* Filter Events */
+	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt);
+	MenuSelelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocation<Event>);
+	MenuSelelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
+	MenuSelelectFilter<vector<Event>> EventsSelected("List current selected events",
+			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
+
+	/* Filter Museums */
+	MenuSelelectFilter<vector<Museum>> MuseumsLocation("Filter by location", flt::FilterByLocation<Museum>);
+	MenuSelelectFilter<vector<Museum>> MuseumsName("Filter by name", flt::FilterByName<Museum>);
+	MenuSelelectFilter<vector<Museum>> MuseumsSelected("List current selected events",
+			[this](vector<Museum>&vec) { this->museum_network.listMuseums(vec); });
+
+
+	/* List Events */
+	vector<MenuFilter<vector<Event>>*> listEventsOpt = {&EventsSelected, &EventsLocation, &EventsName, &EventsDate};
+	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
+			[this](vector<Event>){return;},
+			[this](){ return(this->museum_network.getEvents());},
+			false, {0});
+
+	/* List Museums */
+	vector<MenuFilter<vector<Museum>>*> listMuseumsOpt = {&MuseumsSelected, &MuseumsLocation, &MuseumsName};
+	MenuOptionsFilter<vector<Museum>> listMuseums("List Museums", listMuseumsOpt,
+			[this](vector<Museum>&vec){ return vector<Museum>(); },
+			[this](){ return(this->museum_network.getMuseums());},
+			false, {0});
+
+
+	/* List Network */
+	MenuOptions list_network("List Network Options", std::vector<Menu*>{&listEvents, &listMuseums});
+
+	/* Register */
+	MenuSelelect registerUser("Purchase a new account\n", [this](){
+				Card *card;
+				Card::cin_read_card(card); if(cin.fail()) throw(UserInputReadingFailure("Invalid card formatting\n"));
+				cout << "This operation will have a cost of " << this->museum_network.getCost(card->get_type()) << endl;
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+				if(a=='y' || a=='Y') {
+					this->museum_network.addCard(card);
+					throw(MenuForceExit("Please login with your new account"));
+				}
+				else
+					cout << "Operation aborted" << endl;
+			});
+
+	MenuOptions main_menu("Logged in as an non-registered user",
+			vector<Menu*>{&list_network, &registerUser});
+
+	main_menu.show();
+}
+
+
+/* GUI */
 
 void GUI::show() {
 	utl::clearConsole();
