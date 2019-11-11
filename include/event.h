@@ -11,9 +11,8 @@
 #define EVENT_OUPUT_DELIM 15
 
 /**
- * @brief    Class that simulates all the information an enterprise would have about their events.
+ * @brief    Class that simulates all the information an enterprise would have about their events
  */
-
 class Event {
 private:
     static unsigned id_tracker;
@@ -118,6 +117,10 @@ public:
     /**
      * @brief    Handles the purchase of this Event by an user
      *
+     * @throws   EventFull             Thrown if the Event is at max capacity
+     * @throws   EventInvalid          Thrown if the is_valid flag of the Event is set to false
+     * @throws   EventAlreadyBough     Thrown if the Event was already bough by the user with the provided cc
+     *
      * @param cc The cc of the person trying to purchase this Event
      */
     void purchase(unsigned cc);
@@ -213,15 +216,14 @@ public:
     friend std::ofstream& operator <<(std::ofstream &outfstream, const Event &ev);
 
     /**
-     * @brief              Overloaded istream extraction operator
+     * @brief    Overloaded ifstream extraction operator
      *
-     * @details            Mainly used with std::cin to get information from the user
+     * @details    Used to read information that has been saved to a file previously
      *
-     * @param infstream    Reference to the istream object to extract info from
-     * @param ev           Reference to Event object where the read information is saved\n
-     *                     Events read this way will have a new and unique id
+     * @param outstream    Reference to the ifstream object to extract info from
+     * @param t        Reference to Time object where the read information is saved
      *
-     * @return             Reference to the istream object, 'infstream', passed in the parameters
+     * @return    Reference to the ifstream object, 'instream', passed in the parameters
      */
     friend std::ifstream &operator>>(std::ifstream &infstream, Event &ev);
 
