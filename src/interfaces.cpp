@@ -14,7 +14,7 @@ MemberInterface::MemberInterface(MuseumNetwork &rnm, unsigned int cc) : museum_n
 	this->member_card = *(iter);
 	//this->museum_network = rnm;
 	cout << "Login Success!" << endl;
-	getchar();
+	utl::pauseConsole();
 }
 
 void MemberInterface::show() {
@@ -35,10 +35,11 @@ void MemberInterface::show() {
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec, this->member_card->get_type()); });
 
 	/* List Events */
-	vector<MenuFilter<vector<Event>>*> listEventsOpt = {&EventsLocation, &EventsSelected, &EventsName, &EventsDate};
+	vector<MenuFilter<vector<Event>>*> listEventsOpt = {&EventsSelected, &EventsLocation, &EventsName, &EventsDate};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
-			[this](vector<Event>&vec){ this->museum_network.listEvents(vec, this->member_card->get_type()); },
-			[this](){ return(this->museum_network.getEvents()); });
+			[this](vector<Event>){return;},
+			[this](){ return(this->museum_network.getEvents());},
+			false, {0});
 
 
 	/* Filter Museums */
@@ -49,10 +50,11 @@ void MemberInterface::show() {
 
 
 	/* List Museums */
-	vector<MenuFilter<vector<Museum>>*> listMuseumsOpt = {&MuseumsLocation, &MuseumsSelected, &MuseumsName};
+	vector<MenuFilter<vector<Museum>>*> listMuseumsOpt = {&MuseumsSelected, &MuseumsLocation, &MuseumsName};
 	MenuOptionsFilter<vector<Museum>> listMuseums("List Museums", listMuseumsOpt,
-			[this](vector<Museum>&vec){ this->museum_network.listMuseums(vec); },
-			[this](){ return(this->museum_network.getMuseums());});
+			[this](vector<Museum>&vec){ return vector<Museum>(); },
+			[this](){ return(this->museum_network.getMuseums());},
+			false, {0});
 
 
 	/* List Member and Network */
@@ -69,9 +71,16 @@ void MemberInterface::show() {
 			[this](vector<Event>&vec){
 				if(!this->member_card->isvalid()) throw(CardExpired(this->member_card->get_cc()));
 				if(vec.size()!=1) throw(MultipleEventsSelected(to_string(vec.size())));
-				this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
-				cout <<	"Event purchased successfully\n"; getchar();},
-				[this](){ return(this->museum_network.getEvents()); });
+				cout << "This action will have a price of " <<
+					vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+				if(a=='y' || a=='Y') {
+					this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
+					cout <<	"Event purchased successfully\n"; utl::pauseConsole();
+					}
+				},
+			[this](){ return(this->museum_network.getEvents()); });
 
 
 	/* Change current Member */
@@ -93,11 +102,15 @@ void MemberInterface::show() {
 
 
 	MenuSelelect removeMember("Delete your account", [this](){
-				cout << "Are you sure? (y/n)\n"; int a = getchar();
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
-				if(a=='y' || a=='Y'){cout << "NICE\n"; this->museum_network.removeCard(this->member_card);};});
+				if(a=='y' || a=='Y') {
+					this->museum_network.removeCard(this->member_card);
+					throw(MenuForceExit("Member menu"));
+				}
+			;});
 
-	MenuOptions main_menu("Logged in as " + member_card->get_name(),
+	MenuOptions main_menu("Logged in as " + to_string(this->member_card->get_cc()),
 			vector<Menu*>{&list_network, &renewCard, &listUser, &purchaseEvent, &changeMember, &removeMember});
 
 	main_menu.show();
@@ -126,9 +139,9 @@ void GUI::show() {
 	MenuSelelect exportMenu("Export to a file", [this](){
 			string config_file, cards_file, museum_file, enterprise_file;
 			cout << "Insert the config file name\n"; cin >> config_file;
-			cout << "Insert the cards file name\n"; cin >> config_file;
-			cout << "Insert the museum file name\n"; cin >> config_file;
-			cout << "Insert the enterprise file name\n"; cin >> config_file;
+			cout << "Insert the cards file name\n"; cin >> cards_file;
+			cout << "Insert the museum file name\n"; cin >> museum_file;
+			cout << "Insert the enterprise file name\n"; cin >> enterprise_file;
 			this->museum_network.exportFiles(config_file, cards_file, museum_file, enterprise_file); });
 
 	MenuOptions main_menu("Welcome to RNM\n", vector<Menu*> {&adminMenu, &memberMenu, &userMenu, &importMenu, &exportMenu, &listCards});

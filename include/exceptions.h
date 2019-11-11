@@ -77,6 +77,12 @@ public:
 	    std::runtime_error("Exited from menu " + title) {};
 };
 
+class MenuForceExit : public std::runtime_error{
+public:
+	MenuForceExit(const std::string & title) :
+	    std::runtime_error("Exited from menu " + title) {};
+};
+
 class CardAlreadyExists : public std::runtime_error {
 public:
 	CardAlreadyExists(unsigned cc) :

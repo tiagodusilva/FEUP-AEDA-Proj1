@@ -17,7 +17,6 @@ void MuseumNetwork::addCard(Card* card) {
 
 void MuseumNetwork::removeCard(const Card *card) {
 	vector<Card*>::iterator iter;
-	cout << *card;
 	iter = (find_if(this->cards.begin(), this->cards.end(),
 			[&card](Card *lhs){return( *lhs == *card ); }));
 
@@ -64,6 +63,15 @@ void MuseumNetwork::listCards(const std::vector<Card*> &cards_to_be_listed, cons
 
 void MuseumNetwork::listCards(const std::string &delim) const {
 	listCards(this->getCards(), delim);
+}
+
+
+float MuseumNetwork::getDiscount(const unsigned int card_type) const {
+	return(this->discount[card_type]);
+}
+
+float MuseumNetwork::getCost(const unsigned int card_type) const {
+	return(this->cost[card_type]);
 }
 
 
@@ -134,9 +142,8 @@ void MuseumNetwork::listEvents(const std::vector<Event> &events_to_be_listed,
 		unsigned card_type, const string &delim) const {
 
 	int i;
-	float discount_arr[3] = {this->individual_discount, this->silver_discount, this->uni_discount};
 	for (i = 0; i < events_to_be_listed.size(); ++i) {
-		events_to_be_listed.at(i).print_with_discount(cout, discount_arr[card_type]);
+		events_to_be_listed.at(i).print_with_discount(cout, getDiscount(card_type));
 		cout << delim;
 	}
 }
@@ -266,12 +273,12 @@ void MuseumNetwork::exportFiles(std::string cards_file_name, std::string museum_
 	output_stream << "cards_file_name: " << cards_file_name << endl;
 	output_stream << "museum_file_name: " << museum_file_name << endl;
 	output_stream << "enterprise_file_name: " << enterprise_file_name << endl;
-	output_stream << "individual::cost: " << this->individual_cost << endl;
-	output_stream << "individual::discount: " << individual_discount << endl;
-	output_stream << "silver::cost: " << silver_cost << endl;
-	output_stream << "silver::discount: " << silver_discount << endl;
-	output_stream << "uni::cost: " << uni_cost << endl;
-	output_stream << "uni::discount: " << uni_discount << endl;
+	output_stream << "individual::cost: " << cost[0] << endl;
+	output_stream << "individual::discount: " << discount[0] << endl;
+	output_stream << "silver::cost: " << cost[1] << endl;
+	output_stream << "silver::discount: " << discount[1] << endl;
+	output_stream << "uni::cost: " << cost[2] << endl;
+	output_stream << "uni::discount: " << discount[2] << endl;
 
 	this->exportCards(cards_file_name);
 	this->exportMuseums(museum_file_name);
@@ -295,27 +302,27 @@ void MuseumNetwork::importFiles(std::string network_file_name) {
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->individual_cost; utl::ignore(input_stream);
+	input_stream >> this->cost[0]; utl::ignore(input_stream); // individual cost
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->individual_discount; utl::ignore(input_stream);
+	input_stream >> this->discount[0]; utl::ignore(input_stream); // individual discount
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->silver_cost; utl::ignore(input_stream);
+	input_stream >> this->cost[1]; utl::ignore(input_stream); // silver cost
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->silver_discount; utl::ignore(input_stream);
+	input_stream >> this->discount[1]; utl::ignore(input_stream); // silver discount
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->uni_cost; utl::ignore(input_stream);
+	input_stream >> this->cost[2]; utl::ignore(input_stream); // uni cost
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	input_stream >> temp_str;
-	input_stream >> this->uni_discount; utl::ignore(input_stream);
+	input_stream >> this->discount[2]; utl::ignore(input_stream); // uni discount
 	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
 
 	if(!utl::file_exists(network_file_name))

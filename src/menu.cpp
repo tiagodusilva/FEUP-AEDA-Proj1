@@ -16,18 +16,22 @@ void MenuOptions::show() {
     bool go_back = false;
 
     do{
+		//utl::clearConsole();
         int selection = utl::getInt(cin, 0, options.size(), this->getMessage() + "Insira um numero entre 0 e " + to_string(options.size()));
-        if(selection == 0)
+
+        if(selection == 0 || options.size() == 0)
             go_back = true;
         else
 			try {
 				options.at(selection-1)->show();
-
+			} catch(const MenuForceExit &err) {
+				cout << err.what() << endl;
+				return;
 			} catch(const MenuExitWithNoFunctionCall &err) {
 				// ignore if a menu exits without calling anything
 			} catch(const std::exception &err) {
-				cout << "OPA\n";
-				cerr << err.what();
+				cerr << err.what() << " on menu" << this->getTitle() << endl;
+				utl::pauseConsole();
 			}
     } while (!go_back);
 

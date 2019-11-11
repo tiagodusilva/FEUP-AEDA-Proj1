@@ -16,12 +16,8 @@
 
 class MuseumNetwork{
 private:
-	float individual_discount;
-	float individual_cost;
-	float silver_discount;
-	float silver_cost;
-	float uni_discount;
-	float uni_cost;
+	float discount[3];
+	float cost[3];
 	/* Containers */
 	std::vector<Card*> cards;
 	std::vector<Enterprise> enterprises;
@@ -49,6 +45,8 @@ public:
 	void listCards(const std::vector<Card*> &cards_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
+	float getDiscount(const unsigned card_type) const;
+	float getCost(const unsigned card_type) const;
 	void importCards(std::string cards_file_name);
 	void exportCards(std::string cards_file_name) const;
 

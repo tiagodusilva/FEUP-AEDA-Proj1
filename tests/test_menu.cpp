@@ -16,9 +16,9 @@ TEST(menu, DISABLED_normal){
        MenuSelelect m4("This is a fun4", test4);
        vector<Menu*> menu_sec_opt = {&m1, &m2, &m3, &m4};
        MenuOptions menu_sec = {"Menu Secundario", menu_sec_opt};
-        vector<Menu*> menu_princ_opt = {&m1, &menu_sec};
-        MenuOptions menu_princ("Menu Primario", menu_princ_opt);
-        menu_princ.show();
+       vector<Menu*> menu_princ_opt = {&m1, &menu_sec};
+       MenuOptions menu_princ("Menu Primario", menu_princ_opt);
+	   menu_princ.show();
     }
     catch(...) {
         EXPECT_EQ(true, false);
@@ -30,7 +30,7 @@ TEST(menu, DISABLED_filter){
 	int d=0;
 	MenuSelelectFilter<int> add1("Adiciona 1", [](int &a){ a++; });
 	MenuSelelectFilter<int> add2("Adiciona 2", [](int &a){ a+=2; });
-	vector<MenuFilter<int>*> menu_add_opt = {&add1, &add2};
+	vector<MenuFilter<int>*> menu_add_opt = {&add1};
 
 	MenuSelelectFilter<int> sub1("Subtrai 1", [](int &a){ a--; });
 	MenuSelelectFilter<int> sub2("Subtrai 2", [](int &a){ a-=2; });
@@ -38,14 +38,14 @@ TEST(menu, DISABLED_filter){
 	MenuOptionsFilter<int> menu_sub("Subtrair", menu_sub_opt);
 
 	MenuSelelectFilter<int> mult("Multiplica por 3", [](int &a){ a*=3; });
-	vector<MenuFilter<int>*> menu_princ_opt = {&menu_sub, &mult};
+	vector<MenuFilter<int>*> menu_princ_opt = {&mult, &menu_sub};
 	MenuOptionsFilter<int> menu_princ("Operaçoes:", menu_princ_opt, [](int &a){ cout << "Result: " << a << endl;; });
 
 	menu_princ.show();
 }
 
 
-TEST(menu, mixture){
+TEST(menu, DISABLED_mixture){
     try {
 		MenuSelelect m1("This is a fun1", test1);
 		MenuSelelect m2("This is a fun2", test2);

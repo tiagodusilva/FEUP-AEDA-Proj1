@@ -2,6 +2,7 @@
 #define FEUP_AEDA_PROJ1_MENU_H
 #define BAZINGA template
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,6 +60,7 @@ public:
 
 	/* Invokes and displays all of the menus in options and waits for user input to call them */
     void show() override;
+	/* Exits gracefully from the menu */
 };
 
 
@@ -106,15 +108,16 @@ private:
 	/* Specifies if only one menu from options can be chosen (will exit from the menu when user selects any option) */
 	bool select_one_menu;
 	/* Specifies if the same menu can be selected more than once (when a user selects an option it won't be deleted) */
-	bool repeat_menus;
+	const std::vector<int> repeat_menus_vec ={};
 
 public:
 	MenuOptionsFilter<Arg>() : MenuFilter<Arg>(), options_backup() {};
 	~MenuOptionsFilter<Arg>() = default;
+	/* Warnning! If repeated menus are give, they must be the first options in the options vector */
 	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt, std::function<void(Arg&)> e_fun=[](Arg){return;},
-		std::function<Arg()>s_fun=[](){ return(Arg()); }, bool exclusive_selection=false, bool repeat=false):
+		std::function<Arg()>s_fun=[](){ return(Arg()); }, bool exclusive_selection=false, std::vector<int> vec={}):
 		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), argument(s_fun()), start_func(s_fun),
-		select_one_menu(exclusive_selection), repeat_menus(repeat){};
+		select_one_menu(exclusive_selection), repeat_menus_vec(vec){};
 
 	/* Returns the menu select message */
 	std::string getMessage() const;
@@ -156,7 +159,8 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 					try {
 						this->exit_func(arg);
 					}catch(const std::exception &err) {
-						std::cerr << err.what();
+						std::cerr << err.what() << std::endl;
+						utl::pauseConsole();
 					}
 					throw(MenuExitWithNoFunctionCall(this->title));
 				}
@@ -165,10 +169,12 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 			else {
 				try {
 					options.at(selection-1)->show(arg);
-					if(!repeat_menus)
+					/* Delete option if it isn't on the repeat vector */
+					if(std::find(repeat_menus_vec.begin(), repeat_menus_vec.end(), selection-1) == repeat_menus_vec.end())
 						options.erase(options.begin() + (selection-1));
 				}catch(const std::exception &err) {
 					std::cerr << err.what() << std::endl;
+					utl::pauseConsole();
 				}
 			}
 		}
