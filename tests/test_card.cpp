@@ -4,11 +4,12 @@
 
 #include "../include/cards.h"
 #include "../include/exceptions.h"
+#include "../include/date.h"
 #include "../include/time.h"
 
 using namespace std;
 
-TEST(cards, files) {
+TEST(cards, DISABLED_files) {
 	UniCard c("nome", "contact", 123, Date(1999, 1, 21), Address("estrada", "1234-567", "regiao"));
 
 	ofstream tofile("output.txt");
@@ -33,4 +34,11 @@ TEST(cards, files) {
 	}catch(const exception &e) {
 		ASSERT_EQ(*(e.what()), *(InvalidTime().what()));
 	}
+}
+
+TEST(cards, time_difference) {
+	Date now, tomorrow;
+	tomorrow.ffday();
+	EXPECT_EQ(timespan_size(now, Time(), now, Time() + Time(1, 0)), 60);
+	EXPECT_EQ(timespan_size(now, Time(), tomorrow, Time() + Time(1, 5)), 24*61 + 5);
 }
