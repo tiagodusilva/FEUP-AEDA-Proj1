@@ -42,8 +42,10 @@ public:
      * @param address        The address of the Event
      * @param time           The time an Event starts
      * @param date           The day of the Event
-     * @param reservations   The set containing all the cc's of customers who have bought this Event (may not be members of the Network)
+     * @param reservations   The set containing all the cc's of customers who have bought this Event (may not be members of the Network)\n
+     *                       Defaults to an empty set
      * @param is_valid       A flag indicating if an Event is valid or not (to be used for various purposes by an enterprise)
+     *                       Defaults to true
      */
     Event(const std::string& name, float cost, unsigned max_capacity, const Address& address, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
     /**

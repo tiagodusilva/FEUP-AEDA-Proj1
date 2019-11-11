@@ -62,6 +62,9 @@ void Event::purchase(unsigned cc) {
     if (this->is_full())
         throw EventFull(this->id);
 
+    if (!this->is_valid)
+        throw EventInvalid(this->id);
+
     if (this->reservations.find(cc) != this->reservations.end())
         throw EventAlreadyBought(this->id, cc);
 
