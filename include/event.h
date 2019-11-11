@@ -10,7 +10,9 @@
 
 #define EVENT_OUPUT_DELIM 15
 
-class DateTime;
+/**
+ * @brief    Class that simulates all the information an enterprise would have about their events.
+ */
 
 class Event {
 private:
@@ -25,39 +27,246 @@ private:
     bool is_valid;
 
 public:
+    /**
+     * @brief    Default constructor
+     *           Does not attribute a valid id to the event (id = 0)
+     */
     Event() = default;
-    Event(const std::string& name, float cost, unsigned max_capacity, const Address& addres, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
+
+    /**
+     * @brief    Complete Event constructor, assigns a completely new and unique ID to the Event
+     *
+     * @param name           The name of the Event
+     * @param cost           The cost of the Event
+     * @param max_capacity   The maximum capacity of the Event, this is, the maximum number of elements of the reservations set)
+     * @param address        The address of the Event
+     * @param time           The time an Event starts
+     * @param date           The day of the Event
+     * @param reservations   The set containing all the cc's of customers who have bought this Event (may not be members of the Network)
+     * @param is_valid       A flag indicating if an Event is valid or not (to be used for various purposes by an enterprise)
+     */
+    Event(const std::string& name, float cost, unsigned max_capacity, const Address& address, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
+    /**
+     * @brief    Default destructor
+     */
     ~Event() = default;
 
+    /**
+     * @brief     Getter for the id
+     * @return    The id of this Event\n
+     *            Id 0 has the special meaning of having been instantiated through the default constructor
+     */
     unsigned get_id() const;
+
+    /**
+     * @brief     Getter for the entry fee
+     * @return    The entry fee of this Event
+     */
     float get_fee() const;
+
+    /**
+     * @brief     Getter for the name
+     * @return    The name of this Event
+     */
     std::string get_name() const;
+
+    /**
+     * @brief     Getter for the maximum capacity
+     * @return    The maximum capacity of this Event
+     */
     unsigned get_max_capacity() const;
+
+    /**
+     * @brief     Getter for the current capacity (size of the reservations set)
+     * @return    The current capacity of this Event
+     */
     unsigned get_current_capacity() const;
+
+    /**
+     * @brief     Getter for the address
+     * @return    The address of this Event
+     */
     Address get_address() const;
+
+    /**
+     * @brief     Getter for the time
+     * @return    The time of this Event
+     */
     Time get_time() const;
+
+    /**
+     * @brief     Getter for the date
+     * @return    The date of this Event
+     */
     Date get_date() const;
 
+    /**
+     * @brief     Getter for the validity
+     * @return    The validity of this Event
+     */
+    bool get_validity() const;
+
+    /**
+     * @brief     Getter for the percentage of the Event's capacity
+     * @return    The fraction of the current capacity and maximum capacity, in percentage
+     */
+    float get_capacity_percentage() const;
+
+
+    /**
+     * @brief    Handles the purchase of this Event by an user
+     *
+     * @param cc The cc of the person trying to purchase this Event
+     */
     void purchase(unsigned cc);
 
+    /**
+     * @brief     Returns if the Event is completely full
+     *
+     * @return    True if the Event is completely full\n
+     *             False, otherwise
+     */
     bool is_full() const;
+
+    /**
+     * @brief     Returns if the Event is more than half-full
+     *
+     * @return    True if the Event is more than half-full\n
+     *            False, otherwise
+     */
     bool is_half_full() const;
-    float get_capacity_percentage() const;
+
+    /**
+     * @brief    Return if the Event has already started / is already over
+     *
+     * @return    True if the current Time and Date are past the Event's Time and Date\n
+    *             False, otherwise
+     */
     bool is_over() const;
 
+    /**
+     * @brief     Overloaded equality test operator
+     *
+     * @param     The rightmost Event to compare
+     *
+     * @return    True if both Event's ids are equal\n
+     *            False, otherwise
+     */
     inline bool operator==(const Event &ev) const { return this->id == ev.id; };
+
+    /**
+     * @brief     Overloaded inequality test operator
+     *
+     * @param     The rightmost Event to compare
+     *
+     * @return    True if both Event's ids are different\n
+     *            False, otherwise
+     */
+    inline bool operator!=(const Event &ev) const { return !this->operator==(ev); }
+
+    /**
+     * @brief     Overloaded lesser than test operator
+     *
+     * @param     The rightmost Event to compare
+     *
+     * @return    True if the leftmost Event has a lower id than the rightmost Event\n
+     *            False, otherwise
+     */
     inline bool operator<(const Event &ev) const { return this->id < ev.id; };
 
-    void print_with_discount(float discount=1.0) const;
+
+    /**
+     * @brief     Prints an Event to an ostream\n
+     *            Prints the Event alongside its discounted entry fee
+     *
+     * @param     The ostream to output the Event's contents
+     *
+     * @param     The discount to apply to the event\n
+     *            Should be in the range [0, 1], but if higher will actually increase the Event's entry fee
+     */
+    void print_with_discount(std::ostream &outstream, float discount=0.0) const;
+
+    /**
+     * @brief              Overloaded ostream insertion operator
+     *
+     * @details            Mainly used with std::cout to show formated information on screen
+     *
+     * @param outstream    Reference to the ostream object to insert info to
+     * @param ev           Reference to Event object whose info will be inserted in the ostream
+     *
+     * @return             Reference to the ostream object, 'outstream', passed in the parameters
+     */
     friend std::ostream& operator<<(std::ostream &outstream, const Event &ev);
+
+    /**
+     * @brief               Overloaded ofstream insertion operator
+     *
+     * @details             Used to save information on a file so it can be read again at a later date
+     *
+     * @param outfstream    Reference to the ofstream object to insert info to
+     * @param ev            Reference to Event object whose info will be inserted in the ofstream
+     *
+     * @return              Reference to the ofstream object, 'outfstream', passed in the parameters
+     */
     friend std::ofstream& operator <<(std::ofstream &outfstream, const Event &ev);
+
+    /**
+     * @brief              Overloaded istream extraction operator
+     *
+     * @details            Mainly used with std::cin to get information from the user
+     *
+     * @param infstream    Reference to the istream object to extract info from
+     * @param ev           Reference to Event object where the read information is saved\n
+     *                     Events read this way will have a new and unique id
+     *
+     * @return             Reference to the istream object, 'infstream', passed in the parameters
+     */
     friend std::ifstream &operator>>(std::ifstream &infstream, Event &ev);
 
 };
 
+/** @relates    Event
+ * @brief       Overloaded equality test operator
+ *
+ * @param ev    Reference to the Event object to be tested
+ * @param id    Id to be tested
+ *
+ * @return      True,  if the Event object's id and the unsigned id are the same\n
+ *              False, otherwise
+ */
 inline bool operator==(const Event& ev, const unsigned id) { return ev.get_id() == id; };
+
+/** @relates    Event
+ * @brief       Overloaded equality test operator
+ *
+ * @param id    Id to be teste
+ * @param ev    Reference to the Event object to be tested
+ *
+ * @return      True,  if the Event object's id and the unsigned id are the same\n
+ *              False, otherwise
+ */
 inline bool operator==(const unsigned id, const Event& ev) { return operator==(ev, id); };
+
+/** @relates    Event
+ * @brief       Overloaded equality test operator
+ *
+ * @param ev    Reference to the Event object to be tested
+ * @param id    Id to be teste
+ *
+ * @return      True,  if the Event object's id and the unsigned id are the same\n
+ *              False, otherwise
+ */
 inline bool operator!=(const Event& ev, const unsigned id) { return ev.get_id() != id; };
+
+/** @relates    Event
+ * @brief       Overloaded equality test operator
+ *
+ * @param id    Id to be teste
+ * @param ev    Reference to the Event object to be tested
+ *
+ * @return      True,  if the Event object's id and the unsigned id are the same\n
+ *              False, otherwise
+ */
 inline bool operator!=(const unsigned id, const Event& ev) { return operator!=(ev, id); };
 
 #endif // EVENT_H

@@ -53,6 +53,10 @@ Date Event::get_date() const {
     return this->date;
 }
 
+bool Event::get_validity() const {
+    return this->is_valid;
+}
+
 void Event::purchase(unsigned cc) {
 
     if (this->is_full())
@@ -84,8 +88,8 @@ bool Event::is_over() const {
     return this->date >= Date();
 }
 
-void Event::print_with_discount(float discount) const {
-    cout <<
+void Event::print_with_discount(std::ostream &outstream, float discount) const {
+    outstream <<
               left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << this->name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << this->id << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << this->ticket_fee << endl <<
