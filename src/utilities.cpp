@@ -117,6 +117,7 @@ namespace utl
 
         } while(!valid);
 
+		ignore(stream); // remove \n when reading an int
         return res_num;
     }
 

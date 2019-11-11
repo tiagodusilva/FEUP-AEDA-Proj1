@@ -30,10 +30,11 @@ namespace flt
 	template<typename T>
 	void FilterByLocation(vector<T> &vec) {
 		Address addr;
+		cout << "Address (street name/XXXX-XXX/region name or region)?\n";
 		cin >> addr;
 
 		if(cin.fail())
-			throw(NoSuchCard(123)); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid address")); // TODO add exceptions for this
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&addr](T &elem) { return!(contains(elem, addr)); });
@@ -43,10 +44,8 @@ namespace flt
 	template<typename T>
 	void FilterByName(vector<T> &vec) {
 		string name;
+		cout << "Name?\n";
 		getline(cin, name);
-
-		if(cin.fail())
-			throw(NoSuchCard(123)); // TODO add exceptions for this
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&name](T &elem) { return!(contains(elem, name)); });
@@ -56,10 +55,11 @@ namespace flt
 	template<typename T>
 	void FilterInDate(vector<T> &vec) {
 		Date date;
+		cout << "Date (year/month/day)?\n";
 		cin >> date;
 
 		if(cin.fail())
-			throw(NoSuchCard(123)); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&date](T &elem) { return!(contains(elem, date)); });
@@ -69,14 +69,16 @@ namespace flt
 	template<typename T>
 	void FilterBetweenDates(vector<T> &vec) {
 		Date date1;
+		cout << "Date (year/month/day)?\n";
 		cin >> date1;
 		if(cin.fail())
-			throw(NoSuchCard(123)); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
 
 		Date date2;
+		cout << "Date (year/month/day)?\n";
 		cin >> date2;
 		if(cin.fail())
-			throw(NoSuchCard(123)); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&date1, &date2](T &elem) { return!(is_between(elem, date1, date2)); });

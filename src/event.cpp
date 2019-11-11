@@ -58,7 +58,6 @@ bool Event::get_validity() const {
 }
 
 void Event::purchase(unsigned cc) {
-
     if (this->is_full())
         throw EventFull(this->id);
 

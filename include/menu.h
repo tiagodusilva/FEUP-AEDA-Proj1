@@ -94,9 +94,9 @@ class MenuOptionsFilter : public MenuFilter<Arg>{
 private:
 	/* Argument that is passed and modified */
 	Arg argument;
-	Arg argument_backup;
 
-	/* Function that will be called when menu is exiting. */
+	/* Functions that will be called when menu is starting/exiting. */
+	std::function<Arg()> start_func = [](){return Arg();}; // Initialize as a dead function to ensure that it points to something
 	std::function<void(Arg&)> exit_func = [](Arg){ return;}; // Initialize as a dead function to ensure that it points to something
 
     std::vector<MenuFilter<Arg>*> options;
@@ -112,8 +112,8 @@ public:
 	MenuOptionsFilter<Arg>() : MenuFilter<Arg>(), options_backup() {};
 	~MenuOptionsFilter<Arg>() = default;
 	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt, std::function<void(Arg&)> e_fun=[](Arg){return;},
-		Arg arg=Arg(), bool exclusive_selection=false, bool repeat=false):
-		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), argument(arg), argument_backup(arg),
+		std::function<Arg()>s_fun=[](){ return(Arg()); }, bool exclusive_selection=false, bool repeat=false):
+		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), argument(s_fun()), start_func(s_fun),
 		select_one_menu(exclusive_selection), repeat_menus(repeat){};
 
 	/* Returns the menu select message */
@@ -130,7 +130,7 @@ public:
 BAZINGA<typename Arg>
 void MenuOptionsFilter<Arg>::show(){
 	/* If show() is called then the object was instanciated by a Menu_Options object */
-	this->argument = argument_backup; // Reinitialize argument
+	this->argument = start_func(); // Reinitialize argument
 	this->options = options_backup; // Reset all available options
 	this->show(argument);
     return;
@@ -168,19 +168,18 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 					if(!repeat_menus)
 						options.erase(options.begin() + (selection-1));
 				}catch(const std::exception &err) {
-					std::cerr << err.what();
+					std::cerr << err.what() << std::endl;
 				}
 			}
 		}
 	} while (!go_back && !select_one_menu);
 
-	std::cout << "OPA\n";
 	utl::clearConsole();
 
 	try {
 		this->exit_func(arg);
 	}catch(const std::exception &err) {
-		std::cerr << err.what();
+		std::cerr << err.what() << std::endl;
 	}
 
     return;

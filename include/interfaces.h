@@ -7,38 +7,51 @@
 #include <vector>
 
 #include "cards.h"
-#include "filter_contains.h"
+#include "filter.h"
 #include "menu.h"
 #include "museum_network.h"
 
+class GUI {
+private:
+	MuseumNetwork museum_network;
+
+public:
+	GUI() = default;
+	~GUI() = default;
+	void show();
+};
 
 class AdminInterface {
 private:
 	MuseumNetwork museum_network;
+
 public:
-	AdminInterface(MuseumNetwork &rnm);
+	AdminInterface(MuseumNetwork &rnm) : museum_network(rnm) {};
 	AdminInterface() = default;
 	~AdminInterface() = default;
+	void show() { return; };
 };
 
 
 class UserInterface {
 private:
 	MuseumNetwork museum_network;
+
 public:
-	UserInterface(MuseumNetwork &rnm);
+	UserInterface(MuseumNetwork &rnm) : museum_network(rnm) {};
 	UserInterface() = default;
 	~UserInterface() = default;
+	void show() { return; };
 };
 
 
 class MemberInterface {
 private:
-	MuseumNetwork museum_network;
+	MuseumNetwork &museum_network;
 	Card *member_card;
 
 public:
-	MemberInterface() = default;
+//	MemberInterface() = default;
 	~MemberInterface() = default;
 	MemberInterface(MuseumNetwork &rnm, unsigned int cc);
 	void show();

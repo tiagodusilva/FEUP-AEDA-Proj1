@@ -17,6 +17,7 @@ void MuseumNetwork::addCard(Card* card) {
 
 void MuseumNetwork::removeCard(const Card *card) {
 	vector<Card*>::iterator iter;
+	cout << *card;
 	iter = (find_if(this->cards.begin(), this->cards.end(),
 			[&card](Card *lhs){return( *lhs == *card ); }));
 
@@ -116,7 +117,7 @@ void MuseumNetwork::addMuseum(Museum museum) {
 	this->museums.push_back(museum);
 }
 
-/* Eventos */
+/* Events */
 
 void MuseumNetwork::listEvents(const std::vector<Event> &events_to_be_listed, const string &delim) const {
 	int i;
@@ -125,9 +126,22 @@ void MuseumNetwork::listEvents(const std::vector<Event> &events_to_be_listed, co
 		cout << delim;
 	}
 }
-
 void MuseumNetwork::listEvents(const string &delim) const{
-	this->listEvents(getEvents());
+	this->listEvents(getEvents(), delim);
+}
+
+void MuseumNetwork::listEvents(const std::vector<Event> &events_to_be_listed,
+		unsigned card_type, const string &delim) const {
+
+	int i;
+	float discount_arr[3] = {this->individual_discount, this->silver_discount, this->uni_discount};
+	for (i = 0; i < events_to_be_listed.size(); ++i) {
+		events_to_be_listed.at(i).print_with_discount(cout, discount_arr[card_type]);
+		cout << delim;
+	}
+}
+void MuseumNetwork::listEvents(unsigned card_type, const string &delim) const{
+	this->listEvents(getEvents(), card_type, delim);
 }
 
 vector<Event> MuseumNetwork::getEvents() const {
@@ -146,7 +160,16 @@ vector<Event> MuseumNetwork::getEvents() const {
 	return events;
 }
 
-
+void MuseumNetwork::purchaseEvent(const unsigned cc, Event event) {
+	int i;
+	for (i = 0; i < this->enterprises.size(); ++i) {
+		if(enterprises.at(i).has_event(event.get_id())) {
+			enterprises.at(i).purchase_event(event.get_id(), cc);
+			return;
+		}
+	}
+	throw(EventNotFound(event.get_id()));
+}
 
 /* File Methods */
 

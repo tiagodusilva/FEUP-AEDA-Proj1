@@ -31,7 +31,6 @@ TEST(menu, DISABLED_filter){
 	MenuSelelectFilter<int> add1("Adiciona 1", [](int &a){ a++; });
 	MenuSelelectFilter<int> add2("Adiciona 2", [](int &a){ a+=2; });
 	vector<MenuFilter<int>*> menu_add_opt = {&add1, &add2};
-	MenuOptionsFilter<int> menu_add("Adicionar", menu_add_opt, [](int){}, true);
 
 	MenuSelelectFilter<int> sub1("Subtrai 1", [](int &a){ a--; });
 	MenuSelelectFilter<int> sub2("Subtrai 2", [](int &a){ a-=2; });
@@ -39,7 +38,7 @@ TEST(menu, DISABLED_filter){
 	MenuOptionsFilter<int> menu_sub("Subtrair", menu_sub_opt);
 
 	MenuSelelectFilter<int> mult("Multiplica por 3", [](int &a){ a*=3; });
-	vector<MenuFilter<int>*> menu_princ_opt = {&menu_add, &menu_sub, &mult};
+	vector<MenuFilter<int>*> menu_princ_opt = {&menu_sub, &mult};
 	MenuOptionsFilter<int> menu_princ("Operaçoes:", menu_princ_opt, [](int &a){ cout << "Result: " << a << endl;; });
 
 	menu_princ.show();
@@ -58,7 +57,6 @@ TEST(menu, mixture){
 		MenuSelelectFilter<int> add1("Adiciona 1", [](int &a){ a++; });
 		MenuSelelectFilter<int> add2("Adiciona 2", [](int &a){ a+=2; });
 		vector<MenuFilter<int>*> menu_add_opt = {&add1, &add2};
-		MenuOptionsFilter<int> menu_add("Adicionar", menu_add_opt, [](int){}, true);
 
 		MenuSelelectFilter<int> sub1("Subtrai 1", [](int &a){ a--; });
 		MenuSelelectFilter<int> sub2("Subtrai 2", [](int &a){ a-=2; });
@@ -66,7 +64,7 @@ TEST(menu, mixture){
 		MenuOptionsFilter<int> menu_sub("Subtrair", menu_sub_opt);
 
 		MenuSelelectFilter<int> mult("Multiplica por 3", [](int &a){ a*=3; });
-		vector<MenuFilter<int>*> menu_sec2_opt = {&menu_add, &menu_sub, &mult};
+		vector<MenuFilter<int>*> menu_sec2_opt = {&menu_sub, &mult};
 
 		MenuOptionsFilter<int> menu_sec2("Operaçoes:", menu_sec2_opt, [](int &a){ cout << "Result: " << a << endl; });
 

@@ -86,10 +86,14 @@ public:
 
 
 	/* Methods for Events */
+	void listEvents(unsigned card_type, const std::string &delim='\n' + std::string(64, '-') + '\n') const;
+	void listEvents(const std::vector<Event> &events_to_be_listed,
+			unsigned card_type, const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listEvents(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listEvents(const std::vector<Event> &events_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
+	void purchaseEvent(const unsigned cc, Event event);
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
 
 

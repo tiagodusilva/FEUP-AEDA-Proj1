@@ -55,10 +55,11 @@ void Enterprise::purchase_event(unsigned id, unsigned cc) {
             aux.purchase(cc);
             this->events.erase(ev);
             this->events.insert(aux);
+			return;
         }
     }
-
-    throw EventNotFound(id);
+	int i;
+    //throw EventNotFound(id);
 }
 
 std::ostream &operator<<(std::ostream &outstream, const Enterprise &ent) {
