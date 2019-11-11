@@ -77,6 +77,12 @@ public:
 	    std::runtime_error("There already is an user with cc number " + std::to_string(cc) + " in the network") {};
 };
 
+class CardExpired : public std::runtime_error {
+public:
+	CardExpired(unsigned cc) :
+		std::runtime_error("The current accout with cc " + std::to_string(cc) + " and as such can't buy events") {};
+};
+
 class NoSuchCard : public std::runtime_error {
 public:
 	NoSuchCard(unsigned cc) :
@@ -117,6 +123,12 @@ class FileIncorrectFormatting : public std::runtime_error {
 public:
 	FileIncorrectFormatting(const std::string & file_name) :
 	    std::runtime_error("File with name " + file_name + " is formatted incorrectly") {};
+};
+
+class MultipleEventsSelected : public std::runtime_error {
+public:
+	MultipleEventsSelected(const std::string &num_events) :
+		std::runtime_error(num_events + " events selected instead of 1") {};
 };
 
 #endif  // EXCEPTION_H
