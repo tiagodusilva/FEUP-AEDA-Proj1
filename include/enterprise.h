@@ -28,6 +28,8 @@ public:
 
     bool has_event(unsigned id) const;
 
+    void purchase_event(unsigned id, unsigned cc);
+
     // As all of our enterprises must be registered in our country, their names will ALWAYS be different by law,
     // therefore we only compare their names
     inline bool operator== (const Enterprise &ent) { return this->name == ent.name; };

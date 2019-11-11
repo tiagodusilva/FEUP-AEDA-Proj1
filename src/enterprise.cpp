@@ -46,6 +46,21 @@ bool Enterprise::has_event(unsigned id) const {
     return false;
 }
 
+void Enterprise::purchase_event(unsigned id, unsigned cc) {
+
+    // Apparently sets always return const iterators... so yeah... about that one...
+    for (const auto &ev: this->events) {
+        if (ev == id) {
+            Event aux = ev;
+            aux.purchase(cc);
+            this->events.erase(ev);
+            this->events.insert(aux);
+        }
+    }
+
+    throw EventNotFound(id);
+}
+
 std::ostream &operator<<(std::ostream &outstream, const Enterprise &ent) {
     outstream <<
               left << setw(ENTERPRISE_OUPUT_DELIM) << "Name"	      << " : " << right << ent.name << endl <<
