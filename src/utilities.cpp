@@ -47,6 +47,12 @@ namespace utl
         return ltrim(rtrim(str, chars), chars);
     }
 
+	bool
+	isStrEmpty(std::string str)
+	{
+		return (trim(str) == "");
+	}
+
     bool isFileEmpty(ifstream & fin)
     {
         return fin.peek() == ifstream::traits_type::eof();
