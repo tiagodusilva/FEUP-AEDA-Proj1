@@ -14,6 +14,9 @@ Address::Address()
 
 Address::Address(const string &region)
 {
+	if (utl::isStrEmpty(region))
+		throw InvalidAddress();
+
 	this->street = "Undefined Street";
 	this->zipCode = HALF_ADDR_ZIPCODE;
 	this->region = region;
@@ -22,8 +25,9 @@ Address::Address(const string &region)
 Address::Address(const string &street, const string &zipCode, const string &region)
 {
 	/* 0000-000 is not valid for zipcodes inputed by the user */
-	if (zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(zipCode))
-		throw InvalidAddress()
+	if (zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(zipCode) ||
+	    utl::isStrEmpty(street) || utl::isStrEmpty(region))
+		throw InvalidAddress();
 
 	this->street = street;
 	this->zipCode = zipCode;
@@ -110,9 +114,12 @@ operator>>(std::istream &instream, Address &a)
 		/* check if address is well formed */
 		string temp_address;
 		getline(instream, temp_address);
-		int div = temp_address.find("/");
+		if (utl::isStrEmpty(temp_address))  // check if input is empty
+			throw UserInputReadingFailure("Address given by user is empty");
 
-		if (div == string::npos) {  // half address (only region)
+		int div = temp_address.find("/");
+		if (div == string::npos) {
+			/* half address (only region) */
 			a.street = "Undefined Street";
 			a.zipCode = HALF_ADDR_ZIPCODE;
 			a.region = utl::trim(temp_address);
@@ -130,8 +137,9 @@ operator>>(std::istream &instream, Address &a)
 		a.region = temp_address.substr(div2 + 1);
 
 		/* check if a valid zip-code was read */
-		if (a.zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(a.zipCode))
-			throw UserInputReadingFailure("Address given by user is malformed (or 0000-000): " + temp_address);
+		if (a.zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(a.zipCode) ||
+		    utl::isStrEmpty(a.street) || utl::isStrEmpty(a.region))
+			throw UserInputReadingFailure("Address given by user is malformed (or 0000-000) or a field is considered an empty string: " + temp_address);
 
 	}catch(const std::exception& e) {
 		instream.setstate(ios::failbit);
@@ -163,7 +171,8 @@ operator>>(std::ifstream &instream, Address &a)
 		a.region = temp_str.substr(div2 + 8);
 
 		/* check if a valid zip-code was read */
-		if (!Address::verify_zip_code(a.zipCode))
+		if (!Address::verify_zip_code(a.zipCode) ||
+		    utl::isStrEmpty(a.street) || utl::isStrEmpty(a.region))
 			throw FileReadingFailed("address: " + temp_str);
 
 	}catch(const std::exception& e) {

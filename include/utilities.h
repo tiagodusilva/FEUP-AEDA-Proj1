@@ -34,6 +34,10 @@ namespace utl
     std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
 
 	/**
+	 * Check if a given string can be considered an empty string
+	*/
+	bool isStrEmpty(std::string str);
+	/**
 	Returns trrue if a given filestream is empty
 	Meant to be used right after opening an ifstream
 	*/
