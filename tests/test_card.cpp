@@ -35,10 +35,3 @@ TEST(cards, DISABLED_files) {
 		ASSERT_EQ(*(e.what()), *(InvalidTime().what()));
 	}
 }
-
-TEST(cards, time_difference) {
-	Date now, tomorrow;
-	tomorrow.ffday();
-	EXPECT_EQ(timespan_size(now, Time(), now, Time() + Time(1, 0)), 60);
-	EXPECT_EQ(timespan_size(now, Time(), tomorrow, Time() + Time(1, 5)), 24*61 + 5);
-}
