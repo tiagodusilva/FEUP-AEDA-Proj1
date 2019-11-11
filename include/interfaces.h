@@ -23,13 +23,13 @@ public:
 
 class AdminInterface {
 private:
-	MuseumNetwork museum_network;
+	MuseumNetwork &museum_network;
 
 public:
-	AdminInterface(MuseumNetwork &rnm) : museum_network(rnm) {};
-	AdminInterface() = default;
+	AdminInterface(MuseumNetwork &rnm);
+	//AdminInterface() = default;
 	~AdminInterface() = default;
-	void show() { return; };
+	void show();
 };
 
 

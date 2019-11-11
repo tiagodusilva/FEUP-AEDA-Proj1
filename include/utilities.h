@@ -81,6 +81,11 @@ namespace utl
 	 */
 	inline void ignore(std::istream &i) { i.ignore(1000, '\n'); };
 
+	/**
+	 * resets status of istream
+	 */
+	inline void stream_clear(std::istream &i) { i.clear(); ignore(i); };
+
 	/*
 	 * Checks if a given file exists;
 	 * Takes a string specifing the path to the file to check as an argument;

@@ -54,7 +54,8 @@ public:
 	/* Methods for Enterprises */
 	void addEnterprise(Enterprise enterprise);
 
-	void removeEnterprises(const std::vector<Enterprise> &enterprises_to_be_removed);
+	void removeEnterprise(const Enterprise &enterprise_to_be_removed);
+	void removeEnterprises(std::vector<Enterprise> &museum_to_be_removed);
 
 	void modifyEnterprise(Enterprise enterprise);
 
@@ -70,7 +71,8 @@ public:
 	/* Methods for Museums */
 	void addMuseum(Museum museum);
 
-	void removeMuseums(const std::vector<Museum> &museum_to_be_removed);
+	void removeMuseum(const Museum &museum_to_be_removed);
+	void removeMuseums(std::vector<Museum> &museum_to_be_removed);
 
 	void modifyMuseum(Museum museum_to_be_changed);
 

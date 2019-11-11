@@ -77,6 +77,26 @@ float MuseumNetwork::getCost(const unsigned int card_type) const {
 
 /* Enterprises */
 
+void MuseumNetwork::removeEnterprises(std::vector<Enterprise> &enterprises_to_be_removed) {
+	/* Given a vector of pointers to enterprises, remove all of the enterprises in the network are
+	present in the given vector. */
+
+	int i;
+	for (i = 0; i < enterprises_to_be_removed.size(); ++i) {
+		removeEnterprise(enterprises_to_be_removed.at(i));
+	}
+}
+
+void MuseumNetwork::removeEnterprise(const Enterprise &enterprise) {
+	vector<Enterprise>::iterator iter;
+	iter = (find_if(this->enterprises.begin(), this->enterprises.end(),
+			[&enterprise](Enterprise lhs){return( lhs == enterprise ); }));
+
+	if(iter != this->enterprises.end()) // If the museum is found
+		enterprises.erase(iter);
+	else
+		throw(NoSuchEnterprise(enterprise.get_name()));
+}
 void MuseumNetwork::listEnterprises(const std::vector<Enterprise> &enterprises_to_be_listed, const string &delim) const {
 	int i;
 	for (i = 0; i < enterprises_to_be_listed.size(); ++i) {
@@ -102,6 +122,29 @@ void MuseumNetwork::addEnterprise(Enterprise enterprise) {
 
 
 /* Museums */
+
+
+void MuseumNetwork::removeMuseums(std::vector<Museum> &museums_to_be_removed) {
+	/* Given a vector of pointers to museums, remove all of the museums in the network are
+	present in the given vector. */
+
+	int i;
+	for (i = 0; i < museums_to_be_removed.size(); ++i) {
+		removeMuseum(museums_to_be_removed.at(i));
+	}
+}
+
+void MuseumNetwork::removeMuseum(const Museum &museum) {
+	vector<Museum>::iterator iter;
+	iter = (find_if(this->museums.begin(), this->museums.end(),
+			[&museum](Museum lhs){return( lhs == museum ); }));
+
+	if(iter != this->museums.end()) // If the museum is found
+		museums.erase(iter);
+	else
+		throw(NoSuchMuseum(museum.get_name()));
+}
+
 
 void MuseumNetwork::listMuseums(const std::vector<Museum> &museums_to_be_listed, const string &delim) const {
 	int i;

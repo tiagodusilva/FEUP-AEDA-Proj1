@@ -6,6 +6,7 @@
 #include <string>
 
 #include "address.h"
+#include "enterprise.h"
 #include "event.h"
 #include "date.h"
 #include "cards.h"
@@ -21,25 +22,12 @@ namespace flt
 	template<typename T>
 	bool contains(const T &lhs, string rhs) { return(lhs.get_name() == rhs); }
 
+
 	template<typename T>
 	bool contains(const T &lhs, Date rhs) { return(lhs.get_date() == rhs); }
 
 	template<typename T>
 	bool is_between(const T &mid, Date lhs, Date rhs) { return((mid.get_date() >= lhs) && (mid.get_date() <= rhs)); }
-
-	template<typename T>
-	void FilterByLocation(vector<T> &vec) {
-		Address addr;
-		cout << "Address (street name/XXXX-XXX/region name or region)?\n";
-		cin >> addr;
-
-		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid address")); // TODO add exceptions for this
-
-		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&addr](T &elem) { return!(contains(elem, addr)); });
-		vec.erase(iter, vec.end());
-	}
 
 	template<typename T>
 	void FilterByName(vector<T> &vec) {
@@ -49,6 +37,64 @@ namespace flt
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&name](T &elem) { return!(contains(elem, name)); });
+		vec.erase(iter, vec.end());
+	}
+
+	/*inline void FilterEventByTime(vector<Event> &vec);
+	inline void FilterEventByTime(vector<Event> &vec, Time max_time) {
+		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&max_time](Event elem)
+					{ return!(elem.get_date() == Date() && elem.get_time() >= Time() && (max_time + Time())) <= elem.get_time()); });
+		vec.erase(iter, vec.end());
+	}*/
+
+	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
+		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&capacity_percentage_max](Event elem) { return!(elem.get_capacity_percentage() > capacity_percentage_max*100); });
+		vec.erase(iter, vec.end());
+	}
+
+	inline void FilterByCardName(vector<Card*> &vec) {
+		string name;
+		cout << "Name?\n";
+		getline(cin, name);
+
+		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&name](Card* &elem) { return!(elem->get_name() == name); });
+		vec.erase(iter, vec.end());
+	}
+
+	inline void FilterByValidity(vector<Card*> &vec) {
+		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[](Card* elem) { return!(elem->isvalid()); });
+		vec.erase(iter, vec.end());
+	}
+
+	template<typename T>
+	void FilterByEvent(vector<T> &vec) {
+		unsigned event_id;
+		cout << "Event id?\n";
+		cin >> event_id;
+
+		if(cin.fail())
+			throw(UserInputReadingFailure("Invalid id")); // TODO add exceptions for this
+
+		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&event_id](T &elem) { return!(elem.has_event(event_id)); });
+		vec.erase(iter, vec.end());
+	}
+
+	template<typename T>
+	void FilterByLocation(vector<T> &vec) {
+		Address addr;
+		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+		cin >> addr;
+
+		if(cin.fail())
+			throw(UserInputReadingFailure("Invalid address")); // TODO add exceptions for this
+
+		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&addr](T &elem) { return!(contains(elem, addr)); });
 		vec.erase(iter, vec.end());
 	}
 

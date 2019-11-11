@@ -85,7 +85,7 @@ private:
 public:
 	MenuSelelectFilter<Arg>() = default;
 	~MenuSelelectFilter<Arg>() = default;
-    MenuSelelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) : MenuFilter<Arg>(title){ this->func = fun; };
+    MenuSelelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) : MenuFilter<Arg>(title), func(fun) {};
 
     void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); return; };
 };
@@ -186,6 +186,7 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 		this->exit_func(arg);
 	}catch(const std::exception &err) {
 		std::cerr << err.what() << std::endl;
+		utl::pauseConsole();
 	}
 
     return;

@@ -16,7 +16,7 @@ void MenuOptions::show() {
     bool go_back = false;
 
     do{
-		//utl::clearConsole();
+		utl::clearConsole();
         int selection = utl::getInt(cin, 0, options.size(), this->getMessage() + "Insira um numero entre 0 e " + to_string(options.size()));
 
         if(selection == 0 || options.size() == 0)
