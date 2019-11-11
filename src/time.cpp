@@ -112,7 +112,7 @@ operator<<(ostream& outstream, const Time &t)
 ofstream&
 operator<<(std::ofstream& outstream, const Time &t)
 {
-	outstream << t.hour << ':' << t.min;
+	outstream << "" << t.hour << ':' << t.min;
 
 	return outstream;
 }
