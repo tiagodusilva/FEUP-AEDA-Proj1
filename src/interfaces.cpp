@@ -64,7 +64,17 @@ void MemberInterface::show() {
 
 
 	/* Renew Membership */
-	MenuSelelect renewCard ("Renew your membership", [this](){ member_card->renew(); });
+	MenuSelelect renewCard ("Renew your membership", [this](){
+				cout << "Renewing your membership has a cost of " << this->museum_network.getCost(this->member_card->get_type()) << endl;
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+				if(a=='y' || a=='Y') {
+					this->member_card->renew();
+					cout <<	"Membership renewed\n"; utl::pauseConsole();
+					}
+				else
+					cout << "Operation aborted" << endl;
+			member_card->renew(); });
 
 
 	/* Purchase Event */
