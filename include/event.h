@@ -1,3 +1,4 @@
+/** @file event.h */
 #ifndef EVENT_H
 #define EVENT_H
 
@@ -245,7 +246,7 @@ public:
 
 };
 
-/** @relates    Event
+/** @relatesalso	Event
  * @brief       Overloaded equality test operator
  *
  * @param ev    Reference to the Event object to be tested
@@ -256,7 +257,7 @@ public:
  */
 inline bool operator==(const Event& ev, const unsigned id) { return ev.get_id() == id; };
 
-/** @relates    Event
+/** @relatesalso    Event
  * @brief       Overloaded equality test operator
  *
  * @param id    Id to be teste
@@ -267,7 +268,7 @@ inline bool operator==(const Event& ev, const unsigned id) { return ev.get_id() 
  */
 inline bool operator==(const unsigned id, const Event& ev) { return operator==(ev, id); };
 
-/** @relates    Event
+/** @relatesalso    Event
  * @brief       Overloaded equality test operator
  *
  * @param ev    Reference to the Event object to be tested
@@ -278,7 +279,7 @@ inline bool operator==(const unsigned id, const Event& ev) { return operator==(e
  */
 inline bool operator!=(const Event& ev, const unsigned id) { return ev.get_id() != id; };
 
-/** @relates    Event
+/** @relatesalso    Event
  * @brief       Overloaded equality test operator
  *
  * @param id    Id to be teste

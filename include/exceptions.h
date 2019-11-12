@@ -1,9 +1,19 @@
+/** @file exceptions.h */
+
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
 #include <stdexcept>
 #include <string>
 
+/** @defgroup exc_grp Our Exceptions */
+
+/** @addtogroup	exc_grp
+  *
+  * @brief	Exception objects defined for use in out project workflow (runtime_error inheritance)
+  *
+  * @{
+  */
 
 class FileReadingFailed: public std::runtime_error {
 public:
@@ -149,5 +159,7 @@ public:
 	MultipleEventsSelected(const std::string &num_events) :
 		std::runtime_error(num_events + " events selected instead of 1") {};
 };
+
+/** @} */
 
 #endif  // EXCEPTION_H
