@@ -161,6 +161,16 @@ bool operator> (const Time& lhs, const Time& rhs);
 bool operator>=(const Time& lhs, const Time& rhs);
 
 /* NON MEMBER FUNCTION */
+/**
+ * @brief	Return differend (in minutes) between 2 points in time
+ *
+ * @param d_lhs	Reference to the Date object at left side of the interval
+ * @param t_lhs	Reference to the Time object at left side of the interval
+ * @param d_rhs	Reference to the Date object at right side of the interval
+ * @param t_rhs
+ *
+ * @return
+ */
 long timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Time &t_rhs);
 
 #endif  // TIME_H
