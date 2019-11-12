@@ -1,0 +1,33 @@
+4
+Rosetta
+0
+123
+Stoned
+Undefined Street :::::: 0000-000 :::::: Porto
+1573344000
+1573344000
+1604966400
+Fernando
+1
+134
+Namora
+Undefined Street :::::: 0000-000 :::::: Lisboa
+959385600
+1573344000
+1604966400
+Pimenta
+2
+234567
+Machado
+Undefined Street :::::: 0000-000 :::::: Evora
+1573344000
+1573344000
+1604966400
+Leonel
+2
+12345
+DAqules que e fixe
+Undefined Street :::::: 0000-000 :::::: Barcelos
+1448928000
+1573344000
+1604966400
