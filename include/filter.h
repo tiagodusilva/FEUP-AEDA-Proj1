@@ -40,28 +40,36 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 
+	/* For use with silver cards checker */
 	inline void FilterEventByTimeCin(vector<Event> &vec) {
 		Time time;
 		cin >> time;
 		if(cin.fail())
 			throw(UserInputReadingFailure("Invalid time"));
+		cout << "AHHHH";
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&time](Event elem) {
+				 cout << "TIMESPAN: " << timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) << endl;
 					return(timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) <= time.get_hour()*60+time.get_min()); });
 		vec.erase(iter, vec.end());
 
 	}
-	/* For use with silver cards checker */
-	inline void FilterEventByTime(vector<Event> &vec, Time max_time) {
+	inline void FilterEventByTimeFrame(vector<Event> &vec, unsigned delta_hour) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&max_time](Event elem) {
-					return(timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) <= 60*8); });
+				[&delta_hour](Event elem) {
+					Date d_now; Time t_now;
+					if(d_now <= elem.get_date())
+						return false;
+					else
+						return (timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= SECONDS_IN_DAY*delta_hour);
+				});
+
 		vec.erase(iter, vec.end());
 	}
 
 	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&capacity_percentage_max](Event elem) { return!(elem.get_capacity_percentage() > capacity_percentage_max*100); });
+				[&capacity_percentage_max](Event elem) { return!(elem.get_capacity_percentage() <= capacity_percentage_max*100); });
 		vec.erase(iter, vec.end());
 	}
 
@@ -96,7 +104,7 @@ namespace flt
 	}
 
 	template<typename T>
-	void FilterByLocation(vector<T> &vec) {
+	void FilterByLocationCin(vector<T> &vec) {
 		Address addr;
 		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
 		cin >> addr;
@@ -104,6 +112,13 @@ namespace flt
 		if(cin.fail())
 			throw(UserInputReadingFailure("Invalid address")); // TODO add exceptions for this
 
+		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&addr](T &elem) { return!(contains(elem, addr)); });
+		vec.erase(iter, vec.end());
+	}
+
+	template<typename T>
+	void FilterByLocation(vector<T> &vec, Address addr) {
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&addr](T &elem) { return!(contains(elem, addr)); });
 		vec.erase(iter, vec.end());

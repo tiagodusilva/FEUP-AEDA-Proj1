@@ -30,7 +30,7 @@ void MenuOptions::show() {
 			} catch(const MenuExitWithNoFunctionCall &err) {
 				// ignore if a menu exits without calling anything
 			} catch(const std::exception &err) {
-				cerr << err.what() << " on menu" << this->getTitle() << endl;
+				cerr << err.what() << endl;
 				utl::pauseConsole();
 			}
     } while (!go_back);

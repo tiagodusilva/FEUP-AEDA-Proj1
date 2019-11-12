@@ -41,3 +41,9 @@ TEST(cards, files) {
 		ASSERT_EQ(*(e.what()), *(InvalidTime().what()));
 	}
 }
+
+TEST(cards, time_bet) {
+	Time a(11, 00), b(15, 00);
+	Date now;
+	cout << timespan_size(now, a, now, b);
+}

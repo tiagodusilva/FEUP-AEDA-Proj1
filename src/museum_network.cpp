@@ -1,5 +1,7 @@
 #include "../include/museum_network.h"
 
+#include <iomanip>
+
 using namespace std;
 
 
@@ -152,6 +154,7 @@ void MuseumNetwork::listMuseums(const std::vector<Museum> &museums_to_be_listed,
 		cout << museums_to_be_listed.at(i);
 		cout << delim;
 	}
+    cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n" << endl;
 }
 
 void MuseumNetwork::listMuseums(const string &delim) const {
@@ -208,6 +211,20 @@ vector<Event> MuseumNetwork::getEvents() const {
 		}
 
 	return events;
+}
+
+void MuseumNetwork::addEvent(const Enterprise &enterprise, Event &event) {
+	/*vector<Enterprise>::iterator iter=find(enterprises.begin(), enterprises.end(),
+			[&event](const Enterprise &enter){ return(enter.has_event(event.get_id())); });*/
+
+	for(int i=0; i<enterprises.size(); i++) {
+		if(enterprises.at(i).has_event(event.get_id())) { // Verify if the event is already in the network
+			throw(EventInvalid(event.get_id()));
+		}
+	}
+
+	vector<Enterprise>::iterator iter = find(enterprises.begin(), enterprises.end(), enterprise);
+	(*iter).add_event(event);
 }
 
 void MuseumNetwork::purchaseEvent(const unsigned cc, Event event) {
@@ -309,8 +326,8 @@ void MuseumNetwork::exportEnterprises(std::string enterprises_file_name) const {
 }
 
 
-void MuseumNetwork::exportFiles(std::string cards_file_name, std::string museum_file_name,
-		std::string enterprise_file_name, std::string config_file_name) const {
+void MuseumNetwork::exportFiles(std::string config_file_name, std::string cards_file_name, std::string museum_file_name,
+		std::string enterprise_file_name) const {
 
 	ofstream output_stream(config_file_name);
 	output_stream << "cards_file_name: " << cards_file_name << endl;
