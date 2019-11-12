@@ -113,6 +113,13 @@ public:
      */
     float get_capacity_percentage() const;
 
+    /**
+     * @brief    Completely destructive method\n
+     *           When called sets an Event's id to 0, aka an absolutely invalid Event\n
+     *           WARNING: Once this method is called, there is no going back
+     */
+    void set_invalid_id();
+
 
     /**
      * @brief    Handles the purchase of this Event by an user
@@ -226,6 +233,15 @@ public:
      * @return    Reference to the ifstream object, 'instream', passed in the parameters
      */
     friend std::ifstream &operator>>(std::ifstream &infstream, Event &ev);
+
+    /**
+     * @brief       Read an Event from cin, outputting any user prompts to cout
+     *
+     * @param ev    Event to read from cin\n
+     *              The Event will only have a valid id if the read operation was successful (cin's fail flag set to true)\n
+     *              Otherwise, the Event's id is 0
+     */
+    static void cin_read_event(Event &ev);
 
 };
 

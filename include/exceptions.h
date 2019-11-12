@@ -59,10 +59,11 @@ public:
         std::runtime_error( "Event " + std::to_string(event_id) + " has already been bought by user with cc " + std::to_string(cc)) {};
 };
 
+// If this bad boy is thrown, something really fck up is going on
 class EventAlreadyExists: public std::runtime_error {
 public:
     EventAlreadyExists(unsigned event_id):
-        std::runtime_error( "Event " + std::to_string(event_id) + " already exists inside the network") {};
+            std::runtime_error( "Event " + std::to_string(event_id) + " already exists ") {};
 };
 
 class FileDoesntExist : public std::runtime_error {

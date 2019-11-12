@@ -9,8 +9,8 @@
 /** @brief	the number of seconds in a day (60 secs * 60 mins * 24 hours) */
 #define SECONDS_IN_DAY 86400
 
-/** @brief	the number of minutes in a day (60 mins * 24 hours) */
-#define MINS_IN_DAY 1440
+/** @brief	the number of seconds in a min (60 seconds) */
+#define SECS_IN_MIN 60
 
 /**
  * @brief	Class that saves and handles date information in our project

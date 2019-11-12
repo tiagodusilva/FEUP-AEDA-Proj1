@@ -66,23 +66,21 @@ operator!=(const Time& lhs, const Time& rhs)
 bool
 operator< (const Time& lhs, const Time& rhs)
 {
+    if (lhs.get_hour() > rhs.get_hour())
+        return false;
 	if (lhs.get_hour() < rhs.get_hour())
 		return true;
-	else if (lhs.get_min() < rhs.get_min())
-		return true;
-
-	return false;
+    return lhs.get_min() < rhs.get_min();
 }
 
 bool
 operator<=(const Time& lhs, const Time& rhs)
 {
-	if (lhs.get_hour() < rhs.get_hour())
-		return true;
-	else if (lhs.get_min() < rhs.get_min())
-		return true;
-
-	return (lhs == rhs);
+    if (lhs.get_hour() > rhs.get_hour())
+        return false;
+    if (lhs.get_hour() < rhs.get_hour())
+        return true;
+    return lhs.get_min() <= rhs.get_min();
 }
 
 bool
@@ -172,21 +170,41 @@ operator>>(std::ifstream &instream, Time &t)
 
 
 long
-timespan_size(const Date &d_lhs,const Time &t_lhs,const Date &d_rhs,const Time &t_rhs)
+timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Time &t_rhs)
 {
 	/* get time struct at the end of the interval */
 	time_t start_raw = d_lhs.get_raw();
-	tm *end_tm = gmtime(&start_raw);
-	end_tm->tm_sec = 0;
-	end_tm->tm_min = t_rhs.get_min();
-	end_tm->tm_hour = t_rhs.get_hour();
+	tm start_tm = *(gmtime(&start_raw));
+	start_tm.tm_sec  = 0;
+	start_tm.tm_min  = t_lhs.get_min();
+	start_tm.tm_hour = t_lhs.get_hour();
+
 
 	/* get time struct at the beggining of the interval */
 	time_t end_raw = d_rhs.get_raw();
-	tm *start_tm = gmtime(&end_raw);
-	end_tm->tm_sec = 0;
-	end_tm->tm_min = t_rhs.get_min();
-	end_tm->tm_hour = t_rhs.get_hour();
+	tm end_tm = *(gmtime(&end_raw));
+	end_tm.tm_sec = 0;
+	end_tm.tm_min = t_rhs.get_min();
+	end_tm.tm_hour = t_rhs.get_hour();
 
-	return (mktime(end_tm) - mktime(start_tm)) / MINS_IN_DAY;
+	//cout << "Start:\n"
+		//<< start_tm.tm_year << endl
+		//<< start_tm.tm_mon << endl
+		//<< start_tm.tm_mday << endl
+		//<< start_tm.tm_hour << endl
+		//<< start_tm.tm_min << endl
+		//<< start_tm.tm_sec << endl
+		//<< mktime(&start_tm) << endl;
+	//cout << "End:\n"
+		//<< end_tm.tm_year << endl
+		//<< end_tm.tm_mon << endl
+		//<< end_tm.tm_mday << endl
+		//<< end_tm.tm_hour << endl
+		//<< end_tm.tm_min << endl
+		//<< end_tm.tm_sec << endl
+		//<< mktime(&end_tm) << endl;
+
+	//cout << "diff: " << mktime(&end_tm) - mktime(&start_tm) << endl;
+
+	return (mktime(&end_tm) - mktime(&start_tm)) / SECS_IN_MIN;
 }

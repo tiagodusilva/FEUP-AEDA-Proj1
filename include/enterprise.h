@@ -72,6 +72,20 @@ public:
      */
     const Event& get_event(unsigned id) const;
 
+
+    /**
+     * @brief          Adds an Event to the Enterprise\n
+     *                 If successful, the destructor of ev will be called
+     *
+     * @throws   EventAlreadyExists Thrown if the Event already exists in the Enterprise\n
+     *                              That said, if it does get thrown, something really odd is going on
+     *
+     * @param ev        Event to add to the Enterprise\n
+     *                  If the Event is added successfully, the Event's id will permanently be set to 0, to guarantee the uniqueness of every Event
+     *
+     */
+    void add_event(Event &ev);
+
     /**
      * @brief     Checks for the existence of a specific Event
      *
@@ -133,6 +147,7 @@ public:
      * @return             Reference to the ostream object, 'outstream', passed in the parameters
      */
     friend std::ostream& operator<<(std::ostream &outstream, const Enterprise &ent);
+
     /**
      * @brief               Overloaded ofstream insertion operator
      *
@@ -155,6 +170,13 @@ public:
      * @return             Reference to the ifstream object, 'infstream', passed in the parameters
      */
     friend std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent);
+
+    /**
+     * @brief       Read an Enterprise from cin, outputting any user prompts to cout
+     *
+     * @param ev    Enterprise to read from cin\n
+     */
+    static void cin_read_enterprise(Enterprise &ent);
 
 };
 

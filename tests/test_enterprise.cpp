@@ -33,3 +33,17 @@ TEST(enterprise, files) {
     ASSERT_EQ(ent1.get_events().begin()->get_id() + 1, ent2.get_events().begin()->get_id());
     ASSERT_EQ(ent1.get_address(), ent2.get_address());
 }
+
+TEST(enterprise, add_event) {
+    Enterprise ent("enterprise", "@email", Address("Rua", "1234-567", "Porto"));
+    Event ev("eventus", 12.75, 20, Address("Gaia"), Time(12, 40), Date(2019, 11, 16));
+
+    unsigned temp_id = ev.get_id();
+    ent.add_event(ev);
+
+    ASSERT_EQ(ev.get_id(), 0);
+    ASSERT_EQ(ent.get_name(), "enterprise");
+    ASSERT_EQ(ent.get_contact(), "@email");
+    ASSERT_EQ(ent.get_events().begin()->get_id(), temp_id);
+    ASSERT_EQ(ent.get_address(), Address("Rua", "1234-567", "Porto"));
+}

@@ -38,6 +38,21 @@ const Event &Enterprise::get_event(unsigned id) const {
     throw EventNotFound(id);
 }
 
+void Enterprise::add_event(Event &ev) {
+    // Redundant checks, better safe than sorry
+    if (ev.get_id() == 0)
+        throw EventInvalid(ev.get_id());
+
+    if (this->has_event(ev.get_id()))
+        // If this is thrown, some really fck up shit happened
+        throw EventAlreadyExists(ev.get_id());
+
+    this->events.insert(ev);
+
+    ev.set_invalid_id();
+
+}
+
 bool Enterprise::has_event(unsigned id) const {
     for (const auto &ev: this->events) {
         if (ev == id)
@@ -111,4 +126,36 @@ std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent) {
     }
 
     return infstream;
+}
+
+void Enterprise::cin_read_enterprise(Enterprise &ent) {
+    try {
+
+        /* name */
+        std::cout << "Name? ";
+        getline(std::cin, ent.name);
+        if (utl::isStrEmpty(ent.name))
+            throw UserInputReadingFailure("given name is empty");
+
+        /* contact */
+        std::cout << "Contact (email or phone number prefered)? ";
+        getline(std::cin, ent.contact);
+        if (utl::isStrEmpty(ent.contact))
+            throw UserInputReadingFailure("given contact is empty");
+
+        /* address */
+        cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+        std::cin >> ent.address;
+        if (cin.fail())
+            throw "Address reading failed";
+
+        ent.events = set<Event>();
+
+    }catch(const char* e) {
+        // In this case, the exception would have already been handled
+        std::cin.setstate(std::ios::failbit);
+    }catch(const std::exception& e) {
+        std::cin.setstate(std::ios::failbit);
+        std::cerr << e.what() << endl;
+    }
 }
