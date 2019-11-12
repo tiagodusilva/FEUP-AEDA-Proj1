@@ -66,9 +66,12 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">SilverCard Class Reference</div>  </div>
+<div class="title">SilverCard Class Reference<div class="ingroups"><a class="el" href="group__museum__grp.html">Museum module</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Saves and handles a senior user's card and information.  
+ <a href="classSilverCard.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cards_8h_source.html">cards.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -85,8 +88,10 @@ Collaboration diagram for SilverCard:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1bd5278c13b4f4531006f42a2d1f4b38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSilverCard.html#a1bd5278c13b4f4531006f42a2d1f4b38">SilverCard</a> ()=default</td></tr>
+<tr class="memdesc:a1bd5278c13b4f4531006f42a2d1f4b38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor of the class <a class="el" href="classSilverCard.html" title="Saves and handles a senior user&#39;s card and information.">SilverCard</a> class.  <a href="classSilverCard.html#a1bd5278c13b4f4531006f42a2d1f4b38">More...</a><br /></td></tr>
 <tr class="separator:a1bd5278c13b4f4531006f42a2d1f4b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5da9baf71412a49e1c329acc474c9642"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSilverCard.html#a5da9baf71412a49e1c329acc474c9642">SilverCard</a> (const std::string &amp;<a class="el" href="classCard.html#a1f5013054990456125c82d805744062f">name</a>, const std::string &amp;<a class="el" href="classCard.html#a3598ea8382a774705448247c3e19d8ad">contact</a>, unsigned int <a class="el" href="classCard.html#a5b14e78436f7dbea5d86273a93414d62">cc</a>, const <a class="el" href="classDate.html">Date</a> &amp;<a class="el" href="classCard.html#a19b24422384083b74a902879e4c5da3a">birth_date</a>, const <a class="el" href="classAddress.html">Address</a> &amp;<a class="el" href="classCard.html#a93b2605af6a4cc97abacc2b2dfb0b184">address</a>)</td></tr>
+<tr class="memdesc:a5da9baf71412a49e1c329acc474c9642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an <a class="el" href="classSilverCard.html" title="Saves and handles a senior user&#39;s card and information.">SilverCard</a> object with the given information.  <a href="classSilverCard.html#a5da9baf71412a49e1c329acc474c9642">More...</a><br /></td></tr>
 <tr class="separator:a5da9baf71412a49e1c329acc474c9642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5d87545f05007edb0a2a0c63b84ed0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSilverCard.html#ab5d87545f05007edb0a2a0c63b84ed0d">get_type</a> () const</td></tr>
 <tr class="memdesc:ab5d87545f05007edb0a2a0c63b84ed0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get user's card type  <a href="classSilverCard.html#ab5d87545f05007edb0a2a0c63b84ed0d">More...</a><br /></td></tr>
@@ -147,8 +152,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:afbe3b43011d1754363fe8e0ae3ab79ee inherit pub_static_methods_classCard"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCard.html#afbe3b43011d1754363fe8e0ae3ab79ee">cin_read_card</a> (<a class="el" href="classCard.html">Card</a> *&amp;c)</td></tr>
 <tr class="memdesc:afbe3b43011d1754363fe8e0ae3ab79ee inherit pub_static_methods_classCard"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a card information from std::cin with prompts (given through the std::cout)  <a href="classCard.html#afbe3b43011d1754363fe8e0ae3ab79ee">More...</a><br /></td></tr>
 <tr class="separator:afbe3b43011d1754363fe8e0ae3ab79ee inherit pub_static_methods_classCard"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header related_classCard"><td colspan="2" onclick="javascript:toggleInherit('related_classCard')"><img src="closed.png" alt="-"/>&#160;Related Functions inherited from <a class="el" href="classCard.html">Card</a></td></tr>
+<tr class="memitem:gaf1272bb300d49ce0b9feec20b7fa7eff inherit related_classCard"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__museum__grp.html#gaf1272bb300d49ce0b9feec20b7fa7eff">operator==</a> (const <a class="el" href="classCard.html">Card</a> &amp;lhs, const <a class="el" href="classCard.html">Card</a> &amp;rhs)</td></tr>
+<tr class="memdesc:gaf1272bb300d49ce0b9feec20b7fa7eff inherit related_classCard"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded equality test operator.  <a href="group__museum__grp.html#gaf1272bb300d49ce0b9feec20b7fa7eff">More...</a><br /></td></tr>
+<tr class="separator:gaf1272bb300d49ce0b9feec20b7fa7eff inherit related_classCard"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga450cf1d610b10ac3ac50eb0a753792f7 inherit related_classCard"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__museum__grp.html#ga450cf1d610b10ac3ac50eb0a753792f7">operator!=</a> (const <a class="el" href="classCard.html">Card</a> &amp;lhs, const <a class="el" href="classCard.html">Card</a> &amp;rhs)</td></tr>
+<tr class="memdesc:ga450cf1d610b10ac3ac50eb0a753792f7 inherit related_classCard"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded inequality test operator.  <a href="group__museum__grp.html#ga450cf1d610b10ac3ac50eb0a753792f7">More...</a><br /></td></tr>
+<tr class="separator:ga450cf1d610b10ac3ac50eb0a753792f7 inherit related_classCard"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Saves and handles a senior user's card and information. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1bd5278c13b4f4531006f42a2d1f4b38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bd5278c13b4f4531006f42a2d1f4b38">&#9670;&nbsp;</a></span>SilverCard() <span class="overload">[1/2]</span></h2>
 
@@ -171,6 +185,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor of the class <a class="el" href="classSilverCard.html" title="Saves and handles a senior user&#39;s card and information.">SilverCard</a> class. </p>
 
 </div>
 </div>
@@ -225,6 +241,18 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Create an <a class="el" href="classSilverCard.html" title="Saves and handles a senior user&#39;s card and information.">SilverCard</a> object with the given information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>user's name </td></tr>
+    <tr><td class="paramname">contact</td><td>user's contact (can be email, phone number, etc.) </td></tr>
+    <tr><td class="paramname">cc</td><td>user's CC number </td></tr>
+    <tr><td class="paramname">birth_date</td><td>user's birth date </td></tr>
+    <tr><td class="paramname">address</td><td>user's address </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

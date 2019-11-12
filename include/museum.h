@@ -1,3 +1,4 @@
+/** @file museum.h */
 #ifndef MUSEUM_H
 #define MUSEUM_H
 
@@ -6,7 +7,7 @@
 
 /** @defgroup museum_grp Museum module */
 
-/** @addtogroup	event_grp
+/** @addtogroup	museum_grp
   *
   * @brief	Code related to the handling of a museum
   *

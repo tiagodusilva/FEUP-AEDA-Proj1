@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Saves and handles a senior user&#39;s card and information.">
 <polygon fill="#bfbfbf" stroke="black" points="74.5,-0.5 74.5,-79.5 160.5,-79.5 160.5,-0.5 74.5,-0.5"/>
 <text text-anchor="middle" x="117.5" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">SilverCard</text>
 <polyline fill="none" stroke="black" points="74.5,-60.5 160.5,-60.5 "/>

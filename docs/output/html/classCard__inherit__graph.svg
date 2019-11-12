@@ -47,7 +47,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classIndividualCard.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classIndividualCard.html" target="_top" xlink:title="Saves and handles a normal user&#39;s card and information.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-79.5 106,-79.5 106,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="53" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">IndividualCard</text>
 <polyline fill="none" stroke="black" points="0,-60.5 106,-60.5 "/>
@@ -68,7 +68,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classSilverCard.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classSilverCard.html" target="_top" xlink:title="Saves and handles a senior user&#39;s card and information.">
 <polygon fill="none" stroke="black" points="124,-0.5 124,-79.5 210,-79.5 210,-0.5 124,-0.5"/>
 <text text-anchor="middle" x="167" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">SilverCard</text>
 <polyline fill="none" stroke="black" points="124,-60.5 210,-60.5 "/>
@@ -89,7 +89,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classUniCard.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="classUniCard.html" target="_top" xlink:title="Saves and handles a university student&#39;s card and information.">
 <polygon fill="none" stroke="black" points="228,-0.5 228,-79.5 306,-79.5 306,-0.5 228,-0.5"/>
 <text text-anchor="middle" x="267" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">UniCard</text>
 <polyline fill="none" stroke="black" points="228,-60.5 306,-60.5 "/>

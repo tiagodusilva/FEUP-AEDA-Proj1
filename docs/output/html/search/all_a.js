@@ -1,7 +1,7 @@
 var searchData=
 [
   ['max_5fcapacity_154',['max_capacity',['../classEvent.html#a2a08b6fa5be6ec6fe4f0df7b3300b311',1,'Event']]],
-  ['max_5fdays_5fbefore_5frenew_155',['MAX_DAYS_BEFORE_RENEW',['../cards_8h.html#a732d3be02f021f1ff687723c94c94560',1,'cards.h']]],
+  ['max_5fdays_5fbefore_5frenew_155',['MAX_DAYS_BEFORE_RENEW',['../group__museum__grp.html#ga732d3be02f021f1ff687723c94c94560',1,'cards.h']]],
   ['member_5fcard_156',['member_card',['../classMemberInterface.html#a308a9e4ed6b2ebd9e57dccd86bbfe515',1,'MemberInterface']]],
   ['memberinterface_157',['MemberInterface',['../classMemberInterface.html',1,'MemberInterface'],['../classMemberInterface.html#af43b8aa401682eb37062f200d6144af3',1,'MemberInterface::MemberInterface()']]],
   ['menu_158',['Menu',['../classMenu.html',1,'Menu'],['../classMenu.html#af54c660c10cdd3a620f5d9a89b4347e4',1,'Menu::Menu()=default'],['../classMenu.html#ad8e255f11f8b9db46702df6b1cf71605',1,'Menu::Menu(std::string t)']]],
@@ -23,7 +23,7 @@ var searchData=
   ['museum_20module_174',['Museum module',['../group__museum__grp.html',1,'']]],
   ['museum_5fnetwork_175',['museum_network',['../classGUI.html#a0da6120c9463a0ded1e215f2593a6abb',1,'GUI::museum_network()'],['../classAdminInterface.html#ab2bb762c510e44dd6654c6d6cae0d44d',1,'AdminInterface::museum_network()'],['../classUserInterface.html#af8a82af12ceb892f38ccd9e9030b2d02',1,'UserInterface::museum_network()'],['../classMemberInterface.html#ab8d0e04ad05520bb863211a02b99d788',1,'MemberInterface::museum_network()']]],
   ['museum_5fnetwork_2eh_176',['museum_network.h',['../museum__network_8h.html',1,'']]],
-  ['museum_5fouput_5fdelim_177',['MUSEUM_OUPUT_DELIM',['../group__event__grp.html#gabd30108579a326abf1f8710995e8d637',1,'museum.h']]],
+  ['museum_5fouput_5fdelim_177',['MUSEUM_OUPUT_DELIM',['../group__museum__grp.html#gabd30108579a326abf1f8710995e8d637',1,'museum.h']]],
   ['museumalreadyexists_178',['MuseumAlreadyExists',['../classMuseumAlreadyExists.html',1,'MuseumAlreadyExists'],['../classMuseumAlreadyExists.html#a6dfad96607943be96737354cd608e4e7',1,'MuseumAlreadyExists::MuseumAlreadyExists()']]],
   ['museumnetwork_179',['MuseumNetwork',['../classMuseumNetwork.html',1,'MuseumNetwork'],['../classMuseumNetwork.html#ac4557c93ad5ffde7ed0436a9591293d0',1,'MuseumNetwork::MuseumNetwork()=default'],['../classMuseumNetwork.html#a43d45d9fa6595cbbd3b31502b2215df7',1,'MuseumNetwork::MuseumNetwork(std::vector&lt; Card * &gt; card_vector, std::vector&lt; Enterprise &gt; enterprise_vector, std::vector&lt; Museum &gt; museum_vector)'],['../classMuseumNetwork.html#a2e98693125a6e03ab83de22aa4245dd9',1,'MuseumNetwork::MuseumNetwork(std::string config_file_name)']]],
   ['museums_180',['museums',['../classMuseumNetwork.html#a8626a5bde573d2c87f4247a317f0d8b9',1,'MuseumNetwork']]]
