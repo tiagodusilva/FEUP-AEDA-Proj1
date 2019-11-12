@@ -1,12 +1,12 @@
 #ifndef MUSEUM_NETWORK_H
 #define MUSEUM_NETWORK_H
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 
-#include "algorithm"
 #include "cards.h"
 #include "enterprise.h"
 #include "exceptions.h"
@@ -93,11 +93,12 @@ public:
 	void listEvents(const std::vector<Event> &events_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
+	void addEvent(const Enterprise &enterprise, Event &event);
 	void purchaseEvent(const unsigned cc, Event event);
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
 
 
-	/* Getters for Menus */
+	/* Getters for use with Menus */
 	std::vector<Card*> getCards() const { return this->cards; };
 	std::vector<Enterprise> getEnterprises() const { return this->enterprises; };
 	std::vector<Museum> getMuseums() const { return this->museums; };

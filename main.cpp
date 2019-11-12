@@ -4,13 +4,13 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	//GUI gui;
-	//gui.show();
-	//return 0;
+	GUI gui;
+	gui.show();
+	return 0;
 
-	testing::InitGoogleTest(&argc, argv);
-	//Specify test name by setting filter to TESTNAME*/
+	/*testing::InitGoogleTest(&argc, argv);
+	//Specify test name by setting filter to TESTNAME
 	//testing::GTEST_FLAG(filter) = "menu*";
 	//testing::GTEST_FLAG(filter) = "card*";
-	return RUN_ALL_TESTS();
+	return RUN_ALL_TESTS();*/
 }
