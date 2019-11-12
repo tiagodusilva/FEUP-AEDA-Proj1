@@ -122,6 +122,13 @@ public:
      */
     friend std::ifstream &operator>>(std::ifstream &infstream, Museum &ent);
 
+    /**
+     * @brief       Read a Museum from cin, outputting any user prompts to cout
+     *
+     * @param ev    Museum to read from cin\n
+     */
+    static void cin_read_museum(Museum & museum);
+
 };
 
 #endif // MUSEUM_H

@@ -66,23 +66,21 @@ operator!=(const Time& lhs, const Time& rhs)
 bool
 operator< (const Time& lhs, const Time& rhs)
 {
+    if (lhs.get_hour() > rhs.get_hour())
+        return false;
 	if (lhs.get_hour() < rhs.get_hour())
 		return true;
-	else if (lhs.get_min() < rhs.get_min())
-		return true;
-
-	return false;
+    return lhs.get_min() < rhs.get_min();
 }
 
 bool
 operator<=(const Time& lhs, const Time& rhs)
 {
-	if (lhs.get_hour() < rhs.get_hour())
-		return true;
-	else if (lhs.get_min() < rhs.get_min())
-		return true;
-
-	return (lhs == rhs);
+    if (lhs.get_hour() > rhs.get_hour())
+        return false;
+    if (lhs.get_hour() < rhs.get_hour())
+        return true;
+    return lhs.get_min() <= rhs.get_min();
 }
 
 bool

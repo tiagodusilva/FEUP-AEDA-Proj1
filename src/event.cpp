@@ -57,6 +57,11 @@ bool Event::get_validity() const {
     return this->is_valid;
 }
 
+
+void Event::set_invalid_id() {
+    this->id = 0;
+}
+
 void Event::purchase(unsigned cc) {
     if (this->is_full())
         throw EventFull(this->id);
@@ -94,7 +99,7 @@ void Event::print_with_discount(std::ostream &outstream, float discount) const {
     outstream <<
               left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << this->name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << this->id << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << this->ticket_fee << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << this->ticket_fee << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << this->ticket_fee * (1-discount) << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << this->get_capacity_percentage() * 100 << "% de "  << this->max_capacity << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << this->address << endl <<
@@ -108,7 +113,7 @@ operator<<(std::ostream &outstream, const Event &ev)
 	outstream <<
 		left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << ev.name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << ev.id << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Entry Fee"	     << " : " << right << ev.ticket_fee << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << ev.ticket_fee << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << ev.get_capacity_percentage() * 100 << "% de "  << ev.max_capacity << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
@@ -190,3 +195,65 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
 
     return infstream;
 }
+
+
+void Event::cin_read_event(Event &ev) {
+    try {
+
+        // Attribute it an invalid id
+        ev.id = 0;
+
+        /* name */
+        std::cout << "Name? ";
+        getline(std::cin, ev.name);
+        if (utl::isStrEmpty(ev.name))
+            throw UserInputReadingFailure("given name is empty");
+
+        /* entry fee */
+        std::cout << "Event's ticket fee? ";
+        std::cin >> ev.ticket_fee; utl::ignore(cin);
+        if (cin.fail())
+            throw UserInputReadingFailure("given name is empty");
+
+        /* max capacity */
+        std::cout << "Event's max capacity? ";
+        std::string temp_str;
+        getline(std::cin, temp_str);
+        if (utl::isNum(temp_str))
+            ev.max_capacity = stoi(temp_str);
+        else
+            throw UserInputReadingFailure("given capacity is not a number: " + temp_str);
+
+        /* address */
+        cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+        std::cin >> ev.address;
+        if (cin.fail())
+            throw "Address reading failed";
+
+        /* get date */
+        cout << "Date of the Event (year/month/day)? ";
+        Date temp_date;
+        std::cin >> ev.date;
+        if (cin.fail())
+            throw "Event date reading failed";
+
+        /* time */
+        cout << "Time of the start of the Event (h:m)? ";
+        std::cin >> ev.time;
+        if (cin.fail())
+            throw "Event time reading failed";
+
+        ev.reservations = set<unsigned>();
+        ev.is_valid = true;
+        // Everythin went all fine and dandy so far, time so set it's id to a valid state
+        ev.id = Event::id_tracker++;
+
+    }catch(const char* e) {
+        // In this case, the exception would have already been handled
+        std::cin.setstate(std::ios::failbit);
+    }catch(const std::exception& e) {
+        std::cin.setstate(std::ios::failbit);
+        std::cerr << e.what() << endl;
+    }
+}
+

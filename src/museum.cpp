@@ -1,5 +1,6 @@
 #include "../include/museum.h"
 #include "../include/utilities.h"
+#include "../include/exceptions.h"
 
 #include <iomanip>
 
@@ -53,23 +54,28 @@ std::ofstream &operator<<(std::ofstream &outfstream, const Museum &museum) {
     return outfstream;
 }
 
-std::ifstream &operator>>(std::ifstream &infstream, Museum &ent) {
+std::ifstream &operator>>(std::ifstream &infstream, Museum &museum) {
 
     try {
         // NAME
-        getline(infstream, ent.name);
+        getline(infstream, museum.name);
 
         // OPEN
-        infstream >> ent.open;
+        infstream >> museum.open;
 
         // CLOSE
-        infstream >> ent.close;
+        infstream >> museum.close;
+
+        if (museum.close < museum.open) {
+            cout << museum.open << endl << museum.close << endl;
+            throw FileReadingFailed("Museum must not open after closing");
+        }
 
         // ENTRY FEE
-        infstream >> ent.entry_fee; utl::ignore(infstream);
+        infstream >> museum.entry_fee; utl::ignore(infstream);
 
         // ADDRESS
-        infstream >> ent.address;
+        infstream >> museum.address;
     }
     catch (std::exception &e) {
         infstream.setstate(ios::failbit);
@@ -78,3 +84,49 @@ std::ifstream &operator>>(std::ifstream &infstream, Museum &ent) {
 
     return infstream;
 }
+
+void Museum::cin_read_museum(Museum &museum) {
+    try {
+
+        /* name */
+        std::cout << "Name? ";
+        getline(std::cin, museum.name);
+        if (utl::isStrEmpty(museum.name))
+            throw UserInputReadingFailure("given name is empty");
+
+        /* address */
+        cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+        std::cin >> museum.address;
+        if (cin.fail())
+            throw "Address reading failed";
+
+        /* entry fee */
+        std::cout << "Event's entry fee? ";
+        std::cin >> museum.entry_fee; utl::ignore(cin);
+        if (cin.fail())
+            throw UserInputReadingFailure("given name is empty");
+
+        /* opening time */
+        cout << "Opening time of the Museum (h:m)? ";
+        std::cin >> museum.open;
+        if (cin.fail())
+            throw "Event time reading failed";
+
+        /* closing time */
+        cout << "Closing time of the Museum (h:m)? ";
+        std::cin >> museum.close;
+        if (cin.fail())
+            throw "Event time reading failed";
+
+        if (museum.close < museum.open)
+            throw UserInputReadingFailure("Museum must not open after closing");
+
+    }catch(const char* e) {
+        // In this case, the exception would have already been handled
+        std::cin.setstate(std::ios::failbit);
+    }catch(const std::exception& e) {
+        std::cin.setstate(std::ios::failbit);
+        std::cerr << e.what() << endl;
+    }
+}
+
