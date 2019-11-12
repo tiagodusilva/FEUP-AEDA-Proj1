@@ -416,7 +416,7 @@ UserInterface::UserInterface(MuseumNetwork &rnm) : museum_network(rnm) {
 }
 
 void UserInterface::show(){
-	/* Filter Events between Dates*/
+	/* Filter Events between Dates */
 	MenuSelelectFilter<vector<Event>> EventsBetweenDates("Between dates", flt::FilterBetweenDates<Event>);
 	MenuSelelectFilter<vector<Event>> EventsInADate("In a date", flt::FilterInDate<Event>);
 	vector<MenuFilter<vector<Event>>*> dateOpt = {&EventsBetweenDates, &EventsInADate};
