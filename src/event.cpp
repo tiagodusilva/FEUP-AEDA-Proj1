@@ -99,9 +99,9 @@ void Event::print_with_discount(std::ostream &outstream, float discount) const {
     outstream <<
               left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << this->name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << this->id << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << this->ticket_fee << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << this->ticket_fee * (1-discount) << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << this->get_capacity_percentage() * 100 << "% de "  << this->max_capacity << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << fixed << setprecision(2) << this->ticket_fee << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << fixed << setprecision(2) << this->ticket_fee * (1-discount) << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(0) << this->get_capacity_percentage() * 100 << "% de "  << this->max_capacity << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << this->address << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << this->date << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << this->time;
@@ -113,8 +113,8 @@ operator<<(std::ostream &outstream, const Event &ev)
 	outstream <<
 		left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << ev.name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << ev.id << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << ev.ticket_fee << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(2) << ev.get_capacity_percentage() * 100 << "% de "  << ev.max_capacity << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << fixed << setprecision(2) << ev.ticket_fee << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right  << setprecision(0) << ev.get_capacity_percentage() * 100 << "% de "  << ev.max_capacity << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time;

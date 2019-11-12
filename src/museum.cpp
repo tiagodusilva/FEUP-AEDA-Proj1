@@ -48,7 +48,7 @@ std::ofstream &operator<<(std::ofstream &outfstream, const Museum &museum) {
     outfstream << museum.name << endl;
     outfstream << museum.open << endl;
     outfstream << museum.close << endl;
-    outfstream << to_string(museum.entry_fee) << endl;
+    outfstream << fixed << setprecision(2) << museum.entry_fee << endl;
     outfstream << museum.address;
 
     return outfstream;
