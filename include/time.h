@@ -7,6 +7,15 @@
 
 #include "date.h"
 
+/** @defgroup time_grp Time related functions (different from date) */
+
+/** @addtogroup	time_grp
+  *
+  * @brief	Code related to the handling and saving of time points (generally hours and minutes)
+  *
+  * @{
+  */
+
 /**
  * @brief	Class that saves and handles time information in our project
  */
@@ -162,15 +171,19 @@ bool operator>=(const Time& lhs, const Time& rhs);
 
 /* NON MEMBER FUNCTION */
 /**
- * @brief	Return differend (in minutes) between 2 points in time
+ * @brief	Calculate (and return) the difference (in minutes) between 2 points in time
  *
  * @param d_lhs	Reference to the Date object at left side of the interval
  * @param t_lhs	Reference to the Time object at left side of the interval
  * @param d_rhs	Reference to the Date object at right side of the interval
- * @param t_rhs
+ * @param t_rhs	Reference to the Time object at right side of the interval
  *
- * @return
+ * @return	positive, if the second point in time given comes chronologically after the first one\n
+		0, if the 2 points in time given are chronologically the same
+		negative, if the first point in time given comes chronologically after the seconds one\n
  */
 long timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Time &t_rhs);
+
+/** @} */
 
 #endif  // TIME_H
