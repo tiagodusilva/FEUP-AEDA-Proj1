@@ -1,0 +1,121 @@
+\hypertarget{namespaceutl}{}\doxysection{utl Namespace Reference}
+\label{namespaceutl}\index{utl@{utl}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespaceutl_a63d40b7396bac30000e07f4e06602658}{is\+Num}} (const std\+::string \&s)
+\item 
+std\+::string \& \mbox{\hyperlink{namespaceutl_a1daa2fb6200d27edb39ab86d8e0bf413}{ltrim}} (std\+::string \&str, const std\+::string \&chars=\char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r \char`\"{})
+\item 
+std\+::string \& \mbox{\hyperlink{namespaceutl_a939204833969e7feb5c4b737fd48e9ab}{rtrim}} (std\+::string \&str, const std\+::string \&chars=\char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r \char`\"{})
+\item 
+std\+::string \& \mbox{\hyperlink{namespaceutl_a894f419df62212c38d4a0706407373ee}{trim}} (std\+::string \&str, const std\+::string \&chars=\char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r \char`\"{})
+\item 
+bool \mbox{\hyperlink{namespaceutl_a9ff73d60273043552773b5f9c72e85d5}{is\+Str\+Empty}} (std\+::string str)
+\item 
+bool \mbox{\hyperlink{namespaceutl_ae6db7bc35d75e0481365efafa8c1e4a1}{is\+File\+Empty}} (std\+::ifstream \&fin)
+\item 
+bool \mbox{\hyperlink{namespaceutl_a1be592eff9710cc683e7996fe7e97475}{read\+Confirmation}} (char \&c, std\+::string msg)
+\item 
+void \mbox{\hyperlink{namespaceutl_abc426f0b12271540302e08e2092cd814}{pause\+Console}} ()
+\item 
+void \mbox{\hyperlink{namespaceutl_a78c33f541699f008a6d88369453476d5}{clear\+Console}} ()
+\item 
+bool \mbox{\hyperlink{namespaceutl_aaca6963aeed8c154b1a52d6aba851b12}{check\+Stream}} (std\+::istream \&stream, std\+::string \&error)
+\item 
+int \mbox{\hyperlink{namespaceutl_af208e8b67a8c39b17de08d13e147fcd2}{get\+Int}} (std\+::istream \&stream, int min=I\+N\+T32\+\_\+\+M\+IN, int max=I\+N\+T32\+\_\+\+M\+AX, const std\+::string \&message=\char`\"{}\char`\"{})
+\item 
+void \mbox{\hyperlink{namespaceutl_a823d46bf31b2d847103584b01ac202a8}{ignore}} (std\+::istream \&i)
+\item 
+void \mbox{\hyperlink{namespaceutl_af13f3104fec7b766ef4294a710655cc8}{stream\+\_\+clear}} (std\+::istream \&i)
+\item 
+bool \mbox{\hyperlink{namespaceutl_ad318d074eebe6dcc51961aedaf5e05f2}{file\+\_\+exists}} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceutl_aaca6963aeed8c154b1a52d6aba851b12}\label{namespaceutl_aaca6963aeed8c154b1a52d6aba851b12}} 
+\index{utl@{utl}!checkStream@{checkStream}}
+\index{checkStream@{checkStream}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{checkStream()}{checkStream()}}
+{\footnotesize\ttfamily bool utl\+::check\+Stream (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{stream,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+Checks stream.\+eof() and stream.\+fail() When it returns false, a more detailed message is given in the error string \mbox{\Hypertarget{namespaceutl_a78c33f541699f008a6d88369453476d5}\label{namespaceutl_a78c33f541699f008a6d88369453476d5}} 
+\index{utl@{utl}!clearConsole@{clearConsole}}
+\index{clearConsole@{clearConsole}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{clearConsole()}{clearConsole()}}
+{\footnotesize\ttfamily void utl\+::clear\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear the console... or somthing similar in effect Method may change in the future \mbox{\Hypertarget{namespaceutl_ad318d074eebe6dcc51961aedaf5e05f2}\label{namespaceutl_ad318d074eebe6dcc51961aedaf5e05f2}} 
+\index{utl@{utl}!file\_exists@{file\_exists}}
+\index{file\_exists@{file\_exists}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{file\_exists()}{file\_exists()}}
+{\footnotesize\ttfamily bool utl\+::file\+\_\+exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutl_af208e8b67a8c39b17de08d13e147fcd2}\label{namespaceutl_af208e8b67a8c39b17de08d13e147fcd2}} 
+\index{utl@{utl}!getInt@{getInt}}
+\index{getInt@{getInt}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{getInt()}{getInt()}}
+{\footnotesize\ttfamily int utl\+::get\+Int (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{stream,  }\item[{int}]{min = {\ttfamily INT32\+\_\+MIN},  }\item[{int}]{max = {\ttfamily INT32\+\_\+MAX},  }\item[{const std\+::string \&}]{message = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+Forces user to write an integer. If a minimun or maximum number are given it forces the user to write an integer between the given range \mbox{[}min, max\mbox{]} (inclusive). \mbox{\Hypertarget{namespaceutl_a823d46bf31b2d847103584b01ac202a8}\label{namespaceutl_a823d46bf31b2d847103584b01ac202a8}} 
+\index{utl@{utl}!ignore@{ignore}}
+\index{ignore@{ignore}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{ignore()}{ignore()}}
+{\footnotesize\ttfamily void utl\+::ignore (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespaceutl_ae6db7bc35d75e0481365efafa8c1e4a1}\label{namespaceutl_ae6db7bc35d75e0481365efafa8c1e4a1}} 
+\index{utl@{utl}!isFileEmpty@{isFileEmpty}}
+\index{isFileEmpty@{isFileEmpty}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{isFileEmpty()}{isFileEmpty()}}
+{\footnotesize\ttfamily bool utl\+::is\+File\+Empty (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{fin }\end{DoxyParamCaption})}
+
+Returns trrue if a given filestream is empty Meant to be used right after opening an ifstream \mbox{\Hypertarget{namespaceutl_a63d40b7396bac30000e07f4e06602658}\label{namespaceutl_a63d40b7396bac30000e07f4e06602658}} 
+\index{utl@{utl}!isNum@{isNum}}
+\index{isNum@{isNum}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{isNum()}{isNum()}}
+{\footnotesize\ttfamily bool utl\+::is\+Num (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})}
+
+Returns true if all characters from string s are digits \mbox{\Hypertarget{namespaceutl_a9ff73d60273043552773b5f9c72e85d5}\label{namespaceutl_a9ff73d60273043552773b5f9c72e85d5}} 
+\index{utl@{utl}!isStrEmpty@{isStrEmpty}}
+\index{isStrEmpty@{isStrEmpty}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{isStrEmpty()}{isStrEmpty()}}
+{\footnotesize\ttfamily bool utl\+::is\+Str\+Empty (\begin{DoxyParamCaption}\item[{std\+::string}]{str }\end{DoxyParamCaption})}
+
+Check if a given string can be considered an empty string \mbox{\Hypertarget{namespaceutl_a1daa2fb6200d27edb39ab86d8e0bf413}\label{namespaceutl_a1daa2fb6200d27edb39ab86d8e0bf413}} 
+\index{utl@{utl}!ltrim@{ltrim}}
+\index{ltrim@{ltrim}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{ltrim()}{ltrim()}}
+{\footnotesize\ttfamily std\+::string\& utl\+::ltrim (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{const std\+::string \&}]{chars = {\ttfamily \char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r~\char`\"{}} }\end{DoxyParamCaption})}
+
+Return a string with all whitespace from the right and left trimmed \mbox{\Hypertarget{namespaceutl_abc426f0b12271540302e08e2092cd814}\label{namespaceutl_abc426f0b12271540302e08e2092cd814}} 
+\index{utl@{utl}!pauseConsole@{pauseConsole}}
+\index{pauseConsole@{pauseConsole}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{pauseConsole()}{pauseConsole()}}
+{\footnotesize\ttfamily void utl\+::pause\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Pauses the program\textquotesingle{}s execution and waits for any user input Actual method for that may change in the future \mbox{\Hypertarget{namespaceutl_a1be592eff9710cc683e7996fe7e97475}\label{namespaceutl_a1be592eff9710cc683e7996fe7e97475}} 
+\index{utl@{utl}!readConfirmation@{readConfirmation}}
+\index{readConfirmation@{readConfirmation}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{readConfirmation()}{readConfirmation()}}
+{\footnotesize\ttfamily bool utl\+::read\+Confirmation (\begin{DoxyParamCaption}\item[{char \&}]{c,  }\item[{std\+::string}]{msg }\end{DoxyParamCaption})}
+
+Read a confirmation from user input (expects y/n answer) Presents msg + \char`\"{} (y/n) ? \char`\"{} If it return true, c will always \char`\"{}y\char`\"{} or \char`\"{}n\char`\"{} (lowercase) Return false if user interrupts with Ctrl+Z \mbox{\Hypertarget{namespaceutl_a939204833969e7feb5c4b737fd48e9ab}\label{namespaceutl_a939204833969e7feb5c4b737fd48e9ab}} 
+\index{utl@{utl}!rtrim@{rtrim}}
+\index{rtrim@{rtrim}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{rtrim()}{rtrim()}}
+{\footnotesize\ttfamily std\+::string\& utl\+::rtrim (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{const std\+::string \&}]{chars = {\ttfamily \char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r~\char`\"{}} }\end{DoxyParamCaption})}
+
+Return a string with all whitespace from the right and left trimmed \mbox{\Hypertarget{namespaceutl_af13f3104fec7b766ef4294a710655cc8}\label{namespaceutl_af13f3104fec7b766ef4294a710655cc8}} 
+\index{utl@{utl}!stream\_clear@{stream\_clear}}
+\index{stream\_clear@{stream\_clear}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{stream\_clear()}{stream\_clear()}}
+{\footnotesize\ttfamily void utl\+::stream\+\_\+clear (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+resets status of istream \mbox{\Hypertarget{namespaceutl_a894f419df62212c38d4a0706407373ee}\label{namespaceutl_a894f419df62212c38d4a0706407373ee}} 
+\index{utl@{utl}!trim@{trim}}
+\index{trim@{trim}!utl@{utl}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily std\+::string\& utl\+::trim (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{const std\+::string \&}]{chars = {\ttfamily \char`\"{}\textbackslash{}t\textbackslash{}n\textbackslash{}v\textbackslash{}f\textbackslash{}r~\char`\"{}} }\end{DoxyParamCaption})}
+
+Return a string with all whitespace from the right and left trimmed 

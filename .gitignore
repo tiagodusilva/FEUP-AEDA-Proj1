@@ -35,6 +35,6 @@
 
 # Project Building Extras
 cmake-build-debug/*
-docs/output/*
+#docs/output/*
 .idea/*
 lib/*

@@ -1,0 +1,187 @@
+\hypertarget{classMenuOptionsFilter}{}\doxysection{Menu\+Options\+Filter$<$ Arg $>$ Class Template Reference}
+\label{classMenuOptionsFilter}\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+
+
+{\ttfamily \#include $<$menu.\+h$>$}
+
+
+
+Inheritance diagram for Menu\+Options\+Filter$<$ Arg $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMenuOptionsFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+Options\+Filter$<$ Arg $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMenuOptionsFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMenuOptionsFilter_a06d0d357e423be3fbe4430dce2f15fa3}{Menu\+Options\+Filter}} ()
+\item 
+\mbox{\hyperlink{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}{$\sim$\+Menu\+Options\+Filter}} ()=default
+\item 
+\mbox{\hyperlink{classMenuOptionsFilter_a3e68bd5c6d892ed1b66f7824a313f6d5}{Menu\+Options\+Filter}} (std\+::string t, std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$opt, std\+::function$<$ void(Arg \&)$>$ e\+\_\+fun=\mbox{[}$\,$\mbox{]}(Arg)\{return;\}, std\+::function$<$ Arg()$>$s\+\_\+fun=\mbox{[}$\,$\mbox{]}()\{ return(Arg());\}, bool exclusive\+\_\+selection=false, std\+::vector$<$ int $>$ vec=\{\})
+\item 
+std\+::string \mbox{\hyperlink{classMenuOptionsFilter_acaa30c8237fb9bcb187601639a7879ac}{get\+Message}} () const
+\item 
+void \mbox{\hyperlink{classMenuOptionsFilter_add995b39ad5e9e113f3b2f065764e344}{show}} () override
+\item 
+void \mbox{\hyperlink{classMenuOptionsFilter_a5266c12ce273fc662552a8c9e518057f}{show}} (Arg \&) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Arg \mbox{\hyperlink{classMenuOptionsFilter_ac9ff2a3ef55789dc07d3debcf61fe3c8}{argument}}
+\item 
+std\+::function$<$ Arg()$>$ \mbox{\hyperlink{classMenuOptionsFilter_a3497aea739cd3f8024e5654a88428167}{start\+\_\+func}} = \mbox{[}$\,$\mbox{]}()\{return Arg();\}
+\item 
+std\+::function$<$ void(Arg \&)$>$ \mbox{\hyperlink{classMenuOptionsFilter_a8de6dacce7cb69829258e1b7e38f78e4}{exit\+\_\+func}} = \mbox{[}$\,$\mbox{]}(Arg)\{ return;\}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$ \mbox{\hyperlink{classMenuOptionsFilter_a323488e40bcbe36c14c98669e8f5c861}{options}}
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$ \mbox{\hyperlink{classMenuOptionsFilter_a104733cfec66a98b770fad122824cd64}{options\+\_\+backup}}
+\item 
+bool \mbox{\hyperlink{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}{select\+\_\+one\+\_\+menu}}
+\item 
+const std\+::vector$<$ int $>$ \mbox{\hyperlink{classMenuOptionsFilter_af233c5ec42086da4c70aba46b403df84}{repeat\+\_\+menus\+\_\+vec}} =\{\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$ menu)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMenuOptionsFilter_a06d0d357e423be3fbe4430dce2f15fa3}\label{classMenuOptionsFilter_a06d0d357e423be3fbe4430dce2f15fa3}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!MenuOptionsFilter@{MenuOptionsFilter}}
+\index{MenuOptionsFilter@{MenuOptionsFilter}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{MenuOptionsFilter()}{MenuOptionsFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}\label{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!````~MenuOptionsFilter@{$\sim$MenuOptionsFilter}}
+\index{````~MenuOptionsFilter@{$\sim$MenuOptionsFilter}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$MenuOptionsFilter()}{~MenuOptionsFilter()}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::$\sim$\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a3e68bd5c6d892ed1b66f7824a313f6d5}\label{classMenuOptionsFilter_a3e68bd5c6d892ed1b66f7824a313f6d5}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!MenuOptionsFilter@{MenuOptionsFilter}}
+\index{MenuOptionsFilter@{MenuOptionsFilter}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{MenuOptionsFilter()}{MenuOptionsFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}\item[{std\+::string}]{t,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$}]{opt,  }\item[{std\+::function$<$ void(Arg \&)$>$}]{e\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}(Arg)\{return;\}},  }\item[{std\+::function$<$ Arg()$>$}]{s\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}()\{~return(Arg());~\}},  }\item[{bool}]{exclusive\+\_\+selection = {\ttfamily false},  }\item[{std\+::vector$<$ int $>$}]{vec = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMenuOptionsFilter_acaa30c8237fb9bcb187601639a7879ac}\label{classMenuOptionsFilter_acaa30c8237fb9bcb187601639a7879ac}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily template$<$typename Arg $>$ \\
+std\+::string \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_add995b39ad5e9e113f3b2f065764e344}\label{classMenuOptionsFilter_add995b39ad5e9e113f3b2f065764e344}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!show@{show}}
+\index{show@{show}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Arg $>$ \\
+void \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{Menu\+Filter$<$ Arg $>$}}.
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a5266c12ce273fc662552a8c9e518057f}\label{classMenuOptionsFilter_a5266c12ce273fc662552a8c9e518057f}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!show@{show}}
+\index{show@{show}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Arg $>$ \\
+void \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}\item[{Arg \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classMenuFilter_a31880bd772b176637a2fde75fdedbfd3}{Menu\+Filter$<$ Arg $>$}}.
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}\label{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$}]{menu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{classMenuOptionsFilter_ac9ff2a3ef55789dc07d3debcf61fe3c8}\label{classMenuOptionsFilter_ac9ff2a3ef55789dc07d3debcf61fe3c8}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!argument@{argument}}
+\index{argument@{argument}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{argument}{argument}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+Arg \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::argument\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a8de6dacce7cb69829258e1b7e38f78e4}\label{classMenuOptionsFilter_a8de6dacce7cb69829258e1b7e38f78e4}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!exit\_func@{exit\_func}}
+\index{exit\_func@{exit\_func}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{exit\_func}{exit\_func}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+std\+::function$<$void(Arg\&)$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::exit\+\_\+func = \mbox{[}$\,$\mbox{]}(Arg)\{ return;\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a323488e40bcbe36c14c98669e8f5c861}\label{classMenuOptionsFilter_a323488e40bcbe36c14c98669e8f5c861}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!options@{options}}
+\index{options@{options}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+std\+::vector$<$\mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$Arg$>$$\ast$$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::options\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a104733cfec66a98b770fad122824cd64}\label{classMenuOptionsFilter_a104733cfec66a98b770fad122824cd64}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!options\_backup@{options\_backup}}
+\index{options\_backup@{options\_backup}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{options\_backup}{options\_backup}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+const std\+::vector$<$\mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$Arg$>$$\ast$$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::options\+\_\+backup\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_af233c5ec42086da4c70aba46b403df84}\label{classMenuOptionsFilter_af233c5ec42086da4c70aba46b403df84}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!repeat\_menus\_vec@{repeat\_menus\_vec}}
+\index{repeat\_menus\_vec@{repeat\_menus\_vec}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{repeat\_menus\_vec}{repeat\_menus\_vec}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+const std\+::vector$<$int$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::repeat\+\_\+menus\+\_\+vec =\{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}\label{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!select\_one\_menu@{select\_one\_menu}}
+\index{select\_one\_menu@{select\_one\_menu}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{select\_one\_menu}{select\_one\_menu}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+bool \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::select\+\_\+one\+\_\+menu\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMenuOptionsFilter_a3497aea739cd3f8024e5654a88428167}\label{classMenuOptionsFilter_a3497aea739cd3f8024e5654a88428167}} 
+\index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!start\_func@{start\_func}}
+\index{start\_func@{start\_func}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
+\doxysubsubsection{\texorpdfstring{start\_func}{start\_func}}
+{\footnotesize\ttfamily template$<$typename Arg$>$ \\
+std\+::function$<$Arg()$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::start\+\_\+func = \mbox{[}$\,$\mbox{]}()\{return Arg();\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/joao/\+Documents/\+Uni\+Stuff/2\+\_\+1things/\+A\+E\+D\+A/\+F\+E\+U\+P-\/\+A\+E\+D\+A-\/\+Proj1/include/\mbox{\hyperlink{menu_8h}{menu.\+h}}\end{DoxyCompactItemize}

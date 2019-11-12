@@ -1,6 +1,5 @@
 #ifndef FEUP_AEDA_PROJ1_MENU_H
 #define FEUP_AEDA_PROJ1_MENU_H
-#define BAZINGA template
 
 #include <algorithm>
 #include <iostream>
@@ -64,7 +63,7 @@ public:
 };
 
 
-BAZINGA<typename Arg> // Abstract class used for specifyiing menus that modify an argument (by using different filters)
+template<typename Arg> // Abstract class used for specifyiing menus that modify an argument (by using different filters)
 class MenuFilter : public Menu{
 public:
 	MenuFilter<Arg>() = default;
@@ -77,7 +76,7 @@ public:
 };
 
 
-BAZINGA<typename Arg> // Wrapper to function that modifies an argument
+template<typename Arg> // Wrapper to function that modifies an argument
 class MenuSelelectFilter : public MenuFilter<Arg>{
 private:
 	std::function<void(Arg&)> func;
@@ -91,7 +90,7 @@ public:
 };
 
 
-BAZINGA<typename Arg> // Menu that controls MenuSelelectFilter and other MenuOptionsFilter (all derived from MenuFilter)
+template<typename Arg> // Menu that controls MenuSelelectFilter and other MenuOptionsFilter (all derived from MenuFilter)
 class MenuOptionsFilter : public MenuFilter<Arg>{
 private:
 	/* Argument that is passed and modified */
@@ -130,7 +129,7 @@ public:
 	void show(Arg&) override;
 };
 
-BAZINGA<typename Arg>
+template<typename Arg>
 void MenuOptionsFilter<Arg>::show(){
 	/* If show() is called then the object was instanciated by a Menu_Options object */
 	this->argument = start_func(); // Reinitialize argument
@@ -139,7 +138,7 @@ void MenuOptionsFilter<Arg>::show(){
     return;
 }
 
-BAZINGA<typename Arg>
+template<typename Arg>
 void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
 	/* If show(Arg) is called then the object was instanciated by a MenuFilter object.
 	   We will thus modify arg (by calling MenuFilters in the options vector)
@@ -192,7 +191,7 @@ void MenuOptionsFilter<Arg>::show(Arg &arg){ // handles kbc interrupts
     return;
 }
 
-BAZINGA<typename Arg>
+template<typename Arg>
 std::string MenuOptionsFilter<Arg>::getMessage() const{
 	std::string res="";
     res+= this->getTitle() + "\n\n";

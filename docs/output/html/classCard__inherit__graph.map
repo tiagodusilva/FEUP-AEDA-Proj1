@@ -1,0 +1,6 @@
+<map id="Card" name="Card">
+<area shape="rect" id="node1" title="Abstract class to save and handle registered users information and their cards." alt="" coords="139,5,317,420"/>
+<area shape="rect" id="node2" href="$classIndividualCard.html" title=" " alt="" coords="5,468,147,575"/>
+<area shape="rect" id="node3" href="$classSilverCard.html" title=" " alt="" coords="171,468,285,575"/>
+<area shape="rect" id="node4" href="$classUniCard.html" title=" " alt="" coords="309,468,413,575"/>
+</map>

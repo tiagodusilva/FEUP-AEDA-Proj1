@@ -7,11 +7,11 @@
 
 #include "date.h"
 
-/** @defgroup time_grp Time related functions (different from date) */
+/** @defgroup datetime_grp Time and Date module */
 
-/** @addtogroup	time_grp
+/** @addtogroup	datetime_grp
   *
-  * @brief	Code related to the handling and saving of time points (generally hours and minutes)
+  * @brief	Code related to the handling, saving and comparisons of points in time
   *
   * @{
   */

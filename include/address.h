@@ -6,6 +6,15 @@
 #include <iostream>
 #include <string>
 
+/** @defgroup address_grp Address module */
+
+/** @addtogroup	address_grp
+  *
+  * @brief	Code related to the handling, saving and comparisons of Addresses
+  *
+  * @{
+  */
+
 /** @brief	Half-address' zip-code (reserved for addresses that only have a set region) */
 #define HALF_ADDR_ZIPCODE "0000-000"
 
@@ -137,5 +146,7 @@ public:
  *		false, otherwise
  */
 bool operator==(const Address& lhs, const Address& rhs);
+
+/** @} */
 
 #endif // ADDRESS_H

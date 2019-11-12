@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCard.html" title="Abstract class to save and handle registered users information and their cards." alt="" coords="5,56,57,83"/>
+<area shape="rect" id="node2" href="$classIndividualCard.html" title=" " alt="" coords="105,5,221,32"/>
+<area shape="rect" id="node3" href="$classSilverCard.html" title=" " alt="" coords="119,56,208,83"/>
+<area shape="rect" id="node4" href="$classUniCard.html" title=" " alt="" coords="126,107,201,133"/>
+</map>

@@ -6,6 +6,13 @@
 #include <fstream>
 #include <iostream>
 
+
+/** @addtogroup	datetime_grp
+  *
+  * @{
+  */
+
+
 /** @brief	the number of seconds in a day (60 secs * 60 mins * 24 hours) */
 #define SECONDS_IN_DAY 86400
 
@@ -260,5 +267,7 @@ std::ofstream& operator<<(std::ofstream& outstream, const Date &d);
  * @return	Reference to the ifstream object, 'instream', passed in the parameters
  */
 std::ifstream& operator>>(std::ifstream &instream, Date &d);
+
+/** @} */
 
 #endif  // DATE_H

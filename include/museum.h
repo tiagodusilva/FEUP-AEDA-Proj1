@@ -4,6 +4,17 @@
 #include "../include/address.h"
 #include "../include/time.h"
 
+/** @defgroup museum_grp Museum module */
+
+/** @addtogroup	event_grp
+  *
+  * @brief	Code related to the handling of a museum
+  *
+  * @{
+  */
+
+
+/** @brief	number of characters to use with std::setw() on Museum object information output */
 #define MUSEUM_OUPUT_DELIM 15
 
 /**
@@ -130,5 +141,7 @@ public:
     static void cin_read_museum(Museum & museum);
 
 };
+
+/** @} */
 
 #endif // MUSEUM_H

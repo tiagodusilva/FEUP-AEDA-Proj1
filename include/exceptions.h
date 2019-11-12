@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 
-/** @defgroup exc_grp Our Exceptions */
+/** @defgroup exc_grp Custom exception module */
 
 /** @addtogroup	exc_grp
   *

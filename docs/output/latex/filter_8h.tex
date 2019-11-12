@@ -1,0 +1,65 @@
+\hypertarget{filter_8h}{}\doxysection{/home/joao/\+Documents/\+Uni\+Stuff/2\+\_\+1things/\+A\+E\+D\+A/\+F\+E\+U\+P-\/\+A\+E\+D\+A-\/\+Proj1/include/filter.h File Reference}
+\label{filter_8h}\index{/home/joao/Documents/UniStuff/2\_1things/AEDA/FEUP-\/AEDA-\/Proj1/include/filter.h@{/home/joao/Documents/UniStuff/2\_1things/AEDA/FEUP-\/AEDA-\/Proj1/include/filter.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}address.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}enterprise.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}event.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}date.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cards.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}museum.\+h\char`\"{}}\newline
+Include dependency graph for filter.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{filter_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{filter_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceflt}{flt}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceflt_af3daa0db2f9de6c032f152b29aa2b71a}{flt\+::contains}} (const T \&lhs, \mbox{\hyperlink{classAddress}{Address}} rhs)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceflt_ae3bfdde19ed0118f2714131f32f91de1}{flt\+::contains}} (const T \&lhs, string rhs)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceflt_ab0d27443b5c87f29cf702ccf06b96b1a}{flt\+::contains}} (const T \&lhs, \mbox{\hyperlink{classDate}{Date}} rhs)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceflt_a85917a25d245bdc99fb7d82333027fde}{flt\+::is\+\_\+between}} (const T \&mid, \mbox{\hyperlink{classDate}{Date}} lhs, \mbox{\hyperlink{classDate}{Date}} rhs)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ae2f4e89e72d6dbca127417774375e340}{flt\+::\+Filter\+By\+Name}} (vector$<$ T $>$ \&vec)
+\item 
+void \mbox{\hyperlink{namespaceflt_aaeb834e8b1d0c60a06786eb637eac129}{flt\+::\+Filter\+Event\+By\+Time\+Cin}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec)
+\item 
+void \mbox{\hyperlink{namespaceflt_a8141e86ac579d2b13998bf7c4c724910}{flt\+::\+Filter\+Event\+By\+Time\+Frame}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec, unsigned delta\+\_\+hour)
+\item 
+void \mbox{\hyperlink{namespaceflt_a3d3779ba1f3a682fa07d22ccc4806b90}{flt\+::\+Filter\+Event\+By\+Capacity}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec, float capacity\+\_\+percentage\+\_\+max)
+\item 
+void \mbox{\hyperlink{namespaceflt_a495739623ae59721ac29a660a073f74c}{flt\+::\+Filter\+By\+Card\+Name}} (vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&vec)
+\item 
+void \mbox{\hyperlink{namespaceflt_a752cf70d8ec128563c1f59cebc6fcaa9}{flt\+::\+Filter\+By\+Validity}} (vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_a9e427586471664b554a63db639904ad5}{flt\+::\+Filter\+By\+Event}} (vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_af391213d03386625ad35e3831ee9ebd1}{flt\+::\+Filter\+By\+Location\+Cin}} (vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ac43683e14d777ab30dbed34f1ab009c0}{flt\+::\+Filter\+By\+Location}} (vector$<$ T $>$ \&vec, \mbox{\hyperlink{classAddress}{Address}} addr)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_a24e9ca59b9dd9120d21a1d7cded13665}{flt\+::\+Filter\+In\+Date}} (vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ababcfcfc4324d51dc43524057528b0a9}{flt\+::\+Filter\+Between\+Dates}} (vector$<$ T $>$ \&vec)
+\end{DoxyCompactItemize}

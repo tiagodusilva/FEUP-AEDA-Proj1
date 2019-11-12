@@ -9,6 +9,13 @@
 #include <set>
 #include <iostream>
 
+
+/** @addtogroup	event_grp
+  *
+  * @{
+  */
+
+/** @brief	number of characters to use with std::setw() on Event object information output */
 #define EVENT_OUPUT_DELIM 15
 
 /**
@@ -289,5 +296,7 @@ inline bool operator!=(const Event& ev, const unsigned id) { return ev.get_id() 
  *              False, otherwise
  */
 inline bool operator!=(const unsigned id, const Event& ev) { return operator!=(ev, id); };
+
+/** @} */
 
 #endif // EVENT_H

@@ -6,8 +6,17 @@
 #include "set"
 #include <string>
 
-#define ENTERPRISE_OUPUT_DELIM 15
+/** @defgroup event_grp Enterprise and Event module */
 
+/** @addtogroup	event_grp
+  *
+  * @brief	Code related to the handling and saving of enterprises and their events
+  *
+  * @{
+  */
+
+/** @brief	number of characters to use with std::setw() on Enterprise object information output */
+#define ENTERPRISE_OUPUT_DELIM 15
 
 /**
  * @brief    Class that simulates the Enterprises our Network would have established contracts with
@@ -179,5 +188,7 @@ public:
     static void cin_read_enterprise(Enterprise &ent);
 
 };
+
+/** @} */
 
 #endif // ENTERPRISE_H
