@@ -139,13 +139,18 @@ operator<<(std::ofstream &outstream, const Card &c)
 std::ifstream&
 operator>>(std::ifstream &instream, Card* &c)
 {
+	c = nullptr;
 	try {
 		string temp_str;
 		getline(instream, temp_str);
 
-		/* instanciate right class */
+		/* type */
 		int type;
 		instream >> type; utl::ignore(instream);
+		if (instream.fail())
+			throw FileReadingFailed("Birth date reading failed");
+
+		/* instanciate right class */
 		if (type == INDIVIDUALCARD_TYPE)
 			c = new IndividualCard;
 		else if (type == UNICARD_TYPE)
@@ -155,21 +160,60 @@ operator>>(std::ifstream &instream, Card* &c)
 		else
 			throw FileReadingFailed("No such card type");
 
+		if (c == nullptr)  // checking if memory allocation was successful
+			throw FileReadingFailed("Failed allocating memory");
+
+		/* name */
 		c->name = temp_str;
-		instream >> c->cc; utl::ignore(instream);
+
+		/* CC */
+		std::string temp_cc;
+		getline(instream, temp_cc);
+		if (utl::isNum(temp_cc))
+			c->cc = stoi(temp_cc);
+		else
+			throw FileReadingFailed("Given CC is not a number: " + temp_cc);
+
+		/* contact */
 		getline(instream, c->contact);
+
+		/* address */
 		instream >> c->address;
+		if (instream.fail())
+			throw "Address reading failed";
+
+		/* date */
 		instream >> c->birth_date;
+		if (instream.fail())
+			throw "Birth date reading failed";
 		instream >> c->creation_date;
+		if (instream.fail())
+			throw "Creation date reading failed";
 		instream >> c->expiration_date;
+		if (instream.fail()) {
+			cout << "SEG do Card\n" << endl;
+			throw "Expiration date reading failed";
+		}
+
+
+	}catch(char const* e) {
+		/* In this case the exception has already been taken care of by another function/class/method */
+		if (c != nullptr) {
+			delete(c);
+			c = nullptr;
+		}
 
 	}catch(const std::exception& e) {
-		delete(c);
-		c = nullptr;
-		instream.setstate(ios::failbit);
+		if (c != nullptr) {
+			delete(c);
+			c = nullptr;
+		}
 
-		cerr << e.what();
+		instream.setstate(std::ios::failbit);
+
+		std::cerr << e.what() << endl;
 	}
+
 	return instream;
 }
 
@@ -177,6 +221,7 @@ operator>>(std::ifstream &instream, Card* &c)
 void
 Card::cin_read_card(Card* &c)
 {
+	c = nullptr;
 	try {
 		/* get birth date */
 		cout << "Date of birth (year/month/day)? ";
@@ -198,6 +243,9 @@ Card::cin_read_card(Card* &c)
 			else
 				c = new IndividualCard;
 		}
+		if (c == nullptr)  // checking if memory allocation was successful
+			throw "Failed Card memory allocation";
+
 		c->birth_date = temp_bday;
 
 		/* name */
@@ -222,7 +270,7 @@ Card::cin_read_card(Card* &c)
 			throw UserInputReadingFailure("given contact is empty");
 
 		/* address */
-		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+		cout << "Address (street name/XXXX-XXX/region name  or	region)? ";
 		std::cin >> c->address;
 		if (cin.fail())
 			throw "Address reading failed";
@@ -235,13 +283,20 @@ Card::cin_read_card(Card* &c)
 		temp_now.ffyear();
 		c->expiration_date = temp_now;
 
-	}catch(const char* e) {
-		delete(c);
-		c = nullptr;
+	}catch(char const* e) {
+		/* In this case the exception has already been taken care of by another function/class/method */
+
+		if (c != nullptr) {
+			delete(c);
+			c = nullptr;
+		}
 
 	}catch(const std::exception& e) {
-		delete(c);
-		c = nullptr;
+		if (c != nullptr) {
+			delete(c);
+			c = nullptr;
+		}
+
 		std::cin.setstate(std::ios::failbit);
 
 		std::cerr << e.what() << endl;

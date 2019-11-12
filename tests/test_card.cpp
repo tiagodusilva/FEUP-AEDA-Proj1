@@ -9,11 +9,17 @@
 
 using namespace std;
 
-TEST(cards, DISABLED_files) {
+TEST(cards, files) {
+	cout << "Time span" << endl;
+	Date a(2019, 11, 12);
+	Time t(10, 5);
+	cout << timespan_size(a, t, Date(2019, 11, 13), Time(10, 5)) << endl;
+
+
 	UniCard c("nome", "contact", 123, Date(1999, 1, 21), Address("estrada", "1234-567", "regiao"));
 
 	ofstream tofile("output.txt");
-	tofile << c;
+	tofile << c << endl;
 	tofile.close();
 
 	Card *cp;
