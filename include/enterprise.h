@@ -1,3 +1,4 @@
+/** @file enterprise.h */
 #ifndef ENTERPRISE_H
 #define ENTERPRISE_H
 

@@ -67,9 +67,10 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#friends">Friends</a>  </div>
+<a href="#friends">Friends</a> &#124;
+<a href="#related">Related Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Card Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Card Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__museum__grp.html">Museum module</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -176,7 +177,19 @@ Friends</h2></td></tr>
 <tr class="memdesc:af61e442dbcf799583eb2c330718f7f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded ofstream insertion operator.  <a href="classCard.html#af61e442dbcf799583eb2c330718f7f98">More...</a><br /></td></tr>
 <tr class="separator:af61e442dbcf799583eb2c330718f7f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9deb6eb3ca7a1c6d30a4636b1ae5a5a"><td class="memItemLeft" align="right" valign="top">std::ifstream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCard.html#ac9deb6eb3ca7a1c6d30a4636b1ae5a5a">operator&gt;&gt;</a> (std::ifstream &amp;instream, <a class="el" href="classCard.html">Card</a> *&amp;c)</td></tr>
+<tr class="memdesc:ac9deb6eb3ca7a1c6d30a4636b1ae5a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded ifstream extraction operator.  <a href="classCard.html#ac9deb6eb3ca7a1c6d30a4636b1ae5a5a">More...</a><br /></td></tr>
 <tr class="separator:ac9deb6eb3ca7a1c6d30a4636b1ae5a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="related"></a>
+Related Functions</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>(Note that these are not member functions.) </p>
+</td></tr>
+<tr class="memitem:gaf1272bb300d49ce0b9feec20b7fa7eff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__museum__grp.html#gaf1272bb300d49ce0b9feec20b7fa7eff">operator==</a> (const <a class="el" href="classCard.html">Card</a> &amp;lhs, const <a class="el" href="classCard.html">Card</a> &amp;rhs)</td></tr>
+<tr class="memdesc:gaf1272bb300d49ce0b9feec20b7fa7eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded equality test operator.  <a href="group__museum__grp.html#gaf1272bb300d49ce0b9feec20b7fa7eff">More...</a><br /></td></tr>
+<tr class="separator:gaf1272bb300d49ce0b9feec20b7fa7eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga450cf1d610b10ac3ac50eb0a753792f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__museum__grp.html#ga450cf1d610b10ac3ac50eb0a753792f7">operator!=</a> (const <a class="el" href="classCard.html">Card</a> &amp;lhs, const <a class="el" href="classCard.html">Card</a> &amp;rhs)</td></tr>
+<tr class="memdesc:ga450cf1d610b10ac3ac50eb0a753792f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded inequality test operator.  <a href="group__museum__grp.html#ga450cf1d610b10ac3ac50eb0a753792f7">More...</a><br /></td></tr>
+<tr class="separator:ga450cf1d610b10ac3ac50eb0a753792f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class to save and handle registered users information and their cards. </p>
@@ -810,6 +823,17 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Overloaded ifstream extraction operator. </p>
+<p>Used to read information that has been saved to a file previously</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instream</td><td>Reference to the ifstream object to extract info from </td></tr>
+    <tr><td class="paramname">t</td><td>Reference to the <a class="el" href="classCard.html" title="Abstract class to save and handle registered users information and their cards.">Card</a> object where the read information is saved</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the ifstream object, 'instream', passed in the parameters </dd></dl>
 
 </div>
 </div>

@@ -96,7 +96,14 @@ std\+::ostream \& \mbox{\hyperlink{classCard_a4fc790840ee2db7b802d7bf704a495dc}{
 std\+::ofstream \& \mbox{\hyperlink{classCard_af61e442dbcf799583eb2c330718f7f98}{operator$<$$<$}} (std\+::ofstream \&outstream, const \mbox{\hyperlink{classCard}{Card}} \&c)
 \begin{DoxyCompactList}\small\item\em Overloaded ofstream insertion operator. \end{DoxyCompactList}\item 
 std\+::ifstream \& \mbox{\hyperlink{classCard_ac9deb6eb3ca7a1c6d30a4636b1ae5a5a}{operator$>$$>$}} (std\+::ifstream \&instream, \mbox{\hyperlink{classCard}{Card}} $\ast$\&c)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overloaded ifstream extraction operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__museum__grp_gaf1272bb300d49ce0b9feec20b7fa7eff}{operator==}} (const \mbox{\hyperlink{classCard}{Card}} \&lhs, const \mbox{\hyperlink{classCard}{Card}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Overloaded equality test operator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__museum__grp_ga450cf1d610b10ac3ac50eb0a753792f7}{operator!=}} (const \mbox{\hyperlink{classCard}{Card}} \&lhs, const \mbox{\hyperlink{classCard}{Card}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Overloaded inequality test operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -417,6 +424,22 @@ Reference to the ostream object, \textquotesingle{}outstream\textquotesingle{}, 
 \doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
 {\footnotesize\ttfamily std\+::ifstream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{instream,  }\item[{\mbox{\hyperlink{classCard}{Card}} $\ast$\&}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
+
+
+Overloaded ifstream extraction operator. 
+
+Used to read information that has been saved to a file previously
+
+
+\begin{DoxyParams}{Parameters}
+{\em instream} & Reference to the ifstream object to extract info from \\
+\hline
+{\em t} & Reference to the \mbox{\hyperlink{classCard}{Card}} object where the read information is saved\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the ifstream object, \textquotesingle{}instream\textquotesingle{}, passed in the parameters 
+\end{DoxyReturn}
 
 
 \doxysubsection{Field Documentation}

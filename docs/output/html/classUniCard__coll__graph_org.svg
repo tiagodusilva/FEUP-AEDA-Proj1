@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Saves and handles a university student&#39;s card and information.">
 <polygon fill="#bfbfbf" stroke="black" points="78.5,-0.5 78.5,-79.5 156.5,-79.5 156.5,-0.5 78.5,-0.5"/>
 <text text-anchor="middle" x="117.5" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">UniCard</text>
 <polyline fill="none" stroke="black" points="78.5,-60.5 156.5,-60.5 "/>

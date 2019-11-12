@@ -1,3 +1,4 @@
+/** @file cards.h */
 #ifndef CARDS_H
 #define CARDS_H
 
@@ -10,6 +11,11 @@
 #include "date.h"
 #include "../include/exceptions.h"
 #include "../include/utilities.h"
+
+/** @addtogroup	museum_grp
+  *
+  * @{
+  */
 
 /** @brief	how old (in days) do you have to be in order to be able to get a Silver card */
 #define ELDERY_MIN_AGE (65 * 365)
@@ -184,13 +190,40 @@ public:
 	 * @return	Reference to the ofstream object, 'outstream', passed in the parameters
 	 */
 	friend std::ofstream& operator<<(std::ofstream &outstream, const Card &c);
+	/**
+	 * @brief	Overloaded ifstream extraction operator
+	 *
+	 * @details	Used to read information that has been saved to a file previously
+	 *
+	 * @param instream	Reference to the ifstream object to extract info from
+	 * @param t		Reference to the Card object where the read information is saved
+	 *
+	 * @return	Reference to the ifstream object, 'instream', passed in the parameters
+	 */
 	friend std::ifstream& operator>>(std::ifstream &instream, Card* &c);
 };
 
 
-class IndividualCard: public Card {  // type 0
+/* TYPE 0 */
+/**
+ * @brief	Saves and handles a normal user's card and information
+ */
+class IndividualCard: public Card {
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor of the class IndividualCard class
+	 */
 	IndividualCard() = default;
+	/**
+	 * @brief	Create an IndividualCard object with the given information
+	 *
+	 * @param name		user's name
+	 * @param contact	user's contact (can be email, phone number, etc.)
+	 * @param cc		user's CC number
+	 * @param birth_date	user's birth date
+	 * @param address	user's address
+	 */
 	IndividualCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		: Card(name, contact, cc, birth_date, address) {};
 
@@ -204,9 +237,26 @@ public:
 };
 
 
-class UniCard: public Card {  // type 1
+/* TYPE 1 */
+/**
+ * @brief	Saves and handles a university student's card and information
+ */
+class UniCard: public Card {
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor of the class UniCard class
+	 */
 	UniCard() = default;
+	/**
+	 * @brief	Create an UniCard object with the given information
+	 *
+	 * @param name		user's name
+	 * @param contact	user's contact (can be email, phone number, etc.)
+	 * @param cc		user's CC number
+	 * @param birth_date	user's birth date
+	 * @param address	user's address
+	 */
 	UniCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
@@ -220,9 +270,26 @@ public:
 };
 
 
+/* TYPE 2 */
+/**
+ * @brief	Saves and handles a senior user's card and information
+ */
 class SilverCard: public Card {  // type 2
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor of the class SilverCard class
+	 */
 	SilverCard() = default;
+	/**
+	 * @brief	Create an SilverCard object with the given information
+	 *
+	 * @param name		user's name
+	 * @param contact	user's contact (can be email, phone number, etc.)
+	 * @param cc		user's CC number
+	 * @param birth_date	user's birth date
+	 * @param address	user's address
+	 */
 	SilverCard(const std::string &name, const std::string &contact, unsigned int cc, const Date &birth_date, const Address &address)
 		:Card(name, contact, cc, birth_date, address) {};
 
@@ -235,8 +302,9 @@ public:
 	int get_type() const { return SILVERCARD_TYPE; };
 };
 
+
 /* COMPARISON OPERATOR OVERLOAD */
-/**
+/** @relatesalso Card
  * @brief	Overloaded equality test operator
  *
  * @param lhs	Reference to one of the Card objects to be tested
@@ -246,7 +314,7 @@ public:
 		false, otherwise
  */
 bool operator==(const Card& lhs, const Card& rhs);
-/**
+/** @relatesalso Card
  * @brief	Overloaded inequality test operator
  *
  * @param lhs	Reference to one of the Card objects to be tested
@@ -256,5 +324,7 @@ bool operator==(const Card& lhs, const Card& rhs);
 		false, otherwise
  */
 bool operator!=(const Card& lhs, const Card& rhs);
+
+/** @} */
 
 #endif	// CARDS_H

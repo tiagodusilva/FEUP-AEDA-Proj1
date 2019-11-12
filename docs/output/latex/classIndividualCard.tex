@@ -2,6 +2,11 @@
 \label{classIndividualCard}\index{IndividualCard@{IndividualCard}}
 
 
+Saves and handles a normal user\textquotesingle{}s card and information.  
+
+
+
+
 {\ttfamily \#include $<$cards.\+h$>$}
 
 
@@ -28,13 +33,16 @@ Collaboration diagram for Individual\+Card\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classIndividualCard_a3363c6b44c8969668d3d877ca97eebd8}{Individual\+Card}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor of the class \mbox{\hyperlink{classIndividualCard}{Individual\+Card}} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classIndividualCard_a3078a67c45deef3dfd508ca23f84b72a}{Individual\+Card}} (const std\+::string \&\mbox{\hyperlink{classCard_a1f5013054990456125c82d805744062f}{name}}, const std\+::string \&\mbox{\hyperlink{classCard_a3598ea8382a774705448247c3e19d8ad}{contact}}, unsigned int \mbox{\hyperlink{classCard_a5b14e78436f7dbea5d86273a93414d62}{cc}}, const \mbox{\hyperlink{classDate}{Date}} \&\mbox{\hyperlink{classCard_a19b24422384083b74a902879e4c5da3a}{birth\+\_\+date}}, const \mbox{\hyperlink{classAddress}{Address}} \&\mbox{\hyperlink{classCard_a93b2605af6a4cc97abacc2b2dfb0b184}{address}})
-\item 
+\begin{DoxyCompactList}\small\item\em Create an \mbox{\hyperlink{classIndividualCard}{Individual\+Card}} object with the given information. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classIndividualCard_a2fb191230ea8fc0bfc769f0b1515c5cf}{get\+\_\+type}} () const
 \begin{DoxyCompactList}\small\item\em get user\textquotesingle{}s card type \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+Saves and handles a normal user\textquotesingle{}s card and information. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classIndividualCard_a3363c6b44c8969668d3d877ca97eebd8}\label{classIndividualCard_a3363c6b44c8969668d3d877ca97eebd8}} 
@@ -43,12 +51,33 @@ int \mbox{\hyperlink{classIndividualCard_a2fb191230ea8fc0bfc769f0b1515c5cf}{get\
 \doxysubsubsection{\texorpdfstring{IndividualCard()}{IndividualCard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Individual\+Card\+::\+Individual\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor of the class \mbox{\hyperlink{classIndividualCard}{Individual\+Card}} class. 
+
 \mbox{\Hypertarget{classIndividualCard_a3078a67c45deef3dfd508ca23f84b72a}\label{classIndividualCard_a3078a67c45deef3dfd508ca23f84b72a}} 
 \index{IndividualCard@{IndividualCard}!IndividualCard@{IndividualCard}}
 \index{IndividualCard@{IndividualCard}!IndividualCard@{IndividualCard}}
 \doxysubsubsection{\texorpdfstring{IndividualCard()}{IndividualCard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Individual\+Card\+::\+Individual\+Card (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{contact,  }\item[{unsigned int}]{cc,  }\item[{const \mbox{\hyperlink{classDate}{Date}} \&}]{birth\+\_\+date,  }\item[{const \mbox{\hyperlink{classAddress}{Address}} \&}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Create an \mbox{\hyperlink{classIndividualCard}{Individual\+Card}} object with the given information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & user\textquotesingle{}s name \\
+\hline
+{\em contact} & user\textquotesingle{}s contact (can be email, phone number, etc.) \\
+\hline
+{\em cc} & user\textquotesingle{}s CC number \\
+\hline
+{\em birth\+\_\+date} & user\textquotesingle{}s birth date \\
+\hline
+{\em address} & user\textquotesingle{}s address \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
