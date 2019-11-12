@@ -248,15 +248,15 @@ void MemberInterface::show() {
 	cout << "Logged in as cc with number " << this->member_card->get_cc() << " at " << Time() << endl;
 
 	/* Send notify event prompt if intended */
-	if(this->member_card->get_type() == 2) {
+	if(this->member_card->get_type() == SILVERCARD_TYPE) {
 		vector<Event> events_filtered = this->museum_network.getEvents();
 		flt::FilterByLocation<Event>(events_filtered, this->member_card->get_address()); // Select all events within a location
 		flt::FilterEventByCapacity(events_filtered, 50); // Select all events with less than 50% capacity
 		flt::FilterEventByTimeFrame(events_filtered, 8); // Select all events within 8 hours
 		if(events_filtered.size() != 0) {
 			cout << "Notification: In the next 8 hours " << events_filtered.size() <<
-				" event(s) will take place in your area of residence, " << this->member_card->get_address().getRegion() <<
-				".\nAll of them don't exceed a 50\% capacity\n";
+				" event(s) will take place in your area of residence, " << this->member_card->get_address().getRegion() << '.' << endl <<
+				"All of them are, at most, 50\% full and the entry is free for you!" << endl;
 
 			cout << "Do you want to list them? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
@@ -326,11 +326,32 @@ void MemberInterface::show() {
 	/* Purchase Event */
 	MenuOptionsFilter<vector<Event>> purchaseEvent("Purchase Event", listEventsOpt,
 			[this](vector<Event>&vec){
-				if(!this->member_card->isvalid()) throw(CardExpired(this->member_card->get_cc()));
-				if(vec.size()!=1) throw(MultipleEventsSelected(to_string(vec.size())));
-				cout << "This action will have a price of " <<
-					vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
-				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if (!this->member_card->isvalid())
+					throw(CardExpired(this->member_card->get_cc()));
+				if (vec.size() != 1)
+					throw(MultipleEventsSelected(to_string(vec.size())));
+
+				bool is_event_free = false;
+				if (this->member_card->get_type() == SILVERCARD_TYPE) {
+					vector<Event> silver_event = vec;
+					flt::FilterEventByCapacity(silver_event, 50);  // max capacity 50%
+					flt::FilterByLocation(silver_event,  this->member_card->get_address());
+					flt::FilterEventByTimeFrame(silver_event, 8);  // events happening in the next 8 hours;
+
+					if (!silver_event.empty()) {
+						is_event_free = true;
+						cout << "This event is free for you!" << endl;
+					}
+				}
+
+				if (!is_event_free){
+					cout << "This action will have a price of " <<
+						vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
+				}
+
+				cout << "Are you sure? (y/n)\n";
+				int a = getchar(); utl::ignore(cin);
+
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
 					this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
