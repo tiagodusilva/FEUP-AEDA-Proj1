@@ -7,11 +7,10 @@
 #include <istream>
 #include <sys/stat.h>
 
-// TODO: GET EVERYTHING TO USE EXCEPTIONS
 
 namespace utl
 {
-    #define CLEAR_CONSOLE_NEW_LINES 150
+	#define CLEAR_CONSOLE_NEW_LINES 70
 
 	/**
 	Returns true if all characters from string s are digits
@@ -21,17 +20,17 @@ namespace utl
 	/**
 	Return a string with all whitespace from the right and left trimmed
 	*/
-    std::string& ltrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
+	std::string& ltrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
 
-    /**
-    Return a string with all whitespace from the right and left trimmed
-    */
-    std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
+	/**
+	Return a string with all whitespace from the right and left trimmed
+	*/
+	std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
 
-    /**
-    Return a string with all whitespace from the right and left trimmed
-    */
-    std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
+	/**
+	Return a string with all whitespace from the right and left trimmed
+	*/
+	std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ");
 
 	/**
 	 * Check if a given string can be considered an empty string
@@ -95,4 +94,4 @@ namespace utl
 	bool file_exists(const std::string& name);
 }
 
-#endif //UTILITIES_H
+#endif // UTILITIES_H

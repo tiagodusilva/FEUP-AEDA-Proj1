@@ -82,13 +82,14 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Event:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEvent__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEvent__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aee6a4269152dcdb7a11de3e24d90c229"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvent.html#aee6a4269152dcdb7a11de3e24d90c229">Event</a> ()=default</td></tr>
-<tr class="memdesc:aee6a4269152dcdb7a11de3e24d90c229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor Does not attribute a valid id to the event (id = 0)  <a href="classEvent.html#aee6a4269152dcdb7a11de3e24d90c229">More...</a><br /></td></tr>
+<tr class="memdesc:aee6a4269152dcdb7a11de3e24d90c229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="classEvent.html#aee6a4269152dcdb7a11de3e24d90c229">More...</a><br /></td></tr>
 <tr class="separator:aee6a4269152dcdb7a11de3e24d90c229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9812c98bfc2b9834f1fb5712dc0bcec3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvent.html#a9812c98bfc2b9834f1fb5712dc0bcec3">Event</a> (const std::string &amp;<a class="el" href="classEvent.html#ae116bf76fb01a92e000579a5a0d6f35c">name</a>, float cost, unsigned <a class="el" href="classEvent.html#a2a08b6fa5be6ec6fe4f0df7b3300b311">max_capacity</a>, const <a class="el" href="classAddress.html">Address</a> &amp;<a class="el" href="classEvent.html#aafdaf1674f22325c4766a4fdb0ca89ff">address</a>, const <a class="el" href="classTime.html">Time</a> &amp;<a class="el" href="classEvent.html#a1a72e728fc81fa0a2b538be333f70d70">time</a>, const <a class="el" href="classDate.html">Date</a> &amp;<a class="el" href="classEvent.html#a67ba6f103d6826dbdb146a5138732a27">date</a>, const std::set&lt; unsigned &gt; &amp;<a class="el" href="classEvent.html#a071777ebdb1100b55219968a5632d703">reservations</a>=std::set&lt; unsigned &gt;(), bool <a class="el" href="classEvent.html#a5cfb7774654b0aef670e34ba417304d6">is_valid</a>=true)</td></tr>
 <tr class="memdesc:a9812c98bfc2b9834f1fb5712dc0bcec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> constructor, assigns a completely new and unique ID to the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>.  <a href="classEvent.html#a9812c98bfc2b9834f1fb5712dc0bcec3">More...</a><br /></td></tr>
@@ -244,7 +245,8 @@ Related Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default constructor Does not attribute a valid id to the event (id = 0) </p>
+<p>Default constructor. </p>
+<p>Does not attribute a valid id to the event (id = 0) </p>
 
 </div>
 </div>
@@ -683,7 +685,7 @@ Related Functions</h2></td></tr>
 <p>Overloaded inequality test operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
+    <tr><td class="paramname">ev</td><td>The rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
   </table>
   </dd>
 </dl>
@@ -719,7 +721,7 @@ Related Functions</h2></td></tr>
 <p>Overloaded lesser than test operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
+    <tr><td class="paramname">ev</td><td>The rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
   </table>
   </dd>
 </dl>
@@ -755,7 +757,7 @@ Related Functions</h2></td></tr>
 <p>Overloaded equality test operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
+    <tr><td class="paramname">ev</td><td>The rightmost <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to compare</td></tr>
   </table>
   </dd>
 </dl>
@@ -794,8 +796,8 @@ Related Functions</h2></td></tr>
  Prints the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> alongside its discounted entry fee. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>ostream to output the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s contents</td></tr>
-    <tr><td class="paramname">The</td><td>discount to apply to the event<br  />
+    <tr><td class="paramname">outstream</td><td>Reference to the ostream object to insert info to </td></tr>
+    <tr><td class="paramname">discount</td><td>The discount to apply to the event<br  />
  Should be in the range [0, 1], but if higher will actually increase the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s entry fee </td></tr>
   </table>
   </dd>
@@ -820,17 +822,17 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handles the purchase of this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> by an user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cc</td><td>The cc of the person trying to purchase this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a></td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classEventFull.html">EventFull</a></td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> is at max capacity </td></tr>
     <tr><td class="paramname"><a class="el" href="classEventInvalid.html">EventInvalid</a></td><td>Thrown if the is_valid flag of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> is set to false </td></tr>
-    <tr><td class="paramname">EventAlreadyBough</td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> was already bough by the user with the provided cc</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cc</td><td>The cc of the person trying to purchase this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> </td></tr>
+    <tr><td class="paramname">EventAlreadyBough</td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> was already bough by the user with the provided cc </td></tr>
   </table>
   </dd>
 </dl>
@@ -991,8 +993,8 @@ Related Functions</h2></td></tr>
 <p>Used to read information that has been saved to a file previously</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">outstream</td><td>Reference to the ifstream object to extract info from </td></tr>
-    <tr><td class="paramname">t</td><td>Reference to <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a> object where the read information is saved</td></tr>
+    <tr><td class="paramname">infstream</td><td>Reference to the ifstream object to extract info from </td></tr>
+    <tr><td class="paramname">ev</td><td>Reference to <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a> object where the read information is saved</td></tr>
   </table>
   </dd>
 </dl>

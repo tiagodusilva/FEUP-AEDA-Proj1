@@ -1,8 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMenu.html" title=" " alt="" coords="5,95,64,122"/>
-<area shape="rect" id="node2" href="$classMenuFilter.html" title=" " alt="" coords="112,45,255,71"/>
-<area shape="rect" id="node5" href="$classMenuOptions.html" title=" " alt="" coords="129,95,237,122"/>
-<area shape="rect" id="node6" href="$classMenuSelelect.html" title=" " alt="" coords="128,146,239,173"/>
-<area shape="rect" id="node3" href="$classMenuOptionsFilter.html" title=" " alt="" coords="303,5,455,47"/>
-<area shape="rect" id="node4" href="$classMenuSelelectFilter.html" title=" " alt="" coords="307,71,450,112"/>
+<area shape="rect" id="node1" href="$classMenu.html" title=" " alt="" coords="5,93,64,119"/>
+<area shape="rect" id="node2" href="$classMenuFilter.html" title=" " alt="" coords="112,42,255,69"/>
+<area shape="rect" id="node5" href="$classMenuOptions.html" title=" " alt="" coords="129,93,237,119"/>
+<area shape="rect" id="node6" href="$classMenuSelect.html" title=" " alt="" coords="134,143,233,170"/>
+<area shape="rect" id="node3" href="$classMenuOptionsFilter.html" title=" " alt="" coords="318,5,470,47"/>
+<area shape="rect" id="node4" href="$classMenuSelectFilter.html" title=" " alt="" coords="303,71,485,98"/>
 </map>

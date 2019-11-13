@@ -174,7 +174,7 @@ public:
 	 * @details	Mainly used with std::cout to show formated information on screen
 	 *
 	 * @param outstream	Reference to the ostream object to insert info to
-	 * @param t		Reference to the Card object whose info will be inserted in the ostream
+	 * @param c		Reference to the Card object whose info will be inserted in the ostream
 	 *
 	 * @return	Reference to the ostream object, 'outstream', passed in the parameters
 	 */
@@ -185,7 +185,7 @@ public:
 	 * @details	Used to save information on a file so it can be read again at a later date
 	 *
 	 * @param outstream	Reference to the ofstream object to insert info to
-	 * @param t		Reference to the Card object whose info will be inserted in the ofstream
+	 * @param c		Reference to the Card object whose info will be inserted in the ofstream
 	 *
 	 * @return	Reference to the ofstream object, 'outstream', passed in the parameters
 	 */
@@ -196,7 +196,7 @@ public:
 	 * @details	Used to read information that has been saved to a file previously
 	 *
 	 * @param instream	Reference to the ifstream object to extract info from
-	 * @param t		Reference to the Card object where the read information is saved
+	 * @param c		Reference to the Card object where the read information is saved
 	 *
 	 * @return	Reference to the ifstream object, 'instream', passed in the parameters
 	 */

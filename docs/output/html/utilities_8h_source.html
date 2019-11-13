@@ -80,59 +80,58 @@ $(function() {
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;istream&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;sys/stat.h&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// TODO: GET EVERYTHING TO USE EXCEPTIONS</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespaceutl.html">   12</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutl.html">utl</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="utilities_8h.html#ab315309fb64d94f63802f225a0a9ba5c">   14</a></span>&#160;<span class="preprocessor">    #define CLEAR_CONSOLE_NEW_LINES 150</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a63d40b7396bac30000e07f4e06602658">isNum</a>(<span class="keyword">const</span> std::string&amp; s);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a1daa2fb6200d27edb39ab86d8e0bf413">ltrim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a939204833969e7feb5c4b737fd48e9ab">rtrim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a894f419df62212c38d4a0706407373ee">trim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a9ff73d60273043552773b5f9c72e85d5">isStrEmpty</a>(std::string str);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#ae6db7bc35d75e0481365efafa8c1e4a1">isFileEmpty</a>(std::ifstream &amp; fin);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a1be592eff9710cc683e7996fe7e97475">readConfirmation</a>(<span class="keywordtype">char</span>&amp; c, std::string msg);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">pauseConsole</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">clearConsole</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#aaca6963aeed8c154b1a52d6aba851b12">checkStream</a>(std::istream &amp; stream, std::string &amp; error);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">getInt</a>(std::istream &amp;stream, <span class="keywordtype">int</span> min=INT32_MIN, <span class="keywordtype">int</span> max=INT32_MAX, <span class="keyword">const</span> std::string &amp;message=<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">     * ignore istream or ifstream 1000 chars or until &#39;\n&#39;</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">   82</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">ignore</a>(std::istream &amp;i) { i.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>); };</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">   87</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">stream_clear</a>(std::istream &amp;i) { i.clear(); <a class="code" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">ignore</a>(i); };</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">     * Checks if a given file exists;</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">     * Takes a string specifing the path to the file to check as an argument;</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">     * Returns true in case the file exists and false in case the files doesn&#39;t exist;</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">     * Source: https://stackoverflow.com/a/12774387</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#ad318d074eebe6dcc51961aedaf5e05f2">file_exists</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif //UTILITIES_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceutl.html">   11</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutl.html">utl</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="utilities_8h.html#ab315309fb64d94f63802f225a0a9ba5c">   13</a></span>&#160;<span class="preprocessor">    #define CLEAR_CONSOLE_NEW_LINES 70</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a63d40b7396bac30000e07f4e06602658">isNum</a>(<span class="keyword">const</span> std::string&amp; s);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a1daa2fb6200d27edb39ab86d8e0bf413">ltrim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a939204833969e7feb5c4b737fd48e9ab">rtrim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::string&amp; <a class="code" href="namespaceutl.html#a894f419df62212c38d4a0706407373ee">trim</a>(std::string&amp; str, <span class="keyword">const</span> std::string&amp; chars = <span class="stringliteral">&quot;\t\n\v\f\r &quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a9ff73d60273043552773b5f9c72e85d5">isStrEmpty</a>(std::string str);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#ae6db7bc35d75e0481365efafa8c1e4a1">isFileEmpty</a>(std::ifstream &amp; fin);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#a1be592eff9710cc683e7996fe7e97475">readConfirmation</a>(<span class="keywordtype">char</span>&amp; c, std::string msg);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">pauseConsole</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">clearConsole</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#aaca6963aeed8c154b1a52d6aba851b12">checkStream</a>(std::istream &amp; stream, std::string &amp; error);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">getInt</a>(std::istream &amp;stream, <span class="keywordtype">int</span> min=INT32_MIN, <span class="keywordtype">int</span> max=INT32_MAX, <span class="keyword">const</span> std::string &amp;message=<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">     * ignore istream or ifstream 1000 chars or until &#39;\n&#39;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">   81</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">ignore</a>(std::istream &amp;i) { i.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>); };</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">   86</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">stream_clear</a>(std::istream &amp;i) { i.clear(); <a class="code" href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">ignore</a>(i); };</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">     * Checks if a given file exists;</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">     * Takes a string specifing the path to the file to check as an argument;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">     * Returns true in case the file exists and false in case the files doesn&#39;t exist;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">     * Source: https://stackoverflow.com/a/12774387</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceutl.html#ad318d074eebe6dcc51961aedaf5e05f2">file_exists</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif // UTILITIES_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespaceutl_html_af208e8b67a8c39b17de08d13e147fcd2"><div class="ttname"><a href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">utl::getInt</a></div><div class="ttdeci">int getInt(std::istream &amp;stream, int min=INT32_MIN, int max=INT32_MAX, const std::string &amp;message=&quot;&quot;)</div></div>
 <div class="ttc" id="anamespaceutl_html_a78c33f541699f008a6d88369453476d5"><div class="ttname"><a href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a></div><div class="ttdeci">void clearConsole()</div></div>
-<div class="ttc" id="anamespaceutl_html_a823d46bf31b2d847103584b01ac202a8"><div class="ttname"><a href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">utl::ignore</a></div><div class="ttdeci">void ignore(std::istream &amp;i)</div><div class="ttdef"><b>Definition:</b> utilities.h:82</div></div>
-<div class="ttc" id="anamespaceutl_html_af13f3104fec7b766ef4294a710655cc8"><div class="ttname"><a href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">utl::stream_clear</a></div><div class="ttdeci">void stream_clear(std::istream &amp;i)</div><div class="ttdef"><b>Definition:</b> utilities.h:87</div></div>
+<div class="ttc" id="anamespaceutl_html_a823d46bf31b2d847103584b01ac202a8"><div class="ttname"><a href="namespaceutl.html#a823d46bf31b2d847103584b01ac202a8">utl::ignore</a></div><div class="ttdeci">void ignore(std::istream &amp;i)</div><div class="ttdef"><b>Definition:</b> utilities.h:81</div></div>
+<div class="ttc" id="anamespaceutl_html_af13f3104fec7b766ef4294a710655cc8"><div class="ttname"><a href="namespaceutl.html#af13f3104fec7b766ef4294a710655cc8">utl::stream_clear</a></div><div class="ttdeci">void stream_clear(std::istream &amp;i)</div><div class="ttdef"><b>Definition:</b> utilities.h:86</div></div>
 <div class="ttc" id="anamespaceutl_html_aaca6963aeed8c154b1a52d6aba851b12"><div class="ttname"><a href="namespaceutl.html#aaca6963aeed8c154b1a52d6aba851b12">utl::checkStream</a></div><div class="ttdeci">bool checkStream(std::istream &amp;stream, std::string &amp;error)</div></div>
 <div class="ttc" id="anamespaceutl_html_ae6db7bc35d75e0481365efafa8c1e4a1"><div class="ttname"><a href="namespaceutl.html#ae6db7bc35d75e0481365efafa8c1e4a1">utl::isFileEmpty</a></div><div class="ttdeci">bool isFileEmpty(std::ifstream &amp;fin)</div></div>
 <div class="ttc" id="anamespaceutl_html_a63d40b7396bac30000e07f4e06602658"><div class="ttname"><a href="namespaceutl.html#a63d40b7396bac30000e07f4e06602658">utl::isNum</a></div><div class="ttdeci">bool isNum(const std::string &amp;s)</div></div>
-<div class="ttc" id="anamespaceutl_html"><div class="ttname"><a href="namespaceutl.html">utl</a></div><div class="ttdef"><b>Definition:</b> utilities.h:12</div></div>
+<div class="ttc" id="anamespaceutl_html"><div class="ttname"><a href="namespaceutl.html">utl</a></div><div class="ttdef"><b>Definition:</b> utilities.h:11</div></div>
 <div class="ttc" id="anamespaceutl_html_a939204833969e7feb5c4b737fd48e9ab"><div class="ttname"><a href="namespaceutl.html#a939204833969e7feb5c4b737fd48e9ab">utl::rtrim</a></div><div class="ttdeci">std::string &amp; rtrim(std::string &amp;str, const std::string &amp;chars=&quot;\t\n\v\f\r &quot;)</div></div>
 <div class="ttc" id="anamespaceutl_html_a894f419df62212c38d4a0706407373ee"><div class="ttname"><a href="namespaceutl.html#a894f419df62212c38d4a0706407373ee">utl::trim</a></div><div class="ttdeci">std::string &amp; trim(std::string &amp;str, const std::string &amp;chars=&quot;\t\n\v\f\r &quot;)</div></div>
 <div class="ttc" id="anamespaceutl_html_abc426f0b12271540302e08e2092cd814"><div class="ttname"><a href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a></div><div class="ttdeci">void pauseConsole()</div></div>

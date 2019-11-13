@@ -10,8 +10,8 @@ var searchData=
   ['_7emenufilter_254',['~MenuFilter',['../classMenuFilter.html#abd02d184c2aa256bda46c43d81fe3852',1,'MenuFilter']]],
   ['_7emenuoptions_255',['~MenuOptions',['../classMenuOptions.html#a6eeb0e53ee8cb4645c3c87a2726520e8',1,'MenuOptions']]],
   ['_7emenuoptionsfilter_256',['~MenuOptionsFilter',['../classMenuOptionsFilter.html#a0dd679be62454cb1003624514e373b38',1,'MenuOptionsFilter']]],
-  ['_7emenuselelect_257',['~MenuSelelect',['../classMenuSelelect.html#ad68f62885a3ac8065df598e3a5bc9a77',1,'MenuSelelect']]],
-  ['_7emenuselelectfilter_258',['~MenuSelelectFilter',['../classMenuSelelectFilter.html#a9b7ef6c9f315cff940709440f2da8c0a',1,'MenuSelelectFilter']]],
+  ['_7emenuselect_257',['~MenuSelect',['../classMenuSelect.html#aa7cc08813e67630d006de3b70b302259',1,'MenuSelect']]],
+  ['_7emenuselectfilter_258',['~MenuSelectFilter',['../classMenuSelectFilter.html#ae150319bc2f7697782437cab730db8cb',1,'MenuSelectFilter']]],
   ['_7emuseum_259',['~Museum',['../classMuseum.html#aa23b9ab4ac08852583decd8368820c35',1,'Museum']]],
   ['_7euserinterface_260',['~UserInterface',['../classUserInterface.html#a0bb29f6dbb6c0b89bbc7ee6b98590e41',1,'UserInterface']]]
 ];

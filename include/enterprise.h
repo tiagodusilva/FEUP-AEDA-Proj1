@@ -87,12 +87,11 @@ public:
      * @brief          Adds an Event to the Enterprise\n
      *                 If successful, the destructor of ev will be called
      *
-     * @throws   EventAlreadyExists Thrown if the Event already exists in the Enterprise\n
-     *                              That said, if it does get thrown, something really odd is going on
-     *
      * @param ev        Event to add to the Enterprise\n
      *                  If the Event is added successfully, the Event's id will permanently be set to 0, to guarantee the uniqueness of every Event
      *
+     * @throws   EventAlreadyExists Thrown if the Event already exists in the Enterprise\n
+     *                              That said, if it does get thrown, something really odd is going on
      */
     void add_event(Event &ev);
 
@@ -125,10 +124,10 @@ public:
      * @details   As all of our enterprises must be registered in our country, their names will ALWAYS be
      *            different by law, therefore we only need to compare their names
      *
-     * @param     The rightmost Enterprise to compare
+     * @param	ent	The rightmost Enterprise to compare
      *
-     * @return    True if both Enterprises' names are equal\n
-     *            False, otherwise
+     * @return	True if both Enterprises' names are equal\n
+     *		False, otherwise
      */
     inline bool operator== (const Enterprise &ent) { return this->name == ent.name; };
 
@@ -138,7 +137,7 @@ public:
      * @details   As all of our enterprises must be registered in our country, their names will ALWAYS be
      *            different by law, therefore we only need to compare their names
      *
-     * @param     The rightmost Enterprise to compare
+     * @param	ent	The rightmost Enterprise to compare
      *
      * @return    True if both Enterprises' names are different\n
      *            False, otherwise
@@ -182,9 +181,9 @@ public:
     friend std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent);
 
     /**
-     * @brief       Read an Enterprise from cin, outputting any user prompts to cout
+     * @brief	Read an Enterprise from cin, outputting any user prompts to cout
      *
-     * @param ev    Enterprise to read from cin\n
+     * @param	ent	Enterprise to read from cin\n
      */
     static void cin_read_enterprise(Enterprise &ent);
 

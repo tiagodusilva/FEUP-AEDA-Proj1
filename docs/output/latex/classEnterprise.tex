@@ -11,7 +11,8 @@ Class that simulates the Enterprises our Network would have established contract
 
 
 
-Collaboration diagram for Enterprise\+:\nopagebreak
+Collaboration diagram for Enterprise\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -138,17 +139,17 @@ Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterp
  If successful, the destructor of ev will be called. 
 
 
-\begin{DoxyExceptions}{Exceptions}
-{\em \mbox{\hyperlink{classEventAlreadyExists}{Event\+Already\+Exists}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} already exists in the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
- That said, if it does get thrown, something really odd is going on\\
-\hline
-\end{DoxyExceptions}
-
 \begin{DoxyParams}{Parameters}
 {\em ev} & \mbox{\hyperlink{classEvent}{Event}} to add to the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
- If the \mbox{\hyperlink{classEvent}{Event}} is added successfully, the \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id will permanently be set to 0, to guarantee the uniqueness of every \mbox{\hyperlink{classEvent}{Event}} \\
+ If the \mbox{\hyperlink{classEvent}{Event}} is added successfully, the \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id will permanently be set to 0, to guarantee the uniqueness of every \mbox{\hyperlink{classEvent}{Event}}\\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classEventAlreadyExists}{Event\+Already\+Exists}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} already exists in the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
+ That said, if it does get thrown, something really odd is going on \\
+\hline
+\end{DoxyExceptions}
 \mbox{\Hypertarget{classEnterprise_afc1efa61040daa720c448e60dcca59dd}\label{classEnterprise_afc1efa61040daa720c448e60dcca59dd}} 
 \index{Enterprise@{Enterprise}!cin\_read\_enterprise@{cin\_read\_enterprise}}
 \index{cin\_read\_enterprise@{cin\_read\_enterprise}!Enterprise@{Enterprise}}
@@ -161,7 +162,7 @@ Read an \mbox{\hyperlink{classEnterprise}{Enterprise}} from cin, outputting any 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ev} & \mbox{\hyperlink{classEnterprise}{Enterprise}} to read from cin~\newline
+{\em ent} & \mbox{\hyperlink{classEnterprise}{Enterprise}} to read from cin~\newline
 \\
 \hline
 \end{DoxyParams}
@@ -262,7 +263,7 @@ As all of our enterprises must be registered in our country, their names will A\
 
 
 \begin{DoxyParams}{Parameters}
-{\em The} & rightmost \mbox{\hyperlink{classEnterprise}{Enterprise}} to compare\\
+{\em ent} & The rightmost \mbox{\hyperlink{classEnterprise}{Enterprise}} to compare\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -283,7 +284,7 @@ As all of our enterprises must be registered in our country, their names will A\
 
 
 \begin{DoxyParams}{Parameters}
-{\em The} & rightmost \mbox{\hyperlink{classEnterprise}{Enterprise}} to compare\\
+{\em ent} & The rightmost \mbox{\hyperlink{classEnterprise}{Enterprise}} to compare\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
