@@ -88,21 +88,43 @@ AdminInterface::show()
 	MenuOptions list_network("List Network Options", std::vector<Menu*>{&listEvents, &listMuseums, &listEnterprises, &listCards});
 
 
+	/* Remove Events */
+	MenuSelectFilter<vector<Event>> removeEventsSelected("Remove selected events",
+		[this](vector<Event> &vec){
+			if(vec.size() == this->museum_network.getEvents().size()) // If user has all of them selected
+				cout << "Warning! You will remove all of them!!\n";
+			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+			if(a=='y' || a=='Y') {
+				this->museum_network.removeEvents(vec);
+				cout <<	"Event(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
+			}
+			else
+				cout << "Operation aborted" << endl;
+		});
+	vector<MenuFilter<vector<Event>>*> removeEventsOpt =
+		{&EventsSelected, &EventsTimeframe, &EventsDate, &EventsLocation, &EventsName, &removeEventsSelected};
+	MenuOptionsFilter<vector<Event>> removeEvents("Remove Events", removeEventsOpt,
+			[this](vector<Event>&vec){ return; },
+			[this](){ return(this->museum_network.getEvents());},
+			false, {0});
+
 
 	/* Remove Museums */
 	MenuSelectFilter<vector<Museum>> removeMuseumsSelected("Remove selected museums",
 		[this](vector<Museum> &vec){
-			if(vec.size() == this->museum_network.getMuseums().size()) { // If user has all of them selected
+			if(vec.size() == this->museum_network.getMuseums().size()) // If user has all of them selected
 				cout << "Warning! You will remove all of them!!\n";
-				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
-				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
-				if(a=='y' || a=='Y') {
-					this->museum_network.removeMuseums(vec);
-					cout <<	"Museums removed!"; utl::pauseConsole();
-					}
-				else
-					cout << "Operation aborted" << endl;
+			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+			if(a=='y' || a=='Y') {
+				this->museum_network.removeMuseums(vec);
+				cout <<	"Museum(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
 			}
+			else
+				cout << "Operation aborted" << endl;
 		});
 	vector<MenuFilter<vector<Museum>>*> removeMuseumsOpt = {&MuseumsSelected, &MuseumsLocation, &MuseumsName, &removeMuseumsSelected};
 	MenuOptionsFilter<vector<Museum>> removeMuseums("Remove Museums", removeMuseumsOpt,
@@ -115,13 +137,14 @@ AdminInterface::show()
 	MenuSelectFilter<vector<Enterprise>> removeEnterprisesSelected("Remove selected enterprises",
 		[this](vector<Enterprise> &vec){
 			if(vec.size() == this->museum_network.getEnterprises().size()) // If user has all of them selected
-			cout << "Warning! You will remove all of them!!\n";
+				cout << "Warning! You will remove all of them!!\n";
 			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 			if(a=='y' || a=='Y') {
 				this->museum_network.removeEnterprises(vec);
-				cout <<	"Enterprises removed!"; utl::pauseConsole();
-				}
+				cout <<	"Enterprise(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
+			}
 			else
 				cout << "Operation aborted" << endl;
 		});
@@ -142,8 +165,9 @@ AdminInterface::show()
 			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 			if(a=='y' || a=='Y') {
 				this->museum_network.removeCards(vec);
-				cout <<	"Cards removed!"; utl::pauseConsole();
-				}
+				cout <<	"Card(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
+			}
 			else
 				cout << "Operation aborted" << endl;
 		});
@@ -156,7 +180,7 @@ AdminInterface::show()
 
 
 	/* Remove Network Options */
-	MenuOptions remove_network("Network Remove Options", std::vector<Menu*>{&removeMuseums, &removeEnterprises, &removeCards});
+	MenuOptions remove_network("Network Remove Options", std::vector<Menu*>{&removeEvents, &removeMuseums, &removeEnterprises, &removeCards});
 
 
 	/* Add User */

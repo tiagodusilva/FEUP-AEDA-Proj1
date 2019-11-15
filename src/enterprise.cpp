@@ -56,7 +56,7 @@ void Enterprise::add_event(Event &ev) {
 
 void Enterprise::remove_event(unsigned id) {
     for (const auto &ev: this->events) {
-        if (ev.get_id() == 0) {
+        if (ev.get_id() == id) {
             events.erase(ev);
             return;
         }

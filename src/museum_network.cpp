@@ -127,7 +127,7 @@ void MuseumNetwork::addEnterprise(Enterprise enterprise) {
 
 
 void MuseumNetwork::removeMuseums(std::vector<Museum> &museums_to_be_removed) {
-	/* Given a vector of pointers to museums, remove all of the museums in the network are
+	/* Given a vector of museums, remove all of the museums in the network are
 	present in the given vector. */
 
 	int i;
@@ -205,6 +205,8 @@ vector<Event> MuseumNetwork::getEvents() const {
 	}
 
 	vector<Event> events;
+	events.reserve(number_events+1); // Allocate vector with number of events
+
 	for (auto &ent: this->enterprises) // Iterate through enterpises
 		for (auto &x: ent.get_events()) { // Iterate through set of events
 			 events.push_back(x);
@@ -226,6 +228,34 @@ void MuseumNetwork::addEvent(const Enterprise &enterprise, Event &event) {
 	vector<Enterprise>::iterator iter = find(enterprises.begin(), enterprises.end(), enterprise);
 	(*iter).add_event(event);
 }
+
+
+void MuseumNetwork::removeEvents(std::vector<Event> &events_to_be_removed) {
+	/* Given a vector of events, remove all of the events in the network which are
+	present in the given vector. */
+
+	int i;
+	for (i = 0; i < events_to_be_removed.size(); ++i) {
+		vector<Enterprise>::iterator iter;
+		Event event = events_to_be_removed.at(i);
+
+		/* Search for enterprise which holds the event */
+		iter = find_if(enterprises.begin(), enterprises.end(),
+					[&event](Enterprise enterprise) { return(enterprise.has_event(event.get_id())); });
+
+		if(iter == enterprises.end()) {
+			cout << "Ups";
+			throw(EventNotFound(event.get_id()));
+		}
+
+		removeEvent(event, *iter);
+	}
+}
+
+void MuseumNetwork::removeEvent(const Event &event, Enterprise &enterprise) {
+	enterprise.remove_event(event.get_id());
+}
+
 
 void MuseumNetwork::purchaseEvent(const unsigned cc, Event event) {
 	int i;

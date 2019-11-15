@@ -252,6 +252,42 @@ TEST(network, DISABLED_export_network){
 	rnm.exportFiles("files/cards.txt", "files/museums.txt", "files/enterprises.txt");
 }
 
+TEST(network, remove_events){
+	MuseumNetwork rnm;
+
+	//rnm.importFiles("111");
+	//int len = rnm.getEvents().size();
+	int len=0;
+
+	Event e1("1a", 23, 5, Address("Portoa"), Time(9, 0), Date(2002, 9, 11)),
+		  e2("2a", 23, 2, Address("Asda"), Time(11, 0), Date(2011, 9, 21)),
+		  e3("3a", 10, 3, Address("Opaa"), Time(15, 0), Date(2019, 4, 4)),
+		  e4("4a", 10, 6, Address("Nicea"), Time(20, 0), Date(2020, 1, 11)),
+		  e5("5a", 15, 8, Address("Evoraa"), Time(9, 50), Date(2030, 7, 15)),
+		  e6("6a", 30, 9, Address("Aveirsoa"), Time(11, 10), Date(2001, 10, 5));
+
+	set<Event> set1 = {e1, e2, e3};
+	set<Event> set2 = {e4, e5, e6};
+
+	Enterprise ent1("Ent1", "912", Address("Opa"), set1),
+			   ent2("Ent2", "123", Address("Nice"), set2);
+
+	rnm.addEnterprise(ent1);
+	rnm.addEnterprise(ent2);
+
+	ASSERT_GE(rnm.getEnterprises().size(), 2); // This test only works if there are more than two enterprises
+
+//	rnm.addEvent(ent1, e1); rnm.addEvent(ent1, e2); rnm.addEvent(ent1, e3); rnm.addEvent(ent1, e4);
+//	rnm.addEvent(ent2, e5); rnm.addEvent(ent2, e6); rnm.addEvent(ent2, e7);
+
+	vector<Event> vec = {e1,e2,e3,e4, e5, e6};
+	ASSERT_EQ(rnm.getEvents().size(), len+6);
+
+	rnm.removeEvents(vec);
+
+	ASSERT_EQ(rnm.getEvents().size(), len);
+}
+
 TEST(network, DISABLED_import_cards){
 	MuseumNetwork rnm;
 
@@ -276,11 +312,11 @@ TEST(network, DISABLED_import_enterprises){
 	//rnm.listEnterprises();
 }
 
-TEST(network, import_network){
+TEST(network, DISABLED_import_network){
 	MuseumNetwork rnm;
 
 	rnm.importFiles("files/network_config.sadjson");
-	rnm.listEnterprises();
+	//rnm.listEnterprises();
 	rnm.listMuseums();
 	rnm.listCards();
 	rnm.listEvents();
