@@ -17,19 +17,19 @@ Collaboration diagram for Museum\+Network\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classMuseumNetwork_ac4557c93ad5ffde7ed0436a9591293d0}{Museum\+Network}} ()=default
-\item 
-\mbox{\hyperlink{classMuseumNetwork_a43d45d9fa6595cbbd3b31502b2215df7}{Museum\+Network}} (std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ card\+\_\+vector, std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ enterprise\+\_\+vector, std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ museum\+\_\+vector)
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMuseumNetwork_a0c6b92bc812adf16eb94daf9802c95fb}{Museum\+Network}} (std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&card\+\_\+vector, std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \&enterprise\+\_\+vector, std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \&museum\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMuseumNetwork_a2e98693125a6e03ab83de22aa4245dd9}{Museum\+Network}} (std\+::string config\+\_\+file\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMuseumNetwork_a8284d8c37dbd5185cce10f257febae6d}{add\+Card}} (\mbox{\hyperlink{classCard}{Card}} $\ast$card)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a new user \mbox{\hyperlink{classCard}{Card}} to the network. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMuseumNetwork_a0153b81ca5cb684edd66768006aba351}{remove\+Card}} (const \mbox{\hyperlink{classCard}{Card}} $\ast$card)
-\item 
+\begin{DoxyCompactList}\small\item\em Search for the given \mbox{\hyperlink{classCard}{Card}} on the network and remove it. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMuseumNetwork_a4b35eefe379eef5ca4b0914cbf2d04b9}{remove\+Cards}} (const std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&cards\+\_\+to\+\_\+be\+\_\+removed)
-\item 
+\begin{DoxyCompactList}\small\item\em Search for the given Cards on the network and remove them. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMuseumNetwork_a3da43e28c8efe68bd756898d1ac739ad}{modify\+Card}} (\mbox{\hyperlink{classCard}{Card}} $\ast$card)
-\item 
+\begin{DoxyCompactList}\small\item\em Search for the given \mbox{\hyperlink{classCard}{Card}} on the network and remove it. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMuseumNetwork_ad4a03e33b3b97204eb46cf70ba3c8dc6}{list\+Cards}} (const std\+::string \&delim=\textquotesingle{}\textbackslash{}n\textquotesingle{}+std\+::string(64, \textquotesingle{}-\/\textquotesingle{})+\textquotesingle{}\textbackslash{}n\textquotesingle{}) const
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a7980536b4b16d5301848390487ef2491}{list\+Cards}} (const std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&cards\+\_\+to\+\_\+be\+\_\+listed, const std\+::string \&delim=\textquotesingle{}\textbackslash{}n\textquotesingle{}+std\+::string(64, \textquotesingle{}-\/\textquotesingle{})+\textquotesingle{}\textbackslash{}n\textquotesingle{}) const
@@ -84,6 +84,10 @@ void \mbox{\hyperlink{classMuseumNetwork_ab7393e13037b00ed2dfb18fc9ca6d5cc}{list
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_ace3bb75b88f3e88fe6782e832fa79c29}{add\+Event}} (const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&enterprise, \mbox{\hyperlink{classEvent}{Event}} \&event)
 \item 
+void \mbox{\hyperlink{classMuseumNetwork_a9c15fa45678d9ca0197b7bd7db7c4364}{remove\+Event}} (const \mbox{\hyperlink{classEvent}{Event}} \&event\+\_\+to\+\_\+be\+\_\+removed, \mbox{\hyperlink{classEnterprise}{Enterprise}} \&\mbox{\hyperlink{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}{enterprises}})
+\item 
+void \mbox{\hyperlink{classMuseumNetwork_a111a1d66cf30d99a9c9ea9ff0dff2591}{remove\+Events}} (std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&events\+\_\+to\+\_\+be\+\_\+removed)
+\item 
 void \mbox{\hyperlink{classMuseumNetwork_aa4b83727a3cadac611a357f600ae69d9}{purchase\+Event}} (const unsigned cc, \mbox{\hyperlink{classEvent}{Event}} event)
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a93f80c3faf00ca518c7abc1f7db8f095}{update\+Events}} (std\+::string enterprise\+\_\+file\+\_\+name)
@@ -104,15 +108,15 @@ void \mbox{\hyperlink{classMuseumNetwork_a063e59c1ea278b9cc62a4517fb473717}{expo
 \begin{DoxyCompactItemize}
 \item 
 float \mbox{\hyperlink{classMuseumNetwork_a69e6c7010c2fcf575a1a8eaea976741d}{discount}} \mbox{[}3\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em List of the different discounts applied to Cards. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classMuseumNetwork_a2926858eb2b410193ea0d3c8b6f8fbd7}{cost}} \mbox{[}3\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em List of the different \mbox{\hyperlink{classCard}{Card}}\textquotesingle{}s creation/renewal cost. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \mbox{\hyperlink{classMuseumNetwork_ad9e89d7eb3c33a0844f572174b53b9b3}{cards}}
-\item 
+\begin{DoxyCompactList}\small\item\em List of pointers to all the registered User\textquotesingle{}s Cards. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \mbox{\hyperlink{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}{enterprises}}
-\item 
+\begin{DoxyCompactList}\small\item\em List of all the Enterprises associated with the \mbox{\hyperlink{classMuseum}{Museum}} Network. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \mbox{\hyperlink{classMuseumNetwork_a8626a5bde573d2c87f4247a317f0d8b9}{museums}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em List of all the Museums that are part of the \mbox{\hyperlink{classMuseum}{Museum}} Network. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -129,18 +133,44 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{MuseumNetwork()}{MuseumNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily Museum\+Network\+::\+Museum\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-\mbox{\Hypertarget{classMuseumNetwork_a43d45d9fa6595cbbd3b31502b2215df7}\label{classMuseumNetwork_a43d45d9fa6595cbbd3b31502b2215df7}} 
+
+
+Default constructor. 
+
+\mbox{\Hypertarget{classMuseumNetwork_a0c6b92bc812adf16eb94daf9802c95fb}\label{classMuseumNetwork_a0c6b92bc812adf16eb94daf9802c95fb}} 
 \index{MuseumNetwork@{MuseumNetwork}!MuseumNetwork@{MuseumNetwork}}
 \index{MuseumNetwork@{MuseumNetwork}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{MuseumNetwork()}{MuseumNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily Museum\+Network\+::\+Museum\+Network (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$}]{card\+\_\+vector,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$}]{enterprise\+\_\+vector,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$}]{museum\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Museum\+Network\+::\+Museum\+Network (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&}]{card\+\_\+vector,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \&}]{enterprise\+\_\+vector,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \&}]{museum\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Constructor for the \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card\+\_\+vector} & Vector of pointers to registered user Cards to add to the Network \\
+\hline
+{\em enterprise\+\_\+vector} & Vector of enterprises to add to the Network \\
+\hline
+{\em museum\+\_\+vector} & Vector of museums to add to the Network \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMuseumNetwork_a2e98693125a6e03ab83de22aa4245dd9}\label{classMuseumNetwork_a2e98693125a6e03ab83de22aa4245dd9}} 
 \index{MuseumNetwork@{MuseumNetwork}!MuseumNetwork@{MuseumNetwork}}
 \index{MuseumNetwork@{MuseumNetwork}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{MuseumNetwork()}{MuseumNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily Museum\+Network\+::\+Museum\+Network (\begin{DoxyParamCaption}\item[{std\+::string}]{config\+\_\+file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Constructor for the \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file\+\_\+name} & Name of the file to read the new \mbox{\hyperlink{classMuseum}{Museum}} Network configuration from\textbackslash{}n\+Including the names of the files that containing the new information \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
@@ -150,6 +180,15 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{addCard()}{addCard()}}
 {\footnotesize\ttfamily void Museum\+Network\+::add\+Card (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCard}{Card}} $\ast$}]{card }\end{DoxyParamCaption})}
 
+
+
+Add a new user \mbox{\hyperlink{classCard}{Card}} to the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & Pointer (to a new user \mbox{\hyperlink{classCard}{Card}}) to be added to the network \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMuseumNetwork_a89f13ccc87651ce082c18d3d28383666}\label{classMuseumNetwork_a89f13ccc87651ce082c18d3d28383666}} 
 \index{MuseumNetwork@{MuseumNetwork}!addEnterprise@{addEnterprise}}
 \index{addEnterprise@{addEnterprise}!MuseumNetwork@{MuseumNetwork}}
@@ -318,6 +357,15 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{modifyCard()}{modifyCard()}}
 {\footnotesize\ttfamily void Museum\+Network\+::modify\+Card (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCard}{Card}} $\ast$}]{card }\end{DoxyParamCaption})}
 
+
+
+Search for the given \mbox{\hyperlink{classCard}{Card}} on the network and remove it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMuseumNetwork_ae27253194d7fff07c7a057e641489406}\label{classMuseumNetwork_ae27253194d7fff07c7a057e641489406}} 
 \index{MuseumNetwork@{MuseumNetwork}!modifyEnterprise@{modifyEnterprise}}
 \index{modifyEnterprise@{modifyEnterprise}!MuseumNetwork@{MuseumNetwork}}
@@ -342,12 +390,30 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{removeCard()}{removeCard()}}
 {\footnotesize\ttfamily void Museum\+Network\+::remove\+Card (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCard}{Card}} $\ast$}]{card }\end{DoxyParamCaption})}
 
+
+
+Search for the given \mbox{\hyperlink{classCard}{Card}} on the network and remove it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & Pointer to the \mbox{\hyperlink{classCard}{Card}} to find and remove from the network \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMuseumNetwork_a4b35eefe379eef5ca4b0914cbf2d04b9}\label{classMuseumNetwork_a4b35eefe379eef5ca4b0914cbf2d04b9}} 
 \index{MuseumNetwork@{MuseumNetwork}!removeCards@{removeCards}}
 \index{removeCards@{removeCards}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{removeCards()}{removeCards()}}
 {\footnotesize\ttfamily void Museum\+Network\+::remove\+Cards (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&}]{cards\+\_\+to\+\_\+be\+\_\+removed }\end{DoxyParamCaption})}
 
+
+
+Search for the given Cards on the network and remove them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cards\+\_\+to\+\_\+be\+\_\+removed} & List of pointers to the Cards to be removed from the network \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classMuseumNetwork_af5b071fe23ce5d2c4cf1d897dae2cd53}\label{classMuseumNetwork_af5b071fe23ce5d2c4cf1d897dae2cd53}} 
 \index{MuseumNetwork@{MuseumNetwork}!removeEnterprise@{removeEnterprise}}
 \index{removeEnterprise@{removeEnterprise}!MuseumNetwork@{MuseumNetwork}}
@@ -359,6 +425,18 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \index{removeEnterprises@{removeEnterprises}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{removeEnterprises()}{removeEnterprises()}}
 {\footnotesize\ttfamily void Museum\+Network\+::remove\+Enterprises (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \&}]{museum\+\_\+to\+\_\+be\+\_\+removed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classMuseumNetwork_a9c15fa45678d9ca0197b7bd7db7c4364}\label{classMuseumNetwork_a9c15fa45678d9ca0197b7bd7db7c4364}} 
+\index{MuseumNetwork@{MuseumNetwork}!removeEvent@{removeEvent}}
+\index{removeEvent@{removeEvent}!MuseumNetwork@{MuseumNetwork}}
+\doxysubsubsection{\texorpdfstring{removeEvent()}{removeEvent()}}
+{\footnotesize\ttfamily void Museum\+Network\+::remove\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEvent}{Event}} \&}]{event\+\_\+to\+\_\+be\+\_\+removed,  }\item[{\mbox{\hyperlink{classEnterprise}{Enterprise}} \&}]{enterprises }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classMuseumNetwork_a111a1d66cf30d99a9c9ea9ff0dff2591}\label{classMuseumNetwork_a111a1d66cf30d99a9c9ea9ff0dff2591}} 
+\index{MuseumNetwork@{MuseumNetwork}!removeEvents@{removeEvents}}
+\index{removeEvents@{removeEvents}!MuseumNetwork@{MuseumNetwork}}
+\doxysubsubsection{\texorpdfstring{removeEvents()}{removeEvents()}}
+{\footnotesize\ttfamily void Museum\+Network\+::remove\+Events (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{events\+\_\+to\+\_\+be\+\_\+removed }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{classMuseumNetwork_a8d8763068e7e4c7bf5a04e80727e38af}\label{classMuseumNetwork_a8d8763068e7e4c7bf5a04e80727e38af}} 
 \index{MuseumNetwork@{MuseumNetwork}!removeMuseum@{removeMuseum}}
@@ -402,11 +480,19 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{cards}{cards}}
 {\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classCard}{Card}}$\ast$$>$ Museum\+Network\+::cards\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+List of pointers to all the registered User\textquotesingle{}s Cards. 
+
 \mbox{\Hypertarget{classMuseumNetwork_a2926858eb2b410193ea0d3c8b6f8fbd7}\label{classMuseumNetwork_a2926858eb2b410193ea0d3c8b6f8fbd7}} 
 \index{MuseumNetwork@{MuseumNetwork}!cost@{cost}}
 \index{cost@{cost}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{cost}{cost}}
 {\footnotesize\ttfamily float Museum\+Network\+::cost\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of the different \mbox{\hyperlink{classCard}{Card}}\textquotesingle{}s creation/renewal cost. 
 
 \mbox{\Hypertarget{classMuseumNetwork_a69e6c7010c2fcf575a1a8eaea976741d}\label{classMuseumNetwork_a69e6c7010c2fcf575a1a8eaea976741d}} 
 \index{MuseumNetwork@{MuseumNetwork}!discount@{discount}}
@@ -414,17 +500,29 @@ std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d
 \doxysubsubsection{\texorpdfstring{discount}{discount}}
 {\footnotesize\ttfamily float Museum\+Network\+::discount\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+List of the different discounts applied to Cards. 
+
 \mbox{\Hypertarget{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}\label{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}} 
 \index{MuseumNetwork@{MuseumNetwork}!enterprises@{enterprises}}
 \index{enterprises@{enterprises}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{enterprises}{enterprises}}
 {\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classEnterprise}{Enterprise}}$>$ Museum\+Network\+::enterprises\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+List of all the Enterprises associated with the \mbox{\hyperlink{classMuseum}{Museum}} Network. 
+
 \mbox{\Hypertarget{classMuseumNetwork_a8626a5bde573d2c87f4247a317f0d8b9}\label{classMuseumNetwork_a8626a5bde573d2c87f4247a317f0d8b9}} 
 \index{MuseumNetwork@{MuseumNetwork}!museums@{museums}}
 \index{museums@{museums}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{museums}{museums}}
 {\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classMuseum}{Museum}}$>$ Museum\+Network\+::museums\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of all the Museums that are part of the \mbox{\hyperlink{classMuseum}{Museum}} Network. 
 
 
 
