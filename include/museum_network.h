@@ -94,6 +94,10 @@ public:
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
 	void addEvent(const Enterprise &enterprise, Event &event);
+
+	void removeEvent(const Event &event_to_be_removed, Enterprise &enterprises);
+	void removeEvents(std::vector<Event> &events_to_be_removed);
+
 	void purchaseEvent(const unsigned cc, Event event);
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
 
