@@ -84,8 +84,7 @@ public:
 
 
     /**
-     * @brief          Adds an Event to the Enterprise\n
-     *                 If successful, the destructor of ev will be called
+     * @brief          Adds an Event to the Enterprise
      *
      * @param ev        Event to add to the Enterprise\n
      *                  If the Event is added successfully, the Event's id will permanently be set to 0, to guarantee the uniqueness of every Event
@@ -94,6 +93,21 @@ public:
      *                              That said, if it does get thrown, something really odd is going on
      */
     void add_event(Event &ev);
+
+    /**
+     * @brief          Removes an Event from the Enterprise or works as garbage collector (id=0)
+     *
+     * @details        If successful, the event will be removed from memory\n
+     *                 If id is set to 0, it will remove the event with id 0 (aka completely invalid),
+     *                 also known as garbage collection, because there can only one event with id 0 at
+     *                 a time inside an enterprise
+     *
+     * @param id       Id of the event to remove, if id is 0, it will work as a garbage collector (read description)
+     *
+     * @throws    EventNotFound   Only throws this exception when not in garbage collection mode (id != 0), if
+     *                            this Enterprise does not have an Event with the specified id
+     */
+    void remove_event(unsigned id);
 
     /**
      * @brief     Checks for the existence of a specific Event

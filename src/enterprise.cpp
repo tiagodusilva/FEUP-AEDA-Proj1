@@ -53,6 +53,20 @@ void Enterprise::add_event(Event &ev) {
 
 }
 
+
+void Enterprise::remove_event(unsigned id) {
+    for (const auto &ev: this->events) {
+        if (ev.get_id() == 0) {
+            events.erase(ev);
+            return;
+        }
+    }
+
+    if (id != 0)
+        throw EventNotFound(id);
+}
+
+
 bool Enterprise::has_event(unsigned id) const {
     for (const auto &ev: this->events) {
         if (ev == id)
@@ -112,7 +126,7 @@ std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent) {
         infstream >> num_events; utl::ignore(infstream);
 
         Event auxEv;
-        for (; num_events > 0; --num_events) {
+            for (; num_events > 0; --num_events) {
             infstream >> auxEv;
             ent.events.insert(auxEv);
         }
