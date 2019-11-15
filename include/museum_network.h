@@ -75,11 +75,6 @@ public:
 	 * @param cards_to_be_removed	List of pointers to the Cards to be removed from the network
 	 */
 	void removeCards(const std::vector<Card*> &cards_to_be_removed);
-	/**
-	 * @brief	Search for the given Card on the network and remove it
-	 *
-	 * @param card
-	 */
 	void modifyCard(Card* card);
 
 	void listCards(const std::string &delim='\n' + std::string(64, '-') + '\n') const;

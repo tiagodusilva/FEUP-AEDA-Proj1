@@ -46,7 +46,9 @@ void MuseumNetwork::modifyCard(Card* card_to_be_modified_to) {
 	*/
 	vector<Card*>::iterator iter;
 	iter = (find_if(this->cards.begin(), this->cards.end(),
-			[&card_to_be_modified_to](Card *lhs){ return( *lhs == *card_to_be_modified_to ); }));
+			[&card_to_be_modified_to](Card *lhs){
+				return( *lhs == *card_to_be_modified_to );
+			}));
 
 	if(iter != this->cards.end())
 		(*iter) = card_to_be_modified_to;
