@@ -31,12 +31,12 @@
 <text text-anchor="middle" x="66.5" y="-414.5" font-family="Helvetica,sans-Serif" font-size="10.00">Card</text>
 <polyline fill="none" stroke="black" points="0,-407.5 133,-407.5 "/>
 <text text-anchor="start" x="8" y="-395.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; cc</text>
-<text text-anchor="start" x="8" y="-384.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; contact</text>
-<text text-anchor="start" x="8" y="-373.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; name</text>
-<text text-anchor="start" x="8" y="-362.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; creation_date</text>
+<text text-anchor="start" x="8" y="-384.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; name</text>
+<text text-anchor="start" x="8" y="-373.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; contact</text>
+<text text-anchor="start" x="8" y="-362.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; address</text>
 <text text-anchor="start" x="8" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; birth_date</text>
-<text text-anchor="start" x="8" y="-340.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; expiration_date</text>
-<text text-anchor="start" x="8" y="-329.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; address</text>
+<text text-anchor="start" x="8" y="-340.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; creation_date</text>
+<text text-anchor="start" x="8" y="-329.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; expiration_date</text>
 <polyline fill="none" stroke="black" points="0,-322.5 133,-322.5 "/>
 <text text-anchor="start" x="8" y="-310.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Card()</text>
 <text text-anchor="start" x="8" y="-299.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Card()</text>

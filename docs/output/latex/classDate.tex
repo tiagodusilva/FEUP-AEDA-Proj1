@@ -11,8 +11,7 @@ Class that saves and handles date information in our project.
 
 
 
-Collaboration diagram for Date\+:
-\nopagebreak
+Collaboration diagram for Date\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -54,14 +53,14 @@ unsigned int \mbox{\hyperlink{classDate_a66a504a12fc48fad592d9c062ec2b3e0}{opera
 \begin{DoxyCompactItemize}
 \item 
 bool \mbox{\hyperlink{classDate_a1ef9d7fa0f57109137d96b06f4de96a9}{syncmembers}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em syncs information in the \textquotesingle{}date\+\_\+tm\textquotesingle{} data member to the \textquotesingle{}date\+\_\+int\textquotesingle{} data member \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 time\+\_\+t \mbox{\hyperlink{classDate_ab9fded1bbde30a83a1b1cd1e1f2a459e}{date\+\_\+int}}
-\item 
+\begin{DoxyCompactList}\small\item\em integer type that stores the number of seconds since the Epoch \end{DoxyCompactList}\item 
 tm \mbox{\hyperlink{classDate_a4627f972ef42a3712458593a7dcbc5e4}{date\+\_\+tm}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em struct that stores the translated date info (year, month, day, etc...) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -328,6 +327,10 @@ The number of days between 2 \mbox{\hyperlink{classDate}{Date}} objects. Always 
 
 
 
+syncs information in the \textquotesingle{}date\+\_\+tm\textquotesingle{} data member to the \textquotesingle{}date\+\_\+int\textquotesingle{} data member 
+
+
+
 \doxysubsection{Friends And Related Function Documentation}
 \mbox{\Hypertarget{classDate_ac475ace5c4a19da55cb749309cf311a8}\label{classDate_ac475ace5c4a19da55cb749309cf311a8}} 
 \index{Date@{Date}!operator$>$$>$@{operator$>$$>$}}
@@ -360,11 +363,19 @@ Reference to the istream object, \textquotesingle{}instream\textquotesingle{}, p
 \doxysubsubsection{\texorpdfstring{date\_int}{date\_int}}
 {\footnotesize\ttfamily time\+\_\+t Date\+::date\+\_\+int\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+integer type that stores the number of seconds since the Epoch 
+
 \mbox{\Hypertarget{classDate_a4627f972ef42a3712458593a7dcbc5e4}\label{classDate_a4627f972ef42a3712458593a7dcbc5e4}} 
 \index{Date@{Date}!date\_tm@{date\_tm}}
 \index{date\_tm@{date\_tm}!Date@{Date}}
 \doxysubsubsection{\texorpdfstring{date\_tm}{date\_tm}}
 {\footnotesize\ttfamily tm Date\+::date\+\_\+tm\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+struct that stores the translated date info (year, month, day, etc...) 
 
 
 

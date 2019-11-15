@@ -11,8 +11,7 @@ Class that saves and handles address information in our project.
 
 
 
-Collaboration diagram for Address\+:
-\nopagebreak
+Collaboration diagram for Address\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -43,11 +42,11 @@ static bool \mbox{\hyperlink{classAddress_a0f839ad81c7c1f73988c3620bcc9fe3a}{ver
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{classAddress_af68d0b79214ab49767ae07ebccaeed5f}{street}}
-\item 
+\begin{DoxyCompactList}\small\item\em the address\textquotesingle{} street (undefined for half-\/address and instances of the default constructor) \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classAddress_a13a85e81a6f3b392a79ff18b6a5a2391}{zip\+Code}}
-\item 
+\begin{DoxyCompactList}\small\item\em the address\textquotesingle{} street zip-\/code (0000-\/000 for half-\/address and X\+X\+X\+X-\/\+X\+XX for instance of the default constructor) \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classAddress_a5660f7f8702d81efd72a1f53ed372d74}{region}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em the address\textquotesingle{} region (undefined for instances of the default constructor) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -288,17 +287,29 @@ Reference to the istream object, \textquotesingle{}instream\textquotesingle{}, p
 \doxysubsubsection{\texorpdfstring{region}{region}}
 {\footnotesize\ttfamily std\+::string Address\+::region\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the address\textquotesingle{} region (undefined for instances of the default constructor) 
+
 \mbox{\Hypertarget{classAddress_af68d0b79214ab49767ae07ebccaeed5f}\label{classAddress_af68d0b79214ab49767ae07ebccaeed5f}} 
 \index{Address@{Address}!street@{street}}
 \index{street@{street}!Address@{Address}}
 \doxysubsubsection{\texorpdfstring{street}{street}}
 {\footnotesize\ttfamily std\+::string Address\+::street\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the address\textquotesingle{} street (undefined for half-\/address and instances of the default constructor) 
+
 \mbox{\Hypertarget{classAddress_a13a85e81a6f3b392a79ff18b6a5a2391}\label{classAddress_a13a85e81a6f3b392a79ff18b6a5a2391}} 
 \index{Address@{Address}!zipCode@{zipCode}}
 \index{zipCode@{zipCode}!Address@{Address}}
 \doxysubsubsection{\texorpdfstring{zipCode}{zipCode}}
 {\footnotesize\ttfamily std\+::string Address\+::zip\+Code\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the address\textquotesingle{} street zip-\/code (0000-\/000 for half-\/address and X\+X\+X\+X-\/\+X\+XX for instance of the default constructor) 
 
 
 

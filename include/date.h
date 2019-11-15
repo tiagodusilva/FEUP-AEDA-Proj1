@@ -29,10 +29,12 @@
 class Date
 {
 private:
+	/** @brief	integer type that stores the number of seconds since the Epoch */
 	time_t date_int;
+	/** @brief	struct that stores the translated date info (year, month, day, etc...) */
 	tm date_tm;
 
-	/* sync time_tm info to time_t */
+	/** @brief	syncs information in the 'date_tm' data member to the 'date_int' data member */
 	bool syncmembers();
 
 public:

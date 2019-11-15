@@ -16,8 +16,8 @@
 <text text-anchor="middle" x="117.5" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">Card</text>
 <polyline fill="none" stroke="black" points="51,-247.5 184,-247.5 "/>
 <text text-anchor="start" x="59" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; cc</text>
-<text text-anchor="start" x="59" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; contact</text>
-<text text-anchor="start" x="59" y="-213.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; name</text>
+<text text-anchor="start" x="59" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; name</text>
+<text text-anchor="start" x="59" y="-213.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45; contact</text>
 <polyline fill="none" stroke="black" points="51,-206.5 184,-206.5 "/>
 <text text-anchor="start" x="59" y="-194.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Card()</text>
 <text text-anchor="start" x="59" y="-183.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Card()</text>

@@ -37,10 +37,22 @@
  */
 class Card {
 private:
+	/** @brief	the user's citizen card number */
 	unsigned int cc;
-	std::string contact, name;
-	Date creation_date, birth_date, expiration_date;
+	/** @brief	the user's name */
+	std::string name;
+	/** @brief	the user's contact (phone number or email, etc...) */
+	std::string contact;
+	/** @brief	the user's address */
 	Address address;
+
+	/** @brief	the user's birth date */
+	Date birth_date;
+	/** @brief	the user's Card creation date */
+	Date creation_date;
+	/** @brief	the user's Card expiration date */
+	Date expiration_date;
+
 public:
 	/* CONSTRUCTORS */
 	/**
@@ -77,7 +89,6 @@ public:
 	 * @param c	Pointer to a Card class
 	 */
 	static void cin_read_card(Card* &c);
-
 	/**
 	 * @brief	Check if the Card is not expired
 	 *
@@ -91,7 +102,7 @@ public:
 	 */
 	void renew();
 
-	/* setters */
+	/* SETTERS */
 	/**
 	 * @brief	Changes user's saved contact
 	 *
@@ -117,7 +128,7 @@ public:
 	 */
 	void set_address(const Address &a) { this->address = a; }
 
-	/* getters */
+	/* GETTERS */
 	/**
 	 * @brief	get user's saved CC
 	 *

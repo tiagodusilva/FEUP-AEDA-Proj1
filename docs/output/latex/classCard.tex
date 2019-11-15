@@ -75,19 +75,19 @@ static void \mbox{\hyperlink{classCard_afbe3b43011d1754363fe8e0ae3ab79ee}{cin\+\
 \begin{DoxyCompactItemize}
 \item 
 unsigned int \mbox{\hyperlink{classCard_a5b14e78436f7dbea5d86273a93414d62}{cc}}
-\item 
-std\+::string \mbox{\hyperlink{classCard_a3598ea8382a774705448247c3e19d8ad}{contact}}
-\item 
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s citizen card number \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classCard_a1f5013054990456125c82d805744062f}{name}}
-\item 
-\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a0cb4eb3daf6159a2fca3d1b92d870610}{creation\+\_\+date}}
-\item 
-\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a19b24422384083b74a902879e4c5da3a}{birth\+\_\+date}}
-\item 
-\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a27d831552c9ddf754003721165f78e80}{expiration\+\_\+date}}
-\item 
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s name \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCard_a3598ea8382a774705448247c3e19d8ad}{contact}}
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s contact (phone number or email, etc...) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classCard_a93b2605af6a4cc97abacc2b2dfb0b184}{address}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s address \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a19b24422384083b74a902879e4c5da3a}{birth\+\_\+date}}
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s birth date \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a0cb4eb3daf6159a2fca3d1b92d870610}{creation\+\_\+date}}
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s \mbox{\hyperlink{classCard}{Card}} creation date \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDate}{Date}} \mbox{\hyperlink{classCard_a27d831552c9ddf754003721165f78e80}{expiration\+\_\+date}}
+\begin{DoxyCompactList}\small\item\em the user\textquotesingle{}s \mbox{\hyperlink{classCard}{Card}} expiration date \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -449,11 +449,19 @@ Reference to the ifstream object, \textquotesingle{}instream\textquotesingle{}, 
 \doxysubsubsection{\texorpdfstring{address}{address}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classAddress}{Address}} Card\+::address\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the user\textquotesingle{}s address 
+
 \mbox{\Hypertarget{classCard_a19b24422384083b74a902879e4c5da3a}\label{classCard_a19b24422384083b74a902879e4c5da3a}} 
 \index{Card@{Card}!birth\_date@{birth\_date}}
 \index{birth\_date@{birth\_date}!Card@{Card}}
 \doxysubsubsection{\texorpdfstring{birth\_date}{birth\_date}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDate}{Date}} Card\+::birth\+\_\+date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the user\textquotesingle{}s birth date 
 
 \mbox{\Hypertarget{classCard_a5b14e78436f7dbea5d86273a93414d62}\label{classCard_a5b14e78436f7dbea5d86273a93414d62}} 
 \index{Card@{Card}!cc@{cc}}
@@ -461,11 +469,19 @@ Reference to the ifstream object, \textquotesingle{}instream\textquotesingle{}, 
 \doxysubsubsection{\texorpdfstring{cc}{cc}}
 {\footnotesize\ttfamily unsigned int Card\+::cc\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the user\textquotesingle{}s citizen card number 
+
 \mbox{\Hypertarget{classCard_a3598ea8382a774705448247c3e19d8ad}\label{classCard_a3598ea8382a774705448247c3e19d8ad}} 
 \index{Card@{Card}!contact@{contact}}
 \index{contact@{contact}!Card@{Card}}
 \doxysubsubsection{\texorpdfstring{contact}{contact}}
 {\footnotesize\ttfamily std\+::string Card\+::contact\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the user\textquotesingle{}s contact (phone number or email, etc...) 
 
 \mbox{\Hypertarget{classCard_a0cb4eb3daf6159a2fca3d1b92d870610}\label{classCard_a0cb4eb3daf6159a2fca3d1b92d870610}} 
 \index{Card@{Card}!creation\_date@{creation\_date}}
@@ -473,17 +489,29 @@ Reference to the ifstream object, \textquotesingle{}instream\textquotesingle{}, 
 \doxysubsubsection{\texorpdfstring{creation\_date}{creation\_date}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDate}{Date}} Card\+::creation\+\_\+date\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the user\textquotesingle{}s \mbox{\hyperlink{classCard}{Card}} creation date 
+
 \mbox{\Hypertarget{classCard_a27d831552c9ddf754003721165f78e80}\label{classCard_a27d831552c9ddf754003721165f78e80}} 
 \index{Card@{Card}!expiration\_date@{expiration\_date}}
 \index{expiration\_date@{expiration\_date}!Card@{Card}}
 \doxysubsubsection{\texorpdfstring{expiration\_date}{expiration\_date}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDate}{Date}} Card\+::expiration\+\_\+date\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+the user\textquotesingle{}s \mbox{\hyperlink{classCard}{Card}} expiration date 
+
 \mbox{\Hypertarget{classCard_a1f5013054990456125c82d805744062f}\label{classCard_a1f5013054990456125c82d805744062f}} 
 \index{Card@{Card}!name@{name}}
 \index{name@{name}!Card@{Card}}
 \doxysubsubsection{\texorpdfstring{name}{name}}
 {\footnotesize\ttfamily std\+::string Card\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the user\textquotesingle{}s name 
 
 
 

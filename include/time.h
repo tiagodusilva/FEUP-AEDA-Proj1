@@ -22,7 +22,10 @@
 class Time
 {
 private:
-	short hour, min;
+	/** @brief	integer type that represents hours [0, 23] */
+	short hour;
+	/** @brief	integer type that represents minutes [0, 59] */
+	short min;
 
 public:
 	/* CONSTRUCTORS */

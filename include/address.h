@@ -27,7 +27,12 @@
 class Address
 {
 private:
-	std::string street, zipCode, region;
+	/** @brief	the address' street (undefined for half-address and instances of the default constructor) */
+	std::string street;
+	/** @brief	the address' street zip-code (0000-000 for half-address and XXXX-XXX for instance of the default constructor) */
+	std::string zipCode;
+	/** @brief	the address' region (undefined for instances of the default constructor) */
+	std::string region;
 public:
 	/* CONSTRUCTORS */
 	/**
