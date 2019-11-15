@@ -24,12 +24,21 @@
  */
 class Museum {
 private:
+	/** @brief	the museum's name */
 	std::string name;
-	Time open, close;
-	float entry_fee;
+	/** @brief	the museum's location */
 	Address address;
 
+	/** @brief	the museum's opening hour */
+	Time open;
+	/** @brief	the museum's closing hour */
+	Time close;
+
+	/** @brief	the museum's entry ticket cost */
+	float entry_fee;
+
 public:
+	/* CONSTRUCTORS */
 	/**
 	 * @brief    Default constructor
 	 */
@@ -49,7 +58,7 @@ public:
 	 */
 	~Museum() = default;
 
-
+	/* GETTERS */
 	/**
 	 * @brief     Getter for the name
 	 * @return    The name of this Museum
@@ -76,6 +85,7 @@ public:
 	 */
 	Address get_address() const;
 
+	/* OVERLOADED COMPARISON OPERATORS */
 	/**
 	 * @brief     Overloaded equality test operator
 	 *
@@ -87,7 +97,6 @@ public:
 	 *	      False, otherwise
 	 */
 	inline bool operator== (const Museum &museum) { return (this->name == museum.name) && (this->address == museum.address); }
-
 	/**
 	 * @brief     Overloaded inequality test operator
 	 *
@@ -100,7 +109,7 @@ public:
 	 */
 	inline bool operator!= (const Museum &museum) { return !this->operator==(museum); };
 
-
+	/* OVERLOADED INSERTION OPERATORS */
 	/**
 	 * @brief	       Overloaded ostream insertion operator
 	 *
@@ -123,6 +132,8 @@ public:
 	 * @return		Reference to the ofstream object, 'outfstream', passed in the parameters
 	 */
 	friend std::ofstream& operator<<(std::ofstream &outfstream, const Museum &ent);
+
+	/* OVERLOADED EXTRACTION OPERATORS */
 	/**
 	 * @brief	       Overloaded ifstream extraction operator
 	 *
@@ -135,6 +146,7 @@ public:
 	 */
 	friend std::ifstream &operator>>(std::ifstream &infstream, Museum &ent);
 
+	/* OTHER FUNCTIONS */
 	/**
 	 * @brief	Read a Museum from cin, outputting any user prompts to cout
 	 *
