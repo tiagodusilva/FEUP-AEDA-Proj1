@@ -33,6 +33,8 @@ private:
 	std::string name;
 	/** @brief	event's ticket price */
 	float ticket_fee;
+	/** @bried  event's location name */
+	std::string location_name;
 	/** @brief	event's location */
 	Address address;
 	/** @brief	event's starting time */
@@ -58,6 +60,7 @@ public:
 	* @param name	     The name of the Event
 	* @param cost	     The cost of the Event
 	* @param max_capacity	The maximum capacity of the Event, this is, the maximum number of elements of the reservations set)
+	* @param location_name   The name of where this Event takes place
 	* @param address	     The address of the Event
 	* @param time	     The time an Event starts
 	* @param date	     The day of the Event
@@ -66,7 +69,7 @@ public:
 	* @param is_valid	     A flag indicating if an Event is valid or not (to be used for various purposes by an enterprise)
 	*			     Defaults to true
 	*/
-	Event(const std::string& name, float cost, unsigned max_capacity, const Address& address, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
+	Event(const std::string& name, float cost, unsigned max_capacity, const std::string &location_name, const Address& address, const Time &time, const Date &date, const std::set<unsigned> &reservations=std::set<unsigned>(), bool is_valid=true);
 	/**
 	* @brief	 Default destructor
 	*/
@@ -107,6 +110,13 @@ public:
 	* @return	  The current capacity of this Event
 	*/
 	unsigned get_current_capacity() const;
+
+	/**
+	 * @brief     Getter for the location name
+	 *
+	 * @return    The location's name
+	 */
+	 std::string get_location_name() const;
 
 	/**
 	* @brief	  Getter for the address

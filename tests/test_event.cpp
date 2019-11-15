@@ -7,7 +7,7 @@
 using namespace std;
 
 TEST(events, files) {
-    Event ev1("Event", 15.75, 20, Address("Region"), Time(16, 0), Date(2019, 12, 25));
+    Event ev1("Event", 15.75, 20, "Location Name",Address("Region"), Time(16, 0), Date(2019, 12, 25));
 
     ofstream tofile("events.txt");
     tofile << ev1;
@@ -25,6 +25,7 @@ TEST(events, files) {
 
     ASSERT_EQ(ev1.get_id() + 1, ev2.get_id());
     ASSERT_EQ(ev1.get_name(), ev2.get_name());
+    ASSERT_EQ(ev1.get_location_name(), ev2.get_location_name());
     ASSERT_EQ(ev1.get_address(), ev2.get_address());
     ASSERT_EQ(ev1.get_fee(), ev2.get_fee());
     ASSERT_EQ(ev1.get_current_capacity(), ev2.get_current_capacity());

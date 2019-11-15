@@ -9,11 +9,12 @@ using namespace std;
 
 unsigned Event::id_tracker = 1;
 
-Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
+Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const string &locations_name, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
     this->id = id_tracker++;
     this->name = name;
     this->ticket_fee = ticket_fee;
     this->max_capacity = max_capacity;
+    this->location_name = location_name;
     this->address = address;
     this->time = time;
     this->date = date;
@@ -39,6 +40,10 @@ unsigned Event::get_max_capacity() const {
 
 unsigned Event::get_current_capacity() const {
     return this->reservations.size();
+}
+
+string Event::get_location_name() const {
+    return this->location_name;
 }
 
 Address Event::get_address() const {
@@ -97,14 +102,15 @@ bool Event::is_over() const {
 
 void Event::print_with_discount(std::ostream &outstream, float discount) const {
     outstream <<
-              left << setw(EVENT_OUPUT_DELIM) << "Name"	     << " : " << right << this->name << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << this->id << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << fixed << setprecision(2) << this->ticket_fee << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "With Discount"	     << " : " << right << fixed << setprecision(2) << this->ticket_fee * (1-discount) << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Name"	           << " : " << right << this->name << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Id"		       << " : " << right << this->id << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	   << " : " << right << fixed << setprecision(2) << this->ticket_fee << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "With Discount"   << " : " << right << fixed << setprecision(2) << this->ticket_fee * (1-discount) << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right << setprecision(0) << this->get_capacity_percentage() * 100 << "% de "  << this->max_capacity << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Location name"   << " : " << right << this->location_name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << this->address << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << this->date << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << this->time;
+              left << setw(EVENT_OUPUT_DELIM) << "Day"	           << " : " << right << this->date << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Time"	           << " : " << right << this->time;
 }
 
 std::ostream&
@@ -115,6 +121,7 @@ operator<<(std::ostream &outstream, const Event &ev)
 		left << setw(EVENT_OUPUT_DELIM) << "Id"		     << " : " << right << ev.id << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Ticket Fee"	     << " : " << right << fixed << setprecision(2) << ev.ticket_fee << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Tickets Sold"    << " : " << right  << setprecision(0) << ev.get_capacity_percentage() * 100 << "% de "  << ev.max_capacity << endl <<
+		left << setw(EVENT_OUPUT_DELIM) << "Location Name"   << " : " << right << ev.location_name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time;
@@ -136,6 +143,7 @@ std::ofstream &operator<<(std::ofstream &outfstream, const Event & ev) {
     }
 
     outfstream << to_string(ev.max_capacity) << endl;
+    outfstream << ev.location_name << endl;
     outfstream << ev.address << endl;
     outfstream << ev.date << endl;
     outfstream << ev.time << endl;
@@ -175,6 +183,9 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
 
         // MAX CAPACITY
         infstream >> ev.max_capacity; utl::ignore(infstream);
+
+        // LOCATION NAME
+        getline(infstream, ev.location_name);
 
         // ADDRESS
         infstream >> ev.address;
@@ -223,6 +234,12 @@ void Event::cin_read_event(Event &ev) {
             ev.max_capacity = stoi(temp_str);
         else
             throw UserInputReadingFailure("given capacity is not a number: " + temp_str);
+
+        /* location name */
+        cout << "Location name? ";
+        getline(std::cin, ev.location_name);
+        if (utl::isStrEmpty(ev.location_name))
+            throw UserInputReadingFailure("given location name is empty");
 
         /* address */
         cout << "Address (street name/XXXX-XXX/region name  or  region)? ";

@@ -7,7 +7,7 @@
 using namespace std;
 
 TEST(enterprise, files) {
-    Event ev("Event", 15.75, 20, Address("Street", "7654-321", "EventRegion"), Time(16, 00), Date(2019, 12, 25));
+    Event ev("Event", 15.75, 20, "Location Name",Address("Street", "7654-321", "EventRegion"), Time(16, 00), Date(2019, 12, 25));
     set<Event> s = {ev};
     Enterprise ent1("EnterpriseName", "enterprise@notgoogle", Address("Street", "1234-567", "Region"), s);
 
@@ -36,7 +36,7 @@ TEST(enterprise, files) {
 
 TEST(enterprise, add_event) {
     Enterprise ent("enterprise", "@email", Address("Rua", "1234-567", "Porto"));
-    Event ev("eventus", 12.75, 20, Address("Gaia"), Time(12, 40), Date(2019, 11, 16));
+    Event ev("eventus", 12.75, 20, "Conservatorio de Gaia",Address("Gaia"), Time(12, 40), Date(2019, 11, 16));
 
     unsigned temp_id = ev.get_id();
     ent.add_event(ev);
