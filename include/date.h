@@ -19,6 +19,9 @@
 /** @brief	the number of seconds in a min (60 seconds) */
 #define SECS_IN_MIN 60
 
+/** @brief	the number of minutes in an hour (60 minutes) */
+#define MIN_IN_HOUR 60
+
 /**
  * @brief	Class that saves and handles date information in our project
  *

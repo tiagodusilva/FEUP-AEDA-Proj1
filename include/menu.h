@@ -150,6 +150,7 @@ MenuOptionsFilter<Arg>::show(Arg &arg)
 	/* If show(Arg) is called then the object was instanciated by a MenuFilter object.
 	   We will thus modify arg (by calling MenuFilters in the options vector)
 	*/
+	this->options = options_backup;  // Reset all available options
 
 	bool go_back = false;
 	do {

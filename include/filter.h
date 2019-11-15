@@ -41,27 +41,47 @@ namespace flt
 	}
 
 	/* For use with silver cards checker */
-	inline void FilterEventByTimeCin(vector<Event> &vec) {
-		Time time;
-		cin >> time;
+	inline void FilterEventByTimeFrameCin(vector<Event> &vec) {
+		Time delta_time;
+		cout << "Timeframe (hour:min)?\n";
+		cin >> delta_time;
+
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid time"));
-		cout << "AHHHH";
+			throw(UserInputReadingFailure("Invalid timeframe"));
+
+		Date d_now; Time t_now;
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&time](Event elem) {
-				 cout << "TIMESPAN: " << timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) << endl;
-					return(timespan_size(Date(), Time(), elem.get_date(), elem.get_time()) <= time.get_hour()*60+time.get_min()); });
+				[&delta_time, &d_now, &t_now](Event elem) {
+					if(d_now > elem.get_date())
+						return true;
+					else {
+						/* Check if dates are the same but the event has already occurred */
+						if(d_now == elem.get_date() && t_now > elem.get_time())
+							return true;
+						else {
+							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
+							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
+						}
+					}
+				});
 		vec.erase(iter, vec.end());
 
 	}
-	inline void FilterEventByTimeFrame(vector<Event> &vec, unsigned delta_hour) {
+	inline void FilterEventByTimeFrame(vector<Event> &vec, const Time &delta_time) {
+		Date d_now; Time t_now;
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&delta_hour](Event elem) {
-					Date d_now; Time t_now;
-					if(d_now <= elem.get_date())
-						return false;
-					else
-						return (timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= SECONDS_IN_DAY*delta_hour);
+				[&delta_time, &d_now, &t_now](Event elem) {
+					if(d_now > elem.get_date())
+						return true;
+					else {
+						/* Check if dates are the same but the event has already occurred */
+						if(d_now == elem.get_date() && t_now > elem.get_time())
+							return true;
+						else {
+							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
+							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
+						}
+					}
 				});
 
 		vec.erase(iter, vec.end());
@@ -70,6 +90,27 @@ namespace flt
 	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&capacity_percentage_max](Event elem) { return!(elem.get_capacity_percentage() <= capacity_percentage_max*100); });
+		vec.erase(iter, vec.end());
+	}
+
+	inline void FilterEventById(vector<Event> &vec) {
+		unsigned event_id;
+		cout << "Event id?\n";
+		cin >> event_id;
+
+		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&event_id](Event elem) { return!(elem.get_id() == event_id); });
+		vec.erase(iter, vec.end());
+	}
+
+	inline void FilterEventByLocationName(vector<Event> &vec) {
+		string location;
+		cout << "Location Name?\n";
+		getline(cin, location);
+
+		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&location](Event &elem){ return !(elem.get_location_name() == location); });
+
 		vec.erase(iter, vec.end());
 	}
 
@@ -89,14 +130,20 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 
+	inline void FilterByInvalidity(vector<Card*> &vec) {
+		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[](Card* elem) { return(elem->isvalid()); });
+		vec.erase(iter, vec.end());
+	}
+
 	template<typename T>
-	void FilterByEvent(vector<T> &vec) {
+	void FilterByEventID(vector<T> &vec) {
 		unsigned event_id;
 		cout << "Event id?\n";
 		cin >> event_id;
 
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid id")); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid id"));
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&event_id](T &elem) { return!(elem.has_event(event_id)); });
@@ -110,7 +157,7 @@ namespace flt
 		cin >> addr;
 
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid address")); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid address"));
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&addr](T &elem) { return!(contains(elem, addr)); });
@@ -131,7 +178,7 @@ namespace flt
 		cin >> date;
 
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date"));
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&date](T &elem) { return!(contains(elem, date)); });
@@ -144,13 +191,13 @@ namespace flt
 		cout << "Date (year/month/day)?\n";
 		cin >> date1;
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date"));
 
 		Date date2;
 		cout << "Date (year/month/day)?\n";
 		cin >> date2;
 		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid date")); // TODO add exceptions for this
+			throw(UserInputReadingFailure("Invalid date"));
 
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&date1, &date2](T &elem) { return!(is_between(elem, date1, date2)); });
