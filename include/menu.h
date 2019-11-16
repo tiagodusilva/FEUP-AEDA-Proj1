@@ -308,16 +308,19 @@ public:
 	 *
 	 * @details	Mainly used with std::cout to show formated information on screen
 	 *
-	 * @param out	Reference to the ostream object to insert info to
+	 * @param os	Reference to the ostream object to insert info to
 	 * @param menu	Reference to the Menu object whose info will be inserted in the ostream
 	 *
 	 * @return	Reference to the ostream object, 'outstream', passed in the parameters
 	 */
 	friend std::ostream& operator<<(std::ostream &os, const MenuOptionsFilter<Arg> &menu){ os << menu.getMessage(); return os; }
 
-	/* Instanciate menu with no initial value of arg. */
+	/** @brief	Instanciate menu with no initial value of arg */
 	void show() override;
-	/* Instanciate menu with a given arg. When calling any of its options, pass Arg as an argument to be modified. */
+	/**
+	 * @brief	Instanciate menu with a given arg
+	 * @note	When calling any of its options, pass Arg as an argument to be modified
+	 */
 	void show(Arg&) override;
 };
 

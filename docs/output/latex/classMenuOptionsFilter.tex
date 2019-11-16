@@ -37,11 +37,11 @@ Collaboration diagram for Menu\+Options\+Filter$<$ Arg $>$\+:\nopagebreak
 \mbox{\hyperlink{classMenuOptionsFilter_aeb7fab2eb8ca5cb4cd20d1118e25001a}{Menu\+Options\+Filter}} (std\+::string t, std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$opt, std\+::function$<$ void(Arg \&)$>$ e\+\_\+fun=\mbox{[}$\,$\mbox{]}(Arg)\{ \}, std\+::function$<$ Arg()$>$s\+\_\+fun=\mbox{[}$\,$\mbox{]}()\{ return(Arg());\}, bool exclusive\+\_\+selection=false, std\+::vector$<$ int $>$ menus\+\_\+to\+\_\+repeat=\{ \})
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} class constructor. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{group__menu__grp_gacaa30c8237fb9bcb187601639a7879ac}{get\+Message}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Get current menu title followed by the title of each menu inside \textquotesingle{}options\textquotesingle{}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__menu__grp_gadd995b39ad5e9e113f3b2f065764e344}{show}} () override
-\begin{DoxyCompactList}\small\item\em Invokes and displays all of the menus in options and waits for user input to call them. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Instanciate menu with no initial value of arg. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__menu__grp_ga5266c12ce273fc662552a8c9e518057f}{show}} (Arg \&) override
-\begin{DoxyCompactList}\small\item\em Invokes and displays all of the menus in options and waits for user input to call them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Instanciate menu with a given arg. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -65,8 +65,8 @@ const std\+::vector$<$ int $>$ \mbox{\hyperlink{classMenuOptionsFilter_af233c5ec
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$ menu)
-\end{DoxyCompactItemize}
+std\+::ostream \& \mbox{\hyperlink{classMenuOptionsFilter_a6be68613f11e6202637bb0a0c2aedf6a}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$ \&menu)
+\begin{DoxyCompactList}\small\item\em Overloaded ostream insertion operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -138,13 +138,29 @@ If repeated menus are given, they must be the first options in the options vecto
 
 
 \doxysubsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}\label{classMenuOptionsFilter_abb9b56fa276b611b3d5e6fdc4b8ed70d}} 
+\mbox{\Hypertarget{classMenuOptionsFilter_a6be68613f11e6202637bb0a0c2aedf6a}\label{classMenuOptionsFilter_a6be68613f11e6202637bb0a0c2aedf6a}} 
 \index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
 {\footnotesize\ttfamily template$<$typename Arg$>$ \\
-std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$}]{menu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$ \&}]{menu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
+
+
+Overloaded ostream insertion operator. 
+
+Mainly used with std\+::cout to show formated information on screen
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Reference to the ostream object to insert info to \\
+\hline
+{\em menu} & Reference to the \mbox{\hyperlink{classMenu}{Menu}} object whose info will be inserted in the ostream\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the ostream object, \textquotesingle{}outstream\textquotesingle{}, passed in the parameters 
+\end{DoxyReturn}
 
 
 \doxysubsection{Field Documentation}
