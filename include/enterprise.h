@@ -247,7 +247,7 @@ public:
 	 * @return	True if both Enterprises' names are equal\n
 	 *		False, otherwise
 	 */
-	inline bool operator== (const Enterprise &ent) { return this->name == ent.name; };
+	inline bool operator== (const Enterprise &ent) const { return this->name == ent.name; };
 	/**
 	 * @brief     Overloaded inequality test operator
 	 *
@@ -259,7 +259,7 @@ public:
 	 * @return    True if both Enterprises' names are different\n
 	 *            False, otherwise
 	 */
-	inline bool operator!= (const Enterprise &ent) { return !this->operator==(ent); };
+	inline bool operator!= (const Enterprise &ent) const { return !this->operator==(ent); };
 
 	/* OVERLOADED INSERTION OPERATOR */
 	/**

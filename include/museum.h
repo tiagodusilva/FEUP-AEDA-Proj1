@@ -120,7 +120,7 @@ public:
 	 * @return    True if both Museums' names and Addresses are equal\n
 	 *	      False, otherwise
 	 */
-	inline bool operator== (const Museum &museum) { return (this->name == museum.name) && (this->address == museum.address); }
+	inline bool operator== (const Museum &museum) const { return (this->name == museum.name) && (this->address == museum.address); };
 	/**
 	 * @brief     Overloaded inequality test operator
 	 *
@@ -131,7 +131,7 @@ public:
 	 * @return    True if both Museums' names and Addresses are equal\n
 	 *	      False, otherwise
 	 */
-	inline bool operator!= (const Museum &museum) { return !this->operator==(museum); };
+	inline bool operator!= (const Museum &museum) const { return !this->operator==(museum); };
 
 	/* OVERLOADED INSERTION OPERATORS */
 	/**
