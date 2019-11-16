@@ -6,12 +6,34 @@
 
 using  namespace std;
 
+/* PRIVATE */
+
+Event Enterprise::pop(unsigned id) {
+
+    // Apparently sets always return const iterators... so yeah... about that one...
+    // This method was born to ease that pain
+    for (const auto& ev: this->events) {
+        if (ev == id) {
+            Event aux = ev; // We need this copy to be returned
+            this->events.erase(ev);
+            return aux;
+        }
+    }
+
+    if (id != 0)
+        throw NoSuchObject(to_string(id), "Event");
+}
+
+/* PUBLIC */
+
 Enterprise::Enterprise(const string &name, const string &contact, const Address &address, const set<Event> &events) {
     this->name = name;
     this->contact = contact;
     this->address = address;
     this->events = events;
 }
+
+/* GETTERS */
 
 string Enterprise::get_name() const {
     return this->name;
@@ -57,6 +79,54 @@ void Enterprise::set_address(const Address &new_address) {
 }
 
 
+/* EVENT SETTERS */
+
+
+void Enterprise::event_set_max_capacity(unsigned id, unsigned new_max_capacity) {
+    Event ev = this->pop(id);
+    ev.set_max_capacity(new_max_capacity);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_name(unsigned id, const std::string &new_name) {
+    Event ev = this->pop(id);
+    ev.set_name(new_name);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_ticker_fee(unsigned id, float new_ticket_fee) {
+    Event ev = this->pop(id);
+    ev.set_ticker_fee(new_ticket_fee);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_location_name(unsigned id, const std::string &new_location_name) {
+    Event ev = this->pop(id);
+    ev.set_location_name(new_location_name);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_address(unsigned id, const Address &new_address) {
+    Event ev = this->pop(id);
+    ev.set_address(new_address);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_time(unsigned id, const Time &new_time) {
+    Event ev = this->pop(id);
+    ev.set_time(new_time);
+    this->events.insert(ev);
+}
+
+void Enterprise::event_set_date(unsigned id, const Date &new_date) {
+    Event ev = this->pop(id);
+    ev.set_date(new_date);
+    this->events.insert(ev);
+}
+
+
+/* OTHER PUBLIC METHODS */
+
 void Enterprise::add_event(Event &ev) {
     // Redundant checks, better safe than sorry
     if (ev.get_id() == 0)
@@ -68,21 +138,16 @@ void Enterprise::add_event(Event &ev) {
 
     this->events.insert(ev);
 
+    // Make its id invalid (0), in order to prevent multiple equal ids
     ev.set_invalid_id();
 
 }
 
 
 void Enterprise::remove_event(unsigned id) {
-    for (const auto &ev: this->events) {
-        if (ev.get_id() == id) {
-            events.erase(ev);
-            return;
-        }
-    }
 
-    if (id != 0)
-        throw EventNotFound(id);
+    this->pop(id);
+
 }
 
 
@@ -96,18 +161,10 @@ bool Enterprise::has_event(unsigned id) const {
 
 void Enterprise::purchase_event(unsigned id, unsigned cc) {
 
-    // Apparently sets always return const iterators... so yeah... about that one...
-    for (const auto &ev: this->events) {
-        if (ev == id) {
-            Event aux = ev;
-            aux.purchase(cc);
-            this->events.erase(ev);
-            this->events.insert(aux);
-			return;
-        }
-    }
-	int i;
-    //throw EventNotFound(id);
+    Event aux = this->pop(id);
+    aux.purchase(cc);
+    this->events.insert(aux);
+
 }
 
 std::ostream &operator<<(std::ostream &outstream, const Enterprise &ent) {

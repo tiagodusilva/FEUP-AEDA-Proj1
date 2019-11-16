@@ -33,6 +33,14 @@ private:
 	/** @brief	enterprise's currently registered events */
 	std::set<Event> events;
 
+	/**
+	 * @brief  Searches for Event with id, removes it from the set and returns it
+	 * @param id  The id of the Event to remove from the set
+	 * @throws  NoSuchObjet  Thrown if the Event with the specified id was not found
+	 * @return  Event with id, removed from the set
+	 */
+	Event pop(unsigned id);
+
 public:
 	/* CONSTRUCTORS */
 	/**
@@ -103,6 +111,77 @@ public:
 	 * @param  new_address  The new address for this Enterprise
 	 */
 	void set_address(const Address &new_address);
+
+	/* EVENT SETTERS */
+    /**
+    * @brief Setter for the maximum capacity of the Event with id
+    *
+    * @param id     Id of the Event to change
+    *
+    * @throws  NoSuchObjet  Thrown if the Event with the specified id was not found
+    *
+    * @param new_capacity The new max capacity for the Event with id
+    */
+    void event_set_max_capacity(unsigned id, unsigned new_max_capacity);
+    /**
+     * @brief Setter for the name of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     * @param new_name The new name for the Event with id
+     */
+    void event_set_name(unsigned id, const std::string &new_name);
+    /**
+     * @brief Setter for the ticket fee of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     *
+     * @param new_ticket_fee The new ticket fee for the Event with id
+     */
+    void event_set_ticker_fee(unsigned id, float new_ticket_fee);
+    /**
+     * @brief Setter for the location name of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     *
+     * @param new_location_name The new location name for the Event with id
+     */
+    void event_set_location_name(unsigned id, const std::string &new_location_name);
+    /**
+     * @brief Setter for the address of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     *
+     * @param new_address The new address for the Event with id
+     */
+    void event_set_address(unsigned id, const Address &new_address);
+    /**
+     * @brief Setter for the time of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     *
+     * @param new_time The new time for the Event with id
+     */
+    void event_set_time(unsigned id, const Time &new_time);
+    /**
+     * @brief Seter for the date of the Event with id
+     *
+     * @param id     Id of the Event to change
+     *
+     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
+     *
+     * @param new_date The new date for the Event with id
+     */
+    void event_set_date(unsigned id, const Date &new_date);
 
 
 	/* OTHER PUBLIC METHODS */
