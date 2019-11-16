@@ -55,6 +55,13 @@ void MuseumNetwork::listCards(const std::string &delim) const {
 
 void MuseumNetwork::modifyMuseum(const Museum &old_museum, const Museum &new_museum) {
 	vector<Museum>::iterator iter;
+
+	if(old_museum != new_museum) { // if the new_museum won't replace the old_museum
+		iter = find(museums.begin(), museums.end(), new_museum);
+		if(iter != museums.end()) // check if the new_museum won't overwritte any museum
+			throw(ObjectAlreadyExists(new_museum.get_name(), "Museum"));
+	}
+
 	iter = find(museums.begin(), museums.end(), old_museum);
 
 	if(iter == museums.end())
@@ -76,7 +83,7 @@ float MuseumNetwork::getCost(const unsigned int card_type) const {
 /* Enterprises */
 
 void MuseumNetwork::removeEnterprises(std::vector<Enterprise> &enterprises_to_be_removed) {
-	/* Given a vector of pointers to enterprises, remove all of the enterprises in the network are
+	/* Given a vector of enterprises, remove all of the enterprises in the network are
 	present in the given vector. */
 
 	size_t i;
@@ -107,8 +114,14 @@ void MuseumNetwork::listEnterprises(const string &delim) const {
 }
 
 void MuseumNetwork::modifyEnterprise(const Enterprise &old_enterprise, const Enterprise &new_enterprise) {
-	// TODO Verify if new enterprise overrides something???
 	vector<Enterprise>::iterator iter;
+
+	if(old_enterprise != new_enterprise) { // if the new_enterprise won't replace the old_museum
+		iter = find(enterprises.begin(), enterprises.end(), new_enterprise);
+		if(iter != enterprises.end()) // check if the new_enterprise won't overwritte any museum
+			throw(ObjectAlreadyExists(new_enterprise.get_name(), "Enterprise"));
+	}
+
 	iter = find(enterprises.begin(), enterprises.end(), old_enterprise);
 
 	if(iter == enterprises.end())
