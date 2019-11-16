@@ -64,7 +64,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Card*>>*> listCardsOpt = {&CardsSelect, &CardsName, &CardsValidityOptions};
 	MenuOptionsFilter<vector<Card*>> listCards("List Cards", listCardsOpt,
 			[this](vector<Card*>&vec){ return vector<Card*>(); },
-			[this](){ return(this->museum_network.getCards());},
+			[this](){ return(this->museum_network.getCards());}, // Initialize vector with all cards of the network
 			false, {0});
 
 
@@ -72,7 +72,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Enterprise>>*> listEnterprisesOpt = {&EnterpriseSelected, &EnterpriseLocation, &EnterpriseEvent, &EnterpriseName};
 	MenuOptionsFilter<vector<Enterprise>> listEnterprises("List Enterprises", listEnterprisesOpt,
 			[this](vector<Enterprise>&vec){ return vector<Enterprise>(); },
-			[this](){ return(this->museum_network.getEnterprises());},
+			[this](){ return(this->museum_network.getEnterprises());}, // Initialize vector with all enterprises of the network
 			false, {0});
 
 
@@ -81,7 +81,7 @@ AdminInterface::show()
 		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
-			[this](){ return(this->museum_network.getEvents());},
+			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
 			false, {0});
 
 
@@ -89,7 +89,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Museum>>*> listMuseumsOpt = {&MuseumsSelected, &MuseumsLocation, &MuseumsName};
 	MenuOptionsFilter<vector<Museum>> listMuseums("List Museums", listMuseumsOpt,
 			[this](vector<Museum>&vec){ return vector<Museum>(); },
-			[this](){ return(this->museum_network.getMuseums());},
+			[this](){ return(this->museum_network.getMuseums());}, // Initialize vector with all museums of the network
 			false, {0});
 
 
@@ -116,7 +116,7 @@ AdminInterface::show()
 	removeEventsOpt.push_back(&removeEventsSelected);
 	MenuOptionsFilter<vector<Event>> removeEvents("Remove Events", removeEventsOpt,
 			[this](vector<Event>&vec){ return; },
-			[this](){ return(this->museum_network.getEvents());},
+			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
 			false, {0});
 
 

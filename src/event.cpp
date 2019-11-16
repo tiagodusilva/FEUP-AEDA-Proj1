@@ -174,7 +174,7 @@ operator<<(std::ostream &outstream, const Event &ev)
 		left << setw(EVENT_OUPUT_DELIM) << "Location Name"   << " : " << right << ev.location_name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time <<
+		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time << endl <<
         left << setw(EVENT_OUPUT_DELIM) << "Available"       << " : " << right;
 
     if (ev.is_valid && !ev.is_full())
