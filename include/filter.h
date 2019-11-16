@@ -1,5 +1,5 @@
-#ifndef FILTER_CONTAINS_H
-#define FILTER_CONTAINS_H
+#ifndef FILTER_H
+#define FILTER_H
 
 #include <algorithm>
 #include <vector>
@@ -26,10 +26,25 @@ namespace flt
 	template<typename T>
 	bool contains(const T &lhs, Date rhs) { return(lhs.get_date() == rhs); }
 
+
 	/* IS_BETWEEN */
 	template<typename T>
 	bool is_between(const T &mid, Date lhs, Date rhs) { return((mid.get_date() >= lhs) && (mid.get_date() <= rhs)); }
 
+
+	/* FILTERS */
+
+	void FilterEventByGivenTimeFrame(vector<Event> &vec, const Time &delta_time);
+	void FilterEventByTimeFrame(vector<Event> &vec);
+	void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max);
+	void FilterEventById(vector<Event> &vec);
+	void FilterEventByLocationName(vector<Event> &vec);
+	void FilterCardByName(vector<Card*> &vec);
+	void FilterCardByValidity(vector<Card*> &vec);
+	void FilterCardByInvalidity(vector<Card*> &vec);
+
+
+	/* TEMPLATE FILTERS */
 	template<typename T>
 	void FilterByName(vector<T> &vec) {
 		string name;
@@ -43,111 +58,6 @@ namespace flt
 				});
 
 		/* erase elements that were moved to the end of vec */
-		vec.erase(iter, vec.end());
-	}
-
-	/* For use with silver cards checker */
-	inline void FilterEventByTimeFrameCin(vector<Event> &vec) {
-		Time delta_time;
-		cout << "Timeframe (hour:min)?\n";
-		cin >> delta_time;
-
-		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid timeframe"));
-
-		Date d_now; Time t_now;
-		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&delta_time, &d_now, &t_now](Event elem) {
-					if(d_now > elem.get_date())
-						return true;
-					else {
-						/* Check if dates are the same but the event has already occurred */
-						if(d_now == elem.get_date() && t_now > elem.get_time())
-							return true;
-						else {
-							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
-							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
-						}
-					}
-				});
-		vec.erase(iter, vec.end());
-
-	}
-	inline void FilterEventByTimeFrame(vector<Event> &vec, const Time &delta_time) {
-		Date d_now; Time t_now;
-		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&delta_time, &d_now, &t_now](Event elem) {
-					if(d_now > elem.get_date())
-						return true;
-					else {
-						/* Check if dates are the same but the event has already occurred */
-						if(d_now == elem.get_date() && t_now > elem.get_time())
-							return true;
-						else {
-							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
-							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
-						}
-					}
-				});
-
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
-		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&capacity_percentage_max](Event elem) {
-					return !(elem.get_capacity_percentage() <= capacity_percentage_max*100);
-				});
-
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterEventById(vector<Event> &vec) {
-		unsigned event_id;
-		cout << "Event id?\n";
-		cin >> event_id;
-
-		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&event_id](Event elem) { return!(elem.get_id() == event_id); });
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterEventByLocationName(vector<Event> &vec) {
-		string location;
-		cout << "Location Name?\n";
-		getline(cin, location);
-
-		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&location](Event &elem){ return !(elem.get_location_name() == location); });
-
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterByCardName(vector<Card*> &vec) {
-		string name;
-		cout << "Name?\n";
-		getline(cin, name);
-
-		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&name](Card* &elem) {
-					return !(elem->get_name() == name);
-				});
-
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterByValidity(vector<Card*> &vec) {
-		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[](Card* elem) {
-					return!(elem->isvalid());
-				});
-
-		vec.erase(iter, vec.end());
-	}
-
-	inline void FilterByInvalidity(vector<Card*> &vec) {
-		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[](Card* elem) { return(elem->isvalid()); });
 		vec.erase(iter, vec.end());
 	}
 
@@ -165,19 +75,6 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 
-	template<typename T>
-	void FilterByLocationCin(vector<T> &vec) {
-		Address addr;
-		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
-		cin >> addr;
-
-		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid address"));
-
-		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&addr](T &elem) { return!(contains(elem, addr)); });
-		vec.erase(iter, vec.end());
-	}
 
 	template<typename T>
 	void FilterByLocation(vector<T> &vec, Address addr) {
@@ -218,5 +115,19 @@ namespace flt
 				[&date1, &date2](T &elem) { return!(is_between(elem, date1, date2)); });
 		vec.erase(iter, vec.end());
 	}
+
+	template<typename T>
+	void FilterByLocationCin(vector<T> &vec) {
+		Address addr;
+		cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+		cin >> addr;
+
+		if(cin.fail())
+			throw(UserInputReadingFailure("Invalid address"));
+
+		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&addr](T &elem) { return!(contains(elem, addr)); });
+		vec.erase(iter, vec.end());
+	}
 }
-#endif //FILTER_CONTAINS_H
+#endif //FILTER_H

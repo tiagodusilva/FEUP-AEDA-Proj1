@@ -16,13 +16,13 @@ void
 AdminInterface::show()
 {
 	/* Filter Cards by validity*/
-	MenuSelectFilter<vector<Card*>> CardsValidity("By validity", flt::FilterByValidity);
-	MenuSelectFilter<vector<Card*>> CardsInvalidity("By invalidity", flt::FilterByInvalidity);
+	MenuSelectFilter<vector<Card*>> CardsValidity("By validity", flt::FilterCardByValidity);
+	MenuSelectFilter<vector<Card*>> CardsInvalidity("By invalidity", flt::FilterCardByInvalidity);
 	vector<MenuFilter<vector<Card*>>*> validityOpt = {&CardsValidity, &CardsInvalidity};
 
 
 	/* Filter Cards */
-	MenuSelectFilter<vector<Card*>> CardsName("By name", flt::FilterByCardName);
+	MenuSelectFilter<vector<Card*>> CardsName("By name", flt::FilterCardByName);
 	MenuOptionsFilter<vector<Card*>> CardsValidityOptions("Filter by validity", validityOpt, [](vector<Card*>&){},
 			[](){return(vector<Card*>());}, true);
 	MenuSelectFilter<vector<Card*>> CardsSelect("List current selected cards",
@@ -40,7 +40,7 @@ AdminInterface::show()
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
 	MenuSelectFilter<vector<Event>> EventsId("Select by id", flt::FilterEventById);
-	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrameCin);
+	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
 	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
 	MenuSelectFilter<vector<Event>> EventsSelected("List current selected events",
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
@@ -421,7 +421,7 @@ void MemberInterface::show() {
 		vector<Event> events_filtered = this->museum_network.getEvents();
 		flt::FilterByLocation<Event>(events_filtered, this->member_card->get_address()); // Select all events within a location
 		flt::FilterEventByCapacity(events_filtered, 50); // Select all events with less than 50% capacity
-		flt::FilterEventByTimeFrame(events_filtered, Time(8, 0)); // Select all events within 8 hours
+		flt::FilterEventByGivenTimeFrame(events_filtered, Time(8, 0)); // Select all events within 8 hours
 		if(events_filtered.size() != 0) {
 			cout << "Notification: In the next 8 hours " << events_filtered.size() <<
 				" event(s) will take place in your area of residence, " << this->member_card->get_address().getRegion() << '.' << endl <<
@@ -508,7 +508,7 @@ void MemberInterface::show() {
 					vector<Event> silver_event = vec;
 					flt::FilterEventByCapacity(silver_event, 50);  // max capacity 50%
 					flt::FilterByLocation(silver_event,  this->member_card->get_address());
-					flt::FilterEventByTimeFrame(silver_event, Time(8, 0));  // events happening in the next 8 hours;
+					flt::FilterEventByGivenTimeFrame(silver_event, Time(8, 0));  // events happening in the next 8 hours;
 
 					if (!silver_event.empty()) {
 						is_event_free = true;
