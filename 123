@@ -1,9 +1,0 @@
-cards_file_name: files/cards.txt
-museum_file_name: files/museums.txt
-enterprise_file_name: files/enterprises.txt
-individual::cost: 54.9
-individual::discount: 0.25
-silver::cost: 30
-silver::discount: 0.25
-uni::cost: 32.45
-uni::discount: 0.25

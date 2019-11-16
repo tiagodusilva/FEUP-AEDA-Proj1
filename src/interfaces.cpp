@@ -818,8 +818,8 @@ void GUI::show() {
 		});;
 
 	MenuSelect importMenu("Import from a file", [this](){
-			string config_file;
 			cout << "Insert the config file name" << endl;
+			string config_file;
 			cin >> config_file; utl::ignore(cin);
 			this->museum_network.importFiles(config_file);
 			cout << "File read successfully!" << endl;

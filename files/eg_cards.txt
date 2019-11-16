@@ -1,0 +1,41 @@
+5
+Carlos Pereira
+1
+52841297
+kaka.pereira@notgoogle.com
+Rua Avelino Alves :::::: 4505-076 :::::: Porto
+971395200
+1573862400
+1605484800
+Jose Alves
+0
+93247500
+918645734
+Rua da Agua :::::: 5342-065 :::::: Evora
+197506800
+1573862400
+1605484800
+Ana Maria
+2
+12935275
+913245332
+Rua Alberto Joaquim :::::: 4268-756 :::::: Aveiro
+-847152000
+1573862400
+1605484800
+Beatriz Silva
+1
+23495819
+beatrix.sil@posteo.de
+Rua do Vento :::::: 4305-654 :::::: Porto
+978912000
+1573862400
+1605484800
+Julio Fernandes
+2
+12344321
+919043256
+Rua das Andorinhas :::::: 3423-765 :::::: Lisboa
+-1876864995
+1573862400
+1605484800
