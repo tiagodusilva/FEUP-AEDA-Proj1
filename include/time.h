@@ -41,7 +41,7 @@ public:
 	 * @param hour	representing hours
 	 * @param min	representing minutes
 	 *
-	 * @throws InvalidTime	when the given time is not representable in a 24-hour clock
+	 * @throws InvalidObject	when the given time is not representable in a 24-hour clock
 	 */
 	Time(short hour, short min);
 

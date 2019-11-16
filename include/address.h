@@ -46,7 +46,7 @@ public:
 	 *
 	 * @param region	representing the region that identifies an half-address
 	 *
-	 * @throw InvalidAddress	when the given region can be considered an empty field
+	 * @throw InvalidObject	when the given region can be considered an empty field
 	 */
 	Address(const std::string &region);
 	/**
@@ -56,7 +56,7 @@ public:
 	 * @param zipCode	representing the address' zip-code
 	 * @param region	representing the address' region
 	 *
-	 * @throw InvalidAddress	when the given region or street can be considered an empty field or the zip-code is invalid (also can't use the half-address reserved zip-code here)
+	 * @throw InvalidObject	when the given region or street can be considered an empty field or the zip-code is invalid (also can't use the half-address reserved zip-code here)
 	 */
 	Address(const std::string &street, const std::string &zipCode, const std::string &region);
 

@@ -62,7 +62,7 @@ public:
 	* @param name	     The name of the Event
 	* @param cost	     The cost of the Event
 	* @param max_capacity	The maximum capacity of the Event, this is, the maximum number of elements of the reservations set)
-	* @param location_name   The name of where this Event takes place
+	* @param location_name	 The name of where this Event takes place
 	* @param address	     The address of the Event
 	* @param time	     The time an Event starts
 	* @param date	     The day of the Event
@@ -217,19 +217,19 @@ public:
 	/**
 	* @brief	Handles the purchase of this Event by an user
 	*
-	* @param	cc	The cc of the person trying to purchase this Event
+	* @param cc	The cc of the person trying to purchase this Event
 	*
-	* @throws	EventFull		    Thrown if the Event is at max capacity
-	* @throws	EventInvalid		Thrown if the is_valid flag of the Event is set to false
-	* @throws	EventAlreadyBough	Thrown if the Event was already bough by the user with the provided cc
+	* @throws InvalidObject	Thrown if the Event is at max capacity\n
+	*			Thrown if the is_valid flag of the Event is set to false\n
+	*			Thrown if the Event was already bough by the user with the provided cc
 	*/
 	void purchase(unsigned cc);
 
 	/**
 	* @brief	  Returns if the Event is completely full
 	*
-	* @return	  True if the Event is completely full\n
-	*		   False, otherwise
+	* @return	True if the Event is completely full\n
+	*		False, otherwise
 	*/
 	bool is_full() const;
 
