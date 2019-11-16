@@ -8,7 +8,8 @@ var indexSectionsWithContent =
   5: "abcdefhilmnorstz",
   6: "o",
   7: "c",
-  8: "acemt"
+  8: "acemt",
+  9: "f"
 };
 
 var indexSectionNames =
@@ -21,7 +22,8 @@ var indexSectionNames =
   5: "variables",
   6: "related",
   7: "defines",
-  8: "groups"
+  8: "groups",
+  9: "pages"
 };
 
 var indexSectionLabels =
@@ -34,6 +36,7 @@ var indexSectionLabels =
   5: "Variables",
   6: "Friends",
   7: "Macros",
-  8: "Modules"
+  8: "Modules",
+  9: "Pages"
 };
 

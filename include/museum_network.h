@@ -13,6 +13,16 @@
 #include "exceptions.h"
 #include "museum.h"
 
+/**
+ * @mainpage	First project for the AEDA chair (FEUP MIEIC 2019/2020)
+ *
+ * @section intro_sec	Chosen project theme: Cartão Museus de Portugal
+ *
+ * @subsection step1	Our UML diagram was drawn using https://www.draw.io
+ *
+ * @image html	UML_class_diagram.svg
+ */
+
 /** @addtogroup	museum_grp
   * @{
   */
