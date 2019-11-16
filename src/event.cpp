@@ -154,7 +154,13 @@ void Event::print_with_discount(std::ostream &outstream, float discount) const {
               left << setw(EVENT_OUPUT_DELIM) << "Location name"   << " : " << right << this->location_name << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << this->address << endl <<
               left << setw(EVENT_OUPUT_DELIM) << "Day"	           << " : " << right << this->date << endl <<
-              left << setw(EVENT_OUPUT_DELIM) << "Time"	           << " : " << right << this->time;
+              left << setw(EVENT_OUPUT_DELIM) << "Time"	           << " : " << right << this->time << endl <<
+              left << setw(EVENT_OUPUT_DELIM) << "Available"       << " : " << right;
+
+              if (this->is_valid && !this->is_full())
+                  outstream << "Yes";
+              else
+                  outstream << "No";
 }
 
 std::ostream&
@@ -168,7 +174,13 @@ operator<<(std::ostream &outstream, const Event &ev)
 		left << setw(EVENT_OUPUT_DELIM) << "Location Name"   << " : " << right << ev.location_name << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Location"        << " : " << right << ev.address << endl <<
 		left << setw(EVENT_OUPUT_DELIM) << "Day"	     << " : " << right << ev.date << endl <<
-		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time;
+		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time <<
+        left << setw(EVENT_OUPUT_DELIM) << "Available"       << " : " << right;
+
+    if (ev.is_valid && !ev.is_full())
+        outstream << "Yes";
+    else
+        outstream << "No";
 
 	return outstream;
 }
