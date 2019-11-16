@@ -501,7 +501,7 @@ void MemberInterface::show() {
 				if (!this->member_card->isvalid())
 					throw(CardExpired(this->member_card->get_cc()));
 				if (vec.size() != 1)
-					throw(MultipleEventsSelected(to_string(vec.size())));
+					throw(UserInputReadingFailure("Multiple Events selected"));
 
 				bool is_event_free = false;
 				if (this->member_card->get_type() == SILVERCARD_TYPE) {
