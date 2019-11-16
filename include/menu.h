@@ -10,11 +10,11 @@
 #include "exceptions.h"
 #include "utilities.h"
 
-/** @defgroup menu_grp Menu module */
+/** @defgroup interface_grp Menu and interfacing module */
 
-/** @addtogroup	menu_grp
+/** @addtogroup	interface_grp
   *
-  * @brief	Code related to menus
+  * @brief	Code related to interfaces and menus
   *
   * @{
   */

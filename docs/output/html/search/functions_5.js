@@ -34,7 +34,7 @@ var searchData=
   ['getenterprises_407',['getEnterprises',['../classMuseumNetwork.html#a4c385ebfc3e6a4b05317f9597f22f1c8',1,'MuseumNetwork']]],
   ['getevents_408',['getEvents',['../classMuseumNetwork.html#aaff5f1e2cd3a88b4fc4aac9f3db0197a',1,'MuseumNetwork']]],
   ['getint_409',['getInt',['../namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2',1,'utl']]],
-  ['getmessage_410',['getMessage',['../classMenuOptions.html#adb6643d5325a13a2ef7054284ad6958a',1,'MenuOptions::getMessage()'],['../group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac',1,'MenuOptionsFilter::getMessage()']]],
+  ['getmessage_410',['getMessage',['../classMenuOptions.html#adb6643d5325a13a2ef7054284ad6958a',1,'MenuOptions::getMessage()'],['../group__interface__grp.html#gacaa30c8237fb9bcb187601639a7879ac',1,'MenuOptionsFilter::getMessage()']]],
   ['getmuseums_411',['getMuseums',['../classMuseumNetwork.html#aa8f07fcd1350b13e113ff373072729f7',1,'MuseumNetwork']]],
   ['getregion_412',['getRegion',['../classAddress.html#a75a7f6bc7f693615a87faf4674f94794',1,'Address']]],
   ['getstreet_413',['getStreet',['../classAddress.html#a957910d4fb28aa950cf5ff3b75ac208f',1,'Address']]],
