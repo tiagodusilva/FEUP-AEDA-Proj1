@@ -746,6 +746,8 @@ void UserInterface::show(){
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
 	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
+	MenuSelectFilter<vector<Event>> EventsId("Select by id", flt::FilterEventById);
+	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
 	MenuSelectFilter<vector<Event>> EventsSelected("List current selected events",
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
 
@@ -758,7 +760,7 @@ void UserInterface::show(){
 
 	/* List Events */
 	vector<MenuFilter<vector<Event>>*> listEventsOpt =
-		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate};
+		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsId, &EventsTimeframe};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
 			[this](){ return(this->museum_network.getEvents());},
