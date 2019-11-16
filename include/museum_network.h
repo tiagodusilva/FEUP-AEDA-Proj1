@@ -110,13 +110,13 @@ public:
 	 *
 	 * @param cards_file_name	Name of the file associated with the Cards' information
 	 */
-	void importCards(std::string cards_file_name);
+	void importCards(const std::string &cards_file_name);
 	/**
 	 * @brief	Exports all Cards registered in the network to a file
 	 *
 	 * @param cards_file_name	Name of the file that will be overwritten with the cards' information
 	 */
-	void exportCards(std::string cards_file_name) const;
+	void exportCards(const std::string &cards_file_name) const;
 
 
 	/* METHODS FOR ENTERPRISES */
@@ -161,7 +161,7 @@ public:
 	 * @brief	Lists all Enterprises in the given vector
 	 *
 	 * @param delim   String delimiter to be printed between enterprises
-	 * @param cards_to_be_listed   Vector of Enterprises to be listed
+	 * @param enterprises_to_be_listed   Vector of Enterprises to be listed
 	 */
 	void listEnterprises(const std::vector<Enterprise> &enterprises_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
@@ -171,13 +171,13 @@ public:
 	 *
 	 * @param enterprise_file_name	Name of the file associated with the enterprises' information
 	 */
-	void importEnterprises(std::string enterprise_file_name);
+	void importEnterprises(const std::string &enterprise_file_name);
 	/**
 	 * @brief	Exports all enteprises registered in the network to a file
 	 *
 	 * @param enterprise_file_name	Name of the file that will be overwritten with the enterprises' information
 	 */
-	void exportEnterprises(std::string enterprise_file_name) const;
+	void exportEnterprises(const std::string &enterprise_file_name) const;
 
 
 	/* METHODS FOR MUSEUMS */
@@ -222,7 +222,7 @@ public:
 	 * @brief	Lists all Museums in the given vector
 	 *
 	 * @param delim   String delimiter to be printed between museums
-	 * @param cards_to_be_listed   Vector of Museums to be listed
+	 * @param museum_to_be_listed   Vector of Museums to be listed
 	 */
 	void listMuseums(const std::vector<Museum> &museum_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
@@ -232,13 +232,13 @@ public:
 	 *
 	 * @param museum_file_name	Name of the file associated with the museums' information
 	 */
-	void importMuseums(std::string museum_file_name);
+	void importMuseums(const std::string &museum_file_name);
 	/**
 	 * @brief	Exports all museums registered in the network to a file
 	 *
-	 * @param enterprise_file_name	Name of the file that will be overwritten with the museums' information
+	 * @param museum_file_name	Name of the file that will be overwritten with the museums' information
 	 */
-	void exportMuseums(std::string museum_file_name) const;
+	void exportMuseums(const std::string &museum_file_name) const;
 
 
 	/* METHODS FOR EVENTS */
@@ -278,8 +278,8 @@ public:
 	/**
 	 * @brief	Search for a given enterprise and add a given event to that enterprise
 	 *
-	 * @param event_to_be_removed
-	 * @param enterprise
+	 * @param event		Event to be added
+	 * @param enterprise	Enterprise in which the Event will be added
 	 */
 	void addEvent(const Enterprise &enterprise, Event &event);
 
@@ -347,7 +347,7 @@ public:
 	 *
 	 * @param network_file_name	Name of the file associated with the network configuarion
 	 */
-	void importFiles(std::string network_file_name);
+	void importFiles(const std::string &network_file_name);
 	/**
 	 * @brief Exports current network information to 4 files (cards, museum, enterprise and config) whose names are given
 	 *
@@ -356,8 +356,9 @@ public:
 	 * @param enterprise_file_name	Name of the enterprise file to export to
 	 * @param config_file_name	Name of the config file to export to
 	 */
-	void exportFiles( std::string cards_file_name, std::string museum_file_name,
-			std::string enterprise_file_name, std::string config_file_name="files/network_config.sadjson" ) const;
+	void exportFiles(const std::string &cards_file_name, const std::string &museum_file_name,
+			const std::string &enterprise_file_name,
+			const std::string &config_file_name="files/network_config.sadjson") const;
 };
 
 /** @} */
