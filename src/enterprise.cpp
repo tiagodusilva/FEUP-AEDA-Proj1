@@ -96,9 +96,9 @@ void Enterprise::event_set_name(unsigned id, const std::string &new_name) {
     this->events.insert(ev);
 }
 
-void Enterprise::event_set_ticker_fee(unsigned id, float new_ticket_fee) {
+void Enterprise::event_set_ticket_fee(unsigned id, float new_ticket_fee) {
     Event ev = this->pop(id);
-    ev.set_ticker_fee(new_ticket_fee);
+    ev.set_ticket_fee(new_ticket_fee);
     this->events.insert(ev);
 }
 

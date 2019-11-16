@@ -4,7 +4,8 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	GUI gui;
+	MuseumNetwork rnm;
+	GUI gui(rnm);
 	gui.show();
 	return 0;
 

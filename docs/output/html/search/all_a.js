@@ -17,13 +17,14 @@ var searchData=
   ['min_175',['min',['../classTime.html#a282bc99e3cf5f6123730c457ef8c103a',1,'Time']]],
   ['min_5fin_5fhour_176',['MIN_IN_HOUR',['../group__datetime__grp.html#ga99ceb52a8af10f4d85714d26d7994557',1,'date.h']]],
   ['modifyenterprise_177',['modifyEnterprise',['../classMuseumNetwork.html#a0eb859d5258414ec16575a362a97f57e',1,'MuseumNetwork']]],
-  ['modifymuseum_178',['modifyMuseum',['../classMuseumNetwork.html#af20b3d7d5a5af2fe2b39cb274f12e1fd',1,'MuseumNetwork']]],
-  ['museum_179',['Museum',['../classMuseum.html',1,'Museum'],['../classMuseum.html#a26ffe55df3ec4b030a7d1941302769a8',1,'Museum::Museum()=default'],['../classMuseum.html#ad4b9e4089474f9f959ab307f5975a9bd',1,'Museum::Museum(const std::string &amp;name, const Time &amp;open, const Time &amp;close, float entry_fee, const Address &amp;address)']]],
-  ['museum_2eh_180',['museum.h',['../museum_8h.html',1,'']]],
-  ['museum_20module_181',['Museum module',['../group__museum__grp.html',1,'']]],
-  ['museum_5fnetwork_182',['museum_network',['../classGUI.html#a0da6120c9463a0ded1e215f2593a6abb',1,'GUI::museum_network()'],['../classAdminInterface.html#ab2bb762c510e44dd6654c6d6cae0d44d',1,'AdminInterface::museum_network()'],['../classUserInterface.html#af8a82af12ceb892f38ccd9e9030b2d02',1,'UserInterface::museum_network()'],['../classMemberInterface.html#ab8d0e04ad05520bb863211a02b99d788',1,'MemberInterface::museum_network()']]],
-  ['museum_5fnetwork_2eh_183',['museum_network.h',['../museum__network_8h.html',1,'']]],
-  ['museum_5fouput_5fdelim_184',['MUSEUM_OUPUT_DELIM',['../group__museum__grp.html#gabd30108579a326abf1f8710995e8d637',1,'museum.h']]],
-  ['museumnetwork_185',['MuseumNetwork',['../classMuseumNetwork.html',1,'MuseumNetwork'],['../classMuseumNetwork.html#ac4557c93ad5ffde7ed0436a9591293d0',1,'MuseumNetwork::MuseumNetwork()=default'],['../classMuseumNetwork.html#a0c6b92bc812adf16eb94daf9802c95fb',1,'MuseumNetwork::MuseumNetwork(std::vector&lt; Card * &gt; &amp;card_vector, std::vector&lt; Enterprise &gt; &amp;enterprise_vector, std::vector&lt; Museum &gt; &amp;museum_vector)'],['../classMuseumNetwork.html#a2e98693125a6e03ab83de22aa4245dd9',1,'MuseumNetwork::MuseumNetwork(std::string config_file_name)']]],
-  ['museums_186',['museums',['../classMuseumNetwork.html#a8626a5bde573d2c87f4247a317f0d8b9',1,'MuseumNetwork']]]
+  ['modifyevent_178',['modifyEvent',['../classMuseumNetwork.html#ae9a3587fd694cda66423ada38b5ed0ce',1,'MuseumNetwork']]],
+  ['modifymuseum_179',['modifyMuseum',['../classMuseumNetwork.html#af20b3d7d5a5af2fe2b39cb274f12e1fd',1,'MuseumNetwork']]],
+  ['museum_180',['Museum',['../classMuseum.html',1,'Museum'],['../classMuseum.html#a26ffe55df3ec4b030a7d1941302769a8',1,'Museum::Museum()=default'],['../classMuseum.html#ad4b9e4089474f9f959ab307f5975a9bd',1,'Museum::Museum(const std::string &amp;name, const Time &amp;open, const Time &amp;close, float entry_fee, const Address &amp;address)']]],
+  ['museum_2eh_181',['museum.h',['../museum_8h.html',1,'']]],
+  ['museum_20module_182',['Museum module',['../group__museum__grp.html',1,'']]],
+  ['museum_5fnetwork_183',['museum_network',['../classGUI.html#a0b21a2efaccb5329d6701f541acab08f',1,'GUI::museum_network()'],['../classAdminInterface.html#ab2bb762c510e44dd6654c6d6cae0d44d',1,'AdminInterface::museum_network()'],['../classUserInterface.html#af8a82af12ceb892f38ccd9e9030b2d02',1,'UserInterface::museum_network()'],['../classMemberInterface.html#ab8d0e04ad05520bb863211a02b99d788',1,'MemberInterface::museum_network()']]],
+  ['museum_5fnetwork_2eh_184',['museum_network.h',['../museum__network_8h.html',1,'']]],
+  ['museum_5fouput_5fdelim_185',['MUSEUM_OUPUT_DELIM',['../group__museum__grp.html#gabd30108579a326abf1f8710995e8d637',1,'museum.h']]],
+  ['museumnetwork_186',['MuseumNetwork',['../classMuseumNetwork.html',1,'MuseumNetwork'],['../classMuseumNetwork.html#ac4557c93ad5ffde7ed0436a9591293d0',1,'MuseumNetwork::MuseumNetwork()=default'],['../classMuseumNetwork.html#a0c6b92bc812adf16eb94daf9802c95fb',1,'MuseumNetwork::MuseumNetwork(std::vector&lt; Card * &gt; &amp;card_vector, std::vector&lt; Enterprise &gt; &amp;enterprise_vector, std::vector&lt; Museum &gt; &amp;museum_vector)'],['../classMuseumNetwork.html#a2e98693125a6e03ab83de22aa4245dd9',1,'MuseumNetwork::MuseumNetwork(std::string config_file_name)']]],
+  ['museums_187',['museums',['../classMuseumNetwork.html#a8626a5bde573d2c87f4247a317f0d8b9',1,'MuseumNetwork']]]
 ];

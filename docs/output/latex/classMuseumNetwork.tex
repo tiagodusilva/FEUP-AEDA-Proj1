@@ -6,7 +6,8 @@
 
 
 
-Collaboration diagram for Museum\+Network\+:\nopagebreak
+Collaboration diagram for Museum\+Network\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -85,6 +86,8 @@ void \mbox{\hyperlink{classMuseumNetwork_ace3bb75b88f3e88fe6782e832fa79c29}{add\
 void \mbox{\hyperlink{classMuseumNetwork_a9c15fa45678d9ca0197b7bd7db7c4364}{remove\+Event}} (const \mbox{\hyperlink{classEvent}{Event}} \&event\+\_\+to\+\_\+be\+\_\+removed, \mbox{\hyperlink{classEnterprise}{Enterprise}} \&\mbox{\hyperlink{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}{enterprises}})
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a111a1d66cf30d99a9c9ea9ff0dff2591}{remove\+Events}} (std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&events\+\_\+to\+\_\+be\+\_\+removed)
+\item 
+void \mbox{\hyperlink{classMuseumNetwork_ae9a3587fd694cda66423ada38b5ed0ce}{modify\+Event}} (const \mbox{\hyperlink{classEvent}{Event}} \&old\+\_\+event, const \mbox{\hyperlink{classEvent}{Event}} \&new\+\_\+event)
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_aa4b83727a3cadac611a357f600ae69d9}{purchase\+Event}} (const unsigned cc, \mbox{\hyperlink{classEvent}{Event}} event)
 \item 
@@ -355,6 +358,12 @@ Add a new user \mbox{\hyperlink{classCard}{Card}} to the network.
 \index{modifyEnterprise@{modifyEnterprise}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{modifyEnterprise()}{modifyEnterprise()}}
 {\footnotesize\ttfamily void Museum\+Network\+::modify\+Enterprise (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&}]{old\+\_\+enterprise,  }\item[{const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&}]{new\+\_\+enterprise }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classMuseumNetwork_ae9a3587fd694cda66423ada38b5ed0ce}\label{classMuseumNetwork_ae9a3587fd694cda66423ada38b5ed0ce}} 
+\index{MuseumNetwork@{MuseumNetwork}!modifyEvent@{modifyEvent}}
+\index{modifyEvent@{modifyEvent}!MuseumNetwork@{MuseumNetwork}}
+\doxysubsubsection{\texorpdfstring{modifyEvent()}{modifyEvent()}}
+{\footnotesize\ttfamily void Museum\+Network\+::modify\+Event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEvent}{Event}} \&}]{old\+\_\+event,  }\item[{const \mbox{\hyperlink{classEvent}{Event}} \&}]{new\+\_\+event }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{classMuseumNetwork_af20b3d7d5a5af2fe2b39cb274f12e1fd}\label{classMuseumNetwork_af20b3d7d5a5af2fe2b39cb274f12e1fd}} 
 \index{MuseumNetwork@{MuseumNetwork}!modifyMuseum@{modifyMuseum}}

@@ -15,7 +15,7 @@ var searchData=
   ['event_5fset_5flocation_5fname_48',['event_set_location_name',['../classEnterprise.html#a6552f8f4f2474cd27c223f5b7d83396f',1,'Enterprise']]],
   ['event_5fset_5fmax_5fcapacity_49',['event_set_max_capacity',['../classEnterprise.html#a0eca86930176ddd287c9306c5dab6d74',1,'Enterprise']]],
   ['event_5fset_5fname_50',['event_set_name',['../classEnterprise.html#ad2f3a8228b043016c57563c8a44114c0',1,'Enterprise']]],
-  ['event_5fset_5fticker_5ffee_51',['event_set_ticker_fee',['../classEnterprise.html#a8dcf40109de778c7558eb7a2ec184266',1,'Enterprise']]],
+  ['event_5fset_5fticket_5ffee_51',['event_set_ticket_fee',['../classEnterprise.html#acf8d87e77e7cc359d81a024d5809f204',1,'Enterprise']]],
   ['event_5fset_5ftime_52',['event_set_time',['../classEnterprise.html#a652354276f35bf8187ae0970f2811fdf',1,'Enterprise']]],
   ['event_5fset_5fvalidity_53',['event_set_validity',['../classEnterprise.html#ae04ecd87fdb0b539b207070f261a2c5f',1,'Enterprise']]],
   ['eventalreadybought_54',['EventAlreadyBought',['../classEventAlreadyBought.html',1,'EventAlreadyBought'],['../classEventAlreadyBought.html#a6af4540fa48d7abd571ca955aee504c4',1,'EventAlreadyBought::EventAlreadyBought()']]],

@@ -20,13 +20,17 @@
 /** @brief	Application's active class */
 class GUI {
 private:
-	/** @brief	MuseumNetwork that GUI is currently interfacing */
-	MuseumNetwork museum_network;
+	/** @brief	Reference to MuseumNetwork that GUI is currently interfacing */
+	MuseumNetwork &museum_network;
 
 public:
-	/** @brief	GUI class default constructor */
-	GUI() = default;
-	/** @brief	GUI class default destructor */
+	/**
+	 * @brief	GUI constructor
+	 *
+	 * @param rnm	Reference to the MuseumNetwork that will be handled by this GUI instance
+	 */
+	GUI(MuseumNetwork &rnm) : museum_network(rnm) {};
+	/** @brief	GUI default destructor */
 	~GUI() = default;
 	/** @brief	Method called when the GUI is instanciated */
 	void show();
