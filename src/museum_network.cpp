@@ -40,21 +40,6 @@ void MuseumNetwork::removeCards(const std::vector<Card*> &cards_to_be_removed) {
 }
 
 
-void MuseumNetwork::modifyCard(Card* card_to_be_modified_to) {
-	/* Modifies the card in the cards vector which has the same cc as the card_to_be_modified_to.
-	   The data-members of the element of the vector will then be set to card_to_be_modified_to.
-	*/
-	vector<Card*>::iterator iter;
-	iter = (find_if(this->cards.begin(), this->cards.end(),
-			[&card_to_be_modified_to](Card *lhs){ return( *lhs == *card_to_be_modified_to ); }));
-
-	if(iter != this->cards.end())
-		(*iter) = card_to_be_modified_to;
-	else
-		throw(NoSuchCard(card_to_be_modified_to->get_cc()));
-}
-
-
 void MuseumNetwork::listCards(const std::vector<Card*> &cards_to_be_listed, const string &delim) const {
 	int i;
 	for (i = 0; i < cards_to_be_listed.size(); ++i) {
@@ -65,6 +50,17 @@ void MuseumNetwork::listCards(const std::vector<Card*> &cards_to_be_listed, cons
 
 void MuseumNetwork::listCards(const std::string &delim) const {
 	listCards(this->getCards(), delim);
+}
+
+
+void MuseumNetwork::modifyMuseum(const Museum &old_museum, const Museum &new_museum) {
+	vector<Museum>::iterator iter;
+	iter = find(museums.begin(), museums.end(), old_museum);
+
+	if(iter == museums.end())
+		throw(NoSuchMuseum(old_museum.get_name()));
+
+	*iter = new_museum;
 }
 
 
@@ -111,6 +107,15 @@ void MuseumNetwork::listEnterprises(const string &delim) const {
 	this->listEnterprises(this->getEnterprises(), delim);
 }
 
+void MuseumNetwork::modifyEnterprise(const Enterprise &old_enterprise, const Enterprise &new_enterprise) {
+	vector<Enterprise>::iterator iter;
+	iter = find(enterprises.begin(), enterprises.end(), old_enterprise);
+
+	if(iter == enterprises.end())
+		throw(NoSuchEnterprise(old_enterprise.get_name()));
+
+	*iter = new_enterprise;
+}
 
 void MuseumNetwork::addEnterprise(Enterprise enterprise) {
 	int i;
