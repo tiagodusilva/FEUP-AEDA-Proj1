@@ -13,10 +13,10 @@
 
 class GUI {
 private:
-	MuseumNetwork museum_network;
+	MuseumNetwork &museum_network;
 
 public:
-	GUI() = default;
+	GUI(MuseumNetwork &rnm) : museum_network(rnm) {};
 	~GUI() = default;
 	void show();
 };
@@ -27,7 +27,6 @@ private:
 
 public:
 	AdminInterface(MuseumNetwork &rnm);
-	//AdminInterface() = default;
 	~AdminInterface() = default;
 	void show();
 };
