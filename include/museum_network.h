@@ -14,9 +14,6 @@
 #include "museum.h"
 
 /** @addtogroup	museum_grp
-  *
-  * @brief	Code related to the handling of a museum
-  *
   * @{
   */
 

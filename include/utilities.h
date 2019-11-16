@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 
 
+/** @brief	General utility functions */
 namespace utl
 {
 	/** @brief	Number of new line characters, '\\n', when trying to clear the screen */

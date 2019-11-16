@@ -1,4 +1,4 @@
-/** @file time.h */
+/** @file menu.h */
 #ifndef FEUP_AEDA_PROJ1_MENU_H
 #define FEUP_AEDA_PROJ1_MENU_H
 
@@ -10,11 +10,11 @@
 #include "exceptions.h"
 #include "utilities.h"
 
-/** @defgroup interface_grp Menu and interfacing module */
+/** @defgroup interface_grp Menu, GUI and interfacing module */
 
 /** @addtogroup	interface_grp
   *
-  * @brief	Code related to interfaces and menus
+  * @brief	Code related to interfaces, menus and the application GUI
   *
   * @{
   */

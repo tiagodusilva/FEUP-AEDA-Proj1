@@ -82,7 +82,8 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Event:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEvent__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEvent__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -151,10 +152,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aabd951a875803e013725cd234f8af773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seter for the date of this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>.  <a href="classEvent.html#aabd951a875803e013725cd234f8af773">More...</a><br /></td></tr>
 <tr class="separator:aabd951a875803e013725cd234f8af773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9222c24be33441213f126a1d614d3e79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvent.html#a9222c24be33441213f126a1d614d3e79">set_invalid_id</a> ()</td></tr>
-<tr class="memdesc:a9222c24be33441213f126a1d614d3e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completely destructive method<br  />
- When called sets an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s id to 0, aka an absolutely invalid <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a><br  />
+<tr class="memdesc:a9222c24be33441213f126a1d614d3e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">When called sets an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s id to 0, aka an absolutely invalid <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a><br  />
  WARNING: Once this method is called, there is no going back.  <a href="classEvent.html#a9222c24be33441213f126a1d614d3e79">More...</a><br /></td></tr>
 <tr class="separator:a9222c24be33441213f126a1d614d3e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6551894402d020a75665a966f4216b7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvent.html#a6551894402d020a75665a966f4216b7a">set_validity</a> (bool new_is_valid)</td></tr>
+<tr class="memdesc:a6551894402d020a75665a966f4216b7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the is_valid flag of this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>.  <a href="classEvent.html#a6551894402d020a75665a966f4216b7a">More...</a><br /></td></tr>
+<tr class="separator:a6551894402d020a75665a966f4216b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78c7c3cd25d5aad88c1623a8e8d1adb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvent.html#a78c7c3cd25d5aad88c1623a8e8d1adb4">purchase</a> (unsigned cc)</td></tr>
 <tr class="memdesc:a78c7c3cd25d5aad88c1623a8e8d1adb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the purchase of this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> by an user.  <a href="classEvent.html#a78c7c3cd25d5aad88c1623a8e8d1adb4">More...</a><br /></td></tr>
 <tr class="separator:a78c7c3cd25d5aad88c1623a8e8d1adb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -969,9 +972,9 @@ Related Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Completely destructive method<br  />
- When called sets an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s id to 0, aka an absolutely invalid <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a><br  />
+<p>When called sets an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>'s id to 0, aka an absolutely invalid <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a><br  />
  WARNING: Once this method is called, there is no going back. </p>
+<p>Completely destructive method (irreversible) </p>
 
 </div>
 </div>
@@ -1099,6 +1102,32 @@ Related Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">new_time</td><td>The new time for this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6551894402d020a75665a966f4216b7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6551894402d020a75665a966f4216b7a">&#9670;&nbsp;</a></span>set_validity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Event::set_validity </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>new_is_valid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the is_valid flag of this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>. </p>
+<p>This method is not destructive (can be reverted) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_is_valid</td><td>The new is_valid flag for this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -1365,6 +1394,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>True, if the event is valid. False, otherwise. </p>
+<p>Currently is used to make an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> visible, but impossible to be purchased </p>
 
 </div>
 </div>

@@ -1,13 +1,21 @@
-\hypertarget{group__interface__grp}{}\doxysection{Menu and interfacing module}
-\label{group__interface__grp}\index{Menu and interfacing module@{Menu and interfacing module}}
+\hypertarget{group__interface__grp}{}\doxysection{Menu, G\+UI and interfacing module}
+\label{group__interface__grp}\index{Menu, GUI and interfacing module@{Menu, GUI and interfacing module}}
 
 
-Code related to interfaces and menus.  
+Code related to interfaces, menus and the application \mbox{\hyperlink{classGUI}{G\+UI}}.  
 
 
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
+class \mbox{\hyperlink{classGUI}{G\+UI}}
+\begin{DoxyCompactList}\small\item\em Application\textquotesingle{}s active class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAdminInterface}{Admin\+Interface}}
+\begin{DoxyCompactList}\small\item\em Interface instanciated when an A\+D\+M\+IN signs in. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classUserInterface}{User\+Interface}}
+\begin{DoxyCompactList}\small\item\em Interface instanciated when a N\+O\+N-\/\+R\+E\+G\+I\+S\+T\+E\+R\+ED user signs in. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classMemberInterface}{Member\+Interface}}
+\begin{DoxyCompactList}\small\item\em Interface instanciated when a M\+E\+M\+B\+ER signs in. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classMenu}{Menu}}
 \begin{DoxyCompactList}\small\item\em Absract class for menus that don\textquotesingle{}t modify arguments. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classMenuSelect}{Menu\+Select}}
@@ -33,14 +41,14 @@ std\+::string \mbox{\hyperlink{group__interface__grp_gacaa30c8237fb9bcb187601639
 
 
 \doxysubsection{Detailed Description}
-Code related to interfaces and menus. 
+Code related to interfaces, menus and the application \mbox{\hyperlink{classGUI}{G\+UI}}. 
 
 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{group__interface__grp_gacaa30c8237fb9bcb187601639a7879ac}\label{group__interface__grp_gacaa30c8237fb9bcb187601639a7879ac}} 
-\index{Menu and interfacing module@{Menu and interfacing module}!getMessage@{getMessage}}
-\index{getMessage@{getMessage}!Menu and interfacing module@{Menu and interfacing module}}
+\index{Menu, GUI and interfacing module@{Menu, GUI and interfacing module}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!Menu, GUI and interfacing module@{Menu, GUI and interfacing module}}
 \doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 std\+::string \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
@@ -53,8 +61,8 @@ Get current menu title followed by the title of each menu inside \textquotesingl
 String ready to be shown as the guide to the selection of available options 
 \end{DoxyReturn}
 \mbox{\Hypertarget{group__interface__grp_gadd995b39ad5e9e113f3b2f065764e344}\label{group__interface__grp_gadd995b39ad5e9e113f3b2f065764e344}} 
-\index{Menu and interfacing module@{Menu and interfacing module}!show@{show}}
-\index{show@{show}!Menu and interfacing module@{Menu and interfacing module}}
+\index{Menu, GUI and interfacing module@{Menu, GUI and interfacing module}!show@{show}}
+\index{show@{show}!Menu, GUI and interfacing module@{Menu, GUI and interfacing module}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 void \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
@@ -68,8 +76,8 @@ Instanciate menu with no initial value of arg.
 Reimplemented from \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{Menu\+Filter$<$ Arg $>$}}.
 
 \mbox{\Hypertarget{group__interface__grp_ga5266c12ce273fc662552a8c9e518057f}\label{group__interface__grp_ga5266c12ce273fc662552a8c9e518057f}} 
-\index{Menu and interfacing module@{Menu and interfacing module}!show@{show}}
-\index{show@{show}!Menu and interfacing module@{Menu and interfacing module}}
+\index{Menu, GUI and interfacing module@{Menu, GUI and interfacing module}!show@{show}}
+\index{show@{show}!Menu, GUI and interfacing module@{Menu, GUI and interfacing module}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 void \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}\item[{Arg \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}

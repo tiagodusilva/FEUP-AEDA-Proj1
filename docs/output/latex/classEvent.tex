@@ -11,7 +11,8 @@ Class that simulates all the information an enterprise would have about their ev
 
 
 
-Collaboration diagram for Event\+:\nopagebreak
+Collaboration diagram for Event\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -64,9 +65,10 @@ void \mbox{\hyperlink{classEvent_a96abc65ba324bd3e16024e502c63c716}{set\+\_\+tim
 void \mbox{\hyperlink{classEvent_aabd951a875803e013725cd234f8af773}{set\+\_\+date}} (const \mbox{\hyperlink{classDate}{Date}} \&new\+\_\+date)
 \begin{DoxyCompactList}\small\item\em Seter for the date of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEvent_a9222c24be33441213f126a1d614d3e79}{set\+\_\+invalid\+\_\+id}} ()
-\begin{DoxyCompactList}\small\item\em Completely destructive method~\newline
- When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
+\begin{DoxyCompactList}\small\item\em When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
  W\+A\+R\+N\+I\+NG\+: Once this method is called, there is no going back. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a6551894402d020a75665a966f4216b7a}{set\+\_\+validity}} (bool new\+\_\+is\+\_\+valid)
+\begin{DoxyCompactList}\small\item\em Setter for the is\+\_\+valid flag of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEvent_a78c7c3cd25d5aad88c1623a8e8d1adb4}{purchase}} (unsigned cc)
 \begin{DoxyCompactList}\small\item\em Handles the purchase of this \mbox{\hyperlink{classEvent}{Event}} by an user. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classEvent_ab353c0023641a04695f2f656cd187bcc}{is\+\_\+full}} () const
@@ -539,11 +541,10 @@ Seter for the date of this \mbox{\hyperlink{classEvent}{Event}}.
 
 
 
-Completely destructive method~\newline
- When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
+When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
  W\+A\+R\+N\+I\+NG\+: Once this method is called, there is no going back. 
 
-\mbox{\Hypertarget{classEvent_ae85b3344ef73acc976f5ecb0afa96780}\label{classEvent_ae85b3344ef73acc976f5ecb0afa96780}} 
+Completely destructive method (irreversible) \mbox{\Hypertarget{classEvent_ae85b3344ef73acc976f5ecb0afa96780}\label{classEvent_ae85b3344ef73acc976f5ecb0afa96780}} 
 \index{Event@{Event}!set\_location\_name@{set\_location\_name}}
 \index{set\_location\_name@{set\_location\_name}!Event@{Event}}
 \doxysubsubsection{\texorpdfstring{set\_location\_name()}{set\_location\_name()}}
@@ -616,6 +617,21 @@ Setter for the time of this \mbox{\hyperlink{classEvent}{Event}}.
 
 \begin{DoxyParams}{Parameters}
 {\em new\+\_\+time} & The new time for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_a6551894402d020a75665a966f4216b7a}\label{classEvent_a6551894402d020a75665a966f4216b7a}} 
+\index{Event@{Event}!set\_validity@{set\_validity}}
+\index{set\_validity@{set\_validity}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_validity()}{set\_validity()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+validity (\begin{DoxyParamCaption}\item[{bool}]{new\+\_\+is\+\_\+valid }\end{DoxyParamCaption})}
+
+
+
+Setter for the is\+\_\+valid flag of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+This method is not destructive (can be reverted) 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+is\+\_\+valid} & The new is\+\_\+valid flag for this \mbox{\hyperlink{classEvent}{Event}} \\
 \hline
 \end{DoxyParams}
 
@@ -740,7 +756,7 @@ event\textquotesingle{}s unique id (different for every event)
 
 True, if the event is valid. False, otherwise. 
 
-\mbox{\Hypertarget{classEvent_ab1d5c77bd057a398d074da6c89d6f4a6}\label{classEvent_ab1d5c77bd057a398d074da6c89d6f4a6}} 
+Currently is used to make an \mbox{\hyperlink{classEvent}{Event}} visible, but impossible to be purchased \mbox{\Hypertarget{classEvent_ab1d5c77bd057a398d074da6c89d6f4a6}\label{classEvent_ab1d5c77bd057a398d074da6c89d6f4a6}} 
 \index{Event@{Event}!location\_name@{location\_name}}
 \index{location\_name@{location\_name}!Event@{Event}}
 \doxysubsubsection{\texorpdfstring{location\_name}{location\_name}}

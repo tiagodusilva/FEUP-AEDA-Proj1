@@ -11,7 +11,8 @@ Class that simulates the Enterprises our Network would have established contract
 
 
 
-Collaboration diagram for Enterprise\+:\nopagebreak
+Collaboration diagram for Enterprise\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -57,6 +58,8 @@ void \mbox{\hyperlink{classEnterprise_a652354276f35bf8187ae0970f2811fdf}{event\+
 \begin{DoxyCompactList}\small\item\em Setter for the time of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ac02bcadef6aeaeaf557154afe6b5bfd0}{event\+\_\+set\+\_\+date}} (unsigned id, const \mbox{\hyperlink{classDate}{Date}} \&new\+\_\+date)
 \begin{DoxyCompactList}\small\item\em Seter for the date of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_ae04ecd87fdb0b539b207070f261a2c5f}{event\+\_\+set\+\_\+validity}} (unsigned id, bool new\+\_\+is\+\_\+valid)
+\begin{DoxyCompactList}\small\item\em Setter for the is\+\_\+valid flag of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ada672b0e4a47742b2a617baaa2c491ec}{add\+\_\+event}} (\mbox{\hyperlink{classEvent}{Event}} \&ev)
 \begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}{remove\+\_\+event}} (unsigned id)
@@ -361,6 +364,21 @@ Setter for the time of the \mbox{\hyperlink{classEvent}{Event}} with id.
 
 \begin{DoxyParams}{Parameters}
 {\em new\+\_\+time} & The new time for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_ae04ecd87fdb0b539b207070f261a2c5f}\label{classEnterprise_ae04ecd87fdb0b539b207070f261a2c5f}} 
+\index{Enterprise@{Enterprise}!event\_set\_validity@{event\_set\_validity}}
+\index{event\_set\_validity@{event\_set\_validity}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_validity()}{event\_set\_validity()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+validity (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{bool}]{new\+\_\+is\+\_\+valid }\end{DoxyParamCaption})}
+
+
+
+Setter for the is\+\_\+valid flag of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+This method is not destructive (can be reverted) 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+is\+\_\+valid} & The new is\+\_\+valid flag for the \mbox{\hyperlink{classEvent}{Event}} with id \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classEnterprise_a499fc7376750985302c7e23fdf263291}\label{classEnterprise_a499fc7376750985302c7e23fdf263291}} 

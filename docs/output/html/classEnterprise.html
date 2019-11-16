@@ -81,7 +81,8 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Enterprise:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -140,6 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac02bcadef6aeaeaf557154afe6b5bfd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ac02bcadef6aeaeaf557154afe6b5bfd0">event_set_date</a> (unsigned id, const <a class="el" href="classDate.html">Date</a> &amp;new_date)</td></tr>
 <tr class="memdesc:ac02bcadef6aeaeaf557154afe6b5bfd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seter for the date of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id.  <a href="classEnterprise.html#ac02bcadef6aeaeaf557154afe6b5bfd0">More...</a><br /></td></tr>
 <tr class="separator:ac02bcadef6aeaeaf557154afe6b5bfd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae04ecd87fdb0b539b207070f261a2c5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ae04ecd87fdb0b539b207070f261a2c5f">event_set_validity</a> (unsigned id, bool new_is_valid)</td></tr>
+<tr class="memdesc:ae04ecd87fdb0b539b207070f261a2c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the is_valid flag of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id.  <a href="classEnterprise.html#ae04ecd87fdb0b539b207070f261a2c5f">More...</a><br /></td></tr>
+<tr class="separator:ae04ecd87fdb0b539b207070f261a2c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada672b0e4a47742b2a617baaa2c491ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ada672b0e4a47742b2a617baaa2c491ec">add_event</a> (<a class="el" href="classEvent.html">Event</a> &amp;ev)</td></tr>
 <tr class="memdesc:ada672b0e4a47742b2a617baaa2c491ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a>.  <a href="classEnterprise.html#ada672b0e4a47742b2a617baaa2c491ec">More...</a><br /></td></tr>
 <tr class="separator:ada672b0e4a47742b2a617baaa2c491ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -707,6 +711,42 @@ Friends</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">new_time</td><td>The new time for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae04ecd87fdb0b539b207070f261a2c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae04ecd87fdb0b539b207070f261a2c5f">&#9670;&nbsp;</a></span>event_set_validity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enterprise::event_set_validity </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>new_is_valid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the is_valid flag of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id. </p>
+<p>This method is not destructive (can be reverted) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_is_valid</td><td>The new is_valid flag for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id </td></tr>
   </table>
   </dd>
 </dl>
