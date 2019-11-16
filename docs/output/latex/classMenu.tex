@@ -2,11 +2,17 @@
 \label{classMenu}\index{Menu@{Menu}}
 
 
+Absract class for menus that don\textquotesingle{}t modify arguments.  
+
+
+
+
 {\ttfamily \#include $<$menu.\+h$>$}
 
 
 
-Inheritance diagram for Menu\+:\nopagebreak
+Inheritance diagram for Menu\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,30 +25,31 @@ Collaboration diagram for Menu\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=164pt]{classMenu__coll__graph}
+\includegraphics[width=153pt]{classMenu__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classMenu_af54c660c10cdd3a620f5d9a89b4347e4}{Menu}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classMenu_a8fc4104b08c9a24d1dab18b82a82b7da}{$\sim$\+Menu}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMenu_ad8e255f11f8b9db46702df6b1cf71605}{Menu}} (std\+::string t)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMenu}{Menu}} class. \end{DoxyCompactList}\item 
 const std\+::string \mbox{\hyperlink{classMenu_ae8e364af960d21cdb09ee50940c10f0e}{get\+Title}} () const
-\item 
-void \mbox{\hyperlink{classMenu_ab57ccdfb9e07c224bbcfd1af48344a8a}{operator()}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Getter for the \mbox{\hyperlink{classMenu}{Menu}} title. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classMenu_a6a39f0279393d72625776c4b717cad8a}{show}} ()=0
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em String inserted to std\+::cout on menu entering. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Absract class for menus that don\textquotesingle{}t modify arguments. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classMenu_af54c660c10cdd3a620f5d9a89b4347e4}\label{classMenu_af54c660c10cdd3a620f5d9a89b4347e4}} 
@@ -51,11 +58,19 @@ std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{titl
 \doxysubsubsection{\texorpdfstring{Menu()}{Menu()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor. 
+
 \mbox{\Hypertarget{classMenu_a8fc4104b08c9a24d1dab18b82a82b7da}\label{classMenu_a8fc4104b08c9a24d1dab18b82a82b7da}} 
 \index{Menu@{Menu}!````~Menu@{$\sim$Menu}}
 \index{````~Menu@{$\sim$Menu}!Menu@{Menu}}
 \doxysubsubsection{\texorpdfstring{$\sim$Menu()}{~Menu()}}
 {\footnotesize\ttfamily virtual Menu\+::$\sim$\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
 
 \mbox{\Hypertarget{classMenu_ad8e255f11f8b9db46702df6b1cf71605}\label{classMenu_ad8e255f11f8b9db46702df6b1cf71605}} 
 \index{Menu@{Menu}!Menu@{Menu}}
@@ -65,6 +80,15 @@ std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{titl
 
 
 
+Constructor for the \mbox{\hyperlink{classMenu}{Menu}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & String to be used as the \mbox{\hyperlink{classMenu}{Menu}} title \\
+\hline
+\end{DoxyParams}
+
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classMenu_ae8e364af960d21cdb09ee50940c10f0e}\label{classMenu_ae8e364af960d21cdb09ee50940c10f0e}} 
 \index{Menu@{Menu}!getTitle@{getTitle}}
@@ -72,12 +96,13 @@ std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{titl
 \doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
 {\footnotesize\ttfamily const std\+::string Menu\+::get\+Title (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classMenu_ab57ccdfb9e07c224bbcfd1af48344a8a}\label{classMenu_ab57ccdfb9e07c224bbcfd1af48344a8a}} 
-\index{Menu@{Menu}!operator()@{operator()}}
-\index{operator()@{operator()}!Menu@{Menu}}
-\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
-{\footnotesize\ttfamily void Menu\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+Getter for the \mbox{\hyperlink{classMenu}{Menu}} title. 
+
+\begin{DoxyReturn}{Returns}
+Copy of the current \mbox{\hyperlink{classMenu}{Menu}} Title 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classMenu_a6a39f0279393d72625776c4b717cad8a}\label{classMenu_a6a39f0279393d72625776c4b717cad8a}} 
 \index{Menu@{Menu}!show@{show}}
 \index{show@{show}!Menu@{Menu}}
@@ -86,7 +111,7 @@ std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{titl
 
 
 
-Implemented in \mbox{\hyperlink{classMenuOptionsFilter_add995b39ad5e9e113f3b2f065764e344}{Menu\+Options\+Filter$<$ Arg $>$}}, \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{Menu\+Filter$<$ Arg $>$}}, \mbox{\hyperlink{classMenuOptions_ac771b575e381702bfad9fc5f814cd46a}{Menu\+Options}}, and \mbox{\hyperlink{classMenuSelect_a08a98f55abcdbe66ad5bee1b0cc6ca5f}{Menu\+Select}}.
+Implemented in \mbox{\hyperlink{group__menu__grp_gadd995b39ad5e9e113f3b2f065764e344}{Menu\+Options\+Filter$<$ Arg $>$}}, \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{Menu\+Filter$<$ Arg $>$}}, \mbox{\hyperlink{classMenuOptions_ac771b575e381702bfad9fc5f814cd46a}{Menu\+Options}}, and \mbox{\hyperlink{classMenuSelect_a08a98f55abcdbe66ad5bee1b0cc6ca5f}{Menu\+Select}}.
 
 
 
@@ -96,6 +121,10 @@ Implemented in \mbox{\hyperlink{classMenuOptionsFilter_add995b39ad5e9e113f3b2f06
 \index{title@{title}!Menu@{Menu}}
 \doxysubsubsection{\texorpdfstring{title}{title}}
 {\footnotesize\ttfamily std\+::string Menu\+::title\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+String inserted to std\+::cout on menu entering. 
 
 
 

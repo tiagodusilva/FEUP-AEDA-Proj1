@@ -2,11 +2,17 @@
 \label{classMenuFilter}\index{MenuFilter$<$ Arg $>$@{MenuFilter$<$ Arg $>$}}
 
 
+Abstract class used for specifying menus that modify an argument (by using different filters)  
+
+
+
+
 {\ttfamily \#include $<$menu.\+h$>$}
 
 
 
-Inheritance diagram for Menu\+Filter$<$ Arg $>$\+:\nopagebreak
+Inheritance diagram for Menu\+Filter$<$ Arg $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for Menu\+Filter$<$ Arg $>$\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Menu\+Filter$<$ Arg $>$\+:\nopagebreak
+Collaboration diagram for Menu\+Filter$<$ Arg $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,16 +33,29 @@ Collaboration diagram for Menu\+Filter$<$ Arg $>$\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classMenuFilter_a5ca7e37001cac215c8ac76fda0905980}{Menu\+Filter}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classMenuFilter_abd02d184c2aa256bda46c43d81fe3852}{$\sim$\+Menu\+Filter}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMenuFilter_af52c785ce97265a429e11773adc6b763}{Menu\+Filter}} (std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}})
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}} class. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classMenuFilter_a31880bd772b176637a2fde75fdedbfd3}{show}} (Arg \&)=0
-\item 
+\begin{DoxyCompactList}\small\item\em Invokes and displays all of the menus in options and waits for user input to call them. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{show}} () override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Invokes and displays all of the menus in options and waits for user input to call them. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Arg$>$\newline
+class Menu\+Filter$<$ Arg $>$}
+
+Abstract class used for specifying menus that modify an argument (by using different filters) 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Arg} & Defines type of object that can be filtered (usually an, iterable, linear data structure) \\
+\hline
+\end{DoxyTemplParams}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -46,12 +66,20 @@ void \mbox{\hyperlink{classMenuFilter_af7644eb5457e0ef67e9aa0fa69e1aa46}{show}} 
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuFilter}{Menu\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor. 
+
 \mbox{\Hypertarget{classMenuFilter_abd02d184c2aa256bda46c43d81fe3852}\label{classMenuFilter_abd02d184c2aa256bda46c43d81fe3852}} 
 \index{MenuFilter$<$ Arg $>$@{MenuFilter$<$ Arg $>$}!````~MenuFilter@{$\sim$MenuFilter}}
 \index{````~MenuFilter@{$\sim$MenuFilter}!MenuFilter$<$ Arg $>$@{MenuFilter$<$ Arg $>$}}
 \doxysubsubsection{\texorpdfstring{$\sim$MenuFilter()}{~MenuFilter()}}
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 virtual \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::$\sim$\mbox{\hyperlink{classMenuFilter}{Menu\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
 
 \mbox{\Hypertarget{classMenuFilter_af52c785ce97265a429e11773adc6b763}\label{classMenuFilter_af52c785ce97265a429e11773adc6b763}} 
 \index{MenuFilter$<$ Arg $>$@{MenuFilter$<$ Arg $>$}!MenuFilter@{MenuFilter}}
@@ -60,6 +88,15 @@ virtual \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::$\sim$\mb
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
 \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuFilter}{Menu\+Filter}} (\begin{DoxyParamCaption}\item[{std\+::string}]{title }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Constructor for the \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & String to be used as the \mbox{\hyperlink{classMenu}{Menu}} title \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
@@ -72,11 +109,15 @@ void \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::show (\begin
 
 
 
+Invokes and displays all of the menus in options and waits for user input to call them. 
+
+
+
 Implements \mbox{\hyperlink{classMenu_a6a39f0279393d72625776c4b717cad8a}{Menu}}.
 
 
 
-Reimplemented in \mbox{\hyperlink{classMenuOptionsFilter_add995b39ad5e9e113f3b2f065764e344}{Menu\+Options\+Filter$<$ Arg $>$}}.
+Reimplemented in \mbox{\hyperlink{group__menu__grp_gadd995b39ad5e9e113f3b2f065764e344}{Menu\+Options\+Filter$<$ Arg $>$}}.
 
 \mbox{\Hypertarget{classMenuFilter_a31880bd772b176637a2fde75fdedbfd3}\label{classMenuFilter_a31880bd772b176637a2fde75fdedbfd3}} 
 \index{MenuFilter$<$ Arg $>$@{MenuFilter$<$ Arg $>$}!show@{show}}
@@ -87,7 +128,16 @@ virtual void \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$\+::show
 
 
 
-Implemented in \mbox{\hyperlink{classMenuSelectFilter_a56e7d08a93412aa43becb94130b0f454}{Menu\+Select\+Filter$<$ Arg $>$}}, and \mbox{\hyperlink{classMenuOptionsFilter_a5266c12ce273fc662552a8c9e518057f}{Menu\+Options\+Filter$<$ Arg $>$}}.
+Invokes and displays all of the menus in options and waits for user input to call them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Arg} & Object to be displayed \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classMenuSelectFilter_a56e7d08a93412aa43becb94130b0f454}{Menu\+Select\+Filter$<$ Arg $>$}}, and \mbox{\hyperlink{group__menu__grp_ga5266c12ce273fc662552a8c9e518057f}{Menu\+Options\+Filter$<$ Arg $>$}}.
 
 
 

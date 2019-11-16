@@ -1,3 +1,4 @@
+/** @file time.h */
 #ifndef FEUP_AEDA_PROJ1_MENU_H
 #define FEUP_AEDA_PROJ1_MENU_H
 
@@ -9,99 +10,245 @@
 #include "exceptions.h"
 #include "utilities.h"
 
+/** @defgroup menu_grp Menu module */
 
-// Absract class for menus that don't modify arguments
+/** @addtogroup	menu_grp
+  *
+  * @brief	Code related to menus
+  *
+  * @{
+  */
+
+
+/**
+ * @brief	Absract class for menus that don't modify arguments
+ */
 class Menu {
 protected:
+	/** @brief	String inserted to std::cout on menu entering */
 	std::string title;
 public:
-	/* Constructors */
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	Menu() = default;
+	/**
+	 * @brief	Default destructor
+	 */
 	virtual ~Menu() = default;
+	/**
+	 * @brief	Constructor for the Menu class
+	 *
+	 * @param t	String to be used as the Menu title
+	 */
 	Menu(std::string t) : title(t) {};
 
-	const std::string getTitle() const { return this->title;};
-
-	/* TODO Maybe delete () idk yet */
-	void operator()() { this->show();};
+	/* GETTERS */
+	/**
+	 * @brief	Getter for the Menu title
+	 *
+	 * @return	Copy of the current Menu Title
+	 */
+	const std::string getTitle() const { return this->title; }
 
 	/* Show function that will be called when instancing a given menu */
 	virtual void show() = 0;
 };
 
 
-// Wrapper to a function that takes no arguments.
+/**
+ * @brief	Wrapper to a function that takes no arguments.
+ */
 class MenuSelect : public Menu{
 private:
+	/** @brief	Function that the menu calls when active */
 	std::function<void()> func;
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MenuSelect() = default;
+	/**
+	 * @brief	Default destructor
+	 */
 	~MenuSelect() = default;
-	MenuSelect(std::string title, std::function<void()> fun) : Menu(title){ this->func = fun; };
+	/**
+	 * @brief	Constructor for the MenuSelect class
+	 *
+	 * @param title	String to be used as the Menu title
+	 * @param fun	Function to be called when the menu becomes active
+	 */
+	MenuSelect(std::string title, std::function<void()> fun) : Menu(title){ this->func = fun; }
 
-	/* Call the function that the menu is pointing to */
+	/**
+	 * @brief	Call the function that the menu is pointing to
+	 */
 	void show() override { this->func(); utl::pauseConsole(); return; };
 };
 
 
-// Menu that serves as an interface to other MenuOption, MenuSelect or MenuFilter instances (all derived from menu).
+/**
+ * @brief	Menu that serves as an interface to other MenuOption, MenuSelect or MenuFilter instances\n(all derived from menu)
+ */
 class MenuOptions : public Menu{
 protected:
+	/** @brief	List of menus that the current MenuOptions provides access to (options).\n
+	 *		The order inside the vector is preserved
+	 */
 	std::vector<Menu*> options;
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MenuOptions() = default;
+	/**
+	 * @brief	Default destructor
+	 */
 	~MenuOptions() = default;
+	/**
+	 * @brief	Constructor for the MenuOptions class
+	 *
+	 * @param t	String to be used as the Menu title
+	 * @param opt	List of menus this Menu is capable of calling/instantiate
+	 */
 	MenuOptions(std::string t, std::vector<Menu*> opt) : Menu(t), options(opt) {};
 
+	/**
+	 * @brief	Get current menu title followed by the title of each menu inside 'options'
+	 *
+	 * @return	String ready to be shown as the guide to the selection of available options
+	 */
 	std::string getMessage() const;
 
-	friend std::ostream& operator<< (std::ostream &out, MenuOptions menu) { out << menu.getMessage(); return out; };
+	/* INSERTION OPERATOR OVERLOAD */
+	/**
+	 * @brief	Overloaded ostream insertion operator
+	 *
+	 * @details	Mainly used with std::cout to show formated information on screen
+	 *
+	 * @param out	Reference to the ostream object to insert info to
+	 * @param menu	Reference to the Menu object whose info will be inserted in the ostream
+	 *
+	 * @return	Reference to the ostream object, 'outstream', passed in the parameters
+	 */
+	friend std::ostream& operator<< (std::ostream &out, const MenuOptions &menu) {
+		out << menu.getMessage(); return out; };
 
-	/* Invokes and displays all of the menus in options and waits for user input to call them */
+	/**
+	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
+	 */
 	void show() override;
-	/* Exits gracefully from the menu */
 };
 
 
-template<typename Arg> // Abstract class used for specifyiing menus that modify an argument (by using different filters)
+/**
+ * @brief	Abstract class used for specifying menus that modify an argument (by using different filters)
+ *
+ * @tparam Arg	Defines type of object that can be filtered (usually an, iterable, linear data structure)
+ */
+template<typename Arg>
 class MenuFilter : public Menu{
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MenuFilter<Arg>() = default;
+	/**
+	 * @brief	Default destructor
+	 */
 	virtual ~MenuFilter<Arg>() = default;
-	MenuFilter<Arg>(std::string title) : Menu(title) {};
+	/**
+	 * @brief	Constructor for the MenuFilter class
+	 *
+	 * @param title	String to be used as the Menu title
+	 */
+	MenuFilter<Arg>(std::string title) : Menu(title) {}
 
-	/* same as show() from Menu but that takes a reference to an argument */
+	/**
+	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
+	 *
+	 * @param Arg	Object to be displayed
+	 */
 	virtual void show(Arg&) = 0;
+	/**
+	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
+	 */
 	void show() override { return; };
 };
 
 
-template<typename Arg> // Wrapper to function that modifies an argument
+/**
+ * @brief	Wrapper to function that modifies an argument
+ *
+ * @tparam Arg	Defines type of object that can be filtered (usually an, iterable, linear data structure)
+ */
+template<typename Arg>
 class MenuSelectFilter : public MenuFilter<Arg>{
 private:
+	/** @brief	Function that the menu calls when active\n
+	 *		Takes an argument of type Arg
+	 */
 	std::function<void(Arg&)> func;
 
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MenuSelectFilter<Arg>() = default;
+	/**
+	 * @brief	Default destructor
+	 */
 	~MenuSelectFilter<Arg>() = default;
-	MenuSelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) : MenuFilter<Arg>(title), func(fun) {};
+	/**
+	 * @brief	Constructor for the MenuSelectFilter class
+	 *
+	 * @param title	String to be used as the Menu title
+	 * @param fun	Function that will called when the class is active
+	 */
+	MenuSelectFilter<Arg>(std::string title, std::function<void(Arg&)> fun) :
+		MenuFilter<Arg>(title), func(fun) {};
 
-	void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); return; };
+	/**
+	 * @brief	Invokes the data-member 'func' with the given argument, 'arg'
+	 *
+	 * @param arg	Argument to pass to the data-member 'func' as an argument
+	 */
+	void show(Arg &arg) override { this->func(arg); utl::pauseConsole(); }
 };
 
 
-template<typename Arg> // Menu that controls MenuSelectFilter and other MenuOptionsFilter (all derived from MenuFilter)
-class MenuOptionsFilter : public MenuFilter<Arg>{
+/**
+ * @brief	Menu that controls MenuSelectFilter and other MenuOptionsFilter
+ *
+ * @tparam Arg	Defines type of object that can be filtered (usually an, iterable, linear data structure)
+ */
+template<typename Arg>
+class MenuOptionsFilter : public MenuFilter<Arg> {
 private:
-	/* Argument that is passed and modified */
+	/** @brief	Argument that is passed and modified */
 	Arg argument;
 
-	/* Functions that will be called when menu is starting/exiting. */
-	std::function<Arg()> start_func = [](){ return Arg(); }; // Initialize as a dead function to ensure that it points to something
-	std::function<void(Arg&)> exit_func = [](Arg){ return; }; // Initialize as a dead function to ensure that it points to something
+	/* FUNCTIONS THAT WILL BE CALLED WHEN MENU IS STARTING/EXITING */
+	/**
+	 * @brief	Initialize to ensure that it points to something
+	 *
+	 * @return	A dead function
+	 */
+	std::function<Arg()> start_func = [](){ return Arg(); }
+	/**
+	 * @brief	Initialize to ensure that it points to something
+	 *
+	 * @return	A dead function
+	 */
+	std::function<void(Arg&)> exit_func = [](Arg){}
 
 	std::vector<MenuFilter<Arg>*> options;
-	/* Backup vector (used when user can't select a menu more than once). */
+	/* Backup vector (used when user can't select a menu more than once) */
 	const std::vector<MenuFilter<Arg>*> options_backup;
 
 	/* Specifies if only one menu from options can be chosen (will exit from the menu when user selects any option) */
@@ -210,5 +357,7 @@ MenuOptionsFilter<Arg>::getMessage() const
 	res += "0- Go back\n";
 	return res;
 }
+
+/** @} */
 
 #endif	// FEUP_AEDA_PROJ1_MENU_H

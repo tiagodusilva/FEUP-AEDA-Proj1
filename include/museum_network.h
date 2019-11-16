@@ -51,7 +51,8 @@ public:
 	/**
 	 * @brief	Constructor for the MuseumNetwork class
 	 *
-	 * @param config_file_name	Name of the file to read the new Museum Network configuration from\nIncluding the names of the files that containing the new information
+	 * @param config_file_name	Name of the file to read the new Museum Network configuration from\n
+					Including the names of the files that containing the new information
 	 */
 	MuseumNetwork(std::string config_file_name) { this->importFiles(config_file_name); }
 
