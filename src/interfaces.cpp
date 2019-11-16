@@ -250,7 +250,8 @@ AdminInterface::show()
 	/* Add Event */
 	MenuSelectFilter<vector<Enterprise>> addEventToNetwork("Add an event to the selected enterprise",
 			[this](vector<Enterprise>&vec) {
-				if(vec.size() != 1) throw(UserInputReadingFailure("Multiple enterprises selected"));
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple enterprises selected"));
 				Event event; Event::cin_read_event(event);
 				if(cin.fail()) {
 					utl::stream_clear(cin);
@@ -271,9 +272,122 @@ AdminInterface::show()
 	MenuOptions add_network("Add Network Options", std::vector<Menu*>{&addEnterpirse, &addEvent, &addMuseum, &addUser});
 
 
+
+	/* Modify Network Options */
+
+	/* Modify Enterprises*/
+
+	MenuSelectFilter<vector<Museum>> modifyMuseumMenu("Modify the selected Museum",
+			[this](vector<Museum>&vec){
+				/* Opens menu that changes the current enterprise */
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple Museums selected"));
+				Museum old_museum = vec.at(0); // Store selected museum as backup for later modifying
+
+				MenuSelectFilter<Museum> modifyMuseumName("Modify Name",
+						[](Museum &enter){
+							cout << "Name?" << endl;
+							string name; getline(cin, name);
+							enter.set_name(name);
+						});
+
+				MenuSelectFilter<Museum> modifyMuseumClosingTime("Modify closing time",
+						[](Museum &enter){
+							cout << "Closing time? (hour:min)" << endl;
+							Time close_time; cin >> close_time;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid closing time"));
+							enter.set_close(close_time);
+						});
+
+				MenuSelectFilter<Museum> modifyMuseumOpeningTime("Modify opening time",
+						[](Museum &enter){
+							cout << "Opening time? (hour:min)" << endl;
+							Time open_time; cin >> open_time;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid opening time"));
+							enter.set_open(open_time);
+						});
+
+				MenuSelectFilter<Museum> modifyMuseumFee("Modify fee",
+						[](Museum &enter){
+							cout << "Fee?" << endl;
+							float fee; cin >> fee;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid fee"));
+							enter.set_fee(fee);
+						});
+
+				MenuSelectFilter<Museum> modifyMuseumCommit("Commit changes",
+						[this, &old_museum](Museum &museum){
+							this->museum_network.modifyMuseum(old_museum, museum);
+						});
+
+				MenuOptionsFilter<Museum> modifyMuseum("Modify the selected Enterprise",
+						{&modifyMuseumName, &modifyMuseumOpeningTime, &modifyMuseumClosingTime, &modifyMuseumFee, &modifyMuseumCommit});
+
+				modifyMuseum.show(vec.at(0)); // Initialize the menu with the selected enterprise
+			});
+
+	vector<MenuFilter<vector<Museum>>*> modifyMuseumOpt = listMuseumsOpt;
+	modifyMuseumOpt.push_back(&modifyMuseumMenu);
+	MenuOptionsFilter<vector<Museum>> modifyMuseumSelection("Modify Museums", modifyMuseumOpt,
+			[](vector<Museum>&vec){},[this](){ return(this->museum_network.getMuseums());}, false, {0});
+
+
+	MenuSelectFilter<vector<Enterprise>> modifyEnterpriseMenu("Modify the selected Enterprise",
+			[this](vector<Enterprise>&vec){
+				cout << "HERE"; utl::pauseConsole();
+				/* Opens menu that changes the current enterprise */
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple Enterprises selected"));
+				Enterprise old_enterprise = vec.at(0); // Store selected enterprise as backup for later modifying
+
+				MenuSelectFilter<Enterprise> modifyEnterpriseName("Modify Name",
+						[](Enterprise &enter){
+							cout << "Name?\n";
+							string name; getline(cin, name);
+							enter.set_name(name);
+						});
+
+				MenuSelectFilter<Enterprise> modifyEnterpriseContact("Modify Contact",
+						[](Enterprise &enter){
+							cout << "Contact?\n";
+							string contact; getline(cin, contact);
+							enter.set_contact(contact);
+						});
+
+				MenuSelectFilter<Enterprise> modifyEnterpriseAddress("Modify Address",
+						[](Enterprise &enter){
+							cout << "Address (street name/XXXX-XXX/region name  or  region)?\n";
+							Address address; cin >> address;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid Address"));
+							enter.set_address(address);
+						});
+
+				MenuSelectFilter<Enterprise> modifyEnterpriseCommit("Commit changes",
+						[this, &old_enterprise](Enterprise &enter){
+							this->museum_network.modifyEnterprise(old_enterprise, enter);
+						});
+
+				MenuOptionsFilter<Enterprise> modifyEnterprise("Modify the selected Enterprise",
+						{&modifyEnterpriseAddress, &modifyEnterpriseContact, &modifyEnterpriseName, &modifyEnterpriseCommit});
+
+				modifyEnterprise.show(vec.at(0)); // Initialize the menu with the selected enterprise
+			});
+
+	vector<MenuFilter<vector<Enterprise>>*> modifyEnterpriseOpt = listEnterprisesOpt;
+	modifyEnterpriseOpt.push_back(&modifyEnterpriseMenu);
+	MenuOptionsFilter<vector<Enterprise>> modifyEnterpriseSelection("Modify Enterprises", modifyEnterpriseOpt,
+			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0});
+
+
+	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyMuseumSelection});
+
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as ADMIN",
-			vector<Menu*>{&list_network, &remove_network, &add_network});
+			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network});
 
 
 	main_menu.show();
@@ -404,14 +518,14 @@ void MemberInterface::show() {
 						vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
 				}
 
-				cout << "Are you sure? (y/n)\n";
+				cout << "Are you sure? (y/n)" << endl;
 				int a = getchar(); utl::ignore(cin);
 
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
 					this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
 					vec = this->museum_network.getEvents(); // Reset all events after purchase
-					cout <<	"Event purchased successfully\n";
+					cout <<	"Event purchased successfully" << endl;
 				}
 				else
 					cout << "Operation aborted" << endl;
@@ -428,14 +542,14 @@ void MemberInterface::show() {
 	/* Change current Member */
 	MenuSelect changeContact("Change your contact",
 			[this](){
-				cout << "Contact?\n";
+				cout << "Contact?" << endl;
 				string contact;
 				getline(cin, contact);
 				this->member_card->set_contact(contact);
 			});
 	MenuSelect changeName("Change your name",
 			[this](){
-				cout << "Name?\n";
+				cout << "Name?" << endl;
 				string name;
 				getline(cin, name);
 				this->member_card->set_name(name);
@@ -443,7 +557,7 @@ void MemberInterface::show() {
 	MenuSelect changeBirthDate("Change your birth date",
 			[this](){
 					Date date;
-					cout << "Date (year/month/day)?\n";
+					cout << "Date (year/month/day)?" << endl;
 					cin >> date;
 					if(cin.fail()) {
 						utl::stream_clear(cin);
@@ -454,7 +568,7 @@ void MemberInterface::show() {
 	MenuSelect changeAddress("Change your address",
 			[this](){
 				Address addr;
-				cout << "Address (street name/XXXX-XXX/region name  or  region)? ";
+				cout << "Address (street name/XXXX-XXX/region name  or  region)?" << endl;
 				cin >> addr;
 				if(cin.fail()) {
 					utl::stream_clear(cin);
@@ -469,7 +583,7 @@ void MemberInterface::show() {
 
 	/* Account deletion */
 	MenuSelect removeMember("Delete your account", [this](){
-				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				cout << "Are you sure? (y/n)" << endl; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
 					this->museum_network.removeCard(this->member_card);
@@ -544,7 +658,7 @@ void UserInterface::show(){
 					throw(UserInputReadingFailure("Invalid card formatting\n"));
 				}
 				cout << "This operation will have a cost of " << this->museum_network.getCost(card->get_type()) << endl;
-				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				cout << "Are you sure? (y/n)" << endl; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
 					this->museum_network.addCard(card);
@@ -572,25 +686,27 @@ void GUI::show() {
 
 	MenuSelect memberMenu("Member menu", [this](){
 			unsigned cc;
-			cout << "Please type your CC\n"; cin >> cc; utl::ignore(cin);
+			cout << "Please type your CC" << endl; cin >> cc; utl::ignore(cin);
 			MemberInterface member_interface(museum_network, cc);
-			member_interface.show(); });;
+			member_interface.show();
+		});;
 
 	MenuSelect importMenu("Import from a file", [this](){
 			string config_file;
-			cout << "Insert the config file name\n";
+			cout << "Insert the config file name" << endl;
 			cin >> config_file; utl::ignore(cin);
 			this->museum_network.importFiles(config_file);
-			cout << "File read successfully!\n";});
+			cout << "File read successfully!" << endl;
+		});
 
 	MenuSelect exportMenu("Export to a file", [this](){
 			string config_file, cards_file, museum_file, enterprise_file;
-			cout << "Insert the config file name\n"; cin >> config_file;
-			cout << "Insert the cards file name\n"; cin >> cards_file;
-			cout << "Insert the museum file name\n"; cin >> museum_file;
-			cout << "Insert the enterprise file name\n"; cin >> enterprise_file; utl::ignore(cin);
+			cout << "Insert the config file name" << endl; cin >> config_file;
+			cout << "Insert the cards file name" << endl; cin >> cards_file;
+			cout << "Insert the museum file name" << endl; cin >> museum_file;
+			cout << "Insert the enterprise file name" << endl; cin >> enterprise_file; utl::ignore(cin);
 			this->museum_network.exportFiles(config_file, cards_file, museum_file, enterprise_file);
-			cout << "Files were exported with success\n";});
+			cout << "Files were exported with success" << endl;});
 
 	MenuOptions main_menu("Welcome to RNM\n", vector<Menu*> {&adminMenu, &memberMenu, &userMenu, &importMenu, &exportMenu});
 	main_menu.show();
