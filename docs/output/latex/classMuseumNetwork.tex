@@ -2,6 +2,11 @@
 \label{classMuseumNetwork}\index{MuseumNetwork@{MuseumNetwork}}
 
 
+Network that handles the Museums and the relationship with \mbox{\hyperlink{classEvent}{Event}} companies.  
+
+
+
+
 {\ttfamily \#include $<$museum\+\_\+network.\+h$>$}
 
 
@@ -117,6 +122,9 @@ std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \mbox{\hyper
 std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \mbox{\hyperlink{classMuseumNetwork_a8626a5bde573d2c87f4247a317f0d8b9}{museums}}
 \begin{DoxyCompactList}\small\item\em List of all the Museums that are part of the \mbox{\hyperlink{classMuseum}{Museum}} Network. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Network that handles the Museums and the relationship with \mbox{\hyperlink{classEvent}{Event}} companies. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classMuseumNetwork_ac4557c93ad5ffde7ed0436a9591293d0}\label{classMuseumNetwork_ac4557c93ad5ffde7ed0436a9591293d0}} 
@@ -867,6 +875,12 @@ List of pointers to all the registered User\textquotesingle{}s Cards.
 
 List of the different \mbox{\hyperlink{classCard}{Card}}\textquotesingle{}s creation/renewal cost. 
 
+\begin{DoxyNote}{Note}
+Defaults to\+:~\newline
+ 54.\+90 for \mbox{\hyperlink{classIndividualCard}{Individual\+Card}},~\newline
+ 32.\+45 for \mbox{\hyperlink{classUniCard}{Uni\+Card}} and~\newline
+ 30.\+00 for \mbox{\hyperlink{classSilverCard}{Silver\+Card}} 
+\end{DoxyNote}
 \mbox{\Hypertarget{classMuseumNetwork_a69e6c7010c2fcf575a1a8eaea976741d}\label{classMuseumNetwork_a69e6c7010c2fcf575a1a8eaea976741d}} 
 \index{MuseumNetwork@{MuseumNetwork}!discount@{discount}}
 \index{discount@{discount}!MuseumNetwork@{MuseumNetwork}}
@@ -877,6 +891,9 @@ List of the different \mbox{\hyperlink{classCard}{Card}}\textquotesingle{}s crea
 
 List of the different discounts applied to Cards. 
 
+\begin{DoxyNote}{Note}
+Defaults to 25\% off for every type of \mbox{\hyperlink{classCard}{Card}} 
+\end{DoxyNote}
 \mbox{\Hypertarget{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}\label{classMuseumNetwork_a6484b90e159a3d652fd18421c08b3119}} 
 \index{MuseumNetwork@{MuseumNetwork}!enterprises@{enterprises}}
 \index{enterprises@{enterprises}!MuseumNetwork@{MuseumNetwork}}

@@ -17,11 +17,19 @@
   * @{
   */
 
+/** @brief	Network that handles the Museums and the relationship with Event companies */
 class MuseumNetwork {
 private:
-	/** @brief	List of the different discounts applied to Cards */
+	/** @brief	List of the different discounts applied to Cards
+	 *  @note	Defaults to 25% off for every type of Card
+	 */
 	float discount[3] = {0.25, 0.25, 0.25};
-	/** @brief	List of the different Card's creation/renewal cost */
+	/** @brief	List of the different Card's creation/renewal cost
+	 *  @note	Defaults to:\n
+	 *		54.90 for IndividualCard,\n
+	 *		32.45 for UniCard and\n
+	 *		30.00 for SilverCard
+	 */
 	float cost[3] = {54.90, 32.45, 30.00};
 	/** @brief	List of pointers to all the registered User's Cards */
 	std::vector<Card*> cards;
@@ -223,7 +231,7 @@ public:
 	 * @brief	Lists all Museums in the given vector
 	 *
 	 * @param delim   String delimiter to be printed between museums
-	 * @param museum_to_be_listed   Vector of Museums to be listed
+	 * @param museum_to_be_listed	Vector of Museums to be listed
 	 */
 	void listMuseums(const std::vector<Museum> &museum_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
@@ -303,7 +311,7 @@ public:
 	 *
 	 * @throws  NoSuchObject	Thrown if old_event doesn't exist in the network
 	 * @param old_event		Event that will be changed
-	 * @param new_event     Event whose content will replace the old one
+	 * @param new_event	Event whose content will replace the old one
 	 */
 	void modifyEvent(const Event &old_event, const Event &new_event);
 
