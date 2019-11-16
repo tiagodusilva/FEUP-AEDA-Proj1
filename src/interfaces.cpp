@@ -273,9 +273,7 @@ AdminInterface::show()
 
 
 
-	/* Modify Network Options */
-
-	/* Modify Enterprises*/
+	/* Modify Museums*/
 
 	MenuSelectFilter<vector<Museum>> modifyMuseumMenu("Modify the selected Museum",
 			[this](vector<Museum>&vec){
@@ -335,6 +333,8 @@ AdminInterface::show()
 			[](vector<Museum>&vec){},[this](){ return(this->museum_network.getMuseums());}, false, {0});
 
 
+	/* Modify Enterprises */
+
 	MenuSelectFilter<vector<Enterprise>> modifyEnterpriseMenu("Modify the selected Enterprise",
 			[this](vector<Enterprise>&vec){
 				cout << "HERE"; utl::pauseConsole();
@@ -383,7 +383,10 @@ AdminInterface::show()
 			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0});
 
 
+	/* Modify Network Options */
 	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyMuseumSelection});
+
+
 
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as ADMIN",

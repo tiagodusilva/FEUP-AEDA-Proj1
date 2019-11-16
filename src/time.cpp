@@ -187,7 +187,7 @@ timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Tim
 	end_tm.tm_min = t_rhs.get_min();
 	end_tm.tm_hour = t_rhs.get_hour();
 
-	cout << "Start:\n"
+	/*cout << "Start:\n"
 		<< start_tm.tm_year << endl
 		<< start_tm.tm_mon << endl
 		<< start_tm.tm_mday << endl
@@ -204,7 +204,7 @@ timespan_size(const Date &d_lhs, const Time &t_lhs, const Date &d_rhs, const Tim
 		<< end_tm.tm_sec << endl
 		<< mktime(&end_tm) << endl;
 
-	cout << "diff: " << mktime(&end_tm) - mktime(&start_tm) << endl;
+	cout << "diff: " << mktime(&end_tm) - mktime(&start_tm) << endl;*/
 
 	return (mktime(&end_tm) - mktime(&start_tm)) / SECS_IN_MIN;
 }
