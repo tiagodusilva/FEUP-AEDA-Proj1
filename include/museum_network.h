@@ -80,8 +80,8 @@ public:
 
 	float getDiscount(const unsigned card_type) const;
 	float getCost(const unsigned card_type) const;
-	void importCards(std::string cards_file_name);
-	void exportCards(std::string cards_file_name) const;
+	void importCards(const std::string &cards_file_name);
+	void exportCards(const std::string &cards_file_name) const;
 
 
 	/* Methods for Enterprises */
@@ -96,8 +96,8 @@ public:
 	void listEnterprises(const std::vector<Enterprise> &enterprises_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
-	void importEnterprises(std::string enterprise_file_name);
-	void exportEnterprises(std::string enterprise_file_name) const;
+	void importEnterprises(const std::string &enterprise_file_name);
+	void exportEnterprises(const std::string &enterprise_file_name) const;
 	// First three are low priority
 
 
@@ -113,8 +113,8 @@ public:
 	void listMuseums(const std::vector<Museum> &museum_to_be_listed,
 			const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 
-	void importMuseums(std::string museum_file_name);
-	void exportMuseums(std::string museum_file_name) const;
+	void importMuseums(const std::string &museum_file_name);
+	void exportMuseums(const std::string &museum_file_name) const;
 	// First three are low priority
 
 
@@ -134,8 +134,6 @@ public:
 	void modifyEvent(const Event &old_event, const Event &new_event);
 
 	void purchaseEvent(const unsigned cc, Event event);
-	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
-
 
 	/* Getters for use with Menus */
 	std::vector<Card*> getCards() const { return this->cards; };
@@ -145,12 +143,10 @@ public:
 
 
 	/* File input and output */
-	void importFiles(std::string network_file_name);
-	void exportFiles( std::string cards_file_name, std::string museum_file_name,
-			std::string enterprise_file_name, std::string config_file_name="files/network_config.sadjson" ) const;
+	void importFiles(const std::string &network_file_name);
+	void exportFiles( const std::string &cards_file_name, const std::string &museum_file_name,
+			const std::string &enterprise_file_name, const std::string &config_file_name="files/network_config.sadjson" ) const;
 
-    friend std::ofstream& operator<<(std::ofstream &outfstream, const MuseumNetwork &network);
-    friend std::ifstream &operator>>(std::ifstream &infstream, MuseumNetwork &network);
 };
 
 /** @} */

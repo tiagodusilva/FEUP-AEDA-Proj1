@@ -78,12 +78,6 @@ public:
         std::runtime_error("Event with ID " + std::to_string(event_id) + " is full, it cannot be booked any more") {};
 };
 
-class EventNotFound: public std::runtime_error {
-public:
-    EventNotFound(unsigned event_id) :
-		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found") {};
-};
-
 class EventInvalid: public std::runtime_error {
 public:
     EventInvalid(unsigned event_id) :
