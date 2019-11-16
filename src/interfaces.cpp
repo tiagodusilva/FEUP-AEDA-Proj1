@@ -202,7 +202,7 @@ AdminInterface::show()
 					utl::stream_clear(cin);
 					throw(UserInputReadingFailure("Invalid card formatting\n"));
 				}
-				cout << "This operation will have a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
+				cout << "This operation will have a cost of " << fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
 				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
@@ -605,7 +605,7 @@ void MemberInterface::show() {
 
 	/* Renew Membership */
 	MenuSelect renewCard ("Renew your membership", [this](){
-				cout << "Renewing your membership has a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(this->member_card->get_type()) << endl;
+				cout << "Renewing your membership has a cost of " << fixed << setprecision(2) << this->museum_network.getCost(this->member_card->get_type()) << endl;
 				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
@@ -640,7 +640,7 @@ void MemberInterface::show() {
 				}
 
 				if (!is_event_free){
-					cout << "This action will have a price of " << std::fixed << setprecision(2) <<
+					cout << "This action will have a price of " << fixed << setprecision(2) <<
 						vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
 				}
 
@@ -780,10 +780,10 @@ void UserInterface::show(){
 				Card *card;
 				Card::cin_read_card(card);
 				if(cin.fail()) {
-					utl::ignore(cin);
+					utl::stream_clear(cin);
 					throw(UserInputReadingFailure("Invalid card formatting\n"));
 				}
-				cout << "This operation will have a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
+				cout << "This operation will have a cost of " << fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
 				cout << "Are you sure? (y/n)" << endl; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
