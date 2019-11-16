@@ -83,10 +83,11 @@ namespace flt
 	 * @brief	Remove elements from given vector, 'vec', that will take place more than a given time from now (or have already taken place)
 	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object)
 	 *
-	 * @param vec		Vector that contains the elements to evaluate
-	 * @param delta_time	Maximum	time difference (in hours and minutes) that an Event can have from now
+	 * @param vec			Vector that contains the elements to evaluate
+	 * @param delta_time_hour	Maximum	time difference (in hours and minutes) that an Event can have from now
+	 * @param delta_time_min	Minimum	time difference (in hours and minutes) that an Event can have from now
 	 */
-	void FilterEventByGivenTimeFrame(vector<Event> &vec, const Time &delta_time);
+	void FilterEventByGivenTimeFrame(vector<Event> &vec, const unsigned delta_time_hour, const unsigned delta_time_min);
 	/**
 	 * @brief	Remove elements from given vector, 'vec', that will take place more than a given time from now (or have already taken place)
 	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object).
@@ -201,6 +202,7 @@ namespace flt
 	 *
 	 * @tparam T	Object type of the elements to match
 	 * @param vec	Vector that contains the elements to evaluate
+	 * @param addr	Address to match
 	 */
 	template<typename T>
 	void FilterByLocation(vector<T> &vec, Address addr) {

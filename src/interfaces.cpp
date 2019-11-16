@@ -487,7 +487,7 @@ AdminInterface::show()
 				modifyCurrEventOptions.push_back(&modifyEventCommit);
 
 				MenuOptionsFilter<Event> modifyEvent("Modify the selected Event", modifyCurrEventOptions,
-						[](Event &ev){}, [](){return(Event());}, false, {0,1,2,3,4,5,6,7,8});
+						[](Event &ev){}, [](){return(Event());}, false, {0, 1, 2, 3, 4, 5, 6, 7, 8});
 
 				modifyEvent.show(vec.at(0)); // Initialize the menu with the selected event
 			});
@@ -536,7 +536,7 @@ void MemberInterface::show() {
 		vector<Event> events_filtered = this->museum_network.getEvents();
 		flt::FilterByLocation<Event>(events_filtered, this->member_card->get_address()); // Select all events within a location
 		flt::FilterEventByCapacity(events_filtered, 50); // Select all events with less than 50% capacity
-		flt::FilterEventByGivenTimeFrame(events_filtered, Time(8, 0)); // Select all events within 8 hours
+		flt::FilterEventByGivenTimeFrame(events_filtered, 8, 0); // Select all events within 8 hours
 		if(events_filtered.size() != 0) {
 			cout << "Notification: In the next 8 hours " << events_filtered.size() <<
 				" event(s) will take place in your area of residence, " << this->member_card->get_address().getRegion() << '.' << endl <<
@@ -562,6 +562,7 @@ void MemberInterface::show() {
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
 	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
+	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
 	MenuSelectFilter<vector<Event>> EventsId("Select by id", flt::FilterEventById);
 	MenuSelectFilter<vector<Event>> EventsSelected("List current selected events",
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec, this->member_card->get_type()); });
@@ -576,7 +577,7 @@ void MemberInterface::show() {
 
 	/* List Events */
 	vector<MenuFilter<vector<Event>>*> listEventsOpt =
-		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsId};
+		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
 			[this](){ return(this->museum_network.getEvents());},
@@ -623,7 +624,7 @@ void MemberInterface::show() {
 					vector<Event> silver_event = vec;
 					flt::FilterEventByCapacity(silver_event, 50);  // max capacity 50%
 					flt::FilterByLocation(silver_event,  this->member_card->get_address());
-					flt::FilterEventByGivenTimeFrame(silver_event, Time(8, 0));  // events happening in the next 8 hours;
+					flt::FilterEventByGivenTimeFrame(silver_event, 8, 0);  // events happening in the next 8 hours;
 
 					if (!silver_event.empty()) {
 						is_event_free = true;
@@ -642,7 +643,7 @@ void MemberInterface::show() {
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
 					this->museum_network.purchaseEvent(this->member_card->get_cc(), vec.at(0));
-					vec = this->museum_network.getEvents(); // Reset all events after purchase
+					vec = this->museum_network.getEvents();  // Reset all events after purchase
 					cout <<	"Event purchased successfully" << endl;
 				}
 				else

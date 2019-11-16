@@ -6,8 +6,7 @@
 
 
 
-Collaboration diagram for Museum\+Network\+:
-\nopagebreak
+Collaboration diagram for Museum\+Network\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -37,9 +36,9 @@ float \mbox{\hyperlink{classMuseumNetwork_a3e6d83269a694d079ef21c88bdf4d8a3}{get
 \item 
 float \mbox{\hyperlink{classMuseumNetwork_a611923ae92f869b74dbe718b2f5b32b1}{get\+Cost}} (const unsigned card\+\_\+type) const
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_ad0de5119315be1d4c13a5bdfacd589b2}{import\+Cards}} (std\+::string cards\+\_\+file\+\_\+name)
+void \mbox{\hyperlink{classMuseumNetwork_a599ee3605cbd4d9b89e1013f90bcd5fd}{import\+Cards}} (const std\+::string \&cards\+\_\+file\+\_\+name)
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a3ec3358d64b091cc8f8796defc2b8927}{export\+Cards}} (std\+::string cards\+\_\+file\+\_\+name) const
+void \mbox{\hyperlink{classMuseumNetwork_adbaa488f24a69aee46f1c9a1871a6539}{export\+Cards}} (const std\+::string \&cards\+\_\+file\+\_\+name) const
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a89f13ccc87651ce082c18d3d28383666}{add\+Enterprise}} (\mbox{\hyperlink{classEnterprise}{Enterprise}} enterprise)
 \item 
@@ -53,9 +52,9 @@ void \mbox{\hyperlink{classMuseumNetwork_afa267b62051367d603611063eeafab0b}{list
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a49201708a87fe6f6ccce963cfabfe28c}{list\+Enterprises}} (const std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \&enterprises\+\_\+to\+\_\+be\+\_\+listed, const std\+::string \&delim=\textquotesingle{}\textbackslash{}n\textquotesingle{}+std\+::string(64, \textquotesingle{}-\/\textquotesingle{})+\textquotesingle{}\textbackslash{}n\textquotesingle{}) const
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a5810e4c612789c8baa414ac1fa621164}{import\+Enterprises}} (std\+::string enterprise\+\_\+file\+\_\+name)
+void \mbox{\hyperlink{classMuseumNetwork_a33088e8e89e3791c7fc4de2fa9bc191c}{import\+Enterprises}} (const std\+::string \&enterprise\+\_\+file\+\_\+name)
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a5291e567ed687a730eb7f5c32de41101}{export\+Enterprises}} (std\+::string enterprise\+\_\+file\+\_\+name) const
+void \mbox{\hyperlink{classMuseumNetwork_a737565e9e59f6645054dfae7052065ca}{export\+Enterprises}} (const std\+::string \&enterprise\+\_\+file\+\_\+name) const
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a58ae50331ac1619d6d4f3f9a2c934580}{add\+Museum}} (\mbox{\hyperlink{classMuseum}{Museum}} museum)
 \item 
@@ -69,9 +68,9 @@ void \mbox{\hyperlink{classMuseumNetwork_a43efc1144f4920ffc5051e2152fcb0d3}{list
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_a241b481749660df9533a871e2d0264f9}{list\+Museums}} (const std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \&museum\+\_\+to\+\_\+be\+\_\+listed, const std\+::string \&delim=\textquotesingle{}\textbackslash{}n\textquotesingle{}+std\+::string(64, \textquotesingle{}-\/\textquotesingle{})+\textquotesingle{}\textbackslash{}n\textquotesingle{}) const
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a8dc015b91cbf8e63b9bdf3f770abfde8}{import\+Museums}} (std\+::string museum\+\_\+file\+\_\+name)
+void \mbox{\hyperlink{classMuseumNetwork_a88de9765b0f7a7f51ef0855540b58c0d}{import\+Museums}} (const std\+::string \&museum\+\_\+file\+\_\+name)
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a77c36c2e4509ce764e24dfaa8fa88327}{export\+Museums}} (std\+::string museum\+\_\+file\+\_\+name) const
+void \mbox{\hyperlink{classMuseumNetwork_a937e3b4f369610529bdb05c0427e7934}{export\+Museums}} (const std\+::string \&museum\+\_\+file\+\_\+name) const
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_ab981d8c2335f04a8d0f582bcc0328d6c}{list\+Events}} (unsigned card\+\_\+type, const std\+::string \&delim=\textquotesingle{}\textbackslash{}n\textquotesingle{}+std\+::string(64, \textquotesingle{}-\/\textquotesingle{})+\textquotesingle{}\textbackslash{}n\textquotesingle{}) const
 \item 
@@ -91,8 +90,6 @@ void \mbox{\hyperlink{classMuseumNetwork_ae9a3587fd694cda66423ada38b5ed0ce}{modi
 \item 
 void \mbox{\hyperlink{classMuseumNetwork_aa4b83727a3cadac611a357f600ae69d9}{purchase\+Event}} (const unsigned cc, \mbox{\hyperlink{classEvent}{Event}} event)
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a93f80c3faf00ca518c7abc1f7db8f095}{update\+Events}} (std\+::string enterprise\+\_\+file\+\_\+name)
-\item 
 std\+::vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \mbox{\hyperlink{classMuseumNetwork_a300438871f4d139fd27cc8b8dc90fa07}{get\+Cards}} () const
 \item 
 std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \mbox{\hyperlink{classMuseumNetwork_a4c385ebfc3e6a4b05317f9597f22f1c8}{get\+Enterprises}} () const
@@ -101,9 +98,9 @@ std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \mbox{\hyperlink{cla
 \item 
 std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \mbox{\hyperlink{classMuseumNetwork_aaff5f1e2cd3a88b4fc4aac9f3db0197a}{get\+Events}} () const
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a888adf1a1dc194b6cf47d32a1b4f0c4e}{import\+Files}} (std\+::string network\+\_\+file\+\_\+name)
+void \mbox{\hyperlink{classMuseumNetwork_a9bcf7e3d5f73929b5102c9d275deae55}{import\+Files}} (const std\+::string \&network\+\_\+file\+\_\+name)
 \item 
-void \mbox{\hyperlink{classMuseumNetwork_a063e59c1ea278b9cc62a4517fb473717}{export\+Files}} (std\+::string cards\+\_\+file\+\_\+name, std\+::string museum\+\_\+file\+\_\+name, std\+::string enterprise\+\_\+file\+\_\+name, std\+::string config\+\_\+file\+\_\+name=\char`\"{}files/network\+\_\+config.\+sadjson\char`\"{}) const
+void \mbox{\hyperlink{classMuseumNetwork_a7563b4cf8b96d4575f41645100ceafb6}{export\+Files}} (const std\+::string \&cards\+\_\+file\+\_\+name, const std\+::string \&museum\+\_\+file\+\_\+name, const std\+::string \&enterprise\+\_\+file\+\_\+name, const std\+::string \&config\+\_\+file\+\_\+name=\char`\"{}files/network\+\_\+config.\+sadjson\char`\"{}) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -118,13 +115,6 @@ std\+::vector$<$ \mbox{\hyperlink{classEnterprise}{Enterprise}} $>$ \mbox{\hyper
 \begin{DoxyCompactList}\small\item\em List of all the Enterprises associated with the \mbox{\hyperlink{classMuseum}{Museum}} Network. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \mbox{\hyperlink{classMuseumNetwork_a8626a5bde573d2c87f4247a317f0d8b9}{museums}}
 \begin{DoxyCompactList}\small\item\em List of all the Museums that are part of the \mbox{\hyperlink{classMuseum}{Museum}} Network. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Friends}
-\begin{DoxyCompactItemize}
-\item 
-std\+::ofstream \& \mbox{\hyperlink{classMuseumNetwork_a49b0146beb773a4b4161f8f33672e46d}{operator$<$$<$}} (std\+::ofstream \&outfstream, const \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} \&network)
-\item 
-std\+::ifstream \& \mbox{\hyperlink{classMuseumNetwork_ab104a433a2005108e97c602d051bb002}{operator$>$$>$}} (std\+::ifstream \&infstream, \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} \&network)
-\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -209,29 +199,29 @@ Add a new user \mbox{\hyperlink{classCard}{Card}} to the network.
 \doxysubsubsection{\texorpdfstring{addMuseum()}{addMuseum()}}
 {\footnotesize\ttfamily void Museum\+Network\+::add\+Museum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMuseum}{Museum}}}]{museum }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classMuseumNetwork_a3ec3358d64b091cc8f8796defc2b8927}\label{classMuseumNetwork_a3ec3358d64b091cc8f8796defc2b8927}} 
+\mbox{\Hypertarget{classMuseumNetwork_adbaa488f24a69aee46f1c9a1871a6539}\label{classMuseumNetwork_adbaa488f24a69aee46f1c9a1871a6539}} 
 \index{MuseumNetwork@{MuseumNetwork}!exportCards@{exportCards}}
 \index{exportCards@{exportCards}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{exportCards()}{exportCards()}}
-{\footnotesize\ttfamily void Museum\+Network\+::export\+Cards (\begin{DoxyParamCaption}\item[{std\+::string}]{cards\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void Museum\+Network\+::export\+Cards (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cards\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classMuseumNetwork_a5291e567ed687a730eb7f5c32de41101}\label{classMuseumNetwork_a5291e567ed687a730eb7f5c32de41101}} 
+\mbox{\Hypertarget{classMuseumNetwork_a737565e9e59f6645054dfae7052065ca}\label{classMuseumNetwork_a737565e9e59f6645054dfae7052065ca}} 
 \index{MuseumNetwork@{MuseumNetwork}!exportEnterprises@{exportEnterprises}}
 \index{exportEnterprises@{exportEnterprises}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{exportEnterprises()}{exportEnterprises()}}
-{\footnotesize\ttfamily void Museum\+Network\+::export\+Enterprises (\begin{DoxyParamCaption}\item[{std\+::string}]{enterprise\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void Museum\+Network\+::export\+Enterprises (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{enterprise\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classMuseumNetwork_a063e59c1ea278b9cc62a4517fb473717}\label{classMuseumNetwork_a063e59c1ea278b9cc62a4517fb473717}} 
+\mbox{\Hypertarget{classMuseumNetwork_a7563b4cf8b96d4575f41645100ceafb6}\label{classMuseumNetwork_a7563b4cf8b96d4575f41645100ceafb6}} 
 \index{MuseumNetwork@{MuseumNetwork}!exportFiles@{exportFiles}}
 \index{exportFiles@{exportFiles}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{exportFiles()}{exportFiles()}}
-{\footnotesize\ttfamily void Museum\+Network\+::export\+Files (\begin{DoxyParamCaption}\item[{std\+::string}]{cards\+\_\+file\+\_\+name,  }\item[{std\+::string}]{museum\+\_\+file\+\_\+name,  }\item[{std\+::string}]{enterprise\+\_\+file\+\_\+name,  }\item[{std\+::string}]{config\+\_\+file\+\_\+name = {\ttfamily \char`\"{}files/network\+\_\+config.sadjson\char`\"{}} }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void Museum\+Network\+::export\+Files (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cards\+\_\+file\+\_\+name,  }\item[{const std\+::string \&}]{museum\+\_\+file\+\_\+name,  }\item[{const std\+::string \&}]{enterprise\+\_\+file\+\_\+name,  }\item[{const std\+::string \&}]{config\+\_\+file\+\_\+name = {\ttfamily \char`\"{}files/network\+\_\+config.sadjson\char`\"{}} }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classMuseumNetwork_a77c36c2e4509ce764e24dfaa8fa88327}\label{classMuseumNetwork_a77c36c2e4509ce764e24dfaa8fa88327}} 
+\mbox{\Hypertarget{classMuseumNetwork_a937e3b4f369610529bdb05c0427e7934}\label{classMuseumNetwork_a937e3b4f369610529bdb05c0427e7934}} 
 \index{MuseumNetwork@{MuseumNetwork}!exportMuseums@{exportMuseums}}
 \index{exportMuseums@{exportMuseums}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{exportMuseums()}{exportMuseums()}}
-{\footnotesize\ttfamily void Museum\+Network\+::export\+Museums (\begin{DoxyParamCaption}\item[{std\+::string}]{museum\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void Museum\+Network\+::export\+Museums (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{museum\+\_\+file\+\_\+name }\end{DoxyParamCaption}) const}
 
 \mbox{\Hypertarget{classMuseumNetwork_a300438871f4d139fd27cc8b8dc90fa07}\label{classMuseumNetwork_a300438871f4d139fd27cc8b8dc90fa07}} 
 \index{MuseumNetwork@{MuseumNetwork}!getCards@{getCards}}
@@ -269,29 +259,29 @@ Add a new user \mbox{\hyperlink{classCard}{Card}} to the network.
 \doxysubsubsection{\texorpdfstring{getMuseums()}{getMuseums()}}
 {\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classMuseum}{Museum}}$>$ Museum\+Network\+::get\+Museums (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classMuseumNetwork_ad0de5119315be1d4c13a5bdfacd589b2}\label{classMuseumNetwork_ad0de5119315be1d4c13a5bdfacd589b2}} 
+\mbox{\Hypertarget{classMuseumNetwork_a599ee3605cbd4d9b89e1013f90bcd5fd}\label{classMuseumNetwork_a599ee3605cbd4d9b89e1013f90bcd5fd}} 
 \index{MuseumNetwork@{MuseumNetwork}!importCards@{importCards}}
 \index{importCards@{importCards}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{importCards()}{importCards()}}
-{\footnotesize\ttfamily void Museum\+Network\+::import\+Cards (\begin{DoxyParamCaption}\item[{std\+::string}]{cards\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Museum\+Network\+::import\+Cards (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cards\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classMuseumNetwork_a5810e4c612789c8baa414ac1fa621164}\label{classMuseumNetwork_a5810e4c612789c8baa414ac1fa621164}} 
+\mbox{\Hypertarget{classMuseumNetwork_a33088e8e89e3791c7fc4de2fa9bc191c}\label{classMuseumNetwork_a33088e8e89e3791c7fc4de2fa9bc191c}} 
 \index{MuseumNetwork@{MuseumNetwork}!importEnterprises@{importEnterprises}}
 \index{importEnterprises@{importEnterprises}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{importEnterprises()}{importEnterprises()}}
-{\footnotesize\ttfamily void Museum\+Network\+::import\+Enterprises (\begin{DoxyParamCaption}\item[{std\+::string}]{enterprise\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Museum\+Network\+::import\+Enterprises (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{enterprise\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classMuseumNetwork_a888adf1a1dc194b6cf47d32a1b4f0c4e}\label{classMuseumNetwork_a888adf1a1dc194b6cf47d32a1b4f0c4e}} 
+\mbox{\Hypertarget{classMuseumNetwork_a9bcf7e3d5f73929b5102c9d275deae55}\label{classMuseumNetwork_a9bcf7e3d5f73929b5102c9d275deae55}} 
 \index{MuseumNetwork@{MuseumNetwork}!importFiles@{importFiles}}
 \index{importFiles@{importFiles}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{importFiles()}{importFiles()}}
-{\footnotesize\ttfamily void Museum\+Network\+::import\+Files (\begin{DoxyParamCaption}\item[{std\+::string}]{network\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Museum\+Network\+::import\+Files (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{network\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classMuseumNetwork_a8dc015b91cbf8e63b9bdf3f770abfde8}\label{classMuseumNetwork_a8dc015b91cbf8e63b9bdf3f770abfde8}} 
+\mbox{\Hypertarget{classMuseumNetwork_a88de9765b0f7a7f51ef0855540b58c0d}\label{classMuseumNetwork_a88de9765b0f7a7f51ef0855540b58c0d}} 
 \index{MuseumNetwork@{MuseumNetwork}!importMuseums@{importMuseums}}
 \index{importMuseums@{importMuseums}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{importMuseums()}{importMuseums()}}
-{\footnotesize\ttfamily void Museum\+Network\+::import\+Museums (\begin{DoxyParamCaption}\item[{std\+::string}]{museum\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Museum\+Network\+::import\+Museums (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{museum\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{classMuseumNetwork_ad4a03e33b3b97204eb46cf70ba3c8dc6}\label{classMuseumNetwork_ad4a03e33b3b97204eb46cf70ba3c8dc6}} 
 \index{MuseumNetwork@{MuseumNetwork}!listCards@{listCards}}
@@ -442,27 +432,6 @@ Search for the given Cards on the network and remove them.
 \index{removeMuseums@{removeMuseums}!MuseumNetwork@{MuseumNetwork}}
 \doxysubsubsection{\texorpdfstring{removeMuseums()}{removeMuseums()}}
 {\footnotesize\ttfamily void Museum\+Network\+::remove\+Museums (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classMuseum}{Museum}} $>$ \&}]{museum\+\_\+to\+\_\+be\+\_\+removed }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{classMuseumNetwork_a93f80c3faf00ca518c7abc1f7db8f095}\label{classMuseumNetwork_a93f80c3faf00ca518c7abc1f7db8f095}} 
-\index{MuseumNetwork@{MuseumNetwork}!updateEvents@{updateEvents}}
-\index{updateEvents@{updateEvents}!MuseumNetwork@{MuseumNetwork}}
-\doxysubsubsection{\texorpdfstring{updateEvents()}{updateEvents()}}
-{\footnotesize\ttfamily void Museum\+Network\+::update\+Events (\begin{DoxyParamCaption}\item[{std\+::string}]{enterprise\+\_\+file\+\_\+name }\end{DoxyParamCaption})}
-
-
-
-\doxysubsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{classMuseumNetwork_a49b0146beb773a4b4161f8f33672e46d}\label{classMuseumNetwork_a49b0146beb773a4b4161f8f33672e46d}} 
-\index{MuseumNetwork@{MuseumNetwork}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!MuseumNetwork@{MuseumNetwork}}
-\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily std\+::ofstream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfstream,  }\item[{const \mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} \&}]{network }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
-
-\mbox{\Hypertarget{classMuseumNetwork_ab104a433a2005108e97c602d051bb002}\label{classMuseumNetwork_ab104a433a2005108e97c602d051bb002}} 
-\index{MuseumNetwork@{MuseumNetwork}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!MuseumNetwork@{MuseumNetwork}}
-\doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
-{\footnotesize\ttfamily std\+::ifstream\& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infstream,  }\item[{\mbox{\hyperlink{classMuseumNetwork}{Museum\+Network}} \&}]{network }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 
 

@@ -113,81 +113,82 @@ public:
 	void set_address(const Address &new_address);
 
 	/* EVENT SETTERS */
-    /**
-    * @brief Setter for the maximum capacity of the Event with id
-    *
-    * @param id     Id of the Event to change
-    *
-    * @throws  NoSuchObjet  Thrown if the Event with the specified id was not found
-    *
-    * @param new_capacity The new max capacity for the Event with id
-    */
-    void event_set_max_capacity(unsigned id, unsigned new_max_capacity);
-    /**
-     * @brief Setter for the name of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     * @param new_name The new name for the Event with id
-     */
-    void event_set_name(unsigned id, const std::string &new_name);
-    /**
-     * @brief Setter for the ticket fee of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     *
-     * @param new_ticket_fee The new ticket fee for the Event with id
-     */
-    void event_set_ticket_fee(unsigned id, float new_ticket_fee);
-    /**
-     * @brief Setter for the location name of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     *
-     * @param new_location_name The new location name for the Event with id
-     */
-    void event_set_location_name(unsigned id, const std::string &new_location_name);
-    /**
-     * @brief Setter for the address of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     *
-     * @param new_address The new address for the Event with id
-     */
-    void event_set_address(unsigned id, const Address &new_address);
-    /**
-     * @brief Setter for the time of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     *
-     * @param new_time The new time for the Event with id
-     */
-    void event_set_time(unsigned id, const Time &new_time);
-    /**
-     * @brief Seter for the date of the Event with id
-     *
-     * @param id     Id of the Event to change
-     *
-     * @throws NoSuchObject Thrown if the Event with the specified ID was not found
-     *
-     * @param new_date The new date for the Event with id
-     */
-    void event_set_date(unsigned id, const Date &new_date);
-    /**
-     * @brief Setter for the is_valid flag of the Event with id
-    * @details This method is not destructive (can be reverted)
-    * @param new_is_valid The new is_valid flag for the Event with id
-    */
-    void event_set_validity(unsigned id, bool new_is_valid);
+	/**
+	* @brief Setter for the maximum capacity of the Event with id
+	*
+	* @param id     Id of the Event to change
+	* @param new_max_capacity The new max capacity for the Event with id
+	*
+	* @throws  NoSuchObjet  Thrown if the Event with the specified id was not found
+	*/
+	void event_set_max_capacity(unsigned id, unsigned new_max_capacity);
+	/**
+	* @brief	Setter for the name of the Event with id
+	*
+	* @param id	Id of the Event to change
+	* @param new_name	The new name for the Event with id
+	*
+	* @throws NoSuchObject	Thrown if the Event with the specified ID was not found
+	*/
+	void event_set_name(unsigned id, const std::string &new_name);
+	/**
+	* @brief Setter for the ticket fee of the Event with id
+	*
+	* @param id     Id of the Event to change
+	*
+	* @throws NoSuchObject Thrown if the Event with the specified ID was not found
+	*
+	* @param new_ticket_fee The new ticket fee for the Event with id
+	*/
+	void event_set_ticket_fee(unsigned id, float new_ticket_fee);
+	/**
+	* @brief Setter for the location name of the Event with id
+	*
+	* @param id     Id of the Event to change
+	*
+	* @throws NoSuchObject Thrown if the Event with the specified ID was not found
+	*
+	* @param new_location_name The new location name for the Event with id
+	*/
+	void event_set_location_name(unsigned id, const std::string &new_location_name);
+	/**
+	* @brief Setter for the address of the Event with id
+	*
+	* @param id     Id of the Event to change
+	*
+	* @throws NoSuchObject Thrown if the Event with the specified ID was not found
+	*
+	* @param new_address The new address for the Event with id
+	*/
+	void event_set_address(unsigned id, const Address &new_address);
+	/**
+	* @brief Setter for the time of the Event with id
+	*
+	* @param id     Id of the Event to change
+	*
+	* @throws NoSuchObject Thrown if the Event with the specified ID was not found
+	*
+	* @param new_time The new time for the Event with id
+	*/
+	void event_set_time(unsigned id, const Time &new_time);
+	/**
+	* @brief Seter for the date of the Event with id
+	*
+	* @param id     Id of the Event to change
+	*
+	* @throws NoSuchObject Thrown if the Event with the specified ID was not found
+	*
+	* @param new_date The new date for the Event with id
+	*/
+	void event_set_date(unsigned id, const Date &new_date);
+	/**
+	* @brief	Setter for the is_valid flag of the Event with id
+	* @details	This method is not destructive (can be reverted)
+	*
+	* @param id		Id of the Event to change
+	* @param new_is_valid	The new is_valid flag for the Event with id
+	*/
+	void event_set_validity(unsigned id, bool new_is_valid);
 
 
 	/* OTHER PUBLIC METHODS */

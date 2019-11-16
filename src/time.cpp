@@ -129,11 +129,18 @@ operator>>(std::istream &instream, Time &t)
 
 		int div = temp_time.find(':');
 		if (div == string::npos)
-			throw UserInputReadingFailure("time: " + temp_time);
+			throw UserInputReadingFailure("Time: " + temp_time);
 
 		else {
 			t.hour = (short) stoi(temp_time.substr(0, div));
 			t.min = (short) stoi(temp_time.substr(div + 1));
+
+			if (t.min == 0) {
+				if (t.hour < 0 || t.hour > 24)
+					throw UserInputReadingFailure("Time: when minutes is 0, hour must be between 0 and 24: " + temp_time);
+			}
+			else if (t.min < 0 || t.min > 59 || t.hour < 0 || t.hour > 23)
+				throw UserInputReadingFailure("Time: hour must be between 0 and 23 and minutes between 0 and 59" + temp_time);
 		}
 
 	}catch(const std::exception& e) {
@@ -155,11 +162,19 @@ operator>>(std::ifstream &instream, Time &t)
 
 		int div = temp_time.find(':');
 		if (div == string::npos)
-			throw FileReadingFailed("time: " + temp_time);
+			throw FileReadingFailed("Time: " + temp_time);
 
 		else {
 			t.hour = (short) stoi(temp_time.substr(0, div));
 			t.min = (short) stoi(temp_time.substr(div + 1));
+
+			if (t.min == 0) {
+				if (t.hour < 0 || t.hour > 24)
+					throw FileReadingFailed("Time: when minutes is 0, hour must be between 0 and 24" + temp_time);
+			}
+			else if (t.min < 0 || t.min > 59 || t.hour < 0 || t.hour > 23)
+				throw FileReadingFailed("Time: hour must be between 0 and 23 and minutes between 0 and 59" + temp_time);
+
 		}
 
 	}catch(const std::exception& e) {

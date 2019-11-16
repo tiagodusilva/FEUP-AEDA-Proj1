@@ -81,8 +81,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Enterprise:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -554,19 +553,14 @@ Friends</h2></td></tr>
 <p>Setter for the maximum capacity of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>Id of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to change</td></tr>
+    <tr><td class="paramname">id</td><td>Id of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to change </td></tr>
+    <tr><td class="paramname">new_max_capacity</td><td>The new max capacity for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">NoSuchObjet</td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id was not found</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">new_capacity</td><td>The new max capacity for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id </td></tr>
+    <tr><td class="paramname">NoSuchObjet</td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id was not found </td></tr>
   </table>
   </dd>
 </dl>
@@ -602,19 +596,14 @@ Friends</h2></td></tr>
 <p>Setter for the name of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>Id of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to change</td></tr>
+    <tr><td class="paramname">id</td><td>Id of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to change </td></tr>
+    <tr><td class="paramname">new_name</td><td>The new name for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classNoSuchObject.html">NoSuchObject</a></td><td>Thrown if the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified ID was not found </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">new_name</td><td>The new name for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id </td></tr>
   </table>
   </dd>
 </dl>
@@ -744,8 +733,10 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Setter for the is_valid flag of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id. </p>
-<p>This method is not destructive (can be reverted) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This method is not destructive (can be reverted)</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to change </td></tr>
     <tr><td class="paramname">new_is_valid</td><td>The new is_valid flag for the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with id </td></tr>
   </table>
   </dd>
@@ -818,7 +809,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id (if found)<br  />
  Const reference to ensure this is read only data<br  />
- If the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>, it will throw a <a class="el" href="classEventNotFound.html">EventNotFound</a> exception </dd></dl>
+ If the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>, it will throw a EventNotFound exception </dd></dl>
 
 </div>
 </div>
@@ -1043,7 +1034,7 @@ Friends</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Any</td><td>exception thrown by <a class="el" href="classEvent.html#a78c7c3cd25d5aad88c1623a8e8d1adb4" title="Handles the purchase of this Event by an user.">Event::purchase()</a> </td></tr>
-    <tr><td class="paramname"><a class="el" href="classEventNotFound.html">EventNotFound</a></td><td>if the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> specifiec in the id </td></tr>
+    <tr><td class="paramname">EventNotFound</td><td>if the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have the <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> specifiec in the id </td></tr>
   </table>
   </dd>
 </dl>
@@ -1077,7 +1068,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classEventNotFound.html">EventNotFound</a></td><td>Only throws this exception when not in garbage collection mode (id != 0), if this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id </td></tr>
+    <tr><td class="paramname">EventNotFound</td><td>Only throws this exception when not in garbage collection mode (id != 0), if this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id </td></tr>
   </table>
   </dd>
 </dl>

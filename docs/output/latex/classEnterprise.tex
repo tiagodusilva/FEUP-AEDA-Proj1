@@ -11,8 +11,7 @@ Class that simulates the Enterprises our Network would have established contract
 
 
 
-Collaboration diagram for Enterprise\+:
-\nopagebreak
+Collaboration diagram for Enterprise\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -278,19 +277,16 @@ Setter for the maximum capacity of the \mbox{\hyperlink{classEvent}{Event}} with
 
 
 \begin{DoxyParams}{Parameters}
-{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change \\
+\hline
+{\em new\+\_\+max\+\_\+capacity} & The new max capacity for the \mbox{\hyperlink{classEvent}{Event}} with id\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em No\+Such\+Objet} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified id was not found\\
+{\em No\+Such\+Objet} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified id was not found \\
 \hline
 \end{DoxyExceptions}
-
-\begin{DoxyParams}{Parameters}
-{\em new\+\_\+capacity} & The new max capacity for the \mbox{\hyperlink{classEvent}{Event}} with id \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classEnterprise_ad2f3a8228b043016c57563c8a44114c0}\label{classEnterprise_ad2f3a8228b043016c57563c8a44114c0}} 
 \index{Enterprise@{Enterprise}!event\_set\_name@{event\_set\_name}}
 \index{event\_set\_name@{event\_set\_name}!Enterprise@{Enterprise}}
@@ -303,7 +299,9 @@ Setter for the name of the \mbox{\hyperlink{classEvent}{Event}} with id.
 
 
 \begin{DoxyParams}{Parameters}
-{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change \\
+\hline
+{\em new\+\_\+name} & The new name for the \mbox{\hyperlink{classEvent}{Event}} with id\\
 \hline
 \end{DoxyParams}
 
@@ -311,11 +309,6 @@ Setter for the name of the \mbox{\hyperlink{classEvent}{Event}} with id.
 {\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found \\
 \hline
 \end{DoxyExceptions}
-
-\begin{DoxyParams}{Parameters}
-{\em new\+\_\+name} & The new name for the \mbox{\hyperlink{classEvent}{Event}} with id \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classEnterprise_acf8d87e77e7cc359d81a024d5809f204}\label{classEnterprise_acf8d87e77e7cc359d81a024d5809f204}} 
 \index{Enterprise@{Enterprise}!event\_set\_ticket\_fee@{event\_set\_ticket\_fee}}
 \index{event\_set\_ticket\_fee@{event\_set\_ticket\_fee}!Enterprise@{Enterprise}}
@@ -376,8 +369,12 @@ Setter for the time of the \mbox{\hyperlink{classEvent}{Event}} with id.
 
 Setter for the is\+\_\+valid flag of the \mbox{\hyperlink{classEvent}{Event}} with id. 
 
-This method is not destructive (can be reverted) 
+This method is not destructive (can be reverted)
+
+
 \begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change \\
+\hline
 {\em new\+\_\+is\+\_\+valid} & The new is\+\_\+valid flag for the \mbox{\hyperlink{classEvent}{Event}} with id \\
 \hline
 \end{DoxyParams}
@@ -425,7 +422,7 @@ Getter for a specific \mbox{\hyperlink{classEvent}{Event}}.
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{classEvent}{Event}} with the specified id (if found)~\newline
  Const reference to ensure this is read only data~\newline
- If the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have this \mbox{\hyperlink{classEvent}{Event}}, it will throw a \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}} exception 
+ If the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have this \mbox{\hyperlink{classEvent}{Event}}, it will throw a Event\+Not\+Found exception 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEnterprise_a2e4aa34e7df706d051af46fcf63e6f0d}\label{classEnterprise_a2e4aa34e7df706d051af46fcf63e6f0d}} 
 \index{Enterprise@{Enterprise}!get\_events@{get\_events}}
@@ -559,7 +556,7 @@ Checks for the existence of a specific \mbox{\hyperlink{classEvent}{Event}}.
 \begin{DoxyExceptions}{Exceptions}
 {\em Any} & exception thrown by \mbox{\hyperlink{classEvent_a78c7c3cd25d5aad88c1623a8e8d1adb4}{Event\+::purchase()}} \\
 \hline
-{\em \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}}} & if the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have the \mbox{\hyperlink{classEvent}{Event}} specifiec in the id \\
+{\em Event\+Not\+Found} & if the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have the \mbox{\hyperlink{classEvent}{Event}} specifiec in the id \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}\label{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}} 
@@ -582,7 +579,7 @@ If successful, the event will be removed from memory~\newline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}}} & Only throws this exception when not in garbage collection mode (id != 0), if this \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have an \mbox{\hyperlink{classEvent}{Event}} with the specified id \\
+{\em Event\+Not\+Found} & Only throws this exception when not in garbage collection mode (id != 0), if this \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have an \mbox{\hyperlink{classEvent}{Event}} with the specified id \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}\label{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}} 
