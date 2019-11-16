@@ -125,11 +125,11 @@ public:
 		std::runtime_error("The current accout with cc " + std::to_string(cc) + " and as such can't buy events") {};
 };
 
-class NoSuchCard : public std::runtime_error {
-public:
-	NoSuchCard(unsigned cc) :
-	    std::runtime_error("There isn't any user with cc number " + std::to_string(cc) + " in the network") {};
-};
+///class NoSuchCard : public std::runtime_error {
+///public:
+///	NoSuchCard(unsigned cc) :
+///	    std::runtime_error("There isn't any user with cc number " + std::to_string(cc) + " in the network") {};
+///};
 
 
 
@@ -141,11 +141,11 @@ public:
 	    std::runtime_error("There already is an enterprise with the name " + name + " in the network") {};
 };
 
-class NoSuchEnterprise : public std::runtime_error {
-public:
-    NoSuchEnterprise(const std::string &name) :
-        std::runtime_error("There isn't any enterprise with the name " + name + "in the network") {};
-};
+//class NoSuchEnterprise : public std::runtime_error {
+//public:
+//    NoSuchEnterprise(const std::string &name) :
+//        std::runtime_error("There isn't any enterprise with the name " + name + "in the network") {};
+//};
 
 
 
@@ -157,12 +157,17 @@ public:
 	    std::runtime_error("There already is a museum with the name " + name + "in the network") {};
 };
 
-class NoSuchMuseum : public std::runtime_error {
-public:
-	NoSuchMuseum(const std::string & name) :
-	    std::runtime_error("There isn't any museum with name " + name + " in the network") {};
-};
+//class NoSuchMuseum : public std::runtime_error {
+//public:
+//	NoSuchMuseum(const std::string & name) :
+//	    std::runtime_error("There isn't any museum with name " + name + " in the network") {};
+//};
 
+class NoSuchObject : public std::runtime_error {
+public:
+    NoSuchObject(const std::string &unique_id, const std::string &object) :
+        std::runtime_error("There isn't any " + object + " with unique identifier " + unique_id) {};
+};
 
 /** @} */
 
