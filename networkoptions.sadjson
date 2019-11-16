@@ -1,6 +1,6 @@
-cards_file_name: eg_cards.txt
-museum_file_name: eg_museum.txt
-enterprise_file_name: eg_enterprise.txt
+cards_file_name: cards.txt
+museum_file_name: museums.txt
+enterprise_file_name: enterprises.txt
 individual::cost: 54.9
 individual::discount: 0.25
 silver::cost: 32.45
