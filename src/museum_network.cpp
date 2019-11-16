@@ -11,7 +11,7 @@ void MuseumNetwork::addCard(Card* card) {
 	int i;
 	for (i = 0; i < this->cards.size(); ++i) {
 		if(*card == *(this->cards.at(i)))
-			throw(CardAlreadyExists(card->get_cc()));
+			throw(ObjectAlreadyExists(to_string(card->get_cc()), "card"));
 	}
 	this->cards.push_back(card);
 }
@@ -121,7 +121,7 @@ void MuseumNetwork::addEnterprise(Enterprise enterprise) {
 	int i;
 	for (i = 0; i < this->enterprises.size(); ++i) {
 		if(enterprise.get_name() == this->enterprises.at(i).get_name()) //TODO do with == operator
-			throw(EnterpriseAlreadyExists(enterprise.get_name()));
+			throw(ObjectAlreadyExists(enterprise.get_name(), "enterprise"));
 	}
 	this->enterprises.push_back(enterprise);
 }
@@ -171,7 +171,7 @@ void MuseumNetwork::addMuseum(Museum museum) {
 	int i;
 	for (i = 0; i < this->museums.size(); ++i) {
 		if(museum.get_name() == this->museums.at(i).get_name()) //TODO do with == operator
-			throw(MuseumAlreadyExists(museum.get_name()));
+			throw(ObjectAlreadyExists(museum.get_name(), "museum"));
 	}
 	this->museums.push_back(museum);
 }

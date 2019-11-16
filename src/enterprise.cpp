@@ -64,7 +64,7 @@ void Enterprise::add_event(Event &ev) {
 
     if (this->has_event(ev.get_id()))
         // If this is thrown, some really fck up shit happened
-        throw EventAlreadyExists(ev.get_id());
+		throw ObjectAlreadyExists((to_string(ev.get_id())), "event");
 
     this->events.insert(ev);
 

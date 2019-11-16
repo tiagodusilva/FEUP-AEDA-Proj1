@@ -97,11 +97,11 @@ public:
 };
 
 // If this bad boy is thrown, something really fck up is going on
-class EventAlreadyExists: public std::runtime_error {
-public:
-    EventAlreadyExists(unsigned event_id):
-            std::runtime_error( "Event " + std::to_string(event_id) + " already exists ") {};
-};
+//class EventAlreadyExists: public std::runtime_error {
+//public:
+//    EventAlreadyExists(unsigned event_id):
+//            std::runtime_error( "Event " + std::to_string(event_id) + " already exists ") {};
+//};
 
 
 
@@ -113,11 +113,11 @@ public:
 	    std::runtime_error("It's too early to renew this card: " + fail_elem) {};
 };
 
-class CardAlreadyExists : public std::runtime_error {
-public:
-	CardAlreadyExists(unsigned cc) :
-	    std::runtime_error("There already is an user with cc number " + std::to_string(cc) + " in the network") {};
-};
+//class CardAlreadyExists : public std::runtime_error {
+//public:
+//	CardAlreadyExists(unsigned cc) :
+//	    std::runtime_error("There already is an user with cc number " + std::to_string(cc) + " in the network") {};
+//};
 
 class CardExpired : public std::runtime_error {
 public:
@@ -135,11 +135,11 @@ public:
 
 /* Enterprise related Exceptions */
 
-class EnterpriseAlreadyExists : public std::runtime_error {
-public:
-	EnterpriseAlreadyExists(const std::string & name) :
-	    std::runtime_error("There already is an enterprise with the name " + name + " in the network") {};
-};
+//class EnterpriseAlreadyExists : public std::runtime_error {
+//public:
+//	EnterpriseAlreadyExists(const std::string & name) :
+//	    std::runtime_error("There already is an enterprise with the name " + name + " in the network") {};
+//};
 
 //class NoSuchEnterprise : public std::runtime_error {
 //public:
@@ -151,17 +151,23 @@ public:
 
 /* Museum related exceptions */
 
-class MuseumAlreadyExists : public std::runtime_error {
-public:
-	MuseumAlreadyExists(const std::string & name) :
-	    std::runtime_error("There already is a museum with the name " + name + "in the network") {};
-};
+//class MuseumAlreadyExists : public std::runtime_error {
+//public:
+//	MuseumAlreadyExists(const std::string & name) :
+//	    std::runtime_error("There already is a museum with the name " + name + "in the network") {};
+//};
 
 //class NoSuchMuseum : public std::runtime_error {
 //public:
 //	NoSuchMuseum(const std::string & name) :
 //	    std::runtime_error("There isn't any museum with name " + name + " in the network") {};
 //};
+
+class ObjectAlreadyExists : public std::runtime_error {
+public:
+	ObjectAlreadyExists(const std::string &unique_id, const std::string &object) :
+	    std::runtime_error("There already is a(n) " + object + " with unique identifier " + unique_id + " in the network") {};
+};
 
 class NoSuchObject : public std::runtime_error {
 public:
