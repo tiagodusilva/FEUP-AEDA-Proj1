@@ -11,11 +11,12 @@ Class that simulates the Enterprises our Network would have established contract
 
 
 
-Collaboration diagram for Enterprise\+:\nopagebreak
+Collaboration diagram for Enterprise\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{classEnterprise__coll__graph}
+\includegraphics[width=211pt]{classEnterprise__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -32,30 +33,17 @@ std\+::string \mbox{\hyperlink{classEnterprise_a4b97600cef64fa69da36a790eb23c595
 std\+::string \mbox{\hyperlink{classEnterprise_a9acfeb48d2539221eca4ae3ec5375016}{get\+\_\+contact}} () const
 \begin{DoxyCompactList}\small\item\em Getter for the contact. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classEnterprise_a499fc7376750985302c7e23fdf263291}{get\+\_\+address}} () const
-\begin{DoxyCompactList}\small\item\em Getter for the address. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-std\+::string \mbox{\hyperlink{classEnterprise_a6a93c33cacdfe91ae9e528f52e19e868}{name}}
-\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s name \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classEnterprise_a54a1371f33a1b012b77ef4682e43d53c}{contact}}
-\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s contact (phone number or email, etc...) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classEnterprise_a0062da64b92770e4d7d4f5a1d8ec0086}{address}}
-\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s main address \end{DoxyCompactList}\item 
-std\+::set$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \mbox{\hyperlink{classEnterprise_a38d131ca142398317aa6673951fdf591}{events}}
-\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s currently registered events \end{DoxyCompactList}\end{DoxyCompactItemize}
-\label{_amgrp01747264fe7bf50731df0522c351974e}%
-Getter for the Events
-
-\begin{DoxyReturn}{Returns}
-The set of Events this \mbox{\hyperlink{classEnterprise}{Enterprise}} manages Const reference to ensures this is read only data 
-\end{DoxyReturn}
-\begin{DoxyCompactItemize}
-\item 
+\begin{DoxyCompactList}\small\item\em Getter for the address. \end{DoxyCompactList}\item 
 const std\+::set$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \& \mbox{\hyperlink{classEnterprise_a2e4aa34e7df706d051af46fcf63e6f0d}{get\+\_\+events}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Getter for the Events. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classEvent}{Event}} \& \mbox{\hyperlink{classEnterprise_ad1240562b718e8df0c751ddb370fb501}{get\+\_\+event}} (unsigned id) const
 \begin{DoxyCompactList}\small\item\em Getter for a specific \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_ad28817d6709f7b5523869c33bbb5c5c8}{set\+\_\+name}} (const std\+::string \&new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a7b871d9117fb0fa2847631f518b79390}{set\+\_\+contact}} (const std\+::string \&new\+\_\+contact)
+\begin{DoxyCompactList}\small\item\em Setter for the contact. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}{set\+\_\+address}} (const \mbox{\hyperlink{classAddress}{Address}} \&new\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Setter for the address. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ada672b0e4a47742b2a617baaa2c491ec}{add\+\_\+event}} (\mbox{\hyperlink{classEvent}{Event}} \&ev)
 \begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}{remove\+\_\+event}} (unsigned id)
@@ -67,15 +55,32 @@ void \mbox{\hyperlink{classEnterprise_adc110b29082e6987751f1e1c1b519cd4}{purchas
 bool \mbox{\hyperlink{classEnterprise_a55ccedd0e45208eeb55cfcc9a0e67194}{operator==}} (const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
 \begin{DoxyCompactList}\small\item\em Overloaded equality test operator. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classEnterprise_a4625601575cb3c402495424d53b2c696}{operator!=}} (const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
-\begin{DoxyCompactList}\small\item\em Overloaded inequality test operator. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Overloaded inequality test operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classEnterprise_afc1efa61040daa720c448e60dcca59dd}{cin\+\_\+read\+\_\+enterprise}} (\mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
+\begin{DoxyCompactList}\small\item\em Read an \mbox{\hyperlink{classEnterprise}{Enterprise}} from cin, outputting any user prompts to cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEnterprise_a6a93c33cacdfe91ae9e528f52e19e868}{name}}
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s name \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEnterprise_a54a1371f33a1b012b77ef4682e43d53c}{contact}}
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s contact (phone number or email, etc...) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classEnterprise_a0062da64b92770e4d7d4f5a1d8ec0086}{address}}
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s main address \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \mbox{\hyperlink{classEnterprise_a38d131ca142398317aa6673951fdf591}{events}}
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s currently registered events \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
 std\+::ostream \& \mbox{\hyperlink{classEnterprise_adf9280eca70a71749f88d0ad3ce24df1}{operator$<$$<$}} (std\+::ostream \&outstream, const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
 \begin{DoxyCompactList}\small\item\em Overloaded ostream insertion operator. \end{DoxyCompactList}\item 
 std\+::ofstream \& \mbox{\hyperlink{classEnterprise_a28e5644574e9808ce644c65c89ebaaf0}{operator$<$$<$}} (std\+::ofstream \&outfstream, const \mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
 \begin{DoxyCompactList}\small\item\em Overloaded ofstream insertion operator. \end{DoxyCompactList}\item 
 std\+::ifstream \& \mbox{\hyperlink{classEnterprise_aa73bff7b8174096f2b23e60e2b7c75d4}{operator$>$$>$}} (std\+::ifstream \&infstream, \mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
-\begin{DoxyCompactList}\small\item\em Overloaded ifstream extraction operator. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classEnterprise_afc1efa61040daa720c448e60dcca59dd}{cin\+\_\+read\+\_\+enterprise}} (\mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
-\begin{DoxyCompactList}\small\item\em Read an \mbox{\hyperlink{classEnterprise}{Enterprise}} from cin, outputting any user prompts to cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overloaded ifstream extraction operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -208,7 +213,8 @@ Getter for a specific \mbox{\hyperlink{classEvent}{Event}}.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{classEvent}{Event}} with the specified id (if found)~\newline
- Const reference to ensure this is read only data If the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have this \mbox{\hyperlink{classEvent}{Event}}, it will throw a \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}} exception 
+ Const reference to ensure this is read only data~\newline
+ If the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have this \mbox{\hyperlink{classEvent}{Event}}, it will throw a \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}} exception 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEnterprise_a2e4aa34e7df706d051af46fcf63e6f0d}\label{classEnterprise_a2e4aa34e7df706d051af46fcf63e6f0d}} 
 \index{Enterprise@{Enterprise}!get\_events@{get\_events}}
@@ -216,6 +222,14 @@ The \mbox{\hyperlink{classEvent}{Event}} with the specified id (if found)~\newli
 \doxysubsubsection{\texorpdfstring{get\_events()}{get\_events()}}
 {\footnotesize\ttfamily const std\+::set$<$\mbox{\hyperlink{classEvent}{Event}}$>$\& Enterprise\+::get\+\_\+events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
+
+
+Getter for the Events. 
+
+\begin{DoxyReturn}{Returns}
+The set of Events this \mbox{\hyperlink{classEnterprise}{Enterprise}} manages~\newline
+ Const reference to ensures this is read only data 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classEnterprise_a4b97600cef64fa69da36a790eb23c595}\label{classEnterprise_a4b97600cef64fa69da36a790eb23c595}} 
 \index{Enterprise@{Enterprise}!get\_name@{get\_name}}
 \index{get\_name@{get\_name}!Enterprise@{Enterprise}}
@@ -337,6 +351,51 @@ If successful, the event will be removed from memory~\newline
 {\em \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}}} & Only throws this exception when not in garbage collection mode (id != 0), if this \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have an \mbox{\hyperlink{classEvent}{Event}} with the specified id \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}\label{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}} 
+\index{Enterprise@{Enterprise}!set\_address@{set\_address}}
+\index{set\_address@{set\_address}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{set\_address()}{set\_address()}}
+{\footnotesize\ttfamily void Enterprise\+::set\+\_\+address (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAddress}{Address}} \&}]{new\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+Setter for the address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+address} & The new address for this \mbox{\hyperlink{classEnterprise}{Enterprise}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a7b871d9117fb0fa2847631f518b79390}\label{classEnterprise_a7b871d9117fb0fa2847631f518b79390}} 
+\index{Enterprise@{Enterprise}!set\_contact@{set\_contact}}
+\index{set\_contact@{set\_contact}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{set\_contact()}{set\_contact()}}
+{\footnotesize\ttfamily void Enterprise\+::set\+\_\+contact (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+\_\+contact }\end{DoxyParamCaption})}
+
+
+
+Setter for the contact. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+contact} & The new contact for this \mbox{\hyperlink{classEnterprise}{Enterprise}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_ad28817d6709f7b5523869c33bbb5c5c8}\label{classEnterprise_ad28817d6709f7b5523869c33bbb5c5c8}} 
+\index{Enterprise@{Enterprise}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily void Enterprise\+::set\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & The new name for this \mbox{\hyperlink{classEnterprise}{Enterprise}} \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Friends And Related Function Documentation}

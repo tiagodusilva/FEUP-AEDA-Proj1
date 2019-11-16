@@ -11,8 +11,7 @@ Wrapper to function that modifies an argument.
 
 
 
-Inheritance diagram for Menu\+Select\+Filter$<$ Arg $>$\+:
-\nopagebreak
+Inheritance diagram for Menu\+Select\+Filter$<$ Arg $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Menu\+Select\+Filter$<$ Arg $>$\+:
 \end{figure}
 
 
-Collaboration diagram for Menu\+Select\+Filter$<$ Arg $>$\+:
-\nopagebreak
+Collaboration diagram for Menu\+Select\+Filter$<$ Arg $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,7 +37,7 @@ Collaboration diagram for Menu\+Select\+Filter$<$ Arg $>$\+:
 \mbox{\hyperlink{classMenuSelectFilter_af7daa56d2f9883669e3929bf996b37f5}{Menu\+Select\+Filter}} (std\+::string \mbox{\hyperlink{classMenu_a2c72bb2205a0f3126c05e2f3b87e09bd}{title}}, std\+::function$<$ void(Arg \&)$>$ fun)
 \begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classMenuSelectFilter}{Menu\+Select\+Filter}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMenuSelectFilter_a56e7d08a93412aa43becb94130b0f454}{show}} (Arg \&arg) override
-\begin{DoxyCompactList}\small\item\em Invokes and displays all of the menus in options and waits for user input to call them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Invokes the data-\/member \textquotesingle{}func\textquotesingle{} with the given argument, \textquotesingle{}arg\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,15 +109,15 @@ Constructor for the \mbox{\hyperlink{classMenuSelectFilter}{Menu\+Select\+Filter
 \index{show@{show}!MenuSelectFilter$<$ Arg $>$@{MenuSelectFilter$<$ Arg $>$}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}}
 {\footnotesize\ttfamily template$<$typename Arg $>$ \\
-void \mbox{\hyperlink{classMenuSelectFilter}{Menu\+Select\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}\item[{Arg \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+void \mbox{\hyperlink{classMenuSelectFilter}{Menu\+Select\+Filter}}$<$ Arg $>$\+::show (\begin{DoxyParamCaption}\item[{Arg \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
-Invokes and displays all of the menus in options and waits for user input to call them. 
+Invokes the data-\/member \textquotesingle{}func\textquotesingle{} with the given argument, \textquotesingle{}arg\textquotesingle{}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Arg} & Object to be displayed \\
+{\em arg} & Argument to pass to the data-\/member \textquotesingle{}func\textquotesingle{} as an argument \\
 \hline
 \end{DoxyParams}
 

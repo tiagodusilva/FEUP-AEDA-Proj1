@@ -72,18 +72,19 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classMenu.html" title="Absract class for menus that don&#39;t modify arguments.">Menu</a> that controls <a class="el" href="classMenuSelectFilter.html" title="Wrapper to function that modifies an argument.">MenuSelectFilter</a> and other <a class="el" href="classMenuOptionsFilter.html" title="Menu that controls MenuSelectFilter and other MenuOptionsFilter.">MenuOptionsFilter</a>.  
+ <a href="classMenuOptionsFilter.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="menu_8h_source.html">menu.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MenuOptionsFilter&lt; Arg &gt;:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMenuOptionsFilter__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMenuOptionsFilter__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for MenuOptionsFilter&lt; Arg &gt;:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMenuOptionsFilter__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMenuOptionsFilter__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -92,8 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a06d0d357e423be3fbe4430dce2f15fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dd679be62454cb1003624514e373b38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a0dd679be62454cb1003624514e373b38">~MenuOptionsFilter</a> ()=default</td></tr>
 <tr class="separator:a0dd679be62454cb1003624514e373b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80571814edfed9269f00363f234e93f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a80571814edfed9269f00363f234e93f5">MenuOptionsFilter</a> (std::string t, std::vector&lt; <a class="el" href="classMenuFilter.html">MenuFilter</a>&lt; Arg &gt; * &gt;opt, std::function&lt; void(Arg &amp;)&gt; e_fun=[](Arg){ return;}, std::function&lt; Arg()&gt;s_fun=[](){ return(Arg());}, bool exclusive_selection=false, std::vector&lt; int &gt; vec={})</td></tr>
-<tr class="separator:a80571814edfed9269f00363f234e93f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb16116866eb1dfb4af792e4f493848f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#acb16116866eb1dfb4af792e4f493848f">MenuOptionsFilter</a> (std::string t, std::vector&lt; <a class="el" href="classMenuFilter.html">MenuFilter</a>&lt; Arg &gt; * &gt;opt, std::function&lt; void(Arg &amp;)&gt; e_fun=[](Arg){ }, std::function&lt; Arg()&gt;s_fun=[](){ return(Arg());}, bool exclusive_selection=false, std::vector&lt; int &gt; vec={ })</td></tr>
+<tr class="separator:acb16116866eb1dfb4af792e4f493848f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacaa30c8237fb9bcb187601639a7879ac"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">getMessage</a> () const</td></tr>
 <tr class="separator:gacaa30c8237fb9bcb187601639a7879ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadd995b39ad5e9e113f3b2f065764e344"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">show</a> () override</td></tr>
@@ -129,18 +130,27 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac9ff2a3ef55789dc07d3debcf61fe3c8"><td class="memItemLeft" align="right" valign="top">Arg&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#ac9ff2a3ef55789dc07d3debcf61fe3c8">argument</a></td></tr>
+<tr class="memdesc:ac9ff2a3ef55789dc07d3debcf61fe3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Argument that is passed and modified.  <a href="classMenuOptionsFilter.html#ac9ff2a3ef55789dc07d3debcf61fe3c8">More...</a><br /></td></tr>
 <tr class="separator:ac9ff2a3ef55789dc07d3debcf61fe3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3497aea739cd3f8024e5654a88428167"><td class="memItemLeft" align="right" valign="top">std::function&lt; Arg()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a3497aea739cd3f8024e5654a88428167">start_func</a> = [](){ return Arg(); }</td></tr>
+<tr class="memdesc:a3497aea739cd3f8024e5654a88428167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize to ensure that it points to something.  <a href="classMenuOptionsFilter.html#a3497aea739cd3f8024e5654a88428167">More...</a><br /></td></tr>
 <tr class="separator:a3497aea739cd3f8024e5654a88428167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8de6dacce7cb69829258e1b7e38f78e4"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(Arg &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">exit_func</a> = [](Arg){ return; }</td></tr>
+<tr class="memitem:a8de6dacce7cb69829258e1b7e38f78e4"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(Arg &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">exit_func</a> = [](Arg){}</td></tr>
+<tr class="memdesc:a8de6dacce7cb69829258e1b7e38f78e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize to ensure that it points to something.  <a href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">More...</a><br /></td></tr>
 <tr class="separator:a8de6dacce7cb69829258e1b7e38f78e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a323488e40bcbe36c14c98669e8f5c861"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMenuFilter.html">MenuFilter</a>&lt; Arg &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861">options</a></td></tr>
+<tr class="memdesc:a323488e40bcbe36c14c98669e8f5c861"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of menus that the current <a class="el" href="classMenuOptionsFilter.html" title="Menu that controls MenuSelectFilter and other MenuOptionsFilter.">MenuOptionsFilter</a> provides access to (filters).<br  />
+ The order inside the vector is preserved.  <a href="classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861">More...</a><br /></td></tr>
 <tr class="separator:a323488e40bcbe36c14c98669e8f5c861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a104733cfec66a98b770fad122824cd64"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classMenuFilter.html">MenuFilter</a>&lt; Arg &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">options_backup</a></td></tr>
+<tr class="memdesc:a104733cfec66a98b770fad122824cd64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backup of the vector 'options'<br  />
+ used when user can't select a menu more than once.  <a href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">More...</a><br /></td></tr>
 <tr class="separator:a104733cfec66a98b770fad122824cd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11119d33dce8707e1751e216818c1774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#a11119d33dce8707e1751e216818c1774">select_one_menu</a></td></tr>
+<tr class="memdesc:a11119d33dce8707e1751e216818c1774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies if only one menu from options can be chosen<br  />
+ Will exit from the menu when user selects any option.  <a href="classMenuOptionsFilter.html#a11119d33dce8707e1751e216818c1774">More...</a><br /></td></tr>
 <tr class="separator:a11119d33dce8707e1751e216818c1774"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af233c5ec42086da4c70aba46b403df84"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">repeat_menus_vec</a> ={}</td></tr>
+<tr class="memitem:af233c5ec42086da4c70aba46b403df84"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">repeat_menus_vec</a> = {}</td></tr>
 <tr class="separator:af233c5ec42086da4c70aba46b403df84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -155,7 +165,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a2c72bb2205a0f3126c05e2f3b87e09bd inherit pro_attribs_classMenu"><td class="mdescLeft">&#160;</td><td class="mdescRight">String inserted to std::cout on menu entering.  <a href="classMenu.html#a2c72bb2205a0f3126c05e2f3b87e09bd">More...</a><br /></td></tr>
 <tr class="separator:a2c72bb2205a0f3126c05e2f3b87e09bd inherit pro_attribs_classMenu"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Arg&gt;<br />
+class MenuOptionsFilter&lt; Arg &gt;</h3>
+
+<p><a class="el" href="classMenu.html" title="Absract class for menus that don&#39;t modify arguments.">Menu</a> that controls <a class="el" href="classMenuSelectFilter.html" title="Wrapper to function that modifies an argument.">MenuSelectFilter</a> and other <a class="el" href="classMenuOptionsFilter.html" title="Menu that controls MenuSelectFilter and other MenuOptionsFilter.">MenuOptionsFilter</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Arg</td><td>Defines type of object that can be filtered (usually an, iterable, linear data structure) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a06d0d357e423be3fbe4430dce2f15fa3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06d0d357e423be3fbe4430dce2f15fa3">&#9670;&nbsp;</a></span>MenuOptionsFilter() <span class="overload">[1/2]</span></h2>
 
@@ -210,8 +231,8 @@ template&lt;typename Arg&gt; </div>
 
 </div>
 </div>
-<a id="a80571814edfed9269f00363f234e93f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80571814edfed9269f00363f234e93f5">&#9670;&nbsp;</a></span>MenuOptionsFilter() <span class="overload">[2/2]</span></h2>
+<a id="acb16116866eb1dfb4af792e4f493848f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb16116866eb1dfb4af792e4f493848f">&#9670;&nbsp;</a></span>MenuOptionsFilter() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +258,7 @@ template&lt;typename Arg&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::function&lt; void(Arg &amp;)&gt;&#160;</td>
-          <td class="paramname"><em>e_fun</em> = <code>[](Arg){&#160;return;&#160;}</code>, </td>
+          <td class="paramname"><em>e_fun</em> = <code>[](Arg){&#160;}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -255,7 +276,7 @@ template&lt;typename Arg&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
-          <td class="paramname"><em>vec</em> = <code>{}</code>&#160;</td>
+          <td class="paramname"><em>vec</em> = <code>{&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -334,6 +355,8 @@ template&lt;typename Arg&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Argument that is passed and modified. </p>
+
 </div>
 </div>
 <a id="a8de6dacce7cb69829258e1b7e38f78e4"></a>
@@ -348,7 +371,7 @@ template&lt;typename Arg&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void(Arg&amp;)&gt; <a class="el" href="classMenuOptionsFilter.html">MenuOptionsFilter</a>&lt; Arg &gt;::exit_func = [](Arg){ return; }</td>
+          <td class="memname">std::function&lt;void(Arg&amp;)&gt; <a class="el" href="classMenuOptionsFilter.html">MenuOptionsFilter</a>&lt; Arg &gt;::exit_func = [](Arg){}</td>
         </tr>
       </table>
   </td>
@@ -357,6 +380,9 @@ template&lt;typename Arg&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Initialize to ensure that it points to something. </p>
+<dl class="section return"><dt>Returns</dt><dd>A dead function </dd></dl>
 
 </div>
 </div>
@@ -382,6 +408,9 @@ template&lt;typename Arg&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>List of menus that the current <a class="el" href="classMenuOptionsFilter.html" title="Menu that controls MenuSelectFilter and other MenuOptionsFilter.">MenuOptionsFilter</a> provides access to (filters).<br  />
+ The order inside the vector is preserved. </p>
+
 </div>
 </div>
 <a id="a104733cfec66a98b770fad122824cd64"></a>
@@ -406,6 +435,9 @@ template&lt;typename Arg&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Backup of the vector 'options'<br  />
+ used when user can't select a menu more than once. </p>
+
 </div>
 </div>
 <a id="af233c5ec42086da4c70aba46b403df84"></a>
@@ -420,7 +452,7 @@ template&lt;typename Arg&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::vector&lt;int&gt; <a class="el" href="classMenuOptionsFilter.html">MenuOptionsFilter</a>&lt; Arg &gt;::repeat_menus_vec ={}</td>
+          <td class="memname">const std::vector&lt;int&gt; <a class="el" href="classMenuOptionsFilter.html">MenuOptionsFilter</a>&lt; Arg &gt;::repeat_menus_vec = {}</td>
         </tr>
       </table>
   </td>
@@ -454,6 +486,9 @@ template&lt;typename Arg&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Specifies if only one menu from options can be chosen<br  />
+ Will exit from the menu when user selects any option. </p>
+
 </div>
 </div>
 <a id="a3497aea739cd3f8024e5654a88428167"></a>
@@ -477,6 +512,9 @@ template&lt;typename Arg&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Initialize to ensure that it points to something. </p>
+<dl class="section return"><dt>Returns</dt><dd>A dead function </dd></dl>
 
 </div>
 </div>

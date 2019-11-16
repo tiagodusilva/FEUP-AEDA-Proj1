@@ -65,7 +65,7 @@
 <!-- Node2 -->
 <g id="node3" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="classMenuOptionsFilter.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classMenuOptionsFilter.html" target="_top" xlink:title="Menu that controls MenuSelectFilter and other MenuOptionsFilter.">
 <polygon fill="none" stroke="black" points="234.5,-93 234.5,-123 348.5,-123 348.5,-93 234.5,-93"/>
 <text text-anchor="start" x="242.5" y="-111" font-family="Helvetica,sans-Serif" font-size="10.00">MenuOptionsFilter&lt;</text>
 <text text-anchor="middle" x="291.5" y="-100" font-family="Helvetica,sans-Serif" font-size="10.00"> Arg &gt;</text>
