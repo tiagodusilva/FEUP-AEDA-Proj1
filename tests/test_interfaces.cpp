@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(DISABLED_interfaces, member){
+TEST(interfaces, member){
 	MuseumNetwork rnm("files/network_config.sadjson");
 
 	//EXPECT_THROW(MemberInterface(rnm, 1), NoSuchCard);

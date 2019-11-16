@@ -182,6 +182,12 @@ public:
      * @param new_date The new date for the Event with id
      */
     void event_set_date(unsigned id, const Date &new_date);
+    /**
+     * @brief Setter for the is_valid flag of the Event with id
+    * @details This method is not destructive (can be reverted)
+    * @param new_is_valid The new is_valid flag for the Event with id
+    */
+    void event_set_validity(unsigned id, bool new_is_valid);
 
 
 	/* OTHER PUBLIC METHODS */

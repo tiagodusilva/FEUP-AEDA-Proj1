@@ -43,7 +43,9 @@ private:
 	Date date;
 	/** @brief	CC of the users who bought at least 1 ticket (may have CC's of unregistered people) */
 	std::set<unsigned> reservations;
-	/** @brief	True, if the event is valid. False, otherwise */
+	/** @brief	True, if the event is valid. False, otherwise
+	 * @details  Currently is used to make an Event visible, but impossible to be purchased
+	 */
 	bool is_valid;
 
 public:
@@ -198,11 +200,18 @@ public:
      */
     void set_date(const Date &new_date);
 	/**
-	* @brief	 Completely destructive method\n
-	*		 When called sets an Event's id to 0, aka an absolutely invalid Event\n
-	*		 WARNING: Once this method is called, there is no going back
+	* @brief	 When called sets an Event's id to 0, aka an absolutely invalid Event\n
+	*		     WARNING: Once this method is called, there is no going back
+	*
+	* @details	 Completely destructive method (irreversible)
 	*/
 	void set_invalid_id();
+	/**
+	 * @brief Setter for the is_valid flag of this Event
+	 * @details This method is not destructive (can be reverted)
+	 * @param new_is_valid The new is_valid flag for this Event
+	 */
+    void set_validity(bool new_is_valid);
 
 
 	/**
@@ -210,7 +219,7 @@ public:
 	*
 	* @param	cc	The cc of the person trying to purchase this Event
 	*
-	* @throws	EventFull		Thrown if the Event is at max capacity
+	* @throws	EventFull		    Thrown if the Event is at max capacity
 	* @throws	EventInvalid		Thrown if the is_valid flag of the Event is set to false
 	* @throws	EventAlreadyBough	Thrown if the Event was already bough by the user with the provided cc
 	*/

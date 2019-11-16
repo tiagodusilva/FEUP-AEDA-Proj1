@@ -126,6 +126,12 @@ void Enterprise::event_set_date(unsigned id, const Date &new_date) {
     this->events.insert(ev);
 }
 
+void Enterprise::event_set_validity(unsigned id, bool new_is_valid) {
+    Event ev = this->pop(id);
+    ev.set_validity(new_is_valid);
+    this->events.insert(ev);
+}
+
 
 /* OTHER PUBLIC METHODS */
 

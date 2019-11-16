@@ -105,6 +105,12 @@ void Event::set_invalid_id() {
     this->id = 0;
 }
 
+void Event::set_validity(bool new_is_valid) {
+    this->is_valid = new_is_valid;
+}
+
+/* OTHER PUBLIC METHODS */
+
 void Event::purchase(unsigned cc) {
     if (this->is_full())
         throw EventFull(this->id);
