@@ -141,7 +141,7 @@ public:
      *
      * @param new_ticket_fee The new ticket fee for the Event with id
      */
-    void event_set_ticker_fee(unsigned id, float new_ticket_fee);
+    void event_set_ticket_fee(unsigned id, float new_ticket_fee);
     /**
      * @brief Setter for the location name of the Event with id
      *

@@ -172,7 +172,7 @@ public:
      *
      * @param new_ticket_fee The new ticket fee for this Event
      */
-    void set_ticker_fee(float new_ticket_fee);
+    void set_ticket_fee(float new_ticket_fee);
     /**
      * @brief Setter for the location name of this Event
      *

@@ -77,7 +77,7 @@ void Event::set_name(const std::string &new_name) {
     this->name = new_name;
 }
 
-void Event::set_ticker_fee(float new_ticket_fee) {
+void Event::set_ticket_fee(float new_ticket_fee) {
     if (new_ticket_fee < 0)
         throw UserInputReadingFailure("Event's ticket fee must not be a negative number");
     this->ticket_fee = new_ticket_fee;
