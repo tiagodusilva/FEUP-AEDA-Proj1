@@ -8,7 +8,7 @@
 
 using namespace std;
 
-TEST(cards_cin, DISABLED_files) {
+TEST(cards_cin, files) {
 	Card *cp;
 	Card::cin_read_card(cp);
 

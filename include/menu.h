@@ -52,7 +52,10 @@ public:
 	 */
 	const std::string getTitle() const { return this->title; }
 
-	/* Show function that will be called when instancing a given menu */
+	/**
+	 * @brief	Pure virtual member-function
+	 * @note	Will be called when instancing a given menu
+	 */
 	virtual void show() = 0;
 };
 
