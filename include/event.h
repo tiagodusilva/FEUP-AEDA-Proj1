@@ -33,7 +33,7 @@ private:
 	std::string name;
 	/** @brief	event's ticket price */
 	float ticket_fee;
-	/** @bried  event's location name */
+	/** @brief	event's location name */
 	std::string location_name;
 	/** @brief	event's location */
 	Address address;

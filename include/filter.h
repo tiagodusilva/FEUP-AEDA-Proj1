@@ -16,16 +16,17 @@ using namespace std;
 
 namespace flt
 {
+	/* CONTAINS */
 	template<typename T>
 	bool contains(const T &lhs, Address rhs) { return(lhs.get_address() == rhs); }
 
 	template<typename T>
 	bool contains(const T &lhs, string rhs) { return(lhs.get_name() == rhs); }
 
-
 	template<typename T>
 	bool contains(const T &lhs, Date rhs) { return(lhs.get_date() == rhs); }
 
+	/* IS_BETWEEN */
 	template<typename T>
 	bool is_between(const T &mid, Date lhs, Date rhs) { return((mid.get_date() >= lhs) && (mid.get_date() <= rhs)); }
 
@@ -35,8 +36,13 @@ namespace flt
 		cout << "Name?\n";
 		getline(cin, name);
 
+		/* move elements to remove to the end of vec */
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&name](T &elem) { return!(contains(elem, name)); });
+				[&name](T &elem) {
+					return!(contains(elem, name));
+				});
+
+		/* erase elements that were moved to the end of vec */
 		vec.erase(iter, vec.end());
 	}
 
@@ -89,7 +95,10 @@ namespace flt
 
 	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&capacity_percentage_max](Event elem) { return !(elem.get_capacity_percentage() <= capacity_percentage_max*100); });
+				[&capacity_percentage_max](Event elem) {
+					return !(elem.get_capacity_percentage() <= capacity_percentage_max*100);
+				});
+
 		vec.erase(iter, vec.end());
 	}
 

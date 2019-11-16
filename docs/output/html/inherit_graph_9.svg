@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="classMenu.html" target="_top" xlink:title=" ">
+<g id="a_node1"><a xlink:href="classMenu.html" target="_top" xlink:title="Absract class for menus that don&#39;t modify arguments.">
 <polygon fill="none" stroke="black" points="0,-38.5 0,-57.5 44,-57.5 44,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="22" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">Menu</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classMenuFilter.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classMenuFilter.html" target="_top" xlink:title="Abstract class used for specifying menus that modify an argument (by using different filters)">
 <polygon fill="none" stroke="black" points="80,-76.5 80,-95.5 187,-95.5 187,-76.5 80,-76.5"/>
 <text text-anchor="middle" x="133.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">MenuFilter&lt; Arg &gt;</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node4 -->
 <g id="node5" class="node">
 <title>Node4</title>
-<g id="a_node5"><a xlink:href="classMenuOptions.html" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="classMenuOptions.html" target="_top" xlink:title="Menu that serves as an interface to other MenuOption, MenuSelect or MenuFilter instances (all derived...">
 <polygon fill="none" stroke="black" points="93,-38.5 93,-57.5 174,-57.5 174,-38.5 93,-38.5"/>
 <text text-anchor="middle" x="133.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">MenuOptions</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- Node5 -->
 <g id="node6" class="node">
 <title>Node5</title>
-<g id="a_node6"><a xlink:href="classMenuSelect.html" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="classMenuSelect.html" target="_top" xlink:title="Wrapper to a function that takes no arguments.">
 <polygon fill="none" stroke="black" points="96.5,-0.5 96.5,-19.5 170.5,-19.5 170.5,-0.5 96.5,-0.5"/>
 <text text-anchor="middle" x="133.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">MenuSelect</text>
 </a>
@@ -81,7 +81,7 @@
 <!-- Node3 -->
 <g id="node4" class="node">
 <title>Node3</title>
-<g id="a_node4"><a xlink:href="classMenuSelectFilter.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="classMenuSelectFilter.html" target="_top" xlink:title="Wrapper to function that modifies an argument.">
 <polygon fill="none" stroke="black" points="223,-54.5 223,-73.5 360,-73.5 360,-54.5 223,-54.5"/>
 <text text-anchor="middle" x="291.5" y="-61.5" font-family="Helvetica,sans-Serif" font-size="10.00">MenuSelectFilter&lt; Arg &gt;</text>
 </a>
