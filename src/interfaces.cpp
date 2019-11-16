@@ -337,7 +337,6 @@ AdminInterface::show()
 
 	MenuSelectFilter<vector<Enterprise>> modifyEnterpriseMenu("Modify the selected Enterprise",
 			[this](vector<Enterprise>&vec){
-				cout << "HERE"; utl::pauseConsole();
 				/* Opens menu that changes the current enterprise */
 				if(vec.size() != 1)
 					throw(UserInputReadingFailure("Multiple Enterprises selected"));
@@ -383,8 +382,124 @@ AdminInterface::show()
 			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0});
 
 
+
+
+	/* Modify Events */
+
+	MenuSelectFilter<vector<Event>> modifyEventMenu("Modify the selected Event",
+			[this](vector<Event>&vec){
+				/* Opens menu that changes the current event */
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple Events selected"));
+				Event old_event = vec.at(0); // Store selected event as backup for later modifying
+
+				MenuSelectFilter<Event> modifyEventName("Modify Name",
+						[](Event &event){
+							cout << "Name?\n";
+							string name; getline(cin, name);
+							event.set_name(name);
+						});
+
+				MenuSelectFilter<Event> modifyEventContact("Modify Location Name",
+						[](Event &event){
+							cout << "Location Name?\n";
+							string location_name; getline(cin, location_name);
+							event.set_location_name(location_name);
+						});
+
+				MenuSelectFilter<Event> modifyEventAddress("Modify Address",
+						[](Event &event){
+							cout << "Address (street name/XXXX-XXX/region name  or  region)?\n";
+							Address address; cin >> address;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid Address"));
+							event.set_address(address);
+						});
+
+				MenuSelectFilter<Event> modifyEventTime("Modify starting time",
+						[](Event &event){
+							cout << "Starting time? (hour:min)" << endl;
+							Time time; cin >> time;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid starting time"));
+							event.set_time(time);
+						});
+
+				MenuSelectFilter<Event> modifyEventDate("Modify starting date",
+						[](Event &event){
+							cout << "Date (year/month/day)?" << endl;
+							Date date; cin >> date;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid starting date"));
+							event.set_date(date);
+						});
+
+
+				MenuSelectFilter<Event> modifyEventMaxCapacity("Modify maximux capacity",
+						[](Event &event){
+							cout << "Max capacity?" << endl;
+							unsigned capacity; cin >> capacity;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid maximum capacity"));
+							event.set_max_capacity(capacity);
+						});
+
+				MenuSelectFilter<Event> modifyEventFee("Modify fee",
+						[](Event &event){
+							cout << "Fee?" << endl;
+							float fee; cin >> fee;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid fee"));
+							event.set_ticket_fee(fee);
+						});
+
+				MenuSelectFilter<Event> setEventInvalidity("Make the event invalid",
+						[](Event &event){
+							cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+							if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+							if(a == 'y' || a == 'Y')
+								event.set_validity(false);
+						});
+
+				MenuSelectFilter<Event> setEventValidity("Make the event valid",
+						[](Event &event){
+							cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+							if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+							if(a == 'y' || a == 'Y')
+								event.set_validity(true);
+						});
+
+				MenuSelectFilter<Event> modifyEventCommit("Commit changes",
+						[this, &old_event](Event &event){
+							this->museum_network.modifyEvent(old_event, event);
+						});
+
+
+				vector<MenuFilter<Event>*> modifyCurrEventOptions =
+					{&modifyEventFee, &modifyEventDate, &modifyEventTime, &modifyEventAddress, &modifyEventContact, &modifyEventName,
+						&modifyEventMaxCapacity};
+
+				if(old_event.get_validity()) // If event is valid add option to make it invalid
+					modifyCurrEventOptions.push_back(&setEventInvalidity);
+				else
+					modifyCurrEventOptions.push_back(&setEventValidity); // Else add option to make it valid
+
+				modifyCurrEventOptions.push_back(&modifyEventCommit);
+
+				MenuOptionsFilter<Event> modifyEvent("Modify the selected Event", modifyCurrEventOptions,
+						[](Event &ev){}, [](){return(Event());}, false, {0,1,2,3,4,5,6,7,8});
+
+				modifyEvent.show(vec.at(0)); // Initialize the menu with the selected event
+			});
+
+	vector<MenuFilter<vector<Event>>*> modifyEventOpt = listEventsOpt;
+	modifyEventOpt.push_back(&modifyEventMenu);
+	MenuOptionsFilter<vector<Event>> modifyEventSelection("Modify Events", modifyEventOpt,
+			[](vector<Event>&vec){},[this](){ return(this->museum_network.getEvents());}, false, {0});
+
+
 	/* Modify Network Options */
-	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyMuseumSelection});
+	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyMuseumSelection, &modifyEventSelection});
 
 
 

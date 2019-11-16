@@ -134,6 +134,8 @@ public:
 	void removeEvent(const Event &event_to_be_removed, Enterprise &enterprises);
 	void removeEvents(std::vector<Event> &events_to_be_removed);
 
+	void modifyEvent(const Event &old_event, const Event &new_event);
+
 	void purchaseEvent(const unsigned cc, Event event);
 	void updateEvents(std::string enterprise_file_name); // Reads new Enterprise file and updates it
 

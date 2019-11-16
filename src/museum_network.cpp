@@ -263,6 +263,32 @@ void MuseumNetwork::removeEvent(const Event &event, Enterprise &enterprise) {
 }
 
 
+void MuseumNetwork::modifyEvent(const Event &old_event, const Event &new_event) {
+	bool found=false;
+	vector<Enterprise>::iterator iter;
+	iter = find_if(enterprises.begin(), enterprises.end(),
+			[&old_event](Enterprise enter){ return(enter.has_event(old_event.get_id())); });
+
+	if(iter == enterprises.end()) // if event isn't on any enterprise
+		throw(NoSuchObject(to_string(old_event.get_id()), "event"));
+
+	/* Modify event */
+	unsigned old_id = old_event.get_id();
+	(*iter).event_set_name(old_id, new_event.get_name());
+	(*iter).event_set_date(old_id, new_event.get_date());
+	(*iter).event_set_time(old_id, new_event.get_time());
+	(*iter).event_set_address(old_id, new_event.get_address());
+	(*iter).event_set_ticket_fee(old_id, new_event.get_fee());
+	(*iter).event_set_max_capacity(old_id, new_event.get_max_capacity());
+	(*iter).event_set_location_name(old_id, new_event.get_location_name());
+
+	if(new_event.get_validity() != old_event.get_validity()){ // Check if validity needs to be modified{
+		utl::pauseConsole();
+		(*iter).event_set_validity(old_id, new_event.get_validity());
+}
+}
+
+
 void MuseumNetwork::purchaseEvent(const unsigned cc, Event event) {
 	int i;
 	for (i = 0; i < this->enterprises.size(); ++i) {
