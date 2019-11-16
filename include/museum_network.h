@@ -20,7 +20,7 @@
   * @{
   */
 
-class MuseumNetwork{
+class MuseumNetwork {
 private:
 	/** @brief	List of the different discounts applied to Cards */
 	float discount[3];
@@ -76,7 +76,6 @@ public:
 	 * @param cards_to_be_removed	List of pointers to the Cards to be removed from the network
 	 */
 	void removeCards(const std::vector<Card*> &cards_to_be_removed);
-	void modifyCard(Card* card);
 
 	void listCards(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listCards(const std::vector<Card*> &cards_to_be_listed,
@@ -94,8 +93,7 @@ public:
 	void removeEnterprise(const Enterprise &enterprise_to_be_removed);
 	void removeEnterprises(std::vector<Enterprise> &museum_to_be_removed);
 
-	//TODO CRUD ENTERPRISE
-	void modifyEnterprise(Enterprise enterprise);
+	void modifyEnterprise(const Enterprise &old_enterprise, const Enterprise &new_enterprise);
 
 	void listEnterprises(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listEnterprises(const std::vector<Enterprise> &enterprises_to_be_listed,
@@ -112,7 +110,7 @@ public:
 	void removeMuseum(const Museum &museum_to_be_removed);
 	void removeMuseums(std::vector<Museum> &museum_to_be_removed);
 
-	void modifyMuseum(Museum museum_to_be_changed);
+	void modifyMuseum(const Museum &old_museum, const Museum &new_museum);
 
 	void listMuseums(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listMuseums(const std::vector<Museum> &museum_to_be_listed,

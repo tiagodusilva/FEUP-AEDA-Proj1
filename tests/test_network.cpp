@@ -56,29 +56,6 @@ TEST(network, DISABLED_remcards){
 }
 
 
-TEST(network, DISABLED_modcard){
-	MuseumNetwork rnm;
-	string delim ="\n_---------------------_\n";
-	IndividualCard i1("Rosetta", "Stoned", 123, Date(), Address("Porto"));
-	UniCard u1("Fernando", "Namora", 134, Date(2000, 5, 27), Address("Lisboa"));
-	SilverCard s1("Pimenta", "Machado", 234567, Date(), Address("Evora")),
-			   s2("Opa", "Nsei", 123, Date(1000, 11, 1), Address("Braga")),
-			   s3("Leonel", "DAqules que e fixe", 12345, Date(2015, 12, 1), Address("Barcelos"));
-	rnm.addCard(&i1);
-	rnm.addCard(&u1);
-	rnm.addCard(&s1);
-	rnm.addCard(&s3);
-
-	IndividualCard d1("Rosetta Stone changed", "Nice", 123, Date(), Address("AVANTE"));
-	rnm.modifyCard(&d1); // Change card with 123
-	ASSERT_EQ(rnm.getCards().at(0)->get_name(), d1.get_name());
-
-
-	// ASSERT_THROW(rnm.removeCard(&i1), NoSuchCard); TODO This throws nothing, is it supposed to?
-	rnm.removeCard(&d1);
-	ASSERT_THROW(rnm.modifyCard(&i1), NoSuchCard);
-	rnm.listCards(rnm.getCards());
-}
 
 TEST(network, DISABLED_enterprises){
 	MuseumNetwork rnm;
@@ -99,6 +76,52 @@ TEST(network, DISABLED_enterprises){
 	// EXPECT_THROW(rnm.listEnterprises(vec), NoSuchEnterprise); This throws nothing becaus when coming from menu all of the enterprises provided are valid
 
 	rnm.listEnterprises();
+}
+
+TEST(network, modify_museums){
+	MuseumNetwork rnm;
+	Museum  m1("M1", Time(9, 30), Time(19, 00), 2, Address("Evora")),
+			m2("M2", Time(10, 30), Time(20, 00), 2, Address("Porto")),
+	        m3("M3", Time(11, 20), Time(21, 30), 2, Address("Lisboa"));
+
+	rnm.addMuseum(m1);
+	rnm.addMuseum(m2);
+	rnm.addMuseum(m3);
+
+    Event e1("1", 23, 5, "Loc. Porto",Address("Porto"), Time(9, 0), Date(2002, 9, 11)),
+            e2("2", 23, 2, "Loc. Asd", Address("Asd"), Time(11, 0), Date(2011, 9, 21)),
+            e3("3", 10, 3, "Loc. Opa", Address("Opa"), Time(15, 0), Date(2019, 4, 4)),
+            e4("4", 10, 6, "Loc. Nice", Address("Nice"), Time(20, 0), Date(2020, 1, 11)),
+            e5("5", 15, 8, "Loc. Evora", Address("Evora"), Time(9, 50), Date(2030, 7, 15)),
+            e6("6", 30, 9, "Loc. Aveirso", Address("Aveirso"), Time(11, 10), Date(2001, 10, 5)),
+            e7("7", 30, 8, "Loc. Faro", Address("Faro"), Time(20, 30), Date(2001, 11, 3));
+
+	set<Event> set1 = {e1, e2, e3};
+	set<Event> set2 = {e4, e5, e6};
+	set<Event> set3 = {e7};
+
+	Enterprise ent1("Moreira", "912", Address("Porto"), set1),
+			   ent2("Noice", "123", Address("Porto"), set2),
+			   ent3("Lul", "132", Address("noice"), set3);
+
+	rnm.addEnterprise(ent1);
+	rnm.addEnterprise(ent2);
+	rnm.addEnterprise(ent3);
+
+	rnm.modifyMuseum(m2, m1);
+	rnm.modifyMuseum(m3, m1);
+	EXPECT_EQ(rnm.getMuseums().at(0).get_name(), m1.get_name());
+	EXPECT_EQ(rnm.getMuseums().at(1).get_name(), m1.get_name());
+	EXPECT_EQ(rnm.getMuseums().at(2).get_name(), m1.get_name());
+
+	rnm.modifyEnterprise(ent2, ent1);
+	rnm.modifyEnterprise(ent3, ent1);
+	EXPECT_EQ(rnm.getEnterprises().at(0).get_name(), ent1.get_name());
+	EXPECT_EQ(rnm.getEnterprises().at(1).get_name(), ent1.get_name());
+	EXPECT_EQ(rnm.getEnterprises().at(2).get_name(), ent1.get_name());
+
+	/*rnm.listEnterprises();
+	rnm.listMuseums();*/
 }
 
 TEST(network, DISABLED_museums){
@@ -253,7 +276,7 @@ TEST(network, DISABLED_export_network){
 	rnm.exportFiles("files/cards.txt", "files/museums.txt", "files/enterprises.txt");
 }
 
-TEST(network, remove_events){
+TEST(network, DISABLED_remove_events){
 	MuseumNetwork rnm;
 
 	//rnm.importFiles("111");

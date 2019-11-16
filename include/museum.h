@@ -85,6 +85,30 @@ public:
 	 */
 	Address get_address() const;
 
+
+    /* SETTERS */
+    /**
+     * @brief           Setter for the name
+     * @param new_name  The new name for this Museum
+     */
+    void set_name(const std::string &new_name);
+    /**
+     * @brief     Setter for the opening Time
+     * @param     The new opening Time for this Museum
+     */
+    void set_open(const Time &open);
+    /**
+     * @brief     Setter for the closing Time
+     * @param     The new closing Time for this Museum
+     */
+    void set_close(const Time &close);
+    /**
+     * @brief     Setter for the entry fee
+     * @param     The new entry fee for this Museum
+     */
+    void set_fee(float entry_fee);
+
+
 	/* OVERLOADED COMPARISON OPERATORS */
 	/**
 	 * @brief     Overloaded equality test operator
