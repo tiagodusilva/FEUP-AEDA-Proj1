@@ -26,10 +26,10 @@ Time::Time(short hour, short min)
 {
 	if (min == 0) {
 		if (hour < 0 || hour > 24)
-			throw InvalidTime();
+			throw InvalidObject("Time", "when minutes is 0, hour must be between 0 and 24");
 	}
 	else if (min < 0 || min > 59 || hour < 0 || hour > 23)
-		throw InvalidTime();
+		throw InvalidObject("Time", "hour must be between 0 and 23 and minutes between 0 and 59");
 
 	this->hour = hour;
 	this->min = min;
@@ -66,21 +66,25 @@ operator!=(const Time& lhs, const Time& rhs)
 bool
 operator< (const Time& lhs, const Time& rhs)
 {
-    if (lhs.get_hour() > rhs.get_hour())
-        return false;
+	if (lhs.get_hour() > rhs.get_hour())
+		return false;
+
 	if (lhs.get_hour() < rhs.get_hour())
 		return true;
-    return lhs.get_min() < rhs.get_min();
+
+	return lhs.get_min() < rhs.get_min();
 }
 
 bool
 operator<=(const Time& lhs, const Time& rhs)
 {
-    if (lhs.get_hour() > rhs.get_hour())
-        return false;
-    if (lhs.get_hour() < rhs.get_hour())
-        return true;
-    return lhs.get_min() <= rhs.get_min();
+	if (lhs.get_hour() > rhs.get_hour())
+		return false;
+
+	if (lhs.get_hour() < rhs.get_hour())
+		return true;
+
+	return lhs.get_min() <= rhs.get_min();
 }
 
 bool
@@ -125,11 +129,18 @@ operator>>(std::istream &instream, Time &t)
 
 		int div = temp_time.find(':');
 		if (div == string::npos)
-			throw UserInputReadingFailure("time: " + temp_time);
+			throw UserInputReadingFailure("Time: " + temp_time);
 
 		else {
 			t.hour = (short) stoi(temp_time.substr(0, div));
 			t.min = (short) stoi(temp_time.substr(div + 1));
+
+			if (t.min == 0) {
+				if (t.hour < 0 || t.hour > 24)
+					throw UserInputReadingFailure("Time: when minutes is 0, hour must be between 0 and 24: " + temp_time);
+			}
+			else if (t.min < 0 || t.min > 59 || t.hour < 0 || t.hour > 23)
+				throw UserInputReadingFailure("Time: hour must be between 0 and 23 and minutes between 0 and 59" + temp_time);
 		}
 
 	}catch(const std::exception& e) {
@@ -151,11 +162,19 @@ operator>>(std::ifstream &instream, Time &t)
 
 		int div = temp_time.find(':');
 		if (div == string::npos)
-			throw FileReadingFailed("time: " + temp_time);
+			throw FileReadingFailed("Time: " + temp_time);
 
 		else {
 			t.hour = (short) stoi(temp_time.substr(0, div));
 			t.min = (short) stoi(temp_time.substr(div + 1));
+
+			if (t.min == 0) {
+				if (t.hour < 0 || t.hour > 24)
+					throw FileReadingFailed("Time: when minutes is 0, hour must be between 0 and 24" + temp_time);
+			}
+			else if (t.min < 0 || t.min > 59 || t.hour < 0 || t.hour > 23)
+				throw FileReadingFailed("Time: hour must be between 0 and 23 and minutes between 0 and 59" + temp_time);
+
 		}
 
 	}catch(const std::exception& e) {

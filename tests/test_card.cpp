@@ -35,11 +35,9 @@ TEST(cards, files) {
 	ASSERT_EQ(c.get_expiration_date(), cp->get_expiration_date());
 	ASSERT_EQ(c.get_address(), cp->get_address());
 
-	try {
-		Time t(24, 1);
-	}catch(const exception &e) {
-		ASSERT_EQ(*(e.what()), *(InvalidTime().what()));
-	}
+
+	EXPECT_THROW(Time(24, 1), InvalidObject);
+
 }
 
 TEST(cards, time_bet) {

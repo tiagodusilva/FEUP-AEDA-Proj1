@@ -5,18 +5,21 @@ using namespace std;
 namespace flt
 {
 	/* For use with silver cards checker */
-	void FilterEventByGivenTimeFrame(vector<Event> &vec, const Time &delta_time) {
+	void FilterEventByGivenTimeFrame(vector<Event> &vec, const unsigned delta_time_hour, const unsigned delta_time_min) {
 		Date d_now; Time t_now;
+		if (delta_time_hour < 0 || delta_time_min < 0)
+			throw InvalidObject("Time:", "Invalid Timeframe (neither hours, nor minutes can be negative)");
+
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&delta_time, &d_now, &t_now](Event elem) {
-					if(d_now > elem.get_date())
+				[&delta_time_hour, &delta_time_min, &d_now, &t_now](Event elem) {
+					if (d_now > elem.get_date())
 						return true;
 					else {
 						/* Check if dates are the same but the event has already occurred */
-						if(d_now == elem.get_date() && t_now > elem.get_time())
+						if (d_now == elem.get_date() && t_now > elem.get_time())
 							return true;
 						else {
-							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
+							unsigned delta_in_seconds = delta_time_hour * MIN_IN_HOUR + delta_time_min;
 							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
 						}
 					}
@@ -26,16 +29,23 @@ namespace flt
 	}
 
 	void FilterEventByTimeFrame(vector<Event> &vec) {
-		Time delta_time;
+		string temp_time;
 		cout << "Timeframe (hour:min)?\n";
-		cin >> delta_time;
+		getline(std::cin, temp_time);
 
-		if(cin.fail())
-			throw(UserInputReadingFailure("Invalid timeframe"));
+		int div = temp_time.find(':');
+		if (div == string::npos)
+			throw UserInputReadingFailure("Invalid Timeframe: input is malformed");
+
+		unsigned delta_time_hour = stoi(temp_time.substr(0, div));
+		unsigned delta_time_min = stoi(temp_time.substr(div + 1));
+
+		if (delta_time_hour < 0 || delta_time_min < 0)
+			throw UserInputReadingFailure("Invalid Timeframe: neither hours, nor minutes can be negative");
 
 		Date d_now; Time t_now;
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&delta_time, &d_now, &t_now](Event elem) {
+				[&delta_time_hour, &delta_time_min, &d_now, &t_now](Event elem) {
 					if(d_now > elem.get_date())
 						return true;
 					else {
@@ -43,7 +53,7 @@ namespace flt
 						if(d_now == elem.get_date() && t_now > elem.get_time())
 							return true;
 						else {
-							unsigned delta_in_seconds = delta_time.get_hour()*MIN_IN_HOUR + delta_time.get_min();
+							unsigned delta_in_seconds = delta_time_hour * MIN_IN_HOUR + delta_time_min;
 							return !(timespan_size(d_now, t_now, elem.get_date(), elem.get_time()) <= delta_in_seconds);
 						}
 					}

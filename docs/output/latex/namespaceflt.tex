@@ -16,34 +16,34 @@ General filtering functions.
 \begin{DoxyCompactList}\small\item\em Check if a given object contains a given \mbox{\hyperlink{classDate}{Date}} object. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceflt_a85917a25d245bdc99fb7d82333027fde}{is\+\_\+between}} (const T \&mid, \mbox{\hyperlink{classDate}{Date}} lhs, \mbox{\hyperlink{classDate}{Date}} rhs)
 \begin{DoxyCompactList}\small\item\em Check if a given object\textquotesingle{}s \mbox{\hyperlink{classDate}{Date}} is chronologically between 2 other \mbox{\hyperlink{classDate}{Date}} objects. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespaceflt_a2c11d114ee2126f21e8ec1ede44eff78}{Filter\+Event\+By\+Given\+Time\+Frame}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec, const \mbox{\hyperlink{classTime}{Time}} \&delta\+\_\+time)
-\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceflt_a26e31e3a895fc7a35a3478ef559e0e3c}{Filter\+Event\+By\+Given\+Time\+Frame}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec, const unsigned delta\+\_\+time\+\_\+hour, const unsigned delta\+\_\+time\+\_\+min)
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now (or have already taken place) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_a1dd6b531cba1f5274d2fb222ae16f775}{Filter\+Event\+By\+Time\+Frame}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now (or have already taken place) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_a3d3779ba1f3a682fa07d22ccc4806b90}{Filter\+Event\+By\+Capacity}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec, float capacity\+\_\+percentage\+\_\+max)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have at least a certain percentage of their capacity full. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_af66ec1bcaf2b8d895beddaf65c5bf2d6}{Filter\+Event\+By\+Id}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that match the given ID. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_a5b3b5235e6738fd50b16f227c3df9bc8}{Filter\+Event\+By\+Location\+Name}} (vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given location. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_aef0ef4f7adf5059dd88b397a51dc6d36}{Filter\+Card\+By\+Name}} (vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have a given name. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_a0834eb0e48ea3476613c0bb04cd57fac}{Filter\+Card\+By\+Validity}} (vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that are valid. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespaceflt_a124436bd35642c41e710ae3338a95bb6}{Filter\+Card\+By\+Invalidity}} (vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that are invalid. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ae2f4e89e72d6dbca127417774375e340}{Filter\+By\+Name}} (vector$<$ T $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have a given name. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_aa9f80ca2526664653bb69934580fa18a}{Filter\+By\+Event\+ID}} (vector$<$ T $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that match the given ID. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ac43683e14d777ab30dbed34f1ab009c0}{Filter\+By\+Location}} (vector$<$ T $>$ \&vec, \mbox{\hyperlink{classAddress}{Address}} addr)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given location. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_a24e9ca59b9dd9120d21a1d7cded13665}{Filter\+In\+Date}} (vector$<$ T $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given date. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_ababcfcfc4324d51dc43524057528b0a9}{Filter\+Between\+Dates}} (vector$<$ T $>$ \&vec)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place between 2 dates. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceflt_af391213d03386625ad35e3831ee9ebd1}{Filter\+By\+Location\+Cin}} (vector$<$ T $>$ \&vec)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given \mbox{\hyperlink{classAddress}{Address}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -147,6 +147,26 @@ true, if both names are considered equal,~\newline
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+Between\+Dates (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place between 2 dates. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{} public member-\/function (that returns a \mbox{\hyperlink{classDate}{Date}} object) The Dates to compare with are given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Uses the \textquotesingle{}contains\textquotesingle{} set of functions
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_aa9f80ca2526664653bb69934580fa18a}\label{namespaceflt_aa9f80ca2526664653bb69934580fa18a}} 
 \index{flt@{flt}!FilterByEventID@{FilterByEventID}}
 \index{FilterByEventID@{FilterByEventID}!flt@{flt}}
@@ -154,6 +174,23 @@ void flt\+::\+Filter\+Between\+Dates (\begin{DoxyParamCaption}\item[{vector$<$ T
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+By\+Event\+ID (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that match the given ID. 
+
+\begin{DoxyNote}{Note}
+The given objects have to have a \textquotesingle{}has\+\_\+event\textquotesingle{} public member-\/function (that returns a bool). The ID to match is read from the user (thorugh std\+::cin)
+\end{DoxyNote}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_ac43683e14d777ab30dbed34f1ab009c0}\label{namespaceflt_ac43683e14d777ab30dbed34f1ab009c0}} 
 \index{flt@{flt}!FilterByLocation@{FilterByLocation}}
 \index{FilterByLocation@{FilterByLocation}!flt@{flt}}
@@ -161,6 +198,28 @@ void flt\+::\+Filter\+By\+Event\+ID (\begin{DoxyParamCaption}\item[{vector$<$ T 
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+By\+Location (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec,  }\item[{\mbox{\hyperlink{classAddress}{Address}}}]{addr }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given location. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+location\+\_\+name\textquotesingle{} public member-\/function (that returns a String) The location to look for is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Uses the \textquotesingle{}contains\textquotesingle{} set of functions
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+{\em addr} & \mbox{\hyperlink{classAddress}{Address}} to match \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_af391213d03386625ad35e3831ee9ebd1}\label{namespaceflt_af391213d03386625ad35e3831ee9ebd1}} 
 \index{flt@{flt}!FilterByLocationCin@{FilterByLocationCin}}
 \index{FilterByLocationCin@{FilterByLocationCin}!flt@{flt}}
@@ -168,6 +227,26 @@ void flt\+::\+Filter\+By\+Location (\begin{DoxyParamCaption}\item[{vector$<$ T $
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+By\+Location\+Cin (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given \mbox{\hyperlink{classAddress}{Address}}. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+address\textquotesingle{} public member-\/function (that returns a \mbox{\hyperlink{classAddress}{Address}} object) The \mbox{\hyperlink{classAddress}{Address}} to match is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Uses the \textquotesingle{}contains\textquotesingle{} set of functions
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_ae2f4e89e72d6dbca127417774375e340}\label{namespaceflt_ae2f4e89e72d6dbca127417774375e340}} 
 \index{flt@{flt}!FilterByName@{FilterByName}}
 \index{FilterByName@{FilterByName}!flt@{flt}}
@@ -175,39 +254,109 @@ void flt\+::\+Filter\+By\+Location\+Cin (\begin{DoxyParamCaption}\item[{vector$<
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+By\+Name (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have a given name. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+name\textquotesingle{} public member-\/function (that returns a String) The location to look for is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Uses the \textquotesingle{}contains\textquotesingle{} set of functions
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a124436bd35642c41e710ae3338a95bb6}\label{namespaceflt_a124436bd35642c41e710ae3338a95bb6}} 
 \index{flt@{flt}!FilterCardByInvalidity@{FilterCardByInvalidity}}
 \index{FilterCardByInvalidity@{FilterCardByInvalidity}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterCardByInvalidity()}{FilterCardByInvalidity()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Card\+By\+Invalidity (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that are invalid. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}isvalid\textquotesingle{} public member-\/function (that returns a bool) The bool to matcg is \textquotesingle{}false\textquotesingle{}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_aef0ef4f7adf5059dd88b397a51dc6d36}\label{namespaceflt_aef0ef4f7adf5059dd88b397a51dc6d36}} 
 \index{flt@{flt}!FilterCardByName@{FilterCardByName}}
 \index{FilterCardByName@{FilterCardByName}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterCardByName()}{FilterCardByName()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Card\+By\+Name (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have a given name. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+name\textquotesingle{} public member-\/function (that returns a String) The location to look for is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a0834eb0e48ea3476613c0bb04cd57fac}\label{namespaceflt_a0834eb0e48ea3476613c0bb04cd57fac}} 
 \index{flt@{flt}!FilterCardByValidity@{FilterCardByValidity}}
 \index{FilterCardByValidity@{FilterCardByValidity}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterCardByValidity()}{FilterCardByValidity()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Card\+By\+Validity (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classCard}{Card}} $\ast$ $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that are valid. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}isvalid\textquotesingle{} public member-\/function (that returns a bool) The bool to matcg is \textquotesingle{}true\textquotesingle{}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a3d3779ba1f3a682fa07d22ccc4806b90}\label{namespaceflt_a3d3779ba1f3a682fa07d22ccc4806b90}} 
 \index{flt@{flt}!FilterEventByCapacity@{FilterEventByCapacity}}
 \index{FilterEventByCapacity@{FilterEventByCapacity}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterEventByCapacity()}{FilterEventByCapacity()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Capacity (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec,  }\item[{float}]{capacity\+\_\+percentage\+\_\+max }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceflt_a2c11d114ee2126f21e8ec1ede44eff78}\label{namespaceflt_a2c11d114ee2126f21e8ec1ede44eff78}} 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that have at least a certain percentage of their capacity full. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+capacity\+\_\+percentage\textquotesingle{} public member-\/function (that returns a float)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+{\em capacity\+\_\+percentage\+\_\+max} & Maximum capacity an event can have before being filtered \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceflt_a26e31e3a895fc7a35a3478ef559e0e3c}\label{namespaceflt_a26e31e3a895fc7a35a3478ef559e0e3c}} 
 \index{flt@{flt}!FilterEventByGivenTimeFrame@{FilterEventByGivenTimeFrame}}
 \index{FilterEventByGivenTimeFrame@{FilterEventByGivenTimeFrame}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterEventByGivenTimeFrame()}{FilterEventByGivenTimeFrame()}}
-{\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Given\+Time\+Frame (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classTime}{Time}} \&}]{delta\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Given\+Time\+Frame (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec,  }\item[{const unsigned}]{delta\+\_\+time\+\_\+hour,  }\item[{const unsigned}]{delta\+\_\+time\+\_\+min }\end{DoxyParamCaption})}
 
 
 
-Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now. 
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now (or have already taken place) 
 
 \begin{DoxyNote}{Note}
 The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{} public member-\/function (that returns a \mbox{\hyperlink{classDate}{Date}} object)
@@ -216,7 +365,9 @@ The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{}
 \begin{DoxyParams}{Parameters}
 {\em vec} & Vector that contains the elements to evaluate \\
 \hline
-{\em delta\+\_\+time} & Maximum \\
+{\em delta\+\_\+time\+\_\+hour} & Maximum time difference (in hours and minutes) that an \mbox{\hyperlink{classEvent}{Event}} can have from now \\
+\hline
+{\em delta\+\_\+time\+\_\+min} & Minimum time difference (in hours and minutes) that an \mbox{\hyperlink{classEvent}{Event}} can have from now \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_af66ec1bcaf2b8d895beddaf65c5bf2d6}\label{namespaceflt_af66ec1bcaf2b8d895beddaf65c5bf2d6}} 
@@ -225,18 +376,54 @@ The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{}
 \doxysubsubsection{\texorpdfstring{FilterEventById()}{FilterEventById()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Id (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that match the given ID. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+id\textquotesingle{} public member-\/function (that returns an unsigned integer). The ID to match is read from the user (thorugh std\+::cin)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a5b3b5235e6738fd50b16f227c3df9bc8}\label{namespaceflt_a5b3b5235e6738fd50b16f227c3df9bc8}} 
 \index{flt@{flt}!FilterEventByLocationName@{FilterEventByLocationName}}
 \index{FilterEventByLocationName@{FilterEventByLocationName}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterEventByLocationName()}{FilterEventByLocationName()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Location\+Name (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given location. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+location\+\_\+name\textquotesingle{} public member-\/function (that returns a String) The location to look for is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a1dd6b531cba1f5274d2fb222ae16f775}\label{namespaceflt_a1dd6b531cba1f5274d2fb222ae16f775}} 
 \index{flt@{flt}!FilterEventByTimeFrame@{FilterEventByTimeFrame}}
 \index{FilterEventByTimeFrame@{FilterEventByTimeFrame}!flt@{flt}}
 \doxysubsubsection{\texorpdfstring{FilterEventByTimeFrame()}{FilterEventByTimeFrame()}}
 {\footnotesize\ttfamily void flt\+::\+Filter\+Event\+By\+Time\+Frame (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that will take place more than a given time from now (or have already taken place) 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{} public member-\/function (that returns a \mbox{\hyperlink{classDate}{Date}} object). The maximum time difference is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a24e9ca59b9dd9120d21a1d7cded13665}\label{namespaceflt_a24e9ca59b9dd9120d21a1d7cded13665}} 
 \index{flt@{flt}!FilterInDate@{FilterInDate}}
 \index{FilterInDate@{FilterInDate}!flt@{flt}}
@@ -244,6 +431,26 @@ The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void flt\+::\+Filter\+In\+Date (\begin{DoxyParamCaption}\item[{vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
+
+
+Remove elements from given vector, \textquotesingle{}vec\textquotesingle{}, that take place at a given date. 
+
+\begin{DoxyNote}{Note}
+The given object has to have a \textquotesingle{}get\+\_\+date\textquotesingle{} public member-\/function (that returns a \mbox{\hyperlink{classDate}{Date}} object) The \mbox{\hyperlink{classDate}{Date}} to compare with is given by the user (thorugh std\+::cin)
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Uses the \textquotesingle{}contains\textquotesingle{} set of functions
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Object type of the elements to match \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector that contains the elements to evaluate \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespaceflt_a85917a25d245bdc99fb7d82333027fde}\label{namespaceflt_a85917a25d245bdc99fb7d82333027fde}} 
 \index{flt@{flt}!is\_between@{is\_between}}
 \index{is\_between@{is\_between}!flt@{flt}}

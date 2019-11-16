@@ -314,7 +314,6 @@ public:
 	 */
 	void purchaseEvent(const unsigned cc, Event event);
 
-
 	/* Getters for use with Menus */
 	/**
 	 * @brief	Getter for all Cards subscribed in the network

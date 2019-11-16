@@ -80,23 +80,83 @@ namespace flt
 
 	/* FILTERS */
 	/**
-	 * @brief	Remove elements from given vector, 'vec', that will take place more than a given time from now
+	 * @brief	Remove elements from given vector, 'vec', that will take place more than a given time from now (or have already taken place)
 	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object)
 	 *
-	 * @param vec		Vector that contains the elements to evaluate
-	 * @param delta_time	Maximum
+	 * @param vec			Vector that contains the elements to evaluate
+	 * @param delta_time_hour	Maximum	time difference (in hours and minutes) that an Event can have from now
+	 * @param delta_time_min	Minimum	time difference (in hours and minutes) that an Event can have from now
 	 */
-	void FilterEventByGivenTimeFrame(vector<Event> &vec, const Time &delta_time);
+	void FilterEventByGivenTimeFrame(vector<Event> &vec, const unsigned delta_time_hour, const unsigned delta_time_min);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that will take place more than a given time from now (or have already taken place)
+	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object).
+	 *		The maximum time difference is given by the user (thorugh std::cin)
+	 *
+	 * @param vec		Vector that contains the elements to evaluate
+	 */
 	void FilterEventByTimeFrame(vector<Event> &vec);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that have at least a certain percentage of their capacity full
+	 * @note	The given object has to have a 'get_capacity_percentage' public member-function (that returns a float)
+	 *
+	 * @param vec				Vector that contains the elements to evaluate
+	 * @param capacity_percentage_max	Maximum	capacity an event can have before being filtered
+	 */
 	void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that match the given ID
+	 * @note	The given object has to have a 'get_id' public member-function (that returns an unsigned integer).
+	 *		The ID to match is read from the user (thorugh std::cin)
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	void FilterEventById(vector<Event> &vec);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that take place at a given location
+	 * @note	The given object has to have a 'get_location_name' public member-function (that returns a String)
+	 *		The location to look for is given by the user (thorugh std::cin)
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	void FilterEventByLocationName(vector<Event> &vec);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that have a given name
+	 * @note	The given object has to have a 'get_name' public member-function (that returns a String)
+	 *		The location to look for is given by the user (thorugh std::cin)
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	void FilterCardByName(vector<Card*> &vec);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that are valid
+	 * @note	The given object has to have a 'isvalid' public member-function (that returns a bool)
+	 *		The bool to matcg is 'true'
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	void FilterCardByValidity(vector<Card*> &vec);
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that are invalid
+	 * @note	The given object has to have a 'isvalid' public member-function (that returns a bool)
+	 *		The bool to matcg is 'false'
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	void FilterCardByInvalidity(vector<Card*> &vec);
 
 
 	/* TEMPLATE FILTERS */
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that have a given name
+	 * @note	The given object has to have a 'get_name' public member-function (that returns a String)
+	 *		The location to look for is given by the user (thorugh std::cin)
+	 *
+	 * @warning	Uses the 'contains' set of functions
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	template<typename T>
 	void FilterByName(vector<T> &vec) {
 		string name;
@@ -112,7 +172,14 @@ namespace flt
 		/* erase elements that were moved to the end of vec */
 		vec.erase(iter, vec.end());
 	}
-
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that match the given ID
+	 * @note	The given objects have to have a 'has_event' public member-function (that returns a bool).
+	 *		The ID to match is read from the user (thorugh std::cin)
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	template<typename T>
 	void FilterByEventID(vector<T> &vec) {
 		unsigned event_id;
@@ -126,15 +193,33 @@ namespace flt
 				[&event_id](T &elem) { return!(elem.has_event(event_id)); });
 		vec.erase(iter, vec.end());
 	}
-
-
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that take place at a given location
+	 * @note	The given object has to have a 'get_location_name' public member-function (that returns a String)
+	 *		The location to look for is given by the user (thorugh std::cin)
+	 *
+	 * @warning	Uses the 'contains' set of functions
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 * @param addr	Address to match
+	 */
 	template<typename T>
 	void FilterByLocation(vector<T> &vec, Address addr) {
 		typename vector<T>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&addr](T &elem) { return!(contains(elem, addr)); });
 		vec.erase(iter, vec.end());
 	}
-
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that take place at a given date
+	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object)
+	 *		The Date to compare with is given by the user (thorugh std::cin)
+	 *
+	 * @warning	Uses the 'contains' set of functions
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	template<typename T>
 	void FilterInDate(vector<T> &vec) {
 		Date date;
@@ -148,17 +233,26 @@ namespace flt
 				[&date](T &elem) { return!(contains(elem, date)); });
 		vec.erase(iter, vec.end());
 	}
-
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that take place between 2 dates
+	 * @note	The given object has to have a 'get_date' public member-function (that returns a Date object)
+	 *		The Dates to compare with are given by the user (thorugh std::cin)
+	 *
+	 * @warning	Uses the 'contains' set of functions
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	template<typename T>
 	void FilterBetweenDates(vector<T> &vec) {
 		Date date1;
-		cout << "Date (year/month/day)?\n";
+		cout << "Start date (year/month/day)?\n";
 		cin >> date1;
 		if(cin.fail())
 			throw(UserInputReadingFailure("Invalid date"));
 
 		Date date2;
-		cout << "Date (year/month/day)?\n";
+		cout << "End date (year/month/day)?\n";
 		cin >> date2;
 		if(cin.fail())
 			throw(UserInputReadingFailure("Invalid date"));
@@ -167,7 +261,16 @@ namespace flt
 				[&date1, &date2](T &elem) { return!(is_between(elem, date1, date2)); });
 		vec.erase(iter, vec.end());
 	}
-
+	/**
+	 * @brief	Remove elements from given vector, 'vec', that take place at a given Address
+	 * @note	The given object has to have a 'get_address' public member-function (that returns a Address object)
+	 *		The Address to match is given by the user (thorugh std::cin)
+	 *
+	 * @warning	Uses the 'contains' set of functions
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
 	template<typename T>
 	void FilterByLocationCin(vector<T> &vec) {
 		Address addr;
@@ -182,4 +285,5 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 }
+
 #endif //FILTER_H

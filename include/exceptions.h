@@ -24,20 +24,6 @@ public:
 };
 
 
-class InvalidTime: public std::runtime_error {
-public:
-	InvalidTime() :
-	    std::runtime_error("Time is out-of-bounds") {};
-};
-
-class InvalidAddress: public std::runtime_error {
-public:
-	InvalidAddress() :
-	    std::runtime_error("Zip code is invalid") {};
-};
-
-
-
 /* Menu related exceptions */
 
 class MenuExitWithNoFunctionCall : public std::runtime_error{
@@ -53,7 +39,6 @@ public:
 };
 
 
-
 /* File related Exceptions */
 
 class FileNotFound : public std::runtime_error {
@@ -67,36 +52,6 @@ public:
 	FileReadingFailed(std::string fail_elem) :
 	    std::runtime_error("There was a problem reading the files: " + fail_elem) {};
 };
-
-
-
-/* Event related exceptions */
-
-class EventFull: public std::runtime_error {
-public:
-    EventFull(unsigned event_id) :
-        std::runtime_error("Event with ID " + std::to_string(event_id) + " is full, it cannot be booked any more") {};
-};
-
-class EventNotFound: public std::runtime_error {
-public:
-    EventNotFound(unsigned event_id) :
-		std::runtime_error("Event with ID " + std::to_string(event_id) + " was not found") {};
-};
-
-class EventInvalid: public std::runtime_error {
-public:
-    EventInvalid(unsigned event_id) :
-		std::runtime_error("Event with ID " + std::to_string(event_id) + " is in an invalid state") {};
-};
-
-class EventAlreadyBought: public std::runtime_error {
-public:
-    EventAlreadyBought(unsigned event_id, unsigned cc):
-        std::runtime_error( "Event " + std::to_string(event_id) + " has already been bought by user with cc " + std::to_string(cc)) {};
-};
-
-
 
 /* Card related Exceptions */
 
@@ -116,6 +71,12 @@ public:
 
 /* Network related Exceptions */
 
+class InvalidObject: public std::runtime_error {
+public:
+    InvalidObject(const std::string &object, const std::string &reason) :
+        std::runtime_error(object + "Object is invalid: " + reason) {};
+};
+
 class ObjectAlreadyExists : public std::runtime_error {
 public:
 	ObjectAlreadyExists(const std::string &unique_id, const std::string &object) :
@@ -125,7 +86,7 @@ public:
 class NoSuchObject : public std::runtime_error {
 public:
     NoSuchObject(const std::string &unique_id, const std::string &object) :
-        std::runtime_error("There isn't any " + object + " with unique identifier " + unique_id) {};
+        std::runtime_error("There isn't any " + object + " Object with unique identifier(s) " + unique_id) {};
 };
 
 /** @} */
