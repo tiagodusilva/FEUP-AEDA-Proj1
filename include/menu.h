@@ -168,11 +168,7 @@ public:
 	 */
 	MenuFilter<Arg>(std::string title) : Menu(title) {}
 
-	/**
-	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
-	 *
-	 * @param Arg Vector	Object to be displayed
-	 */
+	/** @brief	Invokes and displays all of the menus in options and waits for user input to call them */
 	virtual void show(Arg&) = 0;
 	/**
 	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
@@ -261,37 +257,70 @@ private:
 	 */
 	bool select_one_menu;
 	/**
-	 * @brief
+	 * @brief	List of Menus that will be repeated
 	 */
 	const std::vector<int> repeat_menus_vec = {};
 
 public:
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MenuOptionsFilter<Arg>() : MenuFilter<Arg>(), options_backup() {};
+	/**
+	 * @brief	Default destructor
+	 */
 	~MenuOptionsFilter<Arg>() = default;
 
-	/* WARNING: If repeated menus are given, they must be the first options in the options vector */
+	/**
+	 * @brief	MenuOptionsFilter class constructor
+	 *
+	 * @warning	If repeated menus are given, they must be the first options in the options vector, 'opt'
+	 *
+	 * @param t			String to be used as the Menu title
+	 * @param opt
+	 * @param e_fun			Function that will called just before the class instance is destroyed
+	 * @param s_fun			Function that will called when the class is instantiated
+	 * @param exclusive_selection	Specifies if only one menu from options can be chosen
+	 * @param menus_to_repeat	List of menus that will be repeated
+	 */
 	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt,
 			std::function<void(Arg&)> e_fun=[](Arg){  },
 			std::function<Arg()>s_fun=[](){
 				return(Arg());
 			},
 			bool exclusive_selection=false,
-			std::vector<int> vec={  }) :
+			std::vector<int> menus_to_repeat={  }) :
 		MenuFilter<Arg>(t), options(opt), options_backup(opt),
 		exit_func(e_fun), argument(s_fun()), start_func(s_fun),
-		select_one_menu(exclusive_selection), repeat_menus_vec(vec){};
+		select_one_menu(exclusive_selection), repeat_menus_vec(menus_to_repeat){};
 
-	/* Returns the Menu Select object message */
+	/**
+	 * @brief	Get current menu title followed by the title of each menu inside 'options'
+	 *
+	 * @return	String ready to be shown as the guide to the selection of available options
+	 */
 	std::string getMessage() const;
 
-	/* OSTREAM INSERTION OPERATOR OVERLOAD */
-	friend std::ostream& operator<<(std::ostream &os, const MenuOptionsFilter<Arg> menu){ os << menu.getMessage(); return os; }
+	/* INSERTION OPERATOR OVERLOAD */
+	/**
+	 * @brief	Overloaded ostream insertion operator
+	 *
+	 * @details	Mainly used with std::cout to show formated information on screen
+	 *
+	 * @param out	Reference to the ostream object to insert info to
+	 * @param menu	Reference to the Menu object whose info will be inserted in the ostream
+	 *
+	 * @return	Reference to the ostream object, 'outstream', passed in the parameters
+	 */
+	friend std::ostream& operator<<(std::ostream &os, const MenuOptionsFilter<Arg> &menu){ os << menu.getMessage(); return os; }
 
 	/* Instanciate menu with no initial value of arg. */
 	void show() override;
 	/* Instanciate menu with a given arg. When calling any of its options, pass Arg as an argument to be modified. */
 	void show(Arg&) override;
 };
+
 
 template<typename Arg>
 void
@@ -302,6 +331,7 @@ MenuOptionsFilter<Arg>::show()
 	this->options = options_backup;  // Reset all available options
 	this->show(argument);
 }
+
 
 template<typename Arg>
 void

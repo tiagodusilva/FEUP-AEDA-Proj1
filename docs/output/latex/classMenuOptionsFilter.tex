@@ -31,11 +31,11 @@ Collaboration diagram for Menu\+Options\+Filter$<$ Arg $>$\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classMenuOptionsFilter_a06d0d357e423be3fbe4430dce2f15fa3}{Menu\+Options\+Filter}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}{$\sim$\+Menu\+Options\+Filter}} ()=default
-\item 
-\mbox{\hyperlink{classMenuOptionsFilter_acb16116866eb1dfb4af792e4f493848f}{Menu\+Options\+Filter}} (std\+::string t, std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$opt, std\+::function$<$ void(Arg \&)$>$ e\+\_\+fun=\mbox{[}$\,$\mbox{]}(Arg)\{ \}, std\+::function$<$ Arg()$>$s\+\_\+fun=\mbox{[}$\,$\mbox{]}()\{ return(Arg());\}, bool exclusive\+\_\+selection=false, std\+::vector$<$ int $>$ vec=\{ \})
-\item 
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMenuOptionsFilter_aeb7fab2eb8ca5cb4cd20d1118e25001a}{Menu\+Options\+Filter}} (std\+::string t, std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$opt, std\+::function$<$ void(Arg \&)$>$ e\+\_\+fun=\mbox{[}$\,$\mbox{]}(Arg)\{ \}, std\+::function$<$ Arg()$>$s\+\_\+fun=\mbox{[}$\,$\mbox{]}()\{ return(Arg());\}, bool exclusive\+\_\+selection=false, std\+::vector$<$ int $>$ menus\+\_\+to\+\_\+repeat=\{ \})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} class constructor. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{group__menu__grp_gacaa30c8237fb9bcb187601639a7879ac}{get\+Message}} () const
 \item 
 void \mbox{\hyperlink{group__menu__grp_gadd995b39ad5e9e113f3b2f065764e344}{show}} () override
@@ -61,7 +61,7 @@ bool \mbox{\hyperlink{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}{
 \begin{DoxyCompactList}\small\item\em Specifies if only one menu from options can be chosen~\newline
  Will exit from the menu when user selects any option. \end{DoxyCompactList}\item 
 const std\+::vector$<$ int $>$ \mbox{\hyperlink{classMenuOptionsFilter_af233c5ec42086da4c70aba46b403df84}{repeat\+\_\+menus\+\_\+vec}} = \{\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em List of Menus that will be repeated. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,6 +91,10 @@ class Menu\+Options\+Filter$<$ Arg $>$}
 {\footnotesize\ttfamily template$<$typename Arg$>$ \\
 \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Default constructor. 
+
 \mbox{\Hypertarget{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}\label{classMenuOptionsFilter_a0dd679be62454cb1003624514e373b38}} 
 \index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!````~MenuOptionsFilter@{$\sim$MenuOptionsFilter}}
 \index{````~MenuOptionsFilter@{$\sim$MenuOptionsFilter}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
@@ -98,13 +102,39 @@ class Menu\+Options\+Filter$<$ Arg $>$}
 {\footnotesize\ttfamily template$<$typename Arg$>$ \\
 \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::$\sim$\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-\mbox{\Hypertarget{classMenuOptionsFilter_acb16116866eb1dfb4af792e4f493848f}\label{classMenuOptionsFilter_acb16116866eb1dfb4af792e4f493848f}} 
+
+
+Default destructor. 
+
+\mbox{\Hypertarget{classMenuOptionsFilter_aeb7fab2eb8ca5cb4cd20d1118e25001a}\label{classMenuOptionsFilter_aeb7fab2eb8ca5cb4cd20d1118e25001a}} 
 \index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!MenuOptionsFilter@{MenuOptionsFilter}}
 \index{MenuOptionsFilter@{MenuOptionsFilter}!MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}}
 \doxysubsubsection{\texorpdfstring{MenuOptionsFilter()}{MenuOptionsFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Arg$>$ \\
-\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}\item[{std\+::string}]{t,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$}]{opt,  }\item[{std\+::function$<$ void(Arg \&)$>$}]{e\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}(Arg)\{~\}},  }\item[{std\+::function$<$ Arg()$>$}]{s\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}()\{~return(Arg());~\}},  }\item[{bool}]{exclusive\+\_\+selection = {\ttfamily false},  }\item[{std\+::vector$<$ int $>$}]{vec = {\ttfamily \{~\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} (\begin{DoxyParamCaption}\item[{std\+::string}]{t,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classMenuFilter}{Menu\+Filter}}$<$ Arg $>$ $\ast$ $>$}]{opt,  }\item[{std\+::function$<$ void(Arg \&)$>$}]{e\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}(Arg)\{~\}},  }\item[{std\+::function$<$ Arg()$>$}]{s\+\_\+fun = {\ttfamily \mbox{[}\mbox{]}()\{~return(Arg());~\}},  }\item[{bool}]{exclusive\+\_\+selection = {\ttfamily false},  }\item[{std\+::vector$<$ int $>$}]{menus\+\_\+to\+\_\+repeat = {\ttfamily \{~\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+\mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}} class constructor. 
+
+\begin{DoxyWarning}{Warning}
+If repeated menus are given, they must be the first options in the options vector, \textquotesingle{}opt\textquotesingle{}
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & String to be used as the \mbox{\hyperlink{classMenu}{Menu}} title \\
+\hline
+{\em opt} & \\
+\hline
+{\em e\+\_\+fun} & Function that will called just before the class instance is destroyed \\
+\hline
+{\em s\+\_\+fun} & Function that will called when the class is instantiated \\
+\hline
+{\em exclusive\+\_\+selection} & Specifies if only one menu from options can be chosen \\
+\hline
+{\em menus\+\_\+to\+\_\+repeat} & List of menus that will be repeated \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Friends And Related Function Documentation}
@@ -173,6 +203,10 @@ Backup of the vector \textquotesingle{}options\textquotesingle{}~\newline
 \doxysubsubsection{\texorpdfstring{repeat\_menus\_vec}{repeat\_menus\_vec}}
 {\footnotesize\ttfamily template$<$typename Arg$>$ \\
 const std\+::vector$<$int$>$ \mbox{\hyperlink{classMenuOptionsFilter}{Menu\+Options\+Filter}}$<$ Arg $>$\+::repeat\+\_\+menus\+\_\+vec = \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of Menus that will be repeated. 
 
 \mbox{\Hypertarget{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}\label{classMenuOptionsFilter_a11119d33dce8707e1751e216818c1774}} 
 \index{MenuOptionsFilter$<$ Arg $>$@{MenuOptionsFilter$<$ Arg $>$}!select\_one\_menu@{select\_one\_menu}}

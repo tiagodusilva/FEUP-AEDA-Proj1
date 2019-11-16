@@ -140,7 +140,7 @@ $(function() {
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classMenuFilter.html#af52c785ce97265a429e11773adc6b763">  169</a></span>&#160;    <a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>(std::string <a class="code" href="classMenu.html#a2c72bb2205a0f3126c05e2f3b87e09bd">title</a>) : <a class="code" href="classMenu.html">Menu</a>(<a class="code" href="classMenu.html#a2c72bb2205a0f3126c05e2f3b87e09bd">title</a>) {}</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMenuFilter.html#af7644eb5457e0ef67e9aa0fa69e1aa46">show</a>(Arg&amp;) = 0;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMenuFilter.html#af7644eb5457e0ef67e9aa0fa69e1aa46">show</a>(Arg&amp; a) = 0;</div>
 <div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="classMenuFilter.html#af7644eb5457e0ef67e9aa0fa69e1aa46">  180</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMenuFilter.html#af7644eb5457e0ef67e9aa0fa69e1aa46">show</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span>; };</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;};</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
@@ -177,123 +177,123 @@ $(function() {
 <div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">  266</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;int&gt; <a class="code" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">repeat_menus_vec</a> = {};</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#a06d0d357e423be3fbe4430dce2f15fa3">  269</a></span>&#160;    <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>() : <a class="code" href="classMenuFilter.html">MenuFilter</a>&lt;Arg&gt;(), <a class="code" href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">options_backup</a>() {};</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    ~<a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="comment">/* WARNING: If repeated menus are given, they must be the first options in the options vector */</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#acb16116866eb1dfb4af792e4f493848f">  273</a></span>&#160;    <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>(std::string t, std::vector&lt;<a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>*&gt;opt,</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            std::function&lt;<span class="keywordtype">void</span>(Arg&amp;)&gt; e_fun=[](Arg){  },</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            std::function&lt;Arg()&gt;s_fun=[](){</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                <span class="keywordflow">return</span>(Arg());</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            },</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordtype">bool</span> exclusive_selection=<span class="keyword">false</span>,</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            std::vector&lt;int&gt; vec={  }) :</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>(t), <a class="code" href="classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861">options</a>(opt), <a class="code" href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">options_backup</a>(opt),</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <a class="code" href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">exit_func</a>(e_fun), <a class="code" href="classMenuOptionsFilter.html#ac9ff2a3ef55789dc07d3debcf61fe3c8">argument</a>(s_fun()), <a class="code" href="classMenuOptionsFilter.html#a3497aea739cd3f8024e5654a88428167">start_func</a>(s_fun),</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <a class="code" href="classMenuOptionsFilter.html#a11119d33dce8707e1751e216818c1774">select_one_menu</a>(exclusive_selection), <a class="code" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">repeat_menus_vec</a>(vec){};</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="comment">/* Returns the Menu Select object message */</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    std::string <a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">getMessage</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="comment">/* OSTREAM INSERTION OPERATOR OVERLOAD */</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">  288</a></span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a> menu){ os &lt;&lt; menu.<a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">getMessage</a>(); <span class="keywordflow">return</span> os; }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="comment">/* Instanciate menu with no initial value of arg. */</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">show</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">/* Instanciate menu with a given arg. When calling any of its options, pass Arg as an argument to be modified. */</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">show</a>(Arg&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;};</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">  298</a></span>&#160;<a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter&lt;Arg&gt;::show</a>()</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;{</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="comment">/* If show() is called then the object was instanciated by a Menu_Options object */</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    this-&gt;argument = start_func();  <span class="comment">// Reinitialize argument</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    this-&gt;options = options_backup;  <span class="comment">// Reset all available options</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    this-&gt;show(argument);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;}</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="group__menu__grp.html#ga5266c12ce273fc662552a8c9e518057f">  308</a></span>&#160;<a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter&lt;Arg&gt;::show</a>(Arg &amp;arg)</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;{</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="comment">/* If show(Arg) is called then the object was instanciated by a MenuFilter object.</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">       We will thus modify arg (by calling MenuFilters in the options vector)</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    this-&gt;options = options_backup;  <span class="comment">// Reset all available options</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">bool</span> go_back = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <span class="keywordflow">if</span> (options.size() == 0) <span class="comment">// Don&#39;t run menu if there aren&#39;t any options</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            go_back = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a>();</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordtype">int</span> selection = <a class="code" href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">utl::getInt</a>(std::cin, 0, options.size(),</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                    this-&gt;getMessage() + <span class="stringliteral">&quot;Insira um numero entre 0 e &quot;</span>+ std::to_string(options.size()));</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <span class="keywordflow">if</span> (selection == 0)</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <span class="keywordflow">if</span> (this-&gt;options.size() == this-&gt;options_backup.size()) { <span class="comment">// if the user hasn&#39;t selected any menu yet</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                        this-&gt;exit_func(arg);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                    }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                        std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                        <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    }</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                    <span class="keywordflow">throw</span> <a class="code" href="classMenuExitWithNoFunctionCall.html">MenuExitWithNoFunctionCall</a>(this-&gt;title);</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                    go_back = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                    options.at(selection-1)-&gt;show(arg);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                    <span class="comment">/* Delete option if it isn&#39;t on the repeat vector */</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                    <span class="keywordflow">if</span> (std::find(repeat_menus_vec.begin(), repeat_menus_vec.end(), selection-1) == repeat_menus_vec.end())</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                        options.erase(options.begin() + (selection-1));</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                    std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                    <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        }</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    } <span class="keywordflow">while</span> (!go_back &amp;&amp; !select_one_menu);</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a>();</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        this-&gt;exit_func(arg);</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    }</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;}</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;std::string</div>
-<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">  363</a></span>&#160;<a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">MenuOptionsFilter&lt;Arg&gt;::getMessage</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    std::string res=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    res+= this-&gt;getTitle() + <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i &lt; options.size(); ++i)</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        res += std::to_string(i+1) + <span class="stringliteral">&quot;- &quot;</span> + options.at(i)-&gt;getTitle() + <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="comment">/* CONSTRUCTORS */</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#a06d0d357e423be3fbe4430dce2f15fa3">  273</a></span>&#160;    <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>() : <a class="code" href="classMenuFilter.html">MenuFilter</a>&lt;Arg&gt;(), <a class="code" href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">options_backup</a>() {};</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    ~<a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#aeb7fab2eb8ca5cb4cd20d1118e25001a">  291</a></span>&#160;    <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a>(std::string t, std::vector&lt;<a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>*&gt;opt,</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            std::function&lt;<span class="keywordtype">void</span>(Arg&amp;)&gt; e_fun=[](Arg){  },</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            std::function&lt;Arg()&gt;s_fun=[](){</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                <span class="keywordflow">return</span>(Arg());</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            },</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            <span class="keywordtype">bool</span> exclusive_selection=<span class="keyword">false</span>,</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            std::vector&lt;int&gt; menus_to_repeat={  }) :</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <a class="code" href="classMenuFilter.html">MenuFilter&lt;Arg&gt;</a>(t), <a class="code" href="classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861">options</a>(opt), <a class="code" href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">options_backup</a>(opt),</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <a class="code" href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">exit_func</a>(e_fun), <a class="code" href="classMenuOptionsFilter.html#ac9ff2a3ef55789dc07d3debcf61fe3c8">argument</a>(s_fun()), <a class="code" href="classMenuOptionsFilter.html#a3497aea739cd3f8024e5654a88428167">start_func</a>(s_fun),</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <a class="code" href="classMenuOptionsFilter.html#a11119d33dce8707e1751e216818c1774">select_one_menu</a>(exclusive_selection), <a class="code" href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">repeat_menus_vec</a>(menus_to_repeat){};</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="comment">/* Returns the Menu Select object message */</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    std::string <a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">getMessage</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="comment">/* OSTREAM INSERTION OPERATOR OVERLOAD */</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno"><a class="line" href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">  306</a></span>&#160;    <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classMenuOptionsFilter.html">MenuOptionsFilter&lt;Arg&gt;</a> menu){ os &lt;&lt; menu.<a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">getMessage</a>(); <span class="keywordflow">return</span> os; }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="comment">/* Instanciate menu with no initial value of arg. */</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">show</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="comment">/* Instanciate menu with a given arg. When calling any of its options, pass Arg as an argument to be modified. */</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">show</a>(Arg&amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;};</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">  316</a></span>&#160;<a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter&lt;Arg&gt;::show</a>()</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;{</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="comment">/* If show() is called then the object was instanciated by a Menu_Options object */</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    this-&gt;argument = start_func();  <span class="comment">// Reinitialize argument</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    this-&gt;options = options_backup;  <span class="comment">// Reset all available options</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    this-&gt;show(argument);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;}</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno"><a class="line" href="group__menu__grp.html#ga5266c12ce273fc662552a8c9e518057f">  326</a></span>&#160;<a class="code" href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter&lt;Arg&gt;::show</a>(Arg &amp;arg)</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;{</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="comment">/* If show(Arg) is called then the object was instanciated by a MenuFilter object.</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">       We will thus modify arg (by calling MenuFilters in the options vector)</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    this-&gt;options = options_backup;  <span class="comment">// Reset all available options</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordtype">bool</span> go_back = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <span class="keywordflow">if</span> (options.size() == 0) <span class="comment">// Don&#39;t run menu if there aren&#39;t any options</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            go_back = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a>();</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <span class="keywordtype">int</span> selection = <a class="code" href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">utl::getInt</a>(std::cin, 0, options.size(),</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                    this-&gt;getMessage() + <span class="stringliteral">&quot;Insira um numero entre 0 e &quot;</span>+ std::to_string(options.size()));</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="keywordflow">if</span> (selection == 0)</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                <span class="keywordflow">if</span> (this-&gt;options.size() == this-&gt;options_backup.size()) { <span class="comment">// if the user hasn&#39;t selected any menu yet</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                        this-&gt;exit_func(arg);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                    }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                        std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                        <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                    }</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    <span class="keywordflow">throw</span> <a class="code" href="classMenuExitWithNoFunctionCall.html">MenuExitWithNoFunctionCall</a>(this-&gt;title);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                    go_back = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                    options.at(selection-1)-&gt;show(arg);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                    <span class="comment">/* Delete option if it isn&#39;t on the repeat vector */</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                    <span class="keywordflow">if</span> (std::find(repeat_menus_vec.begin(), repeat_menus_vec.end(), selection-1) == repeat_menus_vec.end())</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                        options.erase(options.begin() + (selection-1));</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                    std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                    <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                }</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            }</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        }</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    } <span class="keywordflow">while</span> (!go_back &amp;&amp; !select_one_menu);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a>();</div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    res += <span class="stringliteral">&quot;0- Go back\n&quot;</span>;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;}</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor">#endif  // FEUP_AEDA_PROJ1_MENU_H</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        this-&gt;exit_func(arg);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    }<span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;err) {</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        std::cerr &lt;&lt; err.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <a class="code" href="namespaceutl.html#abc426f0b12271540302e08e2092cd814">utl::pauseConsole</a>();</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    }</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Arg&gt;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;std::string</div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="line" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">  381</a></span>&#160;<a class="code" href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">MenuOptionsFilter&lt;Arg&gt;::getMessage</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    std::string res=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    res+= this-&gt;getTitle() + <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i &lt; options.size(); ++i)</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        res += std::to_string(i+1) + <span class="stringliteral">&quot;- &quot;</span> + options.at(i)-&gt;getTitle() + <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    res += <span class="stringliteral">&quot;0- Go back\n&quot;</span>;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;}</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160; </div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">#endif  // FEUP_AEDA_PROJ1_MENU_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassMenuOptionsFilter_html_a323488e40bcbe36c14c98669e8f5c861"><div class="ttname"><a href="classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861">MenuOptionsFilter::options</a></div><div class="ttdeci">std::vector&lt; MenuFilter&lt; Arg &gt; * &gt; options</div><div class="ttdoc">List of menus that the current MenuOptionsFilter provides access to (filters).  The order inside the ...</div><div class="ttdef"><b>Definition:</b> menu.h:253</div></div>
 <div class="ttc" id="anamespaceutl_html_af208e8b67a8c39b17de08d13e147fcd2"><div class="ttname"><a href="namespaceutl.html#af208e8b67a8c39b17de08d13e147fcd2">utl::getInt</a></div><div class="ttdeci">int getInt(std::istream &amp;stream, int min=INT32_MIN, int max=INT32_MAX, const std::string &amp;message=&quot;&quot;)</div></div>
-<div class="ttc" id="aclassMenuOptionsFilter_html_af233c5ec42086da4c70aba46b403df84"><div class="ttname"><a href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">MenuOptionsFilter::repeat_menus_vec</a></div><div class="ttdeci">const std::vector&lt; int &gt; repeat_menus_vec</div><div class="ttdef"><b>Definition:</b> menu.h:266</div></div>
+<div class="ttc" id="aclassMenuOptionsFilter_html_af233c5ec42086da4c70aba46b403df84"><div class="ttname"><a href="classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84">MenuOptionsFilter::repeat_menus_vec</a></div><div class="ttdeci">const std::vector&lt; int &gt; repeat_menus_vec</div><div class="ttdoc">List of Menus that will be repeated.</div><div class="ttdef"><b>Definition:</b> menu.h:266</div></div>
 <div class="ttc" id="anamespaceutl_html_a78c33f541699f008a6d88369453476d5"><div class="ttname"><a href="namespaceutl.html#a78c33f541699f008a6d88369453476d5">utl::clearConsole</a></div><div class="ttdeci">void clearConsole()</div></div>
 <div class="ttc" id="aexceptions_8h_html"><div class="ttname"><a href="exceptions_8h.html">exceptions.h</a></div></div>
 <div class="ttc" id="aclassMenuOptionsFilter_html_a8de6dacce7cb69829258e1b7e38f78e4"><div class="ttname"><a href="classMenuOptionsFilter.html#a8de6dacce7cb69829258e1b7e38f78e4">MenuOptionsFilter::exit_func</a></div><div class="ttdeci">std::function&lt; void(Arg &amp;)&gt; exit_func</div><div class="ttdoc">Initialize to ensure that it points to something.</div><div class="ttdef"><b>Definition:</b> menu.h:248</div></div>
 <div class="ttc" id="aclassMenuSelectFilter_html"><div class="ttname"><a href="classMenuSelectFilter.html">MenuSelectFilter</a></div><div class="ttdoc">Wrapper to function that modifies an argument.</div><div class="ttdef"><b>Definition:</b> menu.h:190</div></div>
 <div class="ttc" id="aclassMenuOptions_html_ac771b575e381702bfad9fc5f814cd46a"><div class="ttname"><a href="classMenuOptions.html#ac771b575e381702bfad9fc5f814cd46a">MenuOptions::show</a></div><div class="ttdeci">void show() override</div><div class="ttdoc">Invokes and displays all of the menus in options and waits for user input to call them.</div></div>
 <div class="ttc" id="aclassMenu_html"><div class="ttname"><a href="classMenu.html">Menu</a></div><div class="ttdoc">Absract class for menus that don't modify arguments.</div><div class="ttdef"><b>Definition:</b> menu.h:26</div></div>
-<div class="ttc" id="agroup__menu__grp_html_gadd995b39ad5e9e113f3b2f065764e344"><div class="ttname"><a href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter::show</a></div><div class="ttdeci">void show() override</div><div class="ttdoc">Invokes and displays all of the menus in options and waits for user input to call them.</div><div class="ttdef"><b>Definition:</b> menu.h:298</div></div>
+<div class="ttc" id="agroup__menu__grp_html_gadd995b39ad5e9e113f3b2f065764e344"><div class="ttname"><a href="group__menu__grp.html#gadd995b39ad5e9e113f3b2f065764e344">MenuOptionsFilter::show</a></div><div class="ttdeci">void show() override</div><div class="ttdoc">Invokes and displays all of the menus in options and waits for user input to call them.</div><div class="ttdef"><b>Definition:</b> menu.h:316</div></div>
 <div class="ttc" id="aclassMenuOptions_html_a47cd19851c89386f1062c477457f5d9a"><div class="ttname"><a href="classMenuOptions.html#a47cd19851c89386f1062c477457f5d9a">MenuOptions::MenuOptions</a></div><div class="ttdeci">MenuOptions()=default</div><div class="ttdoc">Default constructor.</div></div>
 <div class="ttc" id="aclassMenuSelect_html"><div class="ttname"><a href="classMenuSelect.html">MenuSelect</a></div><div class="ttdoc">Wrapper to a function that takes no arguments.</div><div class="ttdef"><b>Definition:</b> menu.h:63</div></div>
 <div class="ttc" id="aclassMenuOptions_html"><div class="ttname"><a href="classMenuOptions.html">MenuOptions</a></div><div class="ttdoc">Menu that serves as an interface to other MenuOption, MenuSelect or MenuFilter instances (all derived...</div><div class="ttdef"><b>Definition:</b> menu.h:95</div></div>
@@ -301,14 +301,14 @@ $(function() {
 <div class="ttc" id="aclassMenu_html_a6a39f0279393d72625776c4b717cad8a"><div class="ttname"><a href="classMenu.html#a6a39f0279393d72625776c4b717cad8a">Menu::show</a></div><div class="ttdeci">virtual void show()=0</div></div>
 <div class="ttc" id="aclassMenuOptionsFilter_html"><div class="ttname"><a href="classMenuOptionsFilter.html">MenuOptionsFilter</a></div><div class="ttdoc">Menu that controls MenuSelectFilter and other MenuOptionsFilter.</div><div class="ttdef"><b>Definition:</b> menu.h:231</div></div>
 <div class="ttc" id="aclassMenuOptionsFilter_html_a3497aea739cd3f8024e5654a88428167"><div class="ttname"><a href="classMenuOptionsFilter.html#a3497aea739cd3f8024e5654a88428167">MenuOptionsFilter::start_func</a></div><div class="ttdeci">std::function&lt; Arg()&gt; start_func</div><div class="ttdoc">Initialize to ensure that it points to something.</div><div class="ttdef"><b>Definition:</b> menu.h:242</div></div>
-<div class="ttc" id="agroup__menu__grp_html_gacaa30c8237fb9bcb187601639a7879ac"><div class="ttname"><a href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">MenuOptionsFilter::getMessage</a></div><div class="ttdeci">std::string getMessage() const</div><div class="ttdef"><b>Definition:</b> menu.h:363</div></div>
+<div class="ttc" id="agroup__menu__grp_html_gacaa30c8237fb9bcb187601639a7879ac"><div class="ttname"><a href="group__menu__grp.html#gacaa30c8237fb9bcb187601639a7879ac">MenuOptionsFilter::getMessage</a></div><div class="ttdeci">std::string getMessage() const</div><div class="ttdef"><b>Definition:</b> menu.h:381</div></div>
 <div class="ttc" id="aclassMenu_html_a8fc4104b08c9a24d1dab18b82a82b7da"><div class="ttname"><a href="classMenu.html#a8fc4104b08c9a24d1dab18b82a82b7da">Menu::~Menu</a></div><div class="ttdeci">virtual ~Menu()=default</div><div class="ttdoc">Default destructor.</div></div>
 <div class="ttc" id="aclassMenuOptionsFilter_html_ac9ff2a3ef55789dc07d3debcf61fe3c8"><div class="ttname"><a href="classMenuOptionsFilter.html#ac9ff2a3ef55789dc07d3debcf61fe3c8">MenuOptionsFilter::argument</a></div><div class="ttdeci">Arg argument</div><div class="ttdoc">Argument that is passed and modified.</div><div class="ttdef"><b>Definition:</b> menu.h:234</div></div>
 <div class="ttc" id="aclassMenuSelect_html_aa7cc08813e67630d006de3b70b302259"><div class="ttname"><a href="classMenuSelect.html#aa7cc08813e67630d006de3b70b302259">MenuSelect::~MenuSelect</a></div><div class="ttdeci">~MenuSelect()=default</div><div class="ttdoc">Default destructor.</div></div>
 <div class="ttc" id="aclassMenuOptions_html_afcbc793eba70ad7409bc3ac04e515162"><div class="ttname"><a href="classMenuOptions.html#afcbc793eba70ad7409bc3ac04e515162">MenuOptions::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;out, const MenuOptions &amp;menu)</div><div class="ttdoc">Overloaded ostream insertion operator.</div><div class="ttdef"><b>Definition:</b> menu.h:137</div></div>
 <div class="ttc" id="aclassMenuOptions_html_adb6643d5325a13a2ef7054284ad6958a"><div class="ttname"><a href="classMenuOptions.html#adb6643d5325a13a2ef7054284ad6958a">MenuOptions::getMessage</a></div><div class="ttdeci">std::string getMessage() const</div><div class="ttdoc">Get current menu title followed by the title of each menu inside 'options'.</div></div>
 <div class="ttc" id="aclassMenuSelect_html_a08a98f55abcdbe66ad5bee1b0cc6ca5f"><div class="ttname"><a href="classMenuSelect.html#a08a98f55abcdbe66ad5bee1b0cc6ca5f">MenuSelect::show</a></div><div class="ttdeci">void show() override</div><div class="ttdoc">Call the function that the menu is pointing to.</div><div class="ttdef"><b>Definition:</b> menu.h:88</div></div>
-<div class="ttc" id="aclassMenuExitWithNoFunctionCall_html"><div class="ttname"><a href="classMenuExitWithNoFunctionCall.html">MenuExitWithNoFunctionCall</a></div><div class="ttdef"><b>Definition:</b> exceptions.h:91</div></div>
+<div class="ttc" id="aclassMenuExitWithNoFunctionCall_html"><div class="ttname"><a href="classMenuExitWithNoFunctionCall.html">MenuExitWithNoFunctionCall</a></div><div class="ttdef"><b>Definition:</b> exceptions.h:43</div></div>
 <div class="ttc" id="aclassMenuOptionsFilter_html_a104733cfec66a98b770fad122824cd64"><div class="ttname"><a href="classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64">MenuOptionsFilter::options_backup</a></div><div class="ttdeci">const std::vector&lt; MenuFilter&lt; Arg &gt; * &gt; options_backup</div><div class="ttdoc">Backup of the vector 'options'  used when user can't select a menu more than once.</div><div class="ttdef"><b>Definition:</b> menu.h:257</div></div>
 <div class="ttc" id="aclassMenuSelectFilter_html_a56e7d08a93412aa43becb94130b0f454"><div class="ttname"><a href="classMenuSelectFilter.html#a56e7d08a93412aa43becb94130b0f454">MenuSelectFilter::show</a></div><div class="ttdeci">void show(Arg &amp;arg) override</div><div class="ttdoc">Invokes the data-member 'func' with the given argument, 'arg'.</div><div class="ttdef"><b>Definition:</b> menu.h:221</div></div>
 <div class="ttc" id="autilities_8h_html"><div class="ttname"><a href="utilities_8h.html">utilities.h</a></div></div>
@@ -322,7 +322,7 @@ $(function() {
 <div class="ttc" id="aclassMenuSelect_html_ad56bfd8113a1e6f580a6b18fd8b79878"><div class="ttname"><a href="classMenuSelect.html#ad56bfd8113a1e6f580a6b18fd8b79878">MenuSelect::MenuSelect</a></div><div class="ttdeci">MenuSelect(std::string title, std::function&lt; void()&gt; fun)</div><div class="ttdoc">Constructor for the MenuSelect class.</div><div class="ttdef"><b>Definition:</b> menu.h:83</div></div>
 <div class="ttc" id="aclassMenuSelect_html_a2d24e3b6cc4d9abec3fdf28ccc66c0e1"><div class="ttname"><a href="classMenuSelect.html#a2d24e3b6cc4d9abec3fdf28ccc66c0e1">MenuSelect::MenuSelect</a></div><div class="ttdeci">MenuSelect()=default</div><div class="ttdoc">Default constructor.</div></div>
 <div class="ttc" id="aclassMenuFilter_html_af7644eb5457e0ef67e9aa0fa69e1aa46"><div class="ttname"><a href="classMenuFilter.html#af7644eb5457e0ef67e9aa0fa69e1aa46">MenuFilter::show</a></div><div class="ttdeci">void show() override</div><div class="ttdoc">Invokes and displays all of the menus in options and waits for user input to call them.</div><div class="ttdef"><b>Definition:</b> menu.h:180</div></div>
-<div class="ttc" id="aclassMenuOptionsFilter_html_abb9b56fa276b611b3d5e6fdc4b8ed70d"><div class="ttname"><a href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">MenuOptionsFilter::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const MenuOptionsFilter&lt; Arg &gt; menu)</div><div class="ttdef"><b>Definition:</b> menu.h:288</div></div>
+<div class="ttc" id="aclassMenuOptionsFilter_html_abb9b56fa276b611b3d5e6fdc4b8ed70d"><div class="ttname"><a href="classMenuOptionsFilter.html#abb9b56fa276b611b3d5e6fdc4b8ed70d">MenuOptionsFilter::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const MenuOptionsFilter&lt; Arg &gt; menu)</div><div class="ttdef"><b>Definition:</b> menu.h:306</div></div>
 <div class="ttc" id="aclassMenuFilter_html"><div class="ttname"><a href="classMenuFilter.html">MenuFilter</a></div><div class="ttdoc">Abstract class used for specifying menus that modify an argument (by using different filters)</div><div class="ttdef"><b>Definition:</b> menu.h:153</div></div>
 <div class="ttc" id="aclassMenu_html_ad8e255f11f8b9db46702df6b1cf71605"><div class="ttname"><a href="classMenu.html#ad8e255f11f8b9db46702df6b1cf71605">Menu::Menu</a></div><div class="ttdeci">Menu(std::string t)</div><div class="ttdoc">Constructor for the Menu class.</div><div class="ttdef"><b>Definition:</b> menu.h:45</div></div>
 <div class="ttc" id="aclassMenuOptions_html_ae3af949bb2822120175af55d5843af58"><div class="ttname"><a href="classMenuOptions.html#ae3af949bb2822120175af55d5843af58">MenuOptions::options</a></div><div class="ttdeci">std::vector&lt; Menu * &gt; options</div><div class="ttdoc">List of menus that the current MenuOptions provides access to (options).  The order inside the vector...</div><div class="ttdef"><b>Definition:</b> menu.h:100</div></div>
