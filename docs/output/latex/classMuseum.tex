@@ -37,6 +37,14 @@ float \mbox{\hyperlink{classMuseum_a595e3cfe24445df6b706f9e4e7116fe9}{get\+\_\+f
 \begin{DoxyCompactList}\small\item\em Getter for the entry fee. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classMuseum_a1e0270e9c354a06b6b0d04cf9daf9999}{get\+\_\+address}} () const
 \begin{DoxyCompactList}\small\item\em Getter for the \mbox{\hyperlink{classAddress}{Address}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMuseum_a1b01f46f8cd406bbcc33f80083db66a2}{set\+\_\+name}} (const std\+::string \&new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMuseum_a876af44cd637e67e1c58e66e2c130aaa}{set\+\_\+open}} (const \mbox{\hyperlink{classTime}{Time}} \&new\+\_\+open)
+\begin{DoxyCompactList}\small\item\em Setter for the opening \mbox{\hyperlink{classTime}{Time}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMuseum_aae45a1a7301e448734d8f318765ee8ca}{set\+\_\+close}} (const \mbox{\hyperlink{classTime}{Time}} \&new\+\_\+close)
+\begin{DoxyCompactList}\small\item\em Setter for the closing \mbox{\hyperlink{classTime}{Time}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMuseum_a9cc04affdb0c8875715896ee32529038}{set\+\_\+fee}} (float new\+\_\+entry\+\_\+fee)
+\begin{DoxyCompactList}\small\item\em Setter for the entry fee. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classMuseum_a07f8b735f501b0cb6ea19f12b6369759}{operator==}} (const \mbox{\hyperlink{classMuseum}{Museum}} \&museum)
 \begin{DoxyCompactList}\small\item\em Overloaded equality test operator. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classMuseum_afceebd4248ce850fc22dce081340bf79}{operator!=}} (const \mbox{\hyperlink{classMuseum}{Museum}} \&museum)
@@ -243,6 +251,66 @@ Two Museums are considered equal if their name and \mbox{\hyperlink{classAddress
 True if both Museums\textquotesingle{} names and Addresses are equal~\newline
  False, otherwise 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classMuseum_aae45a1a7301e448734d8f318765ee8ca}\label{classMuseum_aae45a1a7301e448734d8f318765ee8ca}} 
+\index{Museum@{Museum}!set\_close@{set\_close}}
+\index{set\_close@{set\_close}!Museum@{Museum}}
+\doxysubsubsection{\texorpdfstring{set\_close()}{set\_close()}}
+{\footnotesize\ttfamily void Museum\+::set\+\_\+close (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTime}{Time}} \&}]{new\+\_\+close }\end{DoxyParamCaption})}
+
+
+
+Setter for the closing \mbox{\hyperlink{classTime}{Time}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+close} & The new closing \mbox{\hyperlink{classTime}{Time}} for this \mbox{\hyperlink{classMuseum}{Museum}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMuseum_a9cc04affdb0c8875715896ee32529038}\label{classMuseum_a9cc04affdb0c8875715896ee32529038}} 
+\index{Museum@{Museum}!set\_fee@{set\_fee}}
+\index{set\_fee@{set\_fee}!Museum@{Museum}}
+\doxysubsubsection{\texorpdfstring{set\_fee()}{set\_fee()}}
+{\footnotesize\ttfamily void Museum\+::set\+\_\+fee (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+entry\+\_\+fee }\end{DoxyParamCaption})}
+
+
+
+Setter for the entry fee. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+entry\+\_\+fee} & The new entry fee for this \mbox{\hyperlink{classMuseum}{Museum}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMuseum_a1b01f46f8cd406bbcc33f80083db66a2}\label{classMuseum_a1b01f46f8cd406bbcc33f80083db66a2}} 
+\index{Museum@{Museum}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!Museum@{Museum}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily void Museum\+::set\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & The new name for this \mbox{\hyperlink{classMuseum}{Museum}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMuseum_a876af44cd637e67e1c58e66e2c130aaa}\label{classMuseum_a876af44cd637e67e1c58e66e2c130aaa}} 
+\index{Museum@{Museum}!set\_open@{set\_open}}
+\index{set\_open@{set\_open}!Museum@{Museum}}
+\doxysubsubsection{\texorpdfstring{set\_open()}{set\_open()}}
+{\footnotesize\ttfamily void Museum\+::set\+\_\+open (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTime}{Time}} \&}]{new\+\_\+open }\end{DoxyParamCaption})}
+
+
+
+Setter for the opening \mbox{\hyperlink{classTime}{Time}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+open} & The new opening \mbox{\hyperlink{classTime}{Time}} for this \mbox{\hyperlink{classMuseum}{Museum}} \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Friends And Related Function Documentation}

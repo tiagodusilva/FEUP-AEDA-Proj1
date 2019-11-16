@@ -65,7 +65,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <div class="title">Enterprise Class Reference<div class="ingroups"><a class="el" href="group__event__grp.html">Enterprise and Event module</a></div></div>  </div>
 </div><!--header-->
@@ -78,7 +80,8 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Enterprise:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classEnterprise__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -101,29 +104,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a499fc7376750985302c7e23fdf263291"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAddress.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a499fc7376750985302c7e23fdf263291">get_address</a> () const</td></tr>
 <tr class="memdesc:a499fc7376750985302c7e23fdf263291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the address.  <a href="classEnterprise.html#a499fc7376750985302c7e23fdf263291">More...</a><br /></td></tr>
 <tr class="separator:a499fc7376750985302c7e23fdf263291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a6a93c33cacdfe91ae9e528f52e19e868"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a6a93c33cacdfe91ae9e528f52e19e868">name</a></td></tr>
-<tr class="memdesc:a6a93c33cacdfe91ae9e528f52e19e868"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's name  <a href="classEnterprise.html#a6a93c33cacdfe91ae9e528f52e19e868">More...</a><br /></td></tr>
-<tr class="separator:a6a93c33cacdfe91ae9e528f52e19e868"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54a1371f33a1b012b77ef4682e43d53c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a54a1371f33a1b012b77ef4682e43d53c">contact</a></td></tr>
-<tr class="memdesc:a54a1371f33a1b012b77ef4682e43d53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's contact (phone number or email, etc...)  <a href="classEnterprise.html#a54a1371f33a1b012b77ef4682e43d53c">More...</a><br /></td></tr>
-<tr class="separator:a54a1371f33a1b012b77ef4682e43d53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAddress.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a0062da64b92770e4d7d4f5a1d8ec0086">address</a></td></tr>
-<tr class="memdesc:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's main address  <a href="classEnterprise.html#a0062da64b92770e4d7d4f5a1d8ec0086">More...</a><br /></td></tr>
-<tr class="separator:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38d131ca142398317aa6673951fdf591"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classEvent.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a38d131ca142398317aa6673951fdf591">events</a></td></tr>
-<tr class="memdesc:a38d131ca142398317aa6673951fdf591"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's currently registered events  <a href="classEnterprise.html#a38d131ca142398317aa6673951fdf591">More...</a><br /></td></tr>
-<tr class="separator:a38d131ca142398317aa6673951fdf591"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>Getter for the Events</p>
-<dl class="section return"><dt>Returns</dt><dd>The set of Events this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> manages Const reference to ensures this is read only data </dd></dl>
-</td></tr>
 <tr class="memitem:a2e4aa34e7df706d051af46fcf63e6f0d"><td class="memItemLeft" align="right" valign="top">const std::set&lt; <a class="el" href="classEvent.html">Event</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a2e4aa34e7df706d051af46fcf63e6f0d">get_events</a> () const</td></tr>
+<tr class="memdesc:a2e4aa34e7df706d051af46fcf63e6f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the Events.  <a href="classEnterprise.html#a2e4aa34e7df706d051af46fcf63e6f0d">More...</a><br /></td></tr>
 <tr class="separator:a2e4aa34e7df706d051af46fcf63e6f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1240562b718e8df0c751ddb370fb501"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classEvent.html">Event</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ad1240562b718e8df0c751ddb370fb501">get_event</a> (unsigned id) const</td></tr>
 <tr class="memdesc:ad1240562b718e8df0c751ddb370fb501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for a specific <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>.  <a href="classEnterprise.html#ad1240562b718e8df0c751ddb370fb501">More...</a><br /></td></tr>
 <tr class="separator:ad1240562b718e8df0c751ddb370fb501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28817d6709f7b5523869c33bbb5c5c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ad28817d6709f7b5523869c33bbb5c5c8">set_name</a> (const std::string &amp;new_name)</td></tr>
+<tr class="memdesc:ad28817d6709f7b5523869c33bbb5c5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the name.  <a href="classEnterprise.html#ad28817d6709f7b5523869c33bbb5c5c8">More...</a><br /></td></tr>
+<tr class="separator:ad28817d6709f7b5523869c33bbb5c5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b871d9117fb0fa2847631f518b79390"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a7b871d9117fb0fa2847631f518b79390">set_contact</a> (const std::string &amp;new_contact)</td></tr>
+<tr class="memdesc:a7b871d9117fb0fa2847631f518b79390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the contact.  <a href="classEnterprise.html#a7b871d9117fb0fa2847631f518b79390">More...</a><br /></td></tr>
+<tr class="separator:a7b871d9117fb0fa2847631f518b79390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f5b813220c6949e4ed1f129a0201ec4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a0f5b813220c6949e4ed1f129a0201ec4">set_address</a> (const <a class="el" href="classAddress.html">Address</a> &amp;new_address)</td></tr>
+<tr class="memdesc:a0f5b813220c6949e4ed1f129a0201ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the address.  <a href="classEnterprise.html#a0f5b813220c6949e4ed1f129a0201ec4">More...</a><br /></td></tr>
+<tr class="separator:a0f5b813220c6949e4ed1f129a0201ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada672b0e4a47742b2a617baaa2c491ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#ada672b0e4a47742b2a617baaa2c491ec">add_event</a> (<a class="el" href="classEvent.html">Event</a> &amp;ev)</td></tr>
 <tr class="memdesc:ada672b0e4a47742b2a617baaa2c491ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> to the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a>.  <a href="classEnterprise.html#ada672b0e4a47742b2a617baaa2c491ec">More...</a><br /></td></tr>
 <tr class="separator:ada672b0e4a47742b2a617baaa2c491ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +137,30 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a4625601575cb3c402495424d53b2c696"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a4625601575cb3c402495424d53b2c696">operator!=</a> (const <a class="el" href="classEnterprise.html">Enterprise</a> &amp;ent)</td></tr>
 <tr class="memdesc:a4625601575cb3c402495424d53b2c696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded inequality test operator.  <a href="classEnterprise.html#a4625601575cb3c402495424d53b2c696">More...</a><br /></td></tr>
 <tr class="separator:a4625601575cb3c402495424d53b2c696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:afc1efa61040daa720c448e60dcca59dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#afc1efa61040daa720c448e60dcca59dd">cin_read_enterprise</a> (<a class="el" href="classEnterprise.html">Enterprise</a> &amp;ent)</td></tr>
+<tr class="memdesc:afc1efa61040daa720c448e60dcca59dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read an <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> from cin, outputting any user prompts to cout.  <a href="classEnterprise.html#afc1efa61040daa720c448e60dcca59dd">More...</a><br /></td></tr>
+<tr class="separator:afc1efa61040daa720c448e60dcca59dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6a93c33cacdfe91ae9e528f52e19e868"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a6a93c33cacdfe91ae9e528f52e19e868">name</a></td></tr>
+<tr class="memdesc:a6a93c33cacdfe91ae9e528f52e19e868"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's name  <a href="classEnterprise.html#a6a93c33cacdfe91ae9e528f52e19e868">More...</a><br /></td></tr>
+<tr class="separator:a6a93c33cacdfe91ae9e528f52e19e868"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a1371f33a1b012b77ef4682e43d53c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a54a1371f33a1b012b77ef4682e43d53c">contact</a></td></tr>
+<tr class="memdesc:a54a1371f33a1b012b77ef4682e43d53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's contact (phone number or email, etc...)  <a href="classEnterprise.html#a54a1371f33a1b012b77ef4682e43d53c">More...</a><br /></td></tr>
+<tr class="separator:a54a1371f33a1b012b77ef4682e43d53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAddress.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a0062da64b92770e4d7d4f5a1d8ec0086">address</a></td></tr>
+<tr class="memdesc:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's main address  <a href="classEnterprise.html#a0062da64b92770e4d7d4f5a1d8ec0086">More...</a><br /></td></tr>
+<tr class="separator:a0062da64b92770e4d7d4f5a1d8ec0086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d131ca142398317aa6673951fdf591"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classEvent.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#a38d131ca142398317aa6673951fdf591">events</a></td></tr>
+<tr class="memdesc:a38d131ca142398317aa6673951fdf591"><td class="mdescLeft">&#160;</td><td class="mdescRight">enterprise's currently registered events  <a href="classEnterprise.html#a38d131ca142398317aa6673951fdf591">More...</a><br /></td></tr>
+<tr class="separator:a38d131ca142398317aa6673951fdf591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
 <tr class="memitem:adf9280eca70a71749f88d0ad3ce24df1"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#adf9280eca70a71749f88d0ad3ce24df1">operator&lt;&lt;</a> (std::ostream &amp;outstream, const <a class="el" href="classEnterprise.html">Enterprise</a> &amp;ent)</td></tr>
 <tr class="memdesc:adf9280eca70a71749f88d0ad3ce24df1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded ostream insertion operator.  <a href="classEnterprise.html#adf9280eca70a71749f88d0ad3ce24df1">More...</a><br /></td></tr>
 <tr class="separator:adf9280eca70a71749f88d0ad3ce24df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,9 +170,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aa73bff7b8174096f2b23e60e2b7c75d4"><td class="memItemLeft" align="right" valign="top">std::ifstream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#aa73bff7b8174096f2b23e60e2b7c75d4">operator&gt;&gt;</a> (std::ifstream &amp;infstream, <a class="el" href="classEnterprise.html">Enterprise</a> &amp;ent)</td></tr>
 <tr class="memdesc:aa73bff7b8174096f2b23e60e2b7c75d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded ifstream extraction operator.  <a href="classEnterprise.html#aa73bff7b8174096f2b23e60e2b7c75d4">More...</a><br /></td></tr>
 <tr class="separator:aa73bff7b8174096f2b23e60e2b7c75d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1efa61040daa720c448e60dcca59dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnterprise.html#afc1efa61040daa720c448e60dcca59dd">cin_read_enterprise</a> (<a class="el" href="classEnterprise.html">Enterprise</a> &amp;ent)</td></tr>
-<tr class="memdesc:afc1efa61040daa720c448e60dcca59dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read an <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> from cin, outputting any user prompts to cout.  <a href="classEnterprise.html#afc1efa61040daa720c448e60dcca59dd">More...</a><br /></td></tr>
-<tr class="separator:afc1efa61040daa720c448e60dcca59dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that simulates the Enterprises our Network would have established contracts with. </p>
@@ -398,7 +414,8 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id (if found)<br  />
- Const reference to ensure this is read only data If the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>, it will throw a <a class="el" href="classEventNotFound.html">EventNotFound</a> exception </dd></dl>
+ Const reference to ensure this is read only data<br  />
+ If the <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have this <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a>, it will throw a <a class="el" href="classEventNotFound.html">EventNotFound</a> exception </dd></dl>
 
 </div>
 </div>
@@ -416,6 +433,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Getter for the Events. </p>
+<dl class="section return"><dt>Returns</dt><dd>The set of Events this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> manages<br  />
+ Const reference to ensures this is read only data </dd></dl>
 
 </div>
 </div>
@@ -613,6 +634,84 @@ Private Attributes</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classEventNotFound.html">EventNotFound</a></td><td>Only throws this exception when not in garbage collection mode (id != 0), if this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> does not have an <a class="el" href="classEvent.html" title="Class that simulates all the information an enterprise would have about their events.">Event</a> with the specified id </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0f5b813220c6949e4ed1f129a0201ec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f5b813220c6949e4ed1f129a0201ec4">&#9670;&nbsp;</a></span>set_address()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enterprise::set_address </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAddress.html">Address</a> &amp;&#160;</td>
+          <td class="paramname"><em>new_address</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_address</td><td>The new address for this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7b871d9117fb0fa2847631f518b79390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b871d9117fb0fa2847631f518b79390">&#9670;&nbsp;</a></span>set_contact()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enterprise::set_contact </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>new_contact</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the contact. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_contact</td><td>The new contact for this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad28817d6709f7b5523869c33bbb5c5c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad28817d6709f7b5523869c33bbb5c5c8">&#9670;&nbsp;</a></span>set_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enterprise::set_name </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>new_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_name</td><td>The new name for this <a class="el" href="classEnterprise.html" title="Class that simulates the Enterprises our Network would have established contracts with.">Enterprise</a> </td></tr>
   </table>
   </dd>
 </dl>

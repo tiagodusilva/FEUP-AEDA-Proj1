@@ -171,7 +171,7 @@ public:
 	/**
 	 * @brief	Invokes and displays all of the menus in options and waits for user input to call them
 	 *
-	 * @param Arg	Object to be displayed
+	 * @param Arg Vector	Object to be displayed
 	 */
 	virtual void show(Arg&) = 0;
 	/**
@@ -239,22 +239,31 @@ private:
 	 *
 	 * @return	A dead function
 	 */
-	std::function<Arg()> start_func = [](){ return Arg(); }
+	std::function<Arg()> start_func = [](){ return Arg(); };
 	/**
 	 * @brief	Initialize to ensure that it points to something
 	 *
 	 * @return	A dead function
 	 */
-	std::function<void(Arg&)> exit_func = [](Arg){}
+	std::function<void(Arg&)> exit_func = [](Arg){};
 
+	/** @brief	List of menus that the current MenuOptionsFilter provides access to (filters).\n
+	 *		The order inside the vector is preserved
+	 */
 	std::vector<MenuFilter<Arg>*> options;
-	/* Backup vector (used when user can't select a menu more than once) */
+	/** @brief	Backup of the vector 'options'\n
+	 *		used when user can't select a menu more than once
+	 */
 	const std::vector<MenuFilter<Arg>*> options_backup;
 
-	/* Specifies if only one menu from options can be chosen (will exit from the menu when user selects any option) */
+	/** @brief	Specifies if only one menu from options can be chosen\n
+	 *		Will exit from the menu when user selects any option
+	 */
 	bool select_one_menu;
-	/* Specifies if the same menu can be selected more than once (when a user selects an option it won't be deleted) */
-	const std::vector<int> repeat_menus_vec ={};
+	/**
+	 * @brief
+	 */
+	const std::vector<int> repeat_menus_vec = {};
 
 public:
 	MenuOptionsFilter<Arg>() : MenuFilter<Arg>(), options_backup() {};
@@ -262,11 +271,15 @@ public:
 
 	/* WARNING: If repeated menus are given, they must be the first options in the options vector */
 	MenuOptionsFilter<Arg>(std::string t, std::vector<MenuFilter<Arg>*>opt,
-			std::function<void(Arg&)> e_fun=[](Arg){ return; },
-			std::function<Arg()>s_fun=[](){ return(Arg()); },
-			bool exclusive_selection=false, std::vector<int> vec={}) :
-		MenuFilter<Arg>(t), options(opt), options_backup(opt), exit_func(e_fun), argument(s_fun()), start_func(s_fun),
-		select_one_menu(exclusive_selection), repeat_menus_vec(vec) {};
+			std::function<void(Arg&)> e_fun=[](Arg){  },
+			std::function<Arg()>s_fun=[](){
+				return(Arg());
+			},
+			bool exclusive_selection=false,
+			std::vector<int> vec={  }) :
+		MenuFilter<Arg>(t), options(opt), options_backup(opt),
+		exit_func(e_fun), argument(s_fun()), start_func(s_fun),
+		select_one_menu(exclusive_selection), repeat_menus_vec(vec){};
 
 	/* Returns the Menu Select object message */
 	std::string getMessage() const;

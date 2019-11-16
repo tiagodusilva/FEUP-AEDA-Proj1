@@ -80,7 +80,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for Museum:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMuseum__coll__graph.svg" width="288" height="522"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMuseum__coll__graph.svg" width="288" height="580"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -109,6 +109,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e0270e9c354a06b6b0d04cf9daf9999"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAddress.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#a1e0270e9c354a06b6b0d04cf9daf9999">get_address</a> () const</td></tr>
 <tr class="memdesc:a1e0270e9c354a06b6b0d04cf9daf9999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the <a class="el" href="classAddress.html" title="Class that saves and handles address information in our project.">Address</a>.  <a href="classMuseum.html#a1e0270e9c354a06b6b0d04cf9daf9999">More...</a><br /></td></tr>
 <tr class="separator:a1e0270e9c354a06b6b0d04cf9daf9999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b01f46f8cd406bbcc33f80083db66a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#a1b01f46f8cd406bbcc33f80083db66a2">set_name</a> (const std::string &amp;new_name)</td></tr>
+<tr class="memdesc:a1b01f46f8cd406bbcc33f80083db66a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the name.  <a href="classMuseum.html#a1b01f46f8cd406bbcc33f80083db66a2">More...</a><br /></td></tr>
+<tr class="separator:a1b01f46f8cd406bbcc33f80083db66a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a876af44cd637e67e1c58e66e2c130aaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#a876af44cd637e67e1c58e66e2c130aaa">set_open</a> (const <a class="el" href="classTime.html">Time</a> &amp;new_open)</td></tr>
+<tr class="memdesc:a876af44cd637e67e1c58e66e2c130aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the opening <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a>.  <a href="classMuseum.html#a876af44cd637e67e1c58e66e2c130aaa">More...</a><br /></td></tr>
+<tr class="separator:a876af44cd637e67e1c58e66e2c130aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae45a1a7301e448734d8f318765ee8ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#aae45a1a7301e448734d8f318765ee8ca">set_close</a> (const <a class="el" href="classTime.html">Time</a> &amp;new_close)</td></tr>
+<tr class="memdesc:aae45a1a7301e448734d8f318765ee8ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the closing <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a>.  <a href="classMuseum.html#aae45a1a7301e448734d8f318765ee8ca">More...</a><br /></td></tr>
+<tr class="separator:aae45a1a7301e448734d8f318765ee8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc04affdb0c8875715896ee32529038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#a9cc04affdb0c8875715896ee32529038">set_fee</a> (float new_entry_fee)</td></tr>
+<tr class="memdesc:a9cc04affdb0c8875715896ee32529038"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the entry fee.  <a href="classMuseum.html#a9cc04affdb0c8875715896ee32529038">More...</a><br /></td></tr>
+<tr class="separator:a9cc04affdb0c8875715896ee32529038"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07f8b735f501b0cb6ea19f12b6369759"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMuseum.html#a07f8b735f501b0cb6ea19f12b6369759">operator==</a> (const <a class="el" href="classMuseum.html">Museum</a> &amp;museum)</td></tr>
 <tr class="memdesc:a07f8b735f501b0cb6ea19f12b6369759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded equality test operator.  <a href="classMuseum.html#a07f8b735f501b0cb6ea19f12b6369759">More...</a><br /></td></tr>
 <tr class="separator:a07f8b735f501b0cb6ea19f12b6369759"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -474,6 +486,110 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if both Museums' names and Addresses are equal<br  />
  False, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aae45a1a7301e448734d8f318765ee8ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae45a1a7301e448734d8f318765ee8ca">&#9670;&nbsp;</a></span>set_close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Museum::set_close </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTime.html">Time</a> &amp;&#160;</td>
+          <td class="paramname"><em>new_close</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the closing <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_close</td><td>The new closing <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a> for this <a class="el" href="classMuseum.html" title="Class that represents the Museums associated with our Network.">Museum</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9cc04affdb0c8875715896ee32529038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc04affdb0c8875715896ee32529038">&#9670;&nbsp;</a></span>set_fee()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Museum::set_fee </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>new_entry_fee</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the entry fee. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_entry_fee</td><td>The new entry fee for this <a class="el" href="classMuseum.html" title="Class that represents the Museums associated with our Network.">Museum</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b01f46f8cd406bbcc33f80083db66a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b01f46f8cd406bbcc33f80083db66a2">&#9670;&nbsp;</a></span>set_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Museum::set_name </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>new_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_name</td><td>The new name for this <a class="el" href="classMuseum.html" title="Class that represents the Museums associated with our Network.">Museum</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a876af44cd637e67e1c58e66e2c130aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a876af44cd637e67e1c58e66e2c130aaa">&#9670;&nbsp;</a></span>set_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Museum::set_open </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTime.html">Time</a> &amp;&#160;</td>
+          <td class="paramname"><em>new_open</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setter for the opening <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_open</td><td>The new opening <a class="el" href="classTime.html" title="Class that saves and handles time information in our project.">Time</a> for this <a class="el" href="classMuseum.html" title="Class that represents the Museums associated with our Network.">Museum</a> </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

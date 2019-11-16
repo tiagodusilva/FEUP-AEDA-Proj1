@@ -49,6 +49,20 @@ bool \mbox{\hyperlink{classEvent_ac1d185ddc1b939cd3fa461bbdd464ce4}{get\+\_\+val
 \begin{DoxyCompactList}\small\item\em Getter for the validity. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classEvent_a1c3d81e825332c1b5a9a4766804a2259}{get\+\_\+capacity\+\_\+percentage}} () const
 \begin{DoxyCompactList}\small\item\em Getter for the percentage of the \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a75be8a27d07a5c91afe9d7885aae2e98}{set\+\_\+max\+\_\+capacity}} (unsigned new\+\_\+capacity)
+\begin{DoxyCompactList}\small\item\em Setter for the maximum capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a13400b5d5d2a8e92fb0bfe19c326aab7}{set\+\_\+name}} (const std\+::string \&new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the name of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a46d813b68f7971fcbc78407b1635ab12}{set\+\_\+ticker\+\_\+fee}} (float new\+\_\+ticket\+\_\+fee)
+\begin{DoxyCompactList}\small\item\em Setter for the ticket fee of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_ae85b3344ef73acc976f5ecb0afa96780}{set\+\_\+location\+\_\+name}} (const std\+::string \&new\+\_\+location\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the location name of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a3202fba1205e1562a856ac38e796550e}{set\+\_\+address}} (const \mbox{\hyperlink{classAddress}{Address}} \&new\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Setter for the address of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a96abc65ba324bd3e16024e502c63c716}{set\+\_\+time}} (const \mbox{\hyperlink{classTime}{Time}} \&new\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Setter for the time of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_aabd951a875803e013725cd234f8af773}{set\+\_\+date}} (const \mbox{\hyperlink{classDate}{Date}} \&new\+\_\+date)
+\begin{DoxyCompactList}\small\item\em Seter for the date of this \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEvent_a9222c24be33441213f126a1d614d3e79}{set\+\_\+invalid\+\_\+id}} ()
 \begin{DoxyCompactList}\small\item\em Completely destructive method~\newline
  When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
@@ -487,6 +501,36 @@ Handles the purchase of this \mbox{\hyperlink{classEvent}{Event}} by an user.
 {\em Event\+Already\+Bough} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} was already bough by the user with the provided cc \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{classEvent_a3202fba1205e1562a856ac38e796550e}\label{classEvent_a3202fba1205e1562a856ac38e796550e}} 
+\index{Event@{Event}!set\_address@{set\_address}}
+\index{set\_address@{set\_address}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_address()}{set\_address()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+address (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAddress}{Address}} \&}]{new\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+Setter for the address of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+address} & The new address for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_aabd951a875803e013725cd234f8af773}\label{classEvent_aabd951a875803e013725cd234f8af773}} 
+\index{Event@{Event}!set\_date@{set\_date}}
+\index{set\_date@{set\_date}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_date()}{set\_date()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+date (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDate}{Date}} \&}]{new\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+Seter for the date of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+date} & The new date for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classEvent_a9222c24be33441213f126a1d614d3e79}\label{classEvent_a9222c24be33441213f126a1d614d3e79}} 
 \index{Event@{Event}!set\_invalid\_id@{set\_invalid\_id}}
 \index{set\_invalid\_id@{set\_invalid\_id}!Event@{Event}}
@@ -499,6 +543,81 @@ Completely destructive method~\newline
  When called sets an \mbox{\hyperlink{classEvent}{Event}}\textquotesingle{}s id to 0, aka an absolutely invalid \mbox{\hyperlink{classEvent}{Event}}~\newline
  W\+A\+R\+N\+I\+NG\+: Once this method is called, there is no going back. 
 
+\mbox{\Hypertarget{classEvent_ae85b3344ef73acc976f5ecb0afa96780}\label{classEvent_ae85b3344ef73acc976f5ecb0afa96780}} 
+\index{Event@{Event}!set\_location\_name@{set\_location\_name}}
+\index{set\_location\_name@{set\_location\_name}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_location\_name()}{set\_location\_name()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+location\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+\_\+location\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the location name of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+location\+\_\+name} & The new location name for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_a75be8a27d07a5c91afe9d7885aae2e98}\label{classEvent_a75be8a27d07a5c91afe9d7885aae2e98}} 
+\index{Event@{Event}!set\_max\_capacity@{set\_max\_capacity}}
+\index{set\_max\_capacity@{set\_max\_capacity}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_max\_capacity()}{set\_max\_capacity()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+max\+\_\+capacity (\begin{DoxyParamCaption}\item[{unsigned}]{new\+\_\+capacity }\end{DoxyParamCaption})}
+
+
+
+Setter for the maximum capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+capacity} & The new max capacity for this event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_a13400b5d5d2a8e92fb0bfe19c326aab7}\label{classEvent_a13400b5d5d2a8e92fb0bfe19c326aab7}} 
+\index{Event@{Event}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the name of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & The new name for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_a46d813b68f7971fcbc78407b1635ab12}\label{classEvent_a46d813b68f7971fcbc78407b1635ab12}} 
+\index{Event@{Event}!set\_ticker\_fee@{set\_ticker\_fee}}
+\index{set\_ticker\_fee@{set\_ticker\_fee}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_ticker\_fee()}{set\_ticker\_fee()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+ticker\+\_\+fee (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+ticket\+\_\+fee }\end{DoxyParamCaption})}
+
+
+
+Setter for the ticket fee of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+ticket\+\_\+fee} & The new ticket fee for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEvent_a96abc65ba324bd3e16024e502c63c716}\label{classEvent_a96abc65ba324bd3e16024e502c63c716}} 
+\index{Event@{Event}!set\_time@{set\_time}}
+\index{set\_time@{set\_time}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{set\_time()}{set\_time()}}
+{\footnotesize\ttfamily void Event\+::set\+\_\+time (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTime}{Time}} \&}]{new\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Setter for the time of this \mbox{\hyperlink{classEvent}{Event}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & The new time for this \mbox{\hyperlink{classEvent}{Event}} \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Friends And Related Function Documentation}
