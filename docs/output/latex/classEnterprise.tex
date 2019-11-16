@@ -15,7 +15,7 @@ Collaboration diagram for Enterprise\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=211pt]{classEnterprise__coll__graph}
+\includegraphics[height=550pt]{classEnterprise__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -43,6 +43,20 @@ void \mbox{\hyperlink{classEnterprise_a7b871d9117fb0fa2847631f518b79390}{set\+\_
 \begin{DoxyCompactList}\small\item\em Setter for the contact. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_a0f5b813220c6949e4ed1f129a0201ec4}{set\+\_\+address}} (const \mbox{\hyperlink{classAddress}{Address}} \&new\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Setter for the address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a0eca86930176ddd287c9306c5dab6d74}{event\+\_\+set\+\_\+max\+\_\+capacity}} (unsigned id, unsigned new\+\_\+max\+\_\+capacity)
+\begin{DoxyCompactList}\small\item\em Setter for the maximum capacity of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_ad2f3a8228b043016c57563c8a44114c0}{event\+\_\+set\+\_\+name}} (unsigned id, const std\+::string \&new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the name of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a8dcf40109de778c7558eb7a2ec184266}{event\+\_\+set\+\_\+ticker\+\_\+fee}} (unsigned id, float new\+\_\+ticket\+\_\+fee)
+\begin{DoxyCompactList}\small\item\em Setter for the ticket fee of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a6552f8f4f2474cd27c223f5b7d83396f}{event\+\_\+set\+\_\+location\+\_\+name}} (unsigned id, const std\+::string \&new\+\_\+location\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Setter for the location name of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a98dde7c7ec1f59f8cc231646712315d4}{event\+\_\+set\+\_\+address}} (unsigned id, const \mbox{\hyperlink{classAddress}{Address}} \&new\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Setter for the address of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_a652354276f35bf8187ae0970f2811fdf}{event\+\_\+set\+\_\+time}} (unsigned id, const \mbox{\hyperlink{classTime}{Time}} \&new\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Setter for the time of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_ac02bcadef6aeaeaf557154afe6b5bfd0}{event\+\_\+set\+\_\+date}} (unsigned id, const \mbox{\hyperlink{classDate}{Date}} \&new\+\_\+date)
+\begin{DoxyCompactList}\small\item\em Seter for the date of the \mbox{\hyperlink{classEvent}{Event}} with id. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ada672b0e4a47742b2a617baaa2c491ec}{add\+\_\+event}} (\mbox{\hyperlink{classEvent}{Event}} \&ev)
 \begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}{remove\+\_\+event}} (unsigned id)
@@ -60,6 +74,11 @@ bool \mbox{\hyperlink{classEnterprise_a4625601575cb3c402495424d53b2c696}{operato
 \item 
 static void \mbox{\hyperlink{classEnterprise_afc1efa61040daa720c448e60dcca59dd}{cin\+\_\+read\+\_\+enterprise}} (\mbox{\hyperlink{classEnterprise}{Enterprise}} \&ent)
 \begin{DoxyCompactList}\small\item\em Read an \mbox{\hyperlink{classEnterprise}{Enterprise}} from cin, outputting any user prompts to cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEvent}{Event}} \mbox{\hyperlink{classEnterprise_a9645bb442077de64a1ce7b9c6fb0e02c}{pop}} (unsigned id)
+\begin{DoxyCompactList}\small\item\em Searches for \mbox{\hyperlink{classEvent}{Event}} with id, removes it from the set and returns it. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -149,7 +168,7 @@ Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterp
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \mbox{\hyperlink{classEventAlreadyExists}{Event\+Already\+Exists}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} already exists in the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
+{\em Event\+Already\+Exists} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} already exists in the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
  That said, if it does get thrown, something really odd is going on \\
 \hline
 \end{DoxyExceptions}
@@ -167,6 +186,181 @@ Read an \mbox{\hyperlink{classEnterprise}{Enterprise}} from cin, outputting any 
 \begin{DoxyParams}{Parameters}
 {\em ent} & \mbox{\hyperlink{classEnterprise}{Enterprise}} to read from cin~\newline
 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a98dde7c7ec1f59f8cc231646712315d4}\label{classEnterprise_a98dde7c7ec1f59f8cc231646712315d4}} 
+\index{Enterprise@{Enterprise}!event\_set\_address@{event\_set\_address}}
+\index{event\_set\_address@{event\_set\_address}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_address()}{event\_set\_address()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+address (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{const \mbox{\hyperlink{classAddress}{Address}} \&}]{new\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+Setter for the address of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+address} & The new address for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_ac02bcadef6aeaeaf557154afe6b5bfd0}\label{classEnterprise_ac02bcadef6aeaeaf557154afe6b5bfd0}} 
+\index{Enterprise@{Enterprise}!event\_set\_date@{event\_set\_date}}
+\index{event\_set\_date@{event\_set\_date}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_date()}{event\_set\_date()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+date (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{const \mbox{\hyperlink{classDate}{Date}} \&}]{new\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+Seter for the date of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+date} & The new date for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a6552f8f4f2474cd27c223f5b7d83396f}\label{classEnterprise_a6552f8f4f2474cd27c223f5b7d83396f}} 
+\index{Enterprise@{Enterprise}!event\_set\_location\_name@{event\_set\_location\_name}}
+\index{event\_set\_location\_name@{event\_set\_location\_name}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_location\_name()}{event\_set\_location\_name()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+location\+\_\+name (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{const std\+::string \&}]{new\+\_\+location\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the location name of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+location\+\_\+name} & The new location name for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a0eca86930176ddd287c9306c5dab6d74}\label{classEnterprise_a0eca86930176ddd287c9306c5dab6d74}} 
+\index{Enterprise@{Enterprise}!event\_set\_max\_capacity@{event\_set\_max\_capacity}}
+\index{event\_set\_max\_capacity@{event\_set\_max\_capacity}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_max\_capacity()}{event\_set\_max\_capacity()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+max\+\_\+capacity (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{unsigned}]{new\+\_\+max\+\_\+capacity }\end{DoxyParamCaption})}
+
+
+
+Setter for the maximum capacity of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em No\+Such\+Objet} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified id was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+capacity} & The new max capacity for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_ad2f3a8228b043016c57563c8a44114c0}\label{classEnterprise_ad2f3a8228b043016c57563c8a44114c0}} 
+\index{Enterprise@{Enterprise}!event\_set\_name@{event\_set\_name}}
+\index{event\_set\_name@{event\_set\_name}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_name()}{event\_set\_name()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+name (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{const std\+::string \&}]{new\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Setter for the name of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & The new name for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a8dcf40109de778c7558eb7a2ec184266}\label{classEnterprise_a8dcf40109de778c7558eb7a2ec184266}} 
+\index{Enterprise@{Enterprise}!event\_set\_ticker\_fee@{event\_set\_ticker\_fee}}
+\index{event\_set\_ticker\_fee@{event\_set\_ticker\_fee}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_ticker\_fee()}{event\_set\_ticker\_fee()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+ticker\+\_\+fee (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{float}]{new\+\_\+ticket\+\_\+fee }\end{DoxyParamCaption})}
+
+
+
+Setter for the ticket fee of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+ticket\+\_\+fee} & The new ticket fee for the \mbox{\hyperlink{classEvent}{Event}} with id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEnterprise_a652354276f35bf8187ae0970f2811fdf}\label{classEnterprise_a652354276f35bf8187ae0970f2811fdf}} 
+\index{Enterprise@{Enterprise}!event\_set\_time@{event\_set\_time}}
+\index{event\_set\_time@{event\_set\_time}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{event\_set\_time()}{event\_set\_time()}}
+{\footnotesize\ttfamily void Enterprise\+::event\+\_\+set\+\_\+time (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{const \mbox{\hyperlink{classTime}{Time}} \&}]{new\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Setter for the time of the \mbox{\hyperlink{classEvent}{Event}} with id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the \mbox{\hyperlink{classEvent}{Event}} to change\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classNoSuchObject}{No\+Such\+Object}}} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified ID was not found\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+time} & The new time for the \mbox{\hyperlink{classEvent}{Event}} with id \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classEnterprise_a499fc7376750985302c7e23fdf263291}\label{classEnterprise_a499fc7376750985302c7e23fdf263291}} 
@@ -302,6 +496,29 @@ As all of our enterprises must be registered in our country, their names will A\
 \begin{DoxyReturn}{Returns}
 True if both Enterprises\textquotesingle{} names are equal~\newline
  False, otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEnterprise_a9645bb442077de64a1ce7b9c6fb0e02c}\label{classEnterprise_a9645bb442077de64a1ce7b9c6fb0e02c}} 
+\index{Enterprise@{Enterprise}!pop@{pop}}
+\index{pop@{pop}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEvent}{Event}} Enterprise\+::pop (\begin{DoxyParamCaption}\item[{unsigned}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Searches for \mbox{\hyperlink{classEvent}{Event}} with id, removes it from the set and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the \mbox{\hyperlink{classEvent}{Event}} to remove from the set \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em No\+Such\+Objet} & Thrown if the \mbox{\hyperlink{classEvent}{Event}} with the specified id was not found \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEvent}{Event}} with id, removed from the set 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEnterprise_adc110b29082e6987751f1e1c1b519cd4}\label{classEnterprise_adc110b29082e6987751f1e1c1b519cd4}} 
 \index{Enterprise@{Enterprise}!purchase\_event@{purchase\_event}}

@@ -22,6 +22,8 @@ Event Enterprise::pop(unsigned id) {
 
     if (id != 0)
         throw NoSuchObject(to_string(id), "Event");
+
+    return Event();
 }
 
 /* PUBLIC */
