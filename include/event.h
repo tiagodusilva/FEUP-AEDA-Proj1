@@ -267,7 +267,7 @@ public:
 	* @return	True if both Event's ids are different\n
 	*		False, otherwise
 	*/
-	inline bool operator!=(const Event &ev) const { return !this->operator==(ev); }
+	inline bool operator!=(const Event &ev) const { return !this->operator==(ev); };
 
 	/**
 	* @brief	Overloaded lesser than test operator
