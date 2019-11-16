@@ -87,6 +87,24 @@ public:
 	*/
 	const Event& get_event(unsigned id) const;
 
+	/* SETTERS */
+    /**
+    * @brief     Setter for the name
+    * @param  new_name The new name for this Enterprise
+    */
+    void set_name(const std::string &new_name);
+    /**
+    * @brief     Setter for the contact
+    * @param   new_contact  The new contact for this Enterprise
+    */
+    void set_contact(const std::string &new_contact);
+    /**
+    * @brief     Setter for the address
+    * @param  new_address  The new address for this Enterprise
+    */
+    void set_address(const Address &new_address);
+
+
 	/* OTHER PUBLIC METHODS */
 	/**
 	* @brief          Adds an Event to the Enterprise

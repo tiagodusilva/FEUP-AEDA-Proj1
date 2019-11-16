@@ -38,6 +38,25 @@ const Event &Enterprise::get_event(unsigned id) const {
     throw EventNotFound(id);
 }
 
+
+/* SETTERS */
+void Enterprise::set_name(const std::string &new_name) {
+    if (utl::isStrEmpty(new_name))
+        throw UserInputReadingFailure("Name must not be be considered an empty string");
+    this->name = new_name;
+}
+
+void Enterprise::set_contact(const std::string &new_contact) {
+    if (utl::isStrEmpty(new_contact))
+        throw UserInputReadingFailure("Contact must not be be considered an empty string");
+    this->contact = new_contact;
+}
+
+void Enterprise::set_address(const Address &new_address) {
+    this->address = new_address;
+}
+
+
 void Enterprise::add_event(Event &ev) {
     // Redundant checks, better safe than sorry
     if (ev.get_id() == 0)
