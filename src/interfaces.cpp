@@ -1,5 +1,6 @@
-#include "../include/interfaces.h"
+#include <iomanip>
 
+#include "../include/interfaces.h"
 #include "../include/utilities.h"
 
 using namespace std;
@@ -35,7 +36,8 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Event>>*> dateOpt = {&EventsBetweenDates, &EventsInADate};
 
 	/* Filter Events */
-	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt, [](vector<Event>&){},
+	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt,
+			[](vector<Event>&){},
 			[](){return(vector<Event>());}, true);
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
@@ -200,7 +202,7 @@ AdminInterface::show()
 					utl::stream_clear(cin);
 					throw(UserInputReadingFailure("Invalid card formatting\n"));
 				}
-				cout << "This operation will have a cost of " << this->museum_network.getCost(card->get_type()) << endl;
+				cout << "This operation will have a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
 				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
@@ -233,13 +235,15 @@ AdminInterface::show()
 	MenuSelect addEnterpirse("Add a new enterprise", [this](){
 				Enterprise enterprise;
 				Enterprise::cin_read_enterprise(enterprise);
-				if(cin.fail()) {
+				if (cin.fail()) {
 					utl::stream_clear(cin);
 					throw(UserInputReadingFailure("Invalid enterprise formatting\n"));
 				}
+
 				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
-				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
-				if(a=='y' || a=='Y') {
+				if (!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+
+				if (a=='y' || a=='Y') {
 					this->museum_network.addEnterprise(enterprise);
 				}
 				else
@@ -250,12 +254,15 @@ AdminInterface::show()
 	/* Add Event */
 	MenuSelectFilter<vector<Enterprise>> addEventToNetwork("Add an event to the selected enterprise",
 			[this](vector<Enterprise>&vec) {
-				if(vec.size() != 1)
+				if (vec.size() != 1)
 					throw(UserInputReadingFailure("Multiple enterprises selected"));
-				Event event; Event::cin_read_event(event);
-				if(cin.fail()) {
+
+				Event event;
+				Event::cin_read_event(event);
+
+				if (cin.fail()) {
 					utl::stream_clear(cin);
-					throw(UserInputReadingFailure("Invalid museum formatting\n"));
+					throw(UserInputReadingFailure("Invalid event formatting\n"));
 				}
 
 				this->museum_network.addEvent(vec.at(0), event);
@@ -358,7 +365,7 @@ AdminInterface::show()
 
 				MenuSelectFilter<Enterprise> modifyEnterpriseAddress("Modify Address",
 						[](Enterprise &enter){
-							cout << "Address (street name/XXXX-XXX/region name  or  region)?\n";
+							cout << "Address (street name/XXXX-XXX/region name  or	region)?\n";
 							Address address; cin >> address;
 							if(cin.fail())
 								throw(UserInputReadingFailure("Invalid Address"));
@@ -409,7 +416,7 @@ AdminInterface::show()
 
 				MenuSelectFilter<Event> modifyEventAddress("Modify Address",
 						[](Event &event){
-							cout << "Address (street name/XXXX-XXX/region name  or  region)?\n";
+							cout << "Address (street name/XXXX-XXX/region name  or	region)?\n";
 							Address address; cin >> address;
 							if(cin.fail())
 								throw(UserInputReadingFailure("Invalid Address"));
@@ -519,7 +526,7 @@ MemberInterface::MemberInterface(MuseumNetwork &rnm, unsigned int cc) : museum_n
 	vector<Card*> cards = rnm.getCards();
 	vector<Card*>::iterator iter = find_if(cards.begin(), cards.end(), [&cc](Card *c1){ return(c1->get_cc() == cc); });
 	if(iter == cards.end())
-		throw(NoSuchObject(to_string(cc), "card"));
+		throw(NoSuchObject(to_string(cc), "Card"));
 
 	this->member_card = *(iter);
 	//this->museum_network = rnm;
@@ -598,7 +605,7 @@ void MemberInterface::show() {
 
 	/* Renew Membership */
 	MenuSelect renewCard ("Renew your membership", [this](){
-				cout << "Renewing your membership has a cost of " << this->museum_network.getCost(this->member_card->get_type()) << endl;
+				cout << "Renewing your membership has a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(this->member_card->get_type()) << endl;
 				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
@@ -633,7 +640,7 @@ void MemberInterface::show() {
 				}
 
 				if (!is_event_free){
-					cout << "This action will have a price of " <<
+					cout << "This action will have a price of " << std::fixed << setprecision(2) <<
 						vec.at(0).get_fee() * (1 - this->museum_network.getDiscount(member_card->get_type())) << endl;
 				}
 
@@ -687,7 +694,7 @@ void MemberInterface::show() {
 	MenuSelect changeAddress("Change your address",
 			[this](){
 				Address addr;
-				cout << "Address (street name/XXXX-XXX/region name  or  region)?" << endl;
+				cout << "Address (street name/XXXX-XXX/region name  or	region)?" << endl;
 				cin >> addr;
 				if(cin.fail()) {
 					utl::stream_clear(cin);
@@ -776,7 +783,7 @@ void UserInterface::show(){
 					utl::ignore(cin);
 					throw(UserInputReadingFailure("Invalid card formatting\n"));
 				}
-				cout << "This operation will have a cost of " << this->museum_network.getCost(card->get_type()) << endl;
+				cout << "This operation will have a cost of " << std::fixed << setprecision(2) << this->museum_network.getCost(card->get_type()) << endl;
 				cout << "Are you sure? (y/n)" << endl; int a = getchar(); utl::ignore(cin);
 				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 				if(a=='y' || a=='Y') {
@@ -801,7 +808,7 @@ void GUI::show() {
 	utl::clearConsole();
 	MenuSelect adminMenu("Admin menu", [this](){ AdminInterface admin_interface(museum_network); admin_interface.show(); });
 
-	MenuSelect userMenu("User menu", [this](){ UserInterface user_interface(museum_network); user_interface.show(); });;
+	MenuSelect userMenu("Non-registered User menu", [this](){ UserInterface user_interface(museum_network); user_interface.show(); });;
 
 	MenuSelect memberMenu("Member menu", [this](){
 			unsigned cc;

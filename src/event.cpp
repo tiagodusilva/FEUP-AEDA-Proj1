@@ -330,6 +330,7 @@ void Event::cin_read_event(Event &ev) {
     }catch(const char* e) {
         // In this case, the exception would have already been handled
         std::cin.setstate(std::ios::failbit);
+
     }catch(const std::exception& e) {
         std::cin.setstate(std::ios::failbit);
         std::cerr << e.what() << endl;

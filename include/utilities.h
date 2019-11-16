@@ -139,7 +139,7 @@ namespace utl
 	 * @brief	Clear the failbit and ignore all characters from a given 'istream'
 	 * @param i	Stream to clear
 	*/
-	inline void stream_clear(std::istream &i) { i.clear(); ignore(i); };
+	inline void stream_clear(std::istream &i) { i.clear(); i.ignore(); };
 
 	/**
 	 * @brief	Checks if a given file exists

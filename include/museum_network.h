@@ -20,9 +20,9 @@
 class MuseumNetwork {
 private:
 	/** @brief	List of the different discounts applied to Cards */
-	float discount[3];
+	float discount[3] = {0.25, 0.25, 0.25};
 	/** @brief	List of the different Card's creation/renewal cost */
-	float cost[3];
+	float cost[3] = {54.90, 32.45, 30.00};
 	/** @brief	List of pointers to all the registered User's Cards */
 	std::vector<Card*> cards;
 	/** @brief	List of all the Enterprises associated with the Museum Network */
@@ -34,6 +34,7 @@ public:
 	/* CONSTRUCTORS */
 	/**
 	 * @brief	Default constructor
+	 * @note	Has default values for each Card type cost and discount
 	 */
 	MuseumNetwork() = default;
 	/**
