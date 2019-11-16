@@ -59,7 +59,7 @@ const Event &Enterprise::get_event(unsigned id) const {
             return ev;
     }
 
-    throw EventNotFound(id);
+    throw NoSuchObject(to_string(id), "Event");
 }
 
 
