@@ -153,6 +153,50 @@ public:
 	*/
 	float get_capacity_percentage() const;
 
+
+	/* SETTERS */
+    /**
+     * @brief Setter for the maximum capacity
+     *
+     * @param new_capacity The new max capacity for this event
+     */
+    void set_max_capacity(unsigned new_capacity);
+    /**
+     * @brief Setter for the name of this Event
+     *
+     * @param new_name The new name for this Event
+     */
+    void set_name(const std::string &new_name);
+    /**
+     * @brief Setter for the ticket fee of this Event
+     *
+     * @param new_ticket_fee The new ticket fee for this Event
+     */
+    void set_ticker_fee(float new_ticket_fee);
+    /**
+     * @brief Setter for the location name of this Event
+     *
+     * @param new_location_name The new location name for this Event
+     */
+    void set_location_name(const std::string &new_location_name);
+    /**
+     * @brief Setter for the address of this Event
+     *
+     * @param new_address The new address for this Event
+     */
+    void set_address(const Address &new_address);
+    /**
+     * @brief Setter for the time of this Event
+     *
+     * @param new_time The new time for this Event
+     */
+    void set_time(const Time &new_time);
+    /**
+     * @brief Seter for the date of this Event
+     *
+     * @param new_date The new date for this Event
+     */
+    void set_date(const Date &new_date);
 	/**
 	* @brief	 Completely destructive method\n
 	*		 When called sets an Event's id to 0, aka an absolutely invalid Event\n

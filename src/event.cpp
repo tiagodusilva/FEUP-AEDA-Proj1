@@ -9,7 +9,7 @@ using namespace std;
 
 unsigned Event::id_tracker = 1;
 
-Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const string &locations_name, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
+Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const string &location_name, const Address &address, const Time &time, const Date &date, const set<unsigned> &reservations, bool is_valid) {
     this->id = id_tracker++;
     this->name = name;
     this->ticket_fee = ticket_fee;
@@ -22,6 +22,8 @@ Event::Event(const string& name, float ticket_fee, unsigned max_capacity, const 
     this->is_valid = is_valid;
 }
 
+
+/* GETTERS */
 unsigned Event::get_id() const {
     return this->id;
 }
@@ -62,6 +64,42 @@ bool Event::get_validity() const {
     return this->is_valid;
 }
 
+/* SETTERS */
+void Event::set_max_capacity(unsigned new_capacity) {
+    if (new_capacity < this->reservations.size())
+        throw UserInputReadingFailure("Event's maximum capacity must not be lower than the current number of reservations");
+    this->max_capacity = new_capacity;
+}
+
+void Event::set_name(const std::string &new_name) {
+    if (utl::isStrEmpty(new_name))
+        throw UserInputReadingFailure("Name must not be be considered an empty string");
+    this->name = new_name;
+}
+
+void Event::set_ticker_fee(float new_ticket_fee) {
+    if (new_ticket_fee < 0)
+        throw UserInputReadingFailure("Event's ticket fee must not be a negative number");
+    this->ticket_fee = new_ticket_fee;
+}
+
+void Event::set_location_name(const std::string &new_location_name) {
+    if (utl::isStrEmpty(new_location_name))
+        throw UserInputReadingFailure("Location name must not be be considered an empty string");
+    this->location_name = new_location_name;
+}
+
+void Event::set_address(const Address &new_address) {
+    this->address = new_address;
+}
+
+void Event::set_time(const Time &new_time) {
+    this->time = new_time;
+}
+
+void Event::set_date(const Date &new_date) {
+    this->date = new_date;
+}
 
 void Event::set_invalid_id() {
     this->id = 0;
@@ -163,26 +201,30 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
 
         // TICKETS
         infstream >> ev.ticket_fee; utl::ignore(infstream);
+        if (ev.ticket_fee < 0)
+            throw FileReadingFailed("Event's ticket fee must not be negative");
 
         // RESERVATIONS
         int num_reservations;
         infstream >> num_reservations; utl::ignore(infstream);
 
-	if (num_reservations > 0) {
-		string tempStr;
-		getline(infstream, tempStr);
+        if (num_reservations > 0) {
+            string tempStr;
+            getline(infstream, tempStr);
 
-		istringstream ss(tempStr);
-		int tempInt;
-		for (; num_reservations > 0; --num_reservations) {
-		    ss >> tempInt;
-		    // As this is a set, there will never be repeated elements *winks*
-		    ev.reservations.insert(tempInt);
-		}
-	}
+            istringstream ss(tempStr);
+            int tempInt;
+            for (; num_reservations > 0; --num_reservations) {
+                ss >> tempInt;
+                // As this is a set, there will never be repeated elements *winks*
+                ev.reservations.insert(tempInt);
+            }
+        }
 
         // MAX CAPACITY
         infstream >> ev.max_capacity; utl::ignore(infstream);
+        if (ev.max_capacity < num_reservations)
+            throw FileReadingFailed("Event's maximum capacity must not be lower than the current number of reservations");
 
         // LOCATION NAME
         getline(infstream, ev.location_name);
@@ -225,6 +267,8 @@ void Event::cin_read_event(Event &ev) {
         std::cin >> ev.ticket_fee; utl::ignore(cin);
         if (cin.fail())
             throw UserInputReadingFailure("given name is empty");
+        if (ev.ticket_fee < 0)
+            throw FileReadingFailed("Event's ticket fee must not be negative");
 
         /* max capacity */
         std::cout << "Event's max capacity? ";

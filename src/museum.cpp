@@ -14,6 +14,8 @@ Museum::Museum(const string &name, const Time &open, const Time &close, float en
     this->address = address;
 }
 
+
+/* GETTERS */
 string Museum::get_name() const {
     return this->name;
 }
@@ -34,6 +36,32 @@ Address Museum::get_address() const {
     return this->address;
 }
 
+/* SETTERS */
+void Museum::set_name(const std::string &new_name) {
+    if (utl::isStrEmpty(new_name))
+        throw UserInputReadingFailure("Name must not be be considered an empty string");
+    this->name = new_name;
+}
+
+void Museum::set_open(const Time &new_open) {
+    if (new_open > this->close)
+        throw UserInputReadingFailure("Museum's opening time must be before the closing time");
+    this->open = new_open;
+}
+
+void Museum::set_close(const Time &new_close) {
+    if (this->open > new_close)
+        throw UserInputReadingFailure("Museum's closing time must be after the opening time");
+    this->close = new_close;
+}
+
+void Museum::set_fee(float new_entry_fee) {
+    if (new_entry_fee < 0)
+        throw UserInputReadingFailure("Museum's entry fee must not be negative");
+    this->entry_fee = new_entry_fee;
+}
+
+/* STREAMS */
 std::ostream &operator<<(std::ostream &outstream, const Museum &museum) {
     outstream <<
               left << setw(MUSEUM_OUPUT_DELIM) << "Name"	      << " : " << right << museum.name << endl <<
@@ -73,6 +101,8 @@ std::ifstream &operator>>(std::ifstream &infstream, Museum &museum) {
 
         // ENTRY FEE
         infstream >> museum.entry_fee; utl::ignore(infstream);
+        if (museum.entry_fee < 0)
+            throw FileReadingFailed("Museum's entry fee cannot be negative");
 
         // ADDRESS
         infstream >> museum.address;
@@ -105,6 +135,8 @@ void Museum::cin_read_museum(Museum &museum) {
         std::cin >> museum.entry_fee; utl::ignore(cin);
         if (cin.fail())
             throw UserInputReadingFailure("given name is empty");
+        if (museum.entry_fee < 0)
+            throw UserInputReadingFailure("Museum's entry fee must not be negative");
 
         /* opening time */
         cout << "Opening time of the Museum (h:m)? ";
