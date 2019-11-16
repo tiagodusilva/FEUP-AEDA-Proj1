@@ -113,13 +113,13 @@ void Event::set_validity(bool new_is_valid) {
 
 void Event::purchase(unsigned cc) {
     if (this->is_full())
-        throw EventFull(this->id);
+        throw InvalidObject("Event", "event with id " + to_string(this->id) + "is full");
 
     if (!this->is_valid)
-        throw EventInvalid(this->id);
+        throw InvalidObject("Event", "event with id " + to_string(this->id) + "is not available");
 
     if (this->reservations.find(cc) != this->reservations.end())
-        throw EventAlreadyBought(this->id, cc);
+        throw InvalidObject("Event", "event with id " + to_string(this->id) + " was already bough by user with cc " + to_string(cc));
 
     this->reservations.insert(cc);
 }

@@ -138,7 +138,7 @@ void Enterprise::event_set_validity(unsigned id, bool new_is_valid) {
 void Enterprise::add_event(Event &ev) {
     // Redundant checks, better safe than sorry
     if (ev.get_id() == 0)
-        throw EventInvalid(ev.get_id());
+        throw InvalidObject("Event", "event cannot have id 0");
 
     if (this->has_event(ev.get_id()))
         // If this is thrown, some really fck up shit happened

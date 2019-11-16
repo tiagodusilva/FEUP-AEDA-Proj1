@@ -15,7 +15,7 @@ Address::Address()
 Address::Address(const string &region)
 {
 	if (utl::isStrEmpty(region))
-		throw InvalidAddress();
+		throw InvalidObject("Address", "region must not be considered empty");
 
 	this->street = "Undefined Street";
 	this->zipCode = HALF_ADDR_ZIPCODE;
@@ -27,7 +27,7 @@ Address::Address(const string &street, const string &zipCode, const string &regi
 	/* 0000-000 is not valid for zipcodes inputed by the user */
 	if (zipCode == HALF_ADDR_ZIPCODE || !Address::verify_zip_code(zipCode) ||
 	    utl::isStrEmpty(street) || utl::isStrEmpty(region))
-		throw InvalidAddress();
+		throw InvalidObject("Address", "zip code in the incorrect format or 0000-000");
 
 	this->street = street;
 	this->zipCode = zipCode;

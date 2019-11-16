@@ -228,7 +228,7 @@ void MuseumNetwork::addEvent(const Enterprise &enterprise, Event &event) {
 
 	for(auto & ent : enterprises) {
 		if(ent.has_event(event.get_id())) { // Verify if the event is already in the network
-			throw EventInvalid(event.get_id());
+			throw InvalidObject("Event", "Event with id " + to_string(event.get_id()) + " is already in the Network");
 		}
 	}
 

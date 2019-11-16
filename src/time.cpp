@@ -26,10 +26,10 @@ Time::Time(short hour, short min)
 {
 	if (min == 0) {
 		if (hour < 0 || hour > 24)
-			throw InvalidTime();
+			throw InvalidObject("Time", "when minutes is 0, hour must be between 0 and 24");
 	}
 	else if (min < 0 || min > 59 || hour < 0 || hour > 23)
-		throw InvalidTime();
+		throw InvalidObject("Time", "hour must be between 0 and 23 and minutes between 0 and 59");
 
 	this->hour = hour;
 	this->min = min;
