@@ -89,7 +89,7 @@ namespace flt
 
 	inline void FilterEventByCapacity(vector<Event> &vec, float capacity_percentage_max) {
 		vector<Event>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&capacity_percentage_max](Event elem) { return!(elem.get_capacity_percentage() <= capacity_percentage_max*100); });
+				[&capacity_percentage_max](Event elem) { return !(elem.get_capacity_percentage() <= capacity_percentage_max*100); });
 		vec.erase(iter, vec.end());
 	}
 
@@ -120,13 +120,19 @@ namespace flt
 		getline(cin, name);
 
 		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[&name](Card* &elem) { return!(elem->get_name() == name); });
+				[&name](Card* &elem) {
+					return !(elem->get_name() == name);
+				});
+
 		vec.erase(iter, vec.end());
 	}
 
 	inline void FilterByValidity(vector<Card*> &vec) {
 		vector<Card*>::iterator iter = remove_if(vec.begin(), vec.end(),
-				[](Card* elem) { return!(elem->isvalid()); });
+				[](Card* elem) {
+					return!(elem->isvalid());
+				});
+
 		vec.erase(iter, vec.end());
 	}
 

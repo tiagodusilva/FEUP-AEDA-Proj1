@@ -1,3 +1,4 @@
+/** @file museum_network.h */
 #ifndef MUSEUM_NETWORK_H
 #define MUSEUM_NETWORK_H
 
@@ -12,34 +13,68 @@
 #include "exceptions.h"
 #include "museum.h"
 
-//TODO Tornar list static
+/** @addtogroup	museum_grp
+  *
+  * @brief	Code related to the handling of a museum
+  *
+  * @{
+  */
 
 class MuseumNetwork {
 private:
+	/** @brief	List of the different discounts applied to Cards */
 	float discount[3];
+	/** @brief	List of the different Card's creation/renewal cost */
 	float cost[3];
-	/* Containers */
+	/** @brief	List of pointers to all the registered User's Cards */
 	std::vector<Card*> cards;
+	/** @brief	List of all the Enterprises associated with the Museum Network */
 	std::vector<Enterprise> enterprises;
+	/** @brief	List of all the Museums that are part of the Museum Network */
 	std::vector<Museum> museums;
 
 public:
-	/* Constructors */
+	/* CONSTRUCTORS */
+	/**
+	 * @brief	Default constructor
+	 */
 	MuseumNetwork() = default;
+	/**
+	 * @brief	Constructor for the MuseumNetwork class
+	 *
+	 * @param card_vector		Vector of pointers to registered user Cards to add to the Network
+	 * @param enterprise_vector	Vector of enterprises to add to the Network
+	 * @param museum_vector		Vector of museums to add to the Network
+	 */
+	MuseumNetwork(std::vector<Card*> &card_vector, std::vector<Enterprise> &enterprise_vector, std::vector<Museum> &museum_vector) :
+		cards(card_vector), enterprises(enterprise_vector), museums(museum_vector) {}
+	/**
+	 * @brief	Constructor for the MuseumNetwork class
+	 *
+	 * @param config_file_name	Name of the file to read the new Museum Network configuration from\nIncluding the names of the files that containing the new information
+	 */
+	MuseumNetwork(std::string config_file_name) { this->importFiles(config_file_name); }
 
-	MuseumNetwork(std::vector<Card*> card_vector, std::vector<Enterprise> enterprise_vector, std::vector<Museum> museum_vector) :
-		cards(card_vector), enterprises(enterprise_vector), museums(museum_vector) {};
 
-	MuseumNetwork(std::string config_file_name) { this->importFiles(config_file_name); };
-
-
-	/* Methods for Cards */
+	/* METHODS FOR CARDS */
+	/**
+	 * @brief	Add a new user Card to the network
+	 *
+	 * @param card	Pointer (to a new user Card) to be added to the network
+	 */
 	void addCard(Card* card);
-
+	/**
+	 * @brief	Search for the given Card on the network and remove it
+	 *
+	 * @param card	Pointer to the Card to find and remove from the network
+	 */
 	void removeCard(const Card* card);
+	/**
+	 * @brief	Search for the given Cards on the network and remove them
+	 *
+	 * @param cards_to_be_removed	List of pointers to the Cards to be removed from the network
+	 */
 	void removeCards(const std::vector<Card*> &cards_to_be_removed);
-
-	void modifyCard(Card* card, unsigned cc);
 
 	void listCards(const std::string &delim='\n' + std::string(64, '-') + '\n') const;
 	void listCards(const std::vector<Card*> &cards_to_be_listed,
@@ -118,5 +153,6 @@ public:
     friend std::ifstream &operator>>(std::ifstream &infstream, MuseumNetwork &network);
 };
 
+/** @} */
 
 #endif	// MUSEUM_NETWORK_H

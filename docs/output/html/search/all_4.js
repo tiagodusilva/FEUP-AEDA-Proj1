@@ -7,7 +7,7 @@ var searchData=
   ['enterprisealreadyexists_41',['EnterpriseAlreadyExists',['../classEnterpriseAlreadyExists.html',1,'EnterpriseAlreadyExists'],['../classEnterpriseAlreadyExists.html#ad97a876c995377c328bd262b5614b994',1,'EnterpriseAlreadyExists::EnterpriseAlreadyExists()']]],
   ['enterprises_42',['enterprises',['../classMuseumNetwork.html#a6484b90e159a3d652fd18421c08b3119',1,'MuseumNetwork']]],
   ['entry_5ffee_43',['entry_fee',['../classMuseum.html#a0bab637e15708d94a1d5ef42073dd202',1,'Museum']]],
-  ['event_44',['Event',['../classEvent.html',1,'Event'],['../classEvent.html#aee6a4269152dcdb7a11de3e24d90c229',1,'Event::Event()=default'],['../classEvent.html#a9812c98bfc2b9834f1fb5712dc0bcec3',1,'Event::Event(const std::string &amp;name, float cost, unsigned max_capacity, const Address &amp;address, const Time &amp;time, const Date &amp;date, const std::set&lt; unsigned &gt; &amp;reservations=std::set&lt; unsigned &gt;(), bool is_valid=true)']]],
+  ['event_44',['Event',['../classEvent.html',1,'Event'],['../classEvent.html#aee6a4269152dcdb7a11de3e24d90c229',1,'Event::Event()=default'],['../classEvent.html#a0c0d8658df3994f4c557a29f3c0b349d',1,'Event::Event(const std::string &amp;name, float cost, unsigned max_capacity, const std::string &amp;location_name, const Address &amp;address, const Time &amp;time, const Date &amp;date, const std::set&lt; unsigned &gt; &amp;reservations=std::set&lt; unsigned &gt;(), bool is_valid=true)']]],
   ['event_2eh_45',['event.h',['../event_8h.html',1,'']]],
   ['enterprise_20and_20event_20module_46',['Enterprise and Event module',['../group__event__grp.html',1,'']]],
   ['event_5fouput_5fdelim_47',['EVENT_OUPUT_DELIM',['../group__event__grp.html#ga185cecd8a1f0a725daa31285186886de',1,'event.h']]],

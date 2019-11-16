@@ -1,7 +1,7 @@
 <map id="MemberInterface" name="MemberInterface">
-<area shape="rect" id="node1" title=" " alt="" coords="84,1195,255,1301"/>
-<area shape="rect" id="node2" href="$classMuseumNetwork.html" title=" " alt="" coords="5,395,176,1132"/>
-<area shape="rect" id="node3" href="$classCard.html" title="Abstract class to save and handle registered users information and their cards." alt="" coords="201,585,378,941"/>
+<area shape="rect" id="node1" title=" " alt="" coords="84,1224,255,1331"/>
+<area shape="rect" id="node2" href="$classMuseumNetwork.html" title=" " alt="" coords="5,395,176,1161"/>
+<area shape="rect" id="node3" href="$classCard.html" title="Abstract class to save and handle registered users information and their cards." alt="" coords="201,600,378,956"/>
 <area shape="rect" id="node4" href="$classAddress.html" title="Class that saves and handles address information in our project." alt="" coords="133,57,281,251"/>
 <area shape="rect" id="node5" href="$classDate.html" title="Class that saves and handles date information in our project." alt="" coords="305,5,439,303"/>
 </map>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['region_542',['region',['../classAddress.html#a5660f7f8702d81efd72a1f53ed372d74',1,'Address']]],
-  ['repeat_5fmenus_5fvec_543',['repeat_menus_vec',['../classMenuOptionsFilter.html#af233c5ec42086da4c70aba46b403df84',1,'MenuOptionsFilter']]],
-  ['reservations_544',['reservations',['../classEvent.html#a071777ebdb1100b55219968a5632d703',1,'Event']]]
+  ['open_556',['open',['../classMuseum.html#a89306fa452e114526c0b8863804f12b2',1,'Museum']]],
+  ['options_557',['options',['../classMenuOptions.html#ae3af949bb2822120175af55d5843af58',1,'MenuOptions::options()'],['../classMenuOptionsFilter.html#a323488e40bcbe36c14c98669e8f5c861',1,'MenuOptionsFilter::options()']]],
+  ['options_5fbackup_558',['options_backup',['../classMenuOptionsFilter.html#a104733cfec66a98b770fad122824cd64',1,'MenuOptionsFilter']]]
 ];

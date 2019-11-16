@@ -3,9 +3,9 @@
 using namespace std;
 
 string MenuOptions::getMessage() const{
-	string res="";
+	string res; // No need to initialize (it would be redundant)
     res+= getTitle() + "\n\n";
-    for (int i=0; i < options.size(); ++i){
+    for (size_t i=0; i < options.size(); ++i){
         res += to_string(i+1) + "- " + options.at(i)->getTitle() + '\n';
 	}
     res += "0- Go back\n";
@@ -19,7 +19,7 @@ void MenuOptions::show() {
 		utl::clearConsole();
         int selection = utl::getInt(cin, 0, options.size(), this->getMessage() + "Insira um numero entre 0 e " + to_string(options.size()));
 
-        if(selection == 0 || options.size() == 0)
+        if(selection == 0 || options.empty())
             go_back = true;
         else
 			try {
@@ -35,5 +35,4 @@ void MenuOptions::show() {
 			}
     } while (!go_back);
 
-    return;
 }

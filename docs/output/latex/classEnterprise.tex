@@ -37,13 +37,13 @@ std\+::string \mbox{\hyperlink{classEnterprise_a9acfeb48d2539221eca4ae3ec5375016
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{classEnterprise_a6a93c33cacdfe91ae9e528f52e19e868}{name}}
-\item 
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s name \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classEnterprise_a54a1371f33a1b012b77ef4682e43d53c}{contact}}
-\item 
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s contact (phone number or email, etc...) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classAddress}{Address}} \mbox{\hyperlink{classEnterprise_a0062da64b92770e4d7d4f5a1d8ec0086}{address}}
-\item 
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s main address \end{DoxyCompactList}\item 
 std\+::set$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \mbox{\hyperlink{classEnterprise_a38d131ca142398317aa6673951fdf591}{events}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em enterprise\textquotesingle{}s currently registered events \end{DoxyCompactList}\end{DoxyCompactItemize}
 \label{_amgrp01747264fe7bf50731df0522c351974e}%
 Getter for the Events
 
@@ -57,8 +57,9 @@ const std\+::set$<$ \mbox{\hyperlink{classEvent}{Event}} $>$ \& \mbox{\hyperlink
 const \mbox{\hyperlink{classEvent}{Event}} \& \mbox{\hyperlink{classEnterprise_ad1240562b718e8df0c751ddb370fb501}{get\+\_\+event}} (unsigned id) const
 \begin{DoxyCompactList}\small\item\em Getter for a specific \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_ada672b0e4a47742b2a617baaa2c491ec}{add\+\_\+event}} (\mbox{\hyperlink{classEvent}{Event}} \&ev)
-\begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
- If successful, the destructor of ev will be called. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}{remove\+\_\+event}} (unsigned id)
+\begin{DoxyCompactList}\small\item\em Removes an \mbox{\hyperlink{classEvent}{Event}} from the \mbox{\hyperlink{classEnterprise}{Enterprise}} or works as garbage collector (id=0) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classEnterprise_a5b94269da2008df10cfa7dcea1b7da9f}{has\+\_\+event}} (unsigned id) const
 \begin{DoxyCompactList}\small\item\em Checks for the existence of a specific \mbox{\hyperlink{classEvent}{Event}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEnterprise_adc110b29082e6987751f1e1c1b519cd4}{purchase\+\_\+event}} (unsigned id, unsigned cc)
@@ -134,8 +135,7 @@ Default destructor.
 
 
 
-Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}~\newline
- If successful, the destructor of ev will be called. 
+Adds an \mbox{\hyperlink{classEvent}{Event}} to the \mbox{\hyperlink{classEnterprise}{Enterprise}}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -314,6 +314,29 @@ Checks for the existence of a specific \mbox{\hyperlink{classEvent}{Event}}.
 {\em \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}}} & if the \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have the \mbox{\hyperlink{classEvent}{Event}} specifiec in the id \\
 \hline
 \end{DoxyExceptions}
+\mbox{\Hypertarget{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}\label{classEnterprise_ac75cbf60e05f1d22a5eac4387afbd16f}} 
+\index{Enterprise@{Enterprise}!remove\_event@{remove\_event}}
+\index{remove\_event@{remove\_event}!Enterprise@{Enterprise}}
+\doxysubsubsection{\texorpdfstring{remove\_event()}{remove\_event()}}
+{\footnotesize\ttfamily void Enterprise\+::remove\+\_\+event (\begin{DoxyParamCaption}\item[{unsigned}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes an \mbox{\hyperlink{classEvent}{Event}} from the \mbox{\hyperlink{classEnterprise}{Enterprise}} or works as garbage collector (id=0) 
+
+If successful, the event will be removed from memory~\newline
+ If id is set to 0, it will remove the event with id 0 (aka completely invalid), also known as garbage collection, because there can only one event with id 0 at a time inside an enterprise
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id of the event to remove, if id is 0, it will work as a garbage collector (read description)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \mbox{\hyperlink{classEventNotFound}{Event\+Not\+Found}}} & Only throws this exception when not in garbage collection mode (id != 0), if this \mbox{\hyperlink{classEnterprise}{Enterprise}} does not have an \mbox{\hyperlink{classEvent}{Event}} with the specified id \\
+\hline
+\end{DoxyExceptions}
 
 
 \doxysubsection{Friends And Related Function Documentation}
@@ -392,11 +415,19 @@ Reference to the ifstream object, \textquotesingle{}infstream\textquotesingle{},
 \doxysubsubsection{\texorpdfstring{address}{address}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classAddress}{Address}} Enterprise\+::address\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+enterprise\textquotesingle{}s main address 
+
 \mbox{\Hypertarget{classEnterprise_a54a1371f33a1b012b77ef4682e43d53c}\label{classEnterprise_a54a1371f33a1b012b77ef4682e43d53c}} 
 \index{Enterprise@{Enterprise}!contact@{contact}}
 \index{contact@{contact}!Enterprise@{Enterprise}}
 \doxysubsubsection{\texorpdfstring{contact}{contact}}
 {\footnotesize\ttfamily std\+::string Enterprise\+::contact\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+enterprise\textquotesingle{}s contact (phone number or email, etc...) 
 
 \mbox{\Hypertarget{classEnterprise_a38d131ca142398317aa6673951fdf591}\label{classEnterprise_a38d131ca142398317aa6673951fdf591}} 
 \index{Enterprise@{Enterprise}!events@{events}}
@@ -404,11 +435,19 @@ Reference to the ifstream object, \textquotesingle{}infstream\textquotesingle{},
 \doxysubsubsection{\texorpdfstring{events}{events}}
 {\footnotesize\ttfamily std\+::set$<$\mbox{\hyperlink{classEvent}{Event}}$>$ Enterprise\+::events\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+enterprise\textquotesingle{}s currently registered events 
+
 \mbox{\Hypertarget{classEnterprise_a6a93c33cacdfe91ae9e528f52e19e868}\label{classEnterprise_a6a93c33cacdfe91ae9e528f52e19e868}} 
 \index{Enterprise@{Enterprise}!name@{name}}
 \index{name@{name}!Enterprise@{Enterprise}}
 \doxysubsubsection{\texorpdfstring{name}{name}}
 {\footnotesize\ttfamily std\+::string Enterprise\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+enterprise\textquotesingle{}s name 
 
 
 
