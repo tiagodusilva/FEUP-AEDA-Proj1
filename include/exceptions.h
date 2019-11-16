@@ -15,11 +15,7 @@
   * @{
   */
 
-class FileReadingFailed: public std::runtime_error {
-public:
-	FileReadingFailed(std::string fail_elem) :
-	    std::runtime_error("There was a problem reading the files: " + fail_elem) {};
-};
+/* Miscellaneous Exceptions */
 
 class UserInputReadingFailure: public std::runtime_error {
 public:
@@ -27,11 +23,6 @@ public:
 	    std::runtime_error("There was a problem reading the input from the user: " + fail_elem) {};
 };
 
-class TooEarlyToRenewCard: public std::runtime_error {
-public:
-	TooEarlyToRenewCard(const std::string & fail_elem) :
-	    std::runtime_error("It's too early to renew this card: " + fail_elem) {};
-};
 
 class InvalidTime: public std::runtime_error {
 public:
@@ -44,6 +35,42 @@ public:
 	InvalidAddress() :
 	    std::runtime_error("Zip code is invalid") {};
 };
+
+
+
+/* Menu related exceptions */
+
+class MenuExitWithNoFunctionCall : public std::runtime_error{
+public:
+	MenuExitWithNoFunctionCall(const std::string & title) :
+	    std::runtime_error("Exited from menu " + title) {};
+};
+
+class MenuForceExit : public std::runtime_error{
+public:
+	MenuForceExit(const std::string & title) :
+	    std::runtime_error("Exited from menu " + title) {};
+};
+
+
+
+/* File related Exceptions */
+
+class FileNotFound : public std::runtime_error {
+public:
+	FileNotFound(const std::string & file_name) :
+	    std::runtime_error("File with name " + file_name + " not found") {};
+};
+
+class FileReadingFailed: public std::runtime_error {
+public:
+	FileReadingFailed(std::string fail_elem) :
+	    std::runtime_error("There was a problem reading the files: " + fail_elem) {};
+};
+
+
+
+/* Event related exceptions */
 
 class EventFull: public std::runtime_error {
 public:
@@ -76,28 +103,14 @@ public:
             std::runtime_error( "Event " + std::to_string(event_id) + " already exists ") {};
 };
 
-class FileDoesntExist : public std::runtime_error {
-public:
-	FileDoesntExist(const std::string & file_name) :
-	    std::runtime_error("File with name " + file_name + "does not exist") {};
-};
 
-class FileAlreadyExists : public std::runtime_error {
-public:
-	FileAlreadyExists(const std::string & file_name) :
-	    std::runtime_error("File with name " + file_name + "already exists") {};
-};
 
-class MenuExitWithNoFunctionCall : public std::runtime_error{
-public:
-	MenuExitWithNoFunctionCall(const std::string & title) :
-	    std::runtime_error("Exited from menu " + title) {};
-};
+/* Card related Exceptions */
 
-class MenuForceExit : public std::runtime_error{
+class TooEarlyToRenewCard: public std::runtime_error {
 public:
-	MenuForceExit(const std::string & title) :
-	    std::runtime_error("Exited from menu " + title) {};
+	TooEarlyToRenewCard(const std::string & fail_elem) :
+	    std::runtime_error("It's too early to renew this card: " + fail_elem) {};
 };
 
 class CardAlreadyExists : public std::runtime_error {
@@ -118,6 +131,10 @@ public:
 	    std::runtime_error("There isn't any user with cc number " + std::to_string(cc) + " in the network") {};
 };
 
+
+
+/* Enterprise related Exceptions */
+
 class EnterpriseAlreadyExists : public std::runtime_error {
 public:
 	EnterpriseAlreadyExists(const std::string & name) :
@@ -129,6 +146,10 @@ public:
     NoSuchEnterprise(const std::string &name) :
         std::runtime_error("There isn't any enterprise with the name " + name + "in the network") {};
 };
+
+
+
+/* Museum related exceptions */
 
 class MuseumAlreadyExists : public std::runtime_error {
 public:
@@ -142,23 +163,6 @@ public:
 	    std::runtime_error("There isn't any museum with name " + name + " in the network") {};
 };
 
-class FileNotFound : public std::runtime_error {
-public:
-	FileNotFound(const std::string & file_name) :
-	    std::runtime_error("File with name " + file_name + " not found") {};
-};
-
-class FileIncorrectFormatting : public std::runtime_error {
-public:
-	FileIncorrectFormatting(const std::string & file_name) :
-	    std::runtime_error("File with name " + file_name + " is formatted incorrectly") {};
-};
-
-class MultipleEventsSelected : public std::runtime_error {
-public:
-	MultipleEventsSelected(const std::string &num_events) :
-		std::runtime_error(num_events + " events selected instead of 1") {};
-};
 
 /** @} */
 

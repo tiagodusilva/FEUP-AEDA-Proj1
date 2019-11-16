@@ -287,7 +287,7 @@ void MuseumNetwork::importCards(std::string cards_file_name) {
 		Card *card;
 		input_stream >> card;
 		if(input_stream.fail())
-			throw(FileIncorrectFormatting(cards_file_name));
+			throw(FileReadingFailed(cards_file_name));
 		vec_cards.push_back(card);
 	}
 
@@ -305,7 +305,7 @@ void MuseumNetwork::importMuseums(std::string museum_file_name) {
 		Museum museum;
 		input_stream >> museum;
 		if(input_stream.fail())
-			throw(FileIncorrectFormatting(museum_file_name));
+			throw(FileReadingFailed(museum_file_name));
 		vec_museums.push_back(museum);
 	}
 
@@ -322,7 +322,7 @@ void MuseumNetwork::importEnterprises(std::string enterprise_file_name) {
 		Enterprise enterprise;
 		input_stream >> enterprise;
 		if(input_stream.fail())
-			throw(FileIncorrectFormatting(enterprise_file_name));
+			throw(FileReadingFailed(enterprise_file_name));
 		vec_enterprises.push_back(enterprise);
 	}
 
@@ -390,35 +390,35 @@ void MuseumNetwork::importFiles(std::string network_file_name) {
 
 	input_stream >> temp_str;
 	input_stream >> museum_file_name; utl::ignore(input_stream);
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> enterprise_file_name; utl::ignore(input_stream);
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->cost[0]; utl::ignore(input_stream); // individual cost
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->discount[0]; utl::ignore(input_stream); // individual discount
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->cost[1]; utl::ignore(input_stream); // silver cost
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->discount[1]; utl::ignore(input_stream); // silver discount
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->cost[2]; utl::ignore(input_stream); // uni cost
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	input_stream >> temp_str;
 	input_stream >> this->discount[2]; utl::ignore(input_stream); // uni discount
-	if(input_stream.fail()) throw(FileIncorrectFormatting(network_file_name));
+	if(input_stream.fail()) throw(FileReadingFailed(network_file_name));
 
 	if(!utl::file_exists(network_file_name))
 		throw(FileNotFound(network_file_name));
