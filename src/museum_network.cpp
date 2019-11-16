@@ -108,6 +108,7 @@ void MuseumNetwork::listEnterprises(const string &delim) const {
 }
 
 void MuseumNetwork::modifyEnterprise(const Enterprise &old_enterprise, const Enterprise &new_enterprise) {
+	// TODO Verify if new enterprise overrides something???
 	vector<Enterprise>::iterator iter;
 	iter = find(enterprises.begin(), enterprises.end(), old_enterprise);
 
