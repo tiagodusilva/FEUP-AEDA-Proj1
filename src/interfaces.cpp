@@ -404,7 +404,7 @@ MemberInterface::MemberInterface(MuseumNetwork &rnm, unsigned int cc) : museum_n
 	vector<Card*> cards = rnm.getCards();
 	vector<Card*>::iterator iter = find_if(cards.begin(), cards.end(), [&cc](Card *c1){ return(c1->get_cc() == cc); });
 	if(iter == cards.end())
-		throw(NoSuchCard(cc));
+		throw(NoSuchObject(to_string(cc), "card"));
 
 	this->member_card = *(iter);
 	//this->museum_network = rnm;

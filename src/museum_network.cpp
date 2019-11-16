@@ -25,7 +25,7 @@ void MuseumNetwork::removeCard(const Card *card) {
 	if(iter != this->cards.end()) // If the card is found
 		cards.erase(iter);
 	else
-		throw(NoSuchCard(card->get_cc()));
+		throw(NoSuchObject(to_string(card->get_cc()), "card"));
 }
 
 
@@ -58,7 +58,7 @@ void MuseumNetwork::modifyMuseum(const Museum &old_museum, const Museum &new_mus
 	iter = find(museums.begin(), museums.end(), old_museum);
 
 	if(iter == museums.end())
-		throw(NoSuchMuseum(old_museum.get_name()));
+		throw(NoSuchObject(old_museum.get_name(), "museum"));
 
 	*iter = new_museum;
 }
@@ -93,7 +93,7 @@ void MuseumNetwork::removeEnterprise(const Enterprise &enterprise) {
 	if(iter != this->enterprises.end()) // If the museum is found
 		enterprises.erase(iter);
 	else
-		throw(NoSuchEnterprise(enterprise.get_name()));
+		throw(NoSuchObject(enterprise.get_name(), "enterprise"));
 }
 void MuseumNetwork::listEnterprises(const std::vector<Enterprise> &enterprises_to_be_listed, const string &delim) const {
 	int i;
@@ -112,7 +112,7 @@ void MuseumNetwork::modifyEnterprise(const Enterprise &old_enterprise, const Ent
 	iter = find(enterprises.begin(), enterprises.end(), old_enterprise);
 
 	if(iter == enterprises.end())
-		throw(NoSuchEnterprise(old_enterprise.get_name()));
+		throw(NoSuchObject(old_enterprise.get_name(), "enterprise"));
 
 	*iter = new_enterprise;
 }
@@ -149,7 +149,7 @@ void MuseumNetwork::removeMuseum(const Museum &museum) {
 	if(iter != this->museums.end()) // If the museum is found
 		museums.erase(iter);
 	else
-		throw(NoSuchMuseum(museum.get_name()));
+		throw(NoSuchObject(museum.get_name(), "museum"));
 }
 
 
