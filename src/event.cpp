@@ -177,7 +177,7 @@ operator<<(std::ostream &outstream, const Event &ev)
 		left << setw(EVENT_OUPUT_DELIM) << "Time"	     << " : " << right << ev.time << endl <<
         left << setw(EVENT_OUPUT_DELIM) << "Available"       << " : " << right;
 
-    if (ev.is_valid && !ev.is_full())
+    if (ev.is_valid && !ev.is_full() && timespan_size(Date(), Time(), ev.date, ev.time) >= 0)
         outstream << "Yes";
     else
         outstream << "No";
@@ -223,6 +223,7 @@ std::ifstream &operator>>(std::ifstream &infstream, Event &ev) {
             throw FileReadingFailed("Event's ticket fee must not be negative");
 
         // RESERVATIONS
+        ev.reservations.clear();
         int num_reservations;
         infstream >> num_reservations; utl::ignore(infstream);
 
