@@ -108,19 +108,19 @@ public:
 	 *
 	 * @param contact	new user contact
 	 */
-	void set_contact(const std::string &contact) { this->contact = contact; };
+	void set_contact(const std::string &contact) { this->contact = contact; }
 	/**
 	 * @brief	Changes user's saved name
 	 *
 	 * @param name		new user name
 	 */
-	void set_name(const std::string &name) { this->name = name; };
+	void set_name(const std::string &name) { if (utl::isStrEmpty(name)) this->name = name; else throw UserInputReadingFailure("Empty name!"); }
 	/**
 	 * @brief	Changes user's saved birth date
 	 *
 	 * @param d		new user birth date
 	 */
-	void set_birth_date(const Date &d) { this->birth_date = d; };
+	void set_birth_date(const Date &d) { this->birth_date = d; }
 	/**
 	 * @brief	Changes user's saved address
 	 *
