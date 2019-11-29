@@ -210,7 +210,7 @@ std::ifstream &operator>>(std::ifstream &infstream, Enterprise &ent) {
         infstream >> num_events; utl::ignore(infstream);
 
         Event auxEv;
-            for (; num_events > 0; --num_events) {
+        for (; num_events > 0; --num_events) {
             infstream >> auxEv;
             ent.events.insert(auxEv);
         }

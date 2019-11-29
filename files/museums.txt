@@ -2,25 +2,10 @@
 Museu do Pao
 9:30
 19:0
-7.500000
+7.50
 Rua dos Italianos :::::: 1354-682 :::::: Evora
 Museu do Pao
 10:30
 17:45
-5.000000
+5.00
 Rua D. Maria :::::: 4239-963 :::::: Lisboa
-Museu dos Coches
-8:00
-20:0
-15.000000
-Avenida da Liberdade :::::: 5389-439 :::::: Lisboa
-Museu de Arte Religiosa
-10:30
-20:0
-8.000000
-Rua das Flores :::::: 2648-534 :::::: Porto
-Museu da Agua
-9:25
-15:55
-0.000000
-Parque da Cidade :::::: 5682-567 :::::: Porto
