@@ -22,8 +22,10 @@ void MuseumNetwork::removeCard(const Card *card) {
 	iter = (find_if(this->cards.begin(), this->cards.end(),
 			[&card](Card *lhs){return( *lhs == *card ); }));
 
-	if(iter != this->cards.end()) // If the card is found
+	if(iter != this->cards.end()) { // If the card is found
+		delete(*iter);
 		cards.erase(iter);
+	}
 	else
 		throw NoSuchObject(to_string(card->get_cc()), "Card");
 }

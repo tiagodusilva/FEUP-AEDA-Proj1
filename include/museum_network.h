@@ -72,6 +72,7 @@ public:
 	 */
 	MuseumNetwork(std::string config_file_name) { this->importFiles(config_file_name); }
 
+	~MuseumNetwork() { this->removeCards(this->cards); }
 
 	/* METHODS FOR CARDS */
 	/**
