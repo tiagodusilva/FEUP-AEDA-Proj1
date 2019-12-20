@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <set>
 #include <string>
 #include <unordered_set>
 #include <vector>
@@ -62,11 +63,13 @@ private:
   float cost[3] = { 54.90, 32.45, 30.00 };
   /** @brief	List of pointers to all the registered User's Cards */
   std::vector<Card*> cards;
-  /** @brief	List of all the Enterprises associated with the Museum Network
-   */
+  /** @brief	List of all the Enterprises associated with the MuseumNetwork */
   std::vector<Enterprise> enterprises;
   /** @brief	List of all the Museums that are part of the Museum Network */
-  std::vector<Museum> museums;
+  /** @brief  BST containing the most visited museums */
+  std::vector<Museum> museums;  // TODO passar para set
+  /** @brief  Hash table containing all the state workers registers */
+  HashTabStateWorker workers;  // TODO
 
 public:
   /* CONSTRUCTORS */

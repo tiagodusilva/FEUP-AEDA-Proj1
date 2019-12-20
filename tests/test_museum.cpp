@@ -7,7 +7,7 @@
 using namespace std;
 
 TEST(museum, files) {
-    Museum m1("nome", Time(7, 0), Time(20, 0), 12.5, Address("Rua", "1234-567", "Região"));
+    Museum m1("nome", Time(7, 0), Time(20, 0), 12.5, Address("Rua", "1234-567", "Região"), tuple<float,float>(165.23, 1231.4));
 
     ofstream tofile("museum.txt");
     tofile << m1;

@@ -173,10 +173,10 @@ operator<<(std::ostream& outstream, const StateWorker& w)
 
   if (w.is_hired)
     outstream << left << setw(WORKER_OUTPUT_DELIM) << "Is hired"
-              << " : " << right << "yes" << endl;
+              << " : " << right << "yes";
   else
     outstream << left << setw(WORKER_OUTPUT_DELIM) << "Is hired"
-              << " : " << right << "no" << endl;
+              << " : " << right << "no";
 
   return outstream;
 }
