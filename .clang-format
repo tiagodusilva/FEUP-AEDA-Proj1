@@ -1,25 +1,30 @@
 ﻿---
+Language:        Cpp
 BasedOnStyle: Mozilla
-AccessModifierOffset: '0'
-AlignAfterOpenBracket: DontAlign
-AlignConsecutiveMacros: 'true'
-AlignConsecutiveAssignments: 'true'
-AlignConsecutiveDeclarations: 'false'
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: true
 AlignEscapedNewlines: Left
-AlignOperands: 'true'
-AlignTrailingComments: 'true'
-AllowAllArgumentsOnNextLine: 'true'
-AllowAllConstructorInitializersOnNextLine: 'true'
-AllowAllParametersOfDeclarationOnNextLine: 'true'
-AllowShortBlocksOnASingleLine: 'false'
-AllowShortCaseLabelsOnASingleLine: 'false'
-AllowShortFunctionsOnASingleLine: Inline
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: All
-AllowShortLoopsOnASingleLine: 'false'
-AlwaysBreakAfterDefinitionReturnType: All
+AllowShortFunctionsOnASingleLine: All
 AlwaysBreakAfterReturnType: TopLevelDefinitions
-AlwaysBreakBeforeMultilineStrings: 'false'
-AlwaysBreakTemplateDeclarations: 'Yes'
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: true
+  AfterUnion: false
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: true
+FixNamespaceComments: true
+KeepEmptyLinesAtTheStartOfBlocks: false
 
 ...
