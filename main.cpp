@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include "include/interfaces.h"
 
-using namespace std;
-
 int main(int argc, char* argv[]) {
 	MuseumNetwork rnm;
 	GUI gui(rnm);

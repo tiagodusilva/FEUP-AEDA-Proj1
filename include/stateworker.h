@@ -19,6 +19,7 @@
 /** @brief	for formatted outputs */
 #define WORKER_OUTPUT_DELIM 15
 
+/** @brief  Object that saves the information of a state worker. */
 class StateWorker
 {
 private:

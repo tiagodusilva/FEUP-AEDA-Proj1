@@ -209,7 +209,7 @@ public:
   friend std::ifstream& operator>>(std::ifstream& infstream, Museum& ent);
 
   /**
-   * @brief   Overloaded less-than operator-
+   * @brief   Overloaded less-than operator.
    *
    * @note    Mostly used to organize Museums in BST trees.
    *
