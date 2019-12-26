@@ -65,22 +65,8 @@ MuseumNetwork::listCards(const std::string& delim) const
 void
 MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 {
-  vector<Museum>::iterator iter;
-
-  if (old_museum !=
-      new_museum) { // if the new_museum won't replace the old_museum
-    iter = find(museums.begin(), museums.end(), new_museum);
-    if (iter !=
-        museums.end()) // check if the new_museum won't overwritte any museum
-      throw(ObjectAlreadyExists(new_museum.get_name(), "Museum"));
-  }
-
-  iter = find(museums.begin(), museums.end(), old_museum);
-
-  if (iter == museums.end())
-    throw NoSuchObject(old_museum.get_name(), "Museum");
-
-  *iter = new_museum;
+    this->museums.erase(old_museum);
+    this->museums.insert(new_museum);
 }
 
 float
@@ -190,29 +176,17 @@ MuseumNetwork::removeMuseums(std::vector<Museum>& museums_to_be_removed)
 void
 MuseumNetwork::removeMuseum(const Museum& museum)
 {
-  vector<Museum>::iterator iter;
-  iter =
-    (find_if(this->museums.begin(), this->museums.end(), [&museum](Museum lhs) {
-      return (lhs == museum);
-    }));
-
-  if (iter != this->museums.end()) // If the museum is found
-    museums.erase(iter);
-  else
-    throw NoSuchObject(museum.get_name(), "Museum");
+    this->museums.erase(museum);
 }
 
 void
-MuseumNetwork::listMuseums(const std::vector<Museum>& museums_to_be_listed,
+MuseumNetwork::listMuseums(const std::set<Museum>& museums_to_be_listed,
                            const string& delim) const
 {
-  size_t i;
-  for (i = 0; i < museums_to_be_listed.size(); ++i) {
-    cout << museums_to_be_listed.at(i);
-    cout << delim;
+  for (const auto &museum: this->museums) {
+      cout << museum << delim;
   }
-  cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n"
-       << endl;
+  cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n" << endl;
 }
 
 void
@@ -224,12 +198,8 @@ MuseumNetwork::listMuseums(const string& delim) const
 void
 MuseumNetwork::addMuseum(Museum museum)
 {
-  size_t i;
-  for (i = 0; i < this->museums.size(); ++i) {
-    if (museum == this->museums.at(i))
+  if (!this->museums.insert(museum).second)
       throw ObjectAlreadyExists(museum.get_name(), "Museum");
-  }
-  this->museums.push_back(museum);
 }
 
 /* Events */
@@ -411,7 +381,7 @@ MuseumNetwork::importMuseums(const std::string& museum_file_name)
 {
   ifstream input_stream(museum_file_name);
   int museum_cnt;
-  vector<Museum> vec_museums;
+  set<Museum> set_museums;
 
   input_stream >> museum_cnt;
   utl::ignore(input_stream);
@@ -420,10 +390,10 @@ MuseumNetwork::importMuseums(const std::string& museum_file_name)
     input_stream >> museum;
     if (input_stream.fail())
       throw FileReadingFailed(museum_file_name);
-    vec_museums.push_back(museum);
+    set_museums.insert(museum);
   }
 
-  this->museums = vec_museums;
+  this->museums = set_museums;
 }
 
 void
@@ -447,6 +417,26 @@ MuseumNetwork::importEnterprises(const std::string& enterprise_file_name)
 }
 
 void
+MuseumNetwork::importRepairEnterprises(const std::string& repair_enterprise_file_name)
+{
+    ifstream input_stream(repair_enterprise_file_name);
+    int repair_cnt;
+    priority_queue<RepairEnterprise> pq_repair;
+
+    input_stream >> repair_cnt;
+    utl::ignore(input_stream);
+    for (int i = 0; i < repair_cnt; ++i) {
+        RepairEnterprise repair;
+        input_stream >> repair;
+        if (input_stream.fail())
+            throw FileReadingFailed(repair_enterprise_file_name);
+        pq_repair.push(repair);
+    }
+
+    this->repair_ent = pq_repair;
+}
+
+void
 MuseumNetwork::exportCards(const std::string& cards_file_name) const
 {
   ofstream output_stream(cards_file_name);
@@ -462,10 +452,11 @@ MuseumNetwork::exportMuseums(const std::string& museum_file_name) const
 {
   ofstream output_stream(museum_file_name);
 
-  unsigned int museums_cnt = this->museums.size();
-  output_stream << "" << museums_cnt << endl;
-  for (size_t i = 0; i < museums_cnt; ++i)
-    output_stream << museums.at(i) << endl;
+  output_stream << "" << this->museums.size() << endl;
+  for (const auto &museum: this->museums) {
+      output_stream << museum << endl;
+  }
+
 }
 
 void
@@ -481,15 +472,30 @@ MuseumNetwork::exportEnterprises(const std::string& enterprises_file_name) const
 }
 
 void
-MuseumNetwork::exportFiles(const std::string& config_file_name,
-                           const std::string& cards_file_name,
+MuseumNetwork::exportRepairEnterprises(const std::string& repair_enterprise_file_name) const
+{
+    ofstream output_stream(repair_enterprise_file_name);
+    priority_queue<RepairEnterprise> aux = this->repair_ent;
+
+    output_stream << "" << aux.size() << endl;
+    while (!aux.empty()) {
+        output_stream << aux.top() << endl;
+        aux.pop();
+    }
+}
+
+void
+MuseumNetwork::exportFiles(const std::string& cards_file_name,
                            const std::string& museum_file_name,
-                           const std::string& enterprise_file_name) const
+                           const std::string& enterprise_file_name,
+                           const std::string& repair_enterprise_file_name,
+                           const std::string& config_file_name) const
 {
   ofstream output_stream(config_file_name);
   output_stream << "cards_file_name: " << cards_file_name << endl;
   output_stream << "museum_file_name: " << museum_file_name << endl;
   output_stream << "enterprise_file_name: " << enterprise_file_name << endl;
+  output_stream << "repair_enterprise_file_name: " << repair_enterprise_file_name << endl;
   output_stream << "individual::cost: " << cost[0] << endl;
   output_stream << "individual::discount: " << discount[0] << endl;
   output_stream << "silver::cost: " << cost[1] << endl;
@@ -500,13 +506,14 @@ MuseumNetwork::exportFiles(const std::string& config_file_name,
   this->exportCards(cards_file_name);
   this->exportMuseums(museum_file_name);
   this->exportEnterprises(enterprise_file_name);
+  this->exportRepairEnterprises(repair_enterprise_file_name);
 }
 
 void
 MuseumNetwork::importFiles(const std::string& network_file_name)
 {
   ifstream input_stream(network_file_name);
-  string museum_file_name, enterprise_file_name, cards_file_name;
+  string museum_file_name, enterprise_file_name, cards_file_name, repair_enterprise_file_name;
   string temp_str;
 
   input_stream >> temp_str;
@@ -521,6 +528,12 @@ MuseumNetwork::importFiles(const std::string& network_file_name)
 
   input_stream >> temp_str;
   input_stream >> enterprise_file_name;
+  utl::ignore(input_stream);
+  if (input_stream.fail())
+    throw FileReadingFailed(network_file_name);
+
+  input_stream >> temp_str;
+  input_stream >> repair_enterprise_file_name;
   utl::ignore(input_stream);
   if (input_stream.fail())
     throw FileReadingFailed(network_file_name);
@@ -569,8 +582,11 @@ MuseumNetwork::importFiles(const std::string& network_file_name)
     throw FileNotFound(enterprise_file_name);
   if (!utl::file_exists(cards_file_name))
     throw FileNotFound(cards_file_name);
+  if (!utl::file_exists(repair_enterprise_file_name))
+      throw FileNotFound(repair_enterprise_file_name);
 
   this->importCards(cards_file_name);
   this->importMuseums(museum_file_name);
   this->importEnterprises(enterprise_file_name);
+  this->importRepairEnterprises(repair_enterprise_file_name);
 }

@@ -133,17 +133,16 @@ public:
   /**
    * @brief     Overloaded equality test operator
    *
-   * @details   Two Museums are considered equal if their name and Address are
-   *the same
+   * @details   Implemented using a < b && b < a to preserve the advantages of the set
    *
    * @param	museum	The rightmost Museum to compare
    *
-   * @return    True if both Museums' names and Addresses are equal\n
-   *	      False, otherwise
+   * @return    True if both the museum's names and number of visits are the same\n
+   *            False otherwise
    */
   inline bool operator==(const Museum& museum) const
   {
-    return (this->name == museum.name) && (this->address == museum.address);
+    return *this < museum && museum < *this;
   };
   /**
    * @brief     Overloaded inequality test operator
@@ -219,12 +218,12 @@ public:
    * @return  true, if lhs is considered less-than rhs,\n
    *          false, otherwise.
    */
-  friend bool operator<(Museum& lhs, Museum& rhs)
+  bool operator<(const Museum& rhs) const
   {
-    if (lhs.nvisits == rhs.nvisits)
-      return (lhs.name < rhs.name);
+    if (this->nvisits == rhs.nvisits)
+      return (this->name < rhs.name);
     else
-      return (lhs.nvisits > rhs.nvisits);
+      return (this->nvisits > rhs.nvisits);
   }
 
   /* OTHER FUNCTIONS */

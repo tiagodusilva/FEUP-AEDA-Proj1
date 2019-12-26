@@ -437,7 +437,7 @@ TEST(network, DISABLED_export_network)
   rnm.addMuseum(m2);
 
   rnm.exportFiles(
-    "files/cards.txt", "files/museums.txt", "files/enterprises.txt");
+    "files/cards.txt", "files/museums.txt", "files/enterprises.txt", "files/repair_enterprises.txt");
 }
 
 TEST(network, DISABLED_remove_events)

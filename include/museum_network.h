@@ -9,12 +9,14 @@
 #include <string>
 #include <unordered_set>
 #include <vector>
+#include <queue>
 
 #include "cards.h"
 #include "enterprise.h"
 #include "exceptions.h"
 #include "museum.h"
 #include "stateworker.h"
+#include "repairenterprise.h"
 
 /**
  * @mainpage	First project for the AEDA chair (FEUP MIEIC 2019/2020)
@@ -65,11 +67,13 @@ private:
   std::vector<Card*> cards;
   /** @brief	List of all the Enterprises associated with the MuseumNetwork */
   std::vector<Enterprise> enterprises;
-  /** @brief	List of all the Museums that are part of the Museum Network */
+  /** @brief	Set (BST) of all the Museums that are part of the Museum Network */
   /** @brief  BST containing the most visited museums */
-  std::vector<Museum> museums;  // TODO passar para set
+  std::set<Museum> museums;  // TODO passar para set
   /** @brief  Hash table containing all the state workers registers */
   HashTabStateWorker workers;  // TODO
+  /** @brief Pritority Queue containing all the repair enterprises, having the one with the most repairs always at the top */
+  std::priority_queue<RepairEnterprise> repair_ent;  // TODO
 
 public:
   /* CONSTRUCTORS */
@@ -88,7 +92,7 @@ public:
    */
   MuseumNetwork(std::vector<Card*>& card_vector,
                 std::vector<Enterprise>& enterprise_vector,
-                std::vector<Museum>& museum_vector)
+                std::set<Museum>& museum_vector)
     : cards(card_vector)
     , enterprises(enterprise_vector)
     , museums(museum_vector)
@@ -303,7 +307,7 @@ public:
    * @param delim   String delimiter to be printed between museums
    * @param museum_to_be_listed	Vector of Museums to be listed
    */
-  void listMuseums(const std::vector<Museum>& museum_to_be_listed,
+  void listMuseums(const std::set<Museum>& museum_to_be_listed,
                    const std::string& delim = '\n' + std::string(64, '-') +
                                               '\n') const;
 
@@ -408,6 +412,23 @@ public:
    */
   void purchaseEvent(const unsigned cc, Event event);
 
+  /* Methods for RepairEnterprises */
+  /**
+   * @brief	Imports repair enterprises written in a file to the repair enterprises controlled by
+   * the network
+   *
+   * @param repair_enterprise_file_name	Name of the file associated with the repair enterprises'
+   * information
+   */
+  void importRepairEnterprises(const std::string& repair_enterprise_file_name);
+  /**
+   * @brief	Exports all repair enterprises registered in the network to a file
+   *
+   * @param repair_enterprise_file_name	Name of the file that will be overwritten with
+   * the repair enterprises' information
+   */
+  void exportRepairEnterprises(const std::string& repair_enterprise_file_name) const;
+
   /* Getters for use with Menus */
   /**
    * @brief	Getter for all Cards subscribed in the network
@@ -426,7 +447,7 @@ public:
    *
    * @return	Vector of all Museums present in the network
    */
-  std::vector<Museum> getMuseums() const { return this->museums; };
+  std::set<Museum> getMuseums() const { return this->museums; };
   /**
    * @brief	Getter for all Events present in the network
    *
@@ -457,6 +478,7 @@ public:
     const std::string& cards_file_name,
     const std::string& museum_file_name,
     const std::string& enterprise_file_name,
+    const std::string& repair_enterprise_file_name,
     const std::string& config_file_name = "files/network_config.sadjson") const;
 };
 

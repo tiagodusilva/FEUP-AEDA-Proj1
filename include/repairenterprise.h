@@ -58,9 +58,9 @@ public:
    * @return  true, if lhs is considered less-than rhs,\n
    *          false, otherwise.
    */
-  friend bool operator<(RepairEnterprise& lhs, RepairEnterprise& rhs)
+  bool operator<(const RepairEnterprise& rhs) const
   {
-    return (lhs.njobs < rhs.njobs);
+    return (this->njobs < rhs.njobs);
   }
 
   /* OVERLOADED INSERTION OPERATOR */
