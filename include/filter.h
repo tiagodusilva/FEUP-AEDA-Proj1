@@ -11,6 +11,7 @@
 #include "event.h"
 #include "date.h"
 #include "cards.h"
+#include "stateworker.h"
 #include "museum.h"
 
 using namespace std;
@@ -145,6 +146,19 @@ namespace flt
 	 */
 	void FilterCardByInvalidity(vector<Card*> &vec);
 
+	/**
+	 * @brief	Remove all workers present in the given vector that aren't employed by the network:
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
+	void FilterWorkersByEmployment(vector<StateWorker> &vec);
+
+	/**
+	 * @brief	Remove all workers present in the given vector that are being employed by the network.
+	 *
+	 * @param vec	Vector that contains the elements to evaluate
+	 */
+	void FilterWorkersByNonEmployment(vector<StateWorker> &vec);
 
 	/* TEMPLATE FILTERS */
 	/**

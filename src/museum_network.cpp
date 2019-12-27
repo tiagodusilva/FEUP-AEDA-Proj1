@@ -384,6 +384,59 @@ MuseumNetwork::purchaseEvent(const unsigned cc, Event event)
   throw NoSuchObject(to_string(event.get_id()), "Event");
 }
 
+
+/* Worker */
+
+vector<StateWorker>
+MuseumNetwork::getWorkers() const
+{
+	vector<StateWorker> result;
+	result.reserve(workers.size());
+
+	for(auto it=workers.begin(); it != workers.end(); ++it)
+		result.push_back(*it);
+
+	return result;
+}
+
+void
+MuseumNetwork::addWorker(StateWorker worker)
+{
+  bool sucess = (this->workers.insert(worker)).second;
+
+  if (!sucess)
+	  throw(ObjectAlreadyExists(to_string(worker.get_cc()), "Worker"));
+}
+
+void
+MuseumNetwork::listWorkers(const vector<StateWorker> &vec, const string& delim) const
+{
+	for(auto it=vec.begin(); it != vec.end(); ++it)
+	{
+		cout << (*it);
+		cout << delim;
+	}
+}
+
+void
+MuseumNetwork::listWorkers(const string& delim) const
+{
+	this->listWorkers(getWorkers(), delim);
+}
+
+void
+MuseumNetwork::removeWorker(const StateWorker& worker_to_be_removed)
+{
+	this->workers.erase(worker_to_be_removed);
+}
+
+void
+MuseumNetwork::removeWorkers(const vector<StateWorker>& workers_to_be_removed)
+{
+	for(size_t i=0; i<workers_to_be_removed.size(); ++i)
+		removeWorker(workers_to_be_removed.at(i));
+}
+
 /* File Methods */
 
 void
@@ -446,6 +499,31 @@ MuseumNetwork::importEnterprises(const std::string& enterprise_file_name)
   this->enterprises = vec_enterprises;
 }
 
+
+void
+MuseumNetwork::importWorkers(const std::string& worker_file_name)
+{
+  ifstream input_stream(worker_file_name);
+  bool sucess;
+  unsigned worker_cnt;
+
+  input_stream >> worker_cnt;
+  utl::ignore(input_stream);
+  for (int i = 0; i < worker_cnt; ++i) {
+    StateWorker worker;
+    input_stream >> worker;
+
+	sucess = (workers.insert(worker)).second;
+
+    if (input_stream.fail() || !sucess)
+	{
+	  workers.clear();
+      throw FileReadingFailed(worker_file_name);
+	}
+    utl::ignore(input_stream);
+  }
+}
+
 void
 MuseumNetwork::exportCards(const std::string& cards_file_name) const
 {
@@ -481,15 +559,28 @@ MuseumNetwork::exportEnterprises(const std::string& enterprises_file_name) const
 }
 
 void
-MuseumNetwork::exportFiles(const std::string& config_file_name,
-                           const std::string& cards_file_name,
-                           const std::string& museum_file_name,
-                           const std::string& enterprise_file_name) const
+MuseumNetwork::exportWorkers(const std::string& worker_file_name) const
+{
+  ofstream output_stream(worker_file_name);
+
+  unsigned int worker_cnt = this->workers.size();
+  output_stream << "" << worker_cnt << endl;
+  for (auto it=workers.begin(); it != workers.end(); ++it)
+    output_stream << *it << endl;
+}
+
+void
+MuseumNetwork::exportFiles(const string& cards_file_name,
+                           const string& museum_file_name,
+                           const string& enterprise_file_name,
+						   const string& worker_file_name,
+						   const string& config_file_name) const
 {
   ofstream output_stream(config_file_name);
   output_stream << "cards_file_name: " << cards_file_name << endl;
   output_stream << "museum_file_name: " << museum_file_name << endl;
   output_stream << "enterprise_file_name: " << enterprise_file_name << endl;
+  output_stream << "worker_file_name: " << worker_file_name << endl;
   output_stream << "individual::cost: " << cost[0] << endl;
   output_stream << "individual::discount: " << discount[0] << endl;
   output_stream << "silver::cost: " << cost[1] << endl;
@@ -500,13 +591,14 @@ MuseumNetwork::exportFiles(const std::string& config_file_name,
   this->exportCards(cards_file_name);
   this->exportMuseums(museum_file_name);
   this->exportEnterprises(enterprise_file_name);
+  this->exportWorkers(worker_file_name);
 }
 
 void
-MuseumNetwork::importFiles(const std::string& network_file_name)
+MuseumNetwork::importFiles(const string& network_file_name)
 {
   ifstream input_stream(network_file_name);
-  string museum_file_name, enterprise_file_name, cards_file_name;
+  string museum_file_name, enterprise_file_name, cards_file_name, worker_file_name;
   string temp_str;
 
   input_stream >> temp_str;
@@ -521,6 +613,12 @@ MuseumNetwork::importFiles(const std::string& network_file_name)
 
   input_stream >> temp_str;
   input_stream >> enterprise_file_name;
+  utl::ignore(input_stream);
+  if (input_stream.fail())
+    throw FileReadingFailed(network_file_name);
+
+  input_stream >> temp_str;
+  input_stream >> worker_file_name;
   utl::ignore(input_stream);
   if (input_stream.fail())
     throw FileReadingFailed(network_file_name);
@@ -573,4 +671,5 @@ MuseumNetwork::importFiles(const std::string& network_file_name)
   this->importCards(cards_file_name);
   this->importMuseums(museum_file_name);
   this->importEnterprises(enterprise_file_name);
+  this->importWorkers(worker_file_name);
 }

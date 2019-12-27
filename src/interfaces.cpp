@@ -62,6 +62,20 @@ AdminInterface::show()
 			[this](vector<Enterprise>&vec) { this->museum_network.listEnterprises(vec); });
 
 
+	/* Filter Workers by employment*/
+	MenuSelectFilter<vector<StateWorker>> WorkersEmployed("Select currently employed workers", flt::FilterWorkersByEmployment);
+	MenuSelectFilter<vector<StateWorker>> WorkersNotEmployed("Select workers which aren't currently being employed by the network",
+			flt::FilterWorkersByNonEmployment);
+	vector<MenuFilter<vector<StateWorker>>*> employmentOpt = {&WorkersEmployed, &WorkersNotEmployed};
+
+	/* Filter Workers */
+	MenuSelectFilter<vector<StateWorker>> WorkerName("Filter by name", flt::FilterByName<StateWorker>);
+	MenuOptionsFilter<vector<StateWorker>> WorkerHired("Filter by employment", employmentOpt, [](vector<StateWorker>&){},
+			[](){ return(vector<StateWorker>()); }, true);
+	MenuSelectFilter<vector<StateWorker>> WorkerSelected("List currently selected workers",
+			[this](const vector<StateWorker>&vec) { this->museum_network.listWorkers(vec); });
+
+
 	/* List Cards */
 	vector<MenuFilter<vector<Card*>>*> listCardsOpt = {&CardsSelect, &CardsName, &CardsValidityOptions};
 	MenuOptionsFilter<vector<Card*>> listCards("List Cards", listCardsOpt,
@@ -95,8 +109,16 @@ AdminInterface::show()
 			false, {0});
 
 
+	/* List Workers */
+	vector<MenuFilter<vector<StateWorker>>*> listWorkersOpt = {&WorkerSelected, &WorkerName, &WorkerHired};
+	MenuOptionsFilter<vector<StateWorker>> listWorkers("List Workers", listWorkersOpt,
+			[this](vector<StateWorker>&vec){ return vector<StateWorker>(); },
+			[this](){ return(this->museum_network.getWorkers());}, // Initialize vector with all museums of the network
+			false, {0});
+
 	/* List Network Options */
-	MenuOptions list_network("List Network Options", std::vector<Menu*>{&listEvents, &listMuseums, &listEnterprises, &listCards});
+	MenuOptions list_network("List Network Options",
+			std::vector<Menu*>{&listEvents, &listMuseums, &listEnterprises, &listCards, &listWorkers});
 
 
 	/* Remove Events */
@@ -190,8 +212,32 @@ AdminInterface::show()
 			false, {0});
 
 
+	/* Remove Workers */
+	MenuSelectFilter<vector<StateWorker>> removeWorkersSelected("Remove selected workers",
+		[this](vector<StateWorker> &vec){
+			if(vec.size() == this->museum_network.getWorkers().size()) // If user has all of them selected
+				cout << "Warning! You will remove all of them!!\n";
+			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+			if(a=='y' || a=='Y') {
+				this->museum_network.removeWorkers(vec);
+				cout <<	"Worker(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
+			}
+			else
+				cout << "Operation aborted" << endl;
+		});
+	vector<MenuFilter<vector<StateWorker>>*> removeWorkersOpt =
+		{&WorkerSelected, &WorkerName, &WorkerHired, &removeWorkersSelected};
+	MenuOptionsFilter<vector<StateWorker>> removeWorkers("Remove Workers", removeWorkersOpt,
+			[this](vector<StateWorker>&vec){ return; },
+			[this](){ return(this->museum_network.getWorkers());},
+			false, {0});
+
+
 	/* Remove Network Options */
-	MenuOptions remove_network("Network Remove Options", std::vector<Menu*>{&removeEvents, &removeMuseums, &removeEnterprises, &removeCards});
+	MenuOptions remove_network("Network Remove Options",
+			std::vector<Menu*>{&removeEvents, &removeMuseums, &removeEnterprises, &removeCards, &removeWorkers});
 
 
 	/* Add User */
@@ -275,9 +321,28 @@ AdminInterface::show()
 			false, {0});
 
 
-	/* Add Options */
-	MenuOptions add_network("Add Network Options", std::vector<Menu*>{&addEnterpirse, &addEvent, &addMuseum, &addUser});
+	/* Add State Worker */
+	MenuSelect addStateWorker("Add a new state worker", [this](){
+				StateWorker sw;
+				StateWorker::cin_read_worker(sw);
+				if (cin.fail()) {
+					utl::stream_clear(cin);
+					throw(UserInputReadingFailure("Invalid state worker formatting\n"));
+				}
 
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if (!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+
+				if (a=='y' || a=='Y') {
+					this->museum_network.addWorker(sw);
+				}
+				else
+					cout << "Operation aborted" << endl;
+			});
+
+	/* Add Options */
+	MenuOptions add_network("Add Network Options",
+			std::vector<Menu*>{&addEnterpirse, &addEvent, &addMuseum, &addUser, &addStateWorker});
 
 
 	/* Modify Museums*/
@@ -828,12 +893,13 @@ void GUI::show() {
 		});
 
 	MenuSelect exportMenu("Export to a file", [this](){
-			string config_file, cards_file, museum_file, enterprise_file;
+			string config_file, cards_file, museum_file, enterprise_file, worker_file;
 			cout << "Insert the config file name (path relative to executable directory)" << endl; cin >> config_file;
 			cout << "Insert the cards file name (path relative to executable directory)" << endl; cin >> cards_file;
+			cout << "Insert the enteprise file name (path relative to executable directory)" << endl; cin >> enterprise_file;
 			cout << "Insert the museum file name (path relative to executable directory)" << endl; cin >> museum_file;
-			cout << "Insert the enterprise file name (path relative to executable directory)" << endl; cin >> enterprise_file; utl::ignore(cin);
-			this->museum_network.exportFiles(config_file, cards_file, museum_file, enterprise_file);
+			cout << "Insert the workers file name (path relative to executable directory)" << endl; cin >> worker_file; utl::ignore(cin);
+			this->museum_network.exportFiles(cards_file, museum_file, enterprise_file, worker_file, config_file);
 			cout << "Files were exported with success" << endl;});
 
 	MenuOptions main_menu("Welcome to RNM\n", vector<Menu*> {&adminMenu, &memberMenu, &userMenu, &importMenu, &exportMenu});

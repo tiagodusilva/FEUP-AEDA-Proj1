@@ -408,7 +408,81 @@ public:
    */
   void purchaseEvent(const unsigned cc, Event event);
 
-  /* Getters for use with Menus */
+  /* METHODS FOR WORKERS */
+
+  /**
+   * @brief	Add a new StateWorker to the network
+   * @throws  ObjectAlreadyExists  Thrown if the StateWorker is already in the
+   * network
+   * @param worker	Worker to be added to the network
+   */
+  void addWorker(StateWorker worker);
+
+  /**
+   * @brief	Lists all Workers present in the network
+   *
+   * @param delim   String delimiter to be printed between Workers
+   */
+  void listWorkers(const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+
+  /**
+   * @brief	Lists all Workers present in a given vector
+   *
+   * @param vec	  Vector of StateWorker that will be listed
+   * @param delim   String delimiter to be printed between Workers
+   */
+  void listWorkers(const std::vector<StateWorker> &vec,
+		  const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+
+  /**
+   * @brief	Remove a given StateWorker from the network
+   *
+   * @throws  NoSuchObject  Thrown if workeworkere_removed doesn't exist in the
+   * network
+   * @param worker_to_be_removed	Worker to find and remove from the
+   * network
+   */
+  void removeWorker(const StateWorker& worker_to_be_removed);
+
+  /**
+   * @brief	Search for the given Workers on the network and remove them
+   *
+   * @param workers_to_be_removed	Vector of StateWorker to be removed from the
+   * network
+   */
+  void removeWorkers(const std::vector<StateWorker>& workers_to_be_removed);
+
+  /**
+   * @brief	Search for a given StateWorker and change its content to a new given
+   * Worker (new_worker)
+   *
+   * @throws  NoSuchObject  Thrown if the old_worker doesn't exist in the
+   * network
+   * @throws  ObjectAlreadyExists	Thrown if the new_worker would
+   * overwritte one of the already resgistred workers
+   * @param old_worker	Worker that will be changed
+   * @param new_worker	Worker whose content will replace the old one
+   */
+  void modifyWorker(const StateWorker& old_worker, const StateWorker& new_workeworker);
+
+  /**
+   * @brief	Imports Workers written in a file to the workers
+   * controlled by the network
+   *
+   * @param worker_file_name	Name of the file associated with the
+   * StateWorker(s)' information
+   */
+  void importWorkers(const std::string& worker_file_name);
+
+  /**
+   * @brief	Exports all workers registered in the network to a file
+   *
+   * @param worker_file_name	Name of the file that will be
+   * overwritten with the StateWorker(s)' information
+   */
+  void exportWorkers(const std::string& worker_file_name) const;
+
+  /* GETTERS */
   /**
    * @brief	Getter for all Cards subscribed in the network
    *
@@ -436,6 +510,13 @@ public:
     const; // Iterates through all enterprises to retreive all events
 
   /**
+   * @brief	Getter for all Workers present in the network
+   *
+   * @return Vector of all Workers present in the network
+   */
+  std::vector<StateWorker> getWorkers() const;
+
+  /**
    * @brief	Imports network configuarions for a given file name.
    *			Imports all other files related to museums, cards and
    *enterprises.
@@ -457,6 +538,7 @@ public:
     const std::string& cards_file_name,
     const std::string& museum_file_name,
     const std::string& enterprise_file_name,
+	const std::string& worker_file_name,
     const std::string& config_file_name = "files/network_config.sadjson") const;
 };
 

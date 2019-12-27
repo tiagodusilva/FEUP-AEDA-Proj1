@@ -125,4 +125,18 @@ namespace flt
 				[](Card* elem) { return(elem->isvalid()); });
 		vec.erase(iter, vec.end());
 	}
+
+
+	void FilterWorkersByEmployment(vector<StateWorker> &vec) {
+		vector<StateWorker>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[](StateWorker elem) { return(!elem.ishired()); });
+		vec.erase(iter, vec.end());
+	}
+
+
+	void FilterWorkersByNonEmployment(vector<StateWorker> &vec) {
+		vector<StateWorker>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[](StateWorker elem) { return(elem.ishired()); });
+		vec.erase(iter, vec.end());
+	}
 }

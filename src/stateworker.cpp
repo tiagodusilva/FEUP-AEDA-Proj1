@@ -189,7 +189,7 @@ operator<<(std::ofstream& outstream, const StateWorker& w)
   outstream << w.contact << endl;
   outstream << w.address << endl;
   outstream << w.birth_date << endl;
-  outstream << to_string(w.is_hired) << endl;
+  outstream << to_string(w.is_hired);
 
   return outstream;
 }
