@@ -893,13 +893,16 @@ void GUI::show() {
 		});
 
 	MenuSelect exportMenu("Export to a file", [this](){
-			string config_file, cards_file, museum_file, enterprise_file, worker_file;
+			string config_file, cards_file, museum_file, enterprise_file, repair_ent_file, worker_file;
+
 			cout << "Insert the config file name (path relative to executable directory)" << endl; cin >> config_file;
 			cout << "Insert the cards file name (path relative to executable directory)" << endl; cin >> cards_file;
 			cout << "Insert the enteprise file name (path relative to executable directory)" << endl; cin >> enterprise_file;
 			cout << "Insert the museum file name (path relative to executable directory)" << endl; cin >> museum_file;
+			cout << "Insert the repair enterprises file name (path relative to executable directory)" << endl; cin >> repair_ent_file;
 			cout << "Insert the workers file name (path relative to executable directory)" << endl; cin >> worker_file; utl::ignore(cin);
-			this->museum_network.exportFiles(cards_file, museum_file, enterprise_file, worker_file, config_file);
+
+			this->museum_network.exportFiles(cards_file, museum_file, enterprise_file, repair_ent_file, worker_file, config_file);
 			cout << "Files were exported with success" << endl;});
 
 	MenuOptions main_menu("Welcome to RNM\n", vector<Menu*> {&adminMenu, &memberMenu, &userMenu, &importMenu, &exportMenu});

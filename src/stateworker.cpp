@@ -219,7 +219,11 @@ operator>>(std::ifstream& instream, StateWorker& w)
     /* address */
     instream >> w.address;
     if (instream.fail())
+	{
+		cerr << "F";
       throw "Address reading failed";
+
+	}
 
     /* date */
     instream >> w.birth_date;
