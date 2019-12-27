@@ -152,6 +152,129 @@ MuseumNetwork::addEnterprise(Enterprise enterprise)
   this->enterprises.push_back(enterprise);
 }
 
+
+/* Repair Enterprises */
+
+vector<RepairEnterprise>
+MuseumNetwork::getRepairEnterprises() const
+{
+  priority_queue<RepairEnterprise> aux = this->repair_ent;
+  vector<RepairEnterprise> result;
+  result.reserve(aux.size());
+
+  while(!aux.empty())
+  {
+	result.push_back(aux.top());
+    aux.pop();
+  }
+
+  return result;
+}
+
+void
+MuseumNetwork::addRepairEnterprise(RepairEnterprise repair_enterprise)
+{
+    bool found = false;
+    priority_queue<RepairEnterprise> aux = repair_ent;
+    while(!aux.empty() && !found)
+    {
+      if (aux.top() == repair_enterprise)
+        found = true;
+
+      aux.pop();
+    }
+
+    if (found)
+      throw(ObjectAlreadyExists(repair_enterprise.get_name(), "Repair Enteprise"));
+
+	repair_ent.push(repair_enterprise);
+}
+
+void
+MuseumNetwork::listRepairEnterprises(const vector<RepairEnterprise> &vec, const string& delim) const
+{
+	for(auto it=vec.begin(); it != vec.end(); ++it)
+	{
+		cout << *it;
+		cout << delim;
+	}
+
+	cout << setw(MUSEUM_OUPUT_DELIM) <<
+		"Note: The folllowing repair enteprises are ordered by number of jobs successfully done" << endl;
+}
+
+void
+MuseumNetwork::listRepairEnterprises(const string& delim) const
+{
+	this->listRepairEnterprises(getRepairEnterprises(), delim);
+}
+void
+MuseumNetwork::removeRepairEnterprise(const RepairEnterprise& repair_enterprise)
+{
+  bool found = false;
+  priority_queue<RepairEnterprise> aux;
+
+  while(!repair_ent.empty() && !found)
+  {
+	if (repair_enterprise == repair_ent.top())
+	  found = true;
+	else
+	  aux.push(repair_ent.top());
+
+	repair_ent.pop();
+  }
+
+  while (!aux.empty())
+  {
+    repair_ent.push(aux.top());
+	aux.pop();
+  }
+
+  if (!found)
+    throw(NoSuchObject(repair_enterprise.get_name(), "Repair Enterprise"));
+}
+
+void
+MuseumNetwork::removeRepairEnterprises(const vector<RepairEnterprise>& repair_enterprises)
+{
+  for(auto it=repair_enterprises.begin(); it != repair_enterprises.end(); ++it)
+    removeRepairEnterprise(*it);
+}
+
+void
+MuseumNetwork::modifyRepairEnterprise(const RepairEnterprise& old_rep_enter, const RepairEnterprise& new_rep_enter)
+{
+  /* Check if new enteprise won't overwritte any of the existing ones */
+  if (old_rep_enter != new_rep_enter)
+  {
+    bool found = false;
+    priority_queue<RepairEnterprise> aux = repair_ent;
+    while(!aux.empty() && !found)
+    {
+      if (aux.top() == new_rep_enter)
+        found = true;
+
+      aux.pop();
+    }
+
+    if (found)
+      throw(ObjectAlreadyExists(new_rep_enter.get_name(), "Repair Enteprise"));
+  }
+
+
+  /* Find and replace old enteprise */
+  removeRepairEnterprise(old_rep_enter);
+  repair_ent.push(new_rep_enter);
+}
+void
+MuseumNetwork::contactRepairEnterprise(const RepairEnterprise& rep_enter)
+{
+  RepairEnterprise new_enter = rep_enter;
+  new_enter.set_numjobs(rep_enter.get_numjobs() + 1);
+  this->modifyRepairEnterprise(rep_enter, new_enter);
+}
+
+
 /* Museums */
 
 void
@@ -458,6 +581,7 @@ MuseumNetwork::importMuseums(const std::string& museum_file_name)
     if (input_stream.fail())
       throw FileReadingFailed(museum_file_name);
     set_museums.insert(museum);
+    utl::ignore(input_stream);
   }
 
   this->museums = set_museums;
@@ -523,6 +647,7 @@ MuseumNetwork::importRepairEnterprises(const std::string& repair_enterprise_file
         if (input_stream.fail())
             throw FileReadingFailed(repair_enterprise_file_name);
         pq_repair.push(repair);
+		utl::ignore(input_stream);
     }
 
     this->repair_ent = pq_repair;

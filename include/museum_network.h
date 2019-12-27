@@ -69,7 +69,7 @@ private:
   std::vector<Enterprise> enterprises;
   /** @brief	Set (BST) of all the Museums that are part of the Museum Network */
   /** @brief  BST containing the most visited museums */
-  std::set<Museum> museums;  // TODO passar para set
+  std::set<Museum> museums;
   /** @brief  Hash table containing all the state workers registers */
   HashTabStateWorker workers;  // TODO
   /** @brief Pritority Queue containing all the repair enterprises, having the one with the most repairs always at the top */
@@ -487,7 +487,62 @@ public:
   void exportWorkers(const std::string& worker_file_name) const;
 
 
-  /* Methods for RepairEnterprises */
+  /* METHODS FOR REPAIR ENTEPRISES */
+  /**
+   * @brief		Add a new RepairEnterprise to the network
+   * @throws	ObjectAlreadyExists  Thrown if the RepairEnterprise is already in the
+   * network
+   * @param repair_enterprise	RepairEnterprise to be added to the network
+   */
+  void addRepairEnterprise(RepairEnterprise repair_enterprise);
+  /**
+   * @brief	Lists all RepairEnterprises present in the network
+   *
+   * @param delim   String delimiter to be printed between RepairEnterprises
+   */
+  void listRepairEnterprises(const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  /**
+   * @brief	Lists all RepairEnterprises present in a given vector
+   *
+   * @param vec	  Vector of RepairEnterprises that will be listed
+   * @param delim   String delimiter to be printed between RepEnterprises
+   */
+  void listRepairEnterprises(const std::vector<RepairEnterprise> &vec,
+		  const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  /**
+   * @brief	Remove a given RepairEnterprise from the network
+   *
+   * @throws  NoSuchObject  Thrown if the given RepairEnterprise doesn't exist in the
+   * network
+   * @param repair_enterprise	RepairEnterprise to find and remove from the
+   * network
+   */
+  void removeRepairEnterprise(const RepairEnterprise& repair_enterprise);
+  /**
+   * @brief	Search for the given RepairEnterprises on the network and remove them
+   *
+   * @param repair_enterprises	Vector of RepairEnterprises to be removed from the
+   * network
+   */
+  void removeRepairEnterprises(const std::vector<RepairEnterprise>& repair_enterprises);
+  /**
+   * @brief	Search for a given RepairEnterprise and change its content to a new given
+   * RepairEnterprise (old_rep_enter)
+   *
+   * @throws  NoSuchObject  Thrown if the old_rep_enter doesn't exist in the
+   * network
+   * @throws  ObjectAlreadyExists	Thrown if the new_rep_enter would
+   * overwritte one of the already resgistred RepairEnterprises
+   * @param old_rep_enter	RepairEnterprise that will be changed
+   * @param new_rep_enter	RepairEnterprise whose content will replace the old one
+   */
+  void modifyRepairEnterprise(const RepairEnterprise& old_rep_enter, const RepairEnterprise& new_rep_enter);
+  /**
+   * @brief	Contacts a given RepairEnterprise to do a maintenance service, increasing its number of jobs
+   *
+   * @param rep_enter	RepairEnterprise to contact
+   */
+  void contactRepairEnterprise(const RepairEnterprise& rep_enter);
   /**
    * @brief	Imports repair enterprises written in a file to the repair enterprises controlled by
    * the network
@@ -519,6 +574,12 @@ public:
    * @return	Vector of all Enterprises present in the network
    */
   std::vector<Enterprise> getEnterprises() const { return this->enterprises; };
+  /**
+   * @brief	Getter for all RepairEnterprises present in the network
+   *
+   * @return	Vector of all RepairEnterprises present in the network
+   */
+  std::vector<RepairEnterprise> getRepairEnterprises() const;
   /**
    * @brief	Getter for all Museums present in the network
    *

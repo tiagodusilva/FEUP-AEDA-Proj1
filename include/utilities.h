@@ -147,6 +147,16 @@ int getInt(std::istream& stream,
            const std::string& message = "");
 
 /**
+ * @brief	Calculates the distance between two given coordinates
+ *
+ * @param point1	Coordinates of the first point
+ * @param point2	Coordinates of the second point
+ *
+ * @return	The distance between the two given coordinates
+ */
+float getDistance(std::tuple<float, float> point1, std::tuple<float, float> point2);
+
+/**
  * @brief	Call the ignore method on a given 'istream' 1000 chars or until
  * '\n'
  * @param i	Stream to call the ignore method on

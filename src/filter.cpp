@@ -126,6 +126,16 @@ namespace flt
 		vec.erase(iter, vec.end());
 	}
 
+	void FilterRepairEnterprisesByCoordinates(vector<RepairEnterprise> &vec,
+			tuple<float, float> coord, float distance)
+	{
+		vector<RepairEnterprise>::iterator iter = remove_if(vec.begin(), vec.end(),
+				[&distance, &coord](RepairEnterprise elem) {
+					return(utl::getDistance(elem.get_coords(), coord) > distance);
+				});
+		vec.erase(iter, vec.end());
+
+	}
 
 	void FilterWorkersByEmployment(vector<StateWorker> &vec) {
 		vector<StateWorker>::iterator iter = remove_if(vec.begin(), vec.end(),

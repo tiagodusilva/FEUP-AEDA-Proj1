@@ -140,6 +140,12 @@ getInt(istream& stream, int min, int max, const string& message)
   return res_num;
 }
 
+float
+getDistance(std::tuple<float, float> point1, std::tuple<float, float> point2)
+{
+	return sqrt(pow(get<0>(point1) - get<0>(point2), 2) + pow(get<1>(point1) - get<1>(point2), 2));
+}
+
 bool
 file_exists(const std::string& name)
 {

@@ -58,8 +58,15 @@ AdminInterface::show()
 	MenuSelectFilter<vector<Enterprise>> EnterpriseLocation("Filter by location", flt::FilterByLocationCin<Enterprise>);
 	MenuSelectFilter<vector<Enterprise>> EnterpriseName("Filter by name", flt::FilterByName<Enterprise>);
 	MenuSelectFilter<vector<Enterprise>> EnterpriseEvent("Filter by event ID", flt::FilterByEventID<Enterprise>);
-	MenuSelectFilter<vector<Enterprise>> EnterpriseSelected("List current selected enterprises",
+	MenuSelectFilter<vector<Enterprise>> EnterpriseSelected("List currently selected enterprises",
 			[this](vector<Enterprise>&vec) { this->museum_network.listEnterprises(vec); });
+
+
+	/* Filter RepairEnterprises */
+	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseLocation("Filter by location", flt::FilterByLocationCin<RepairEnterprise>);
+	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseName("Filter by name", flt::FilterByName<RepairEnterprise>);
+	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseSelected("List currently selected repair-enterprises",
+			[this](vector<RepairEnterprise>&vec) { this->museum_network.listRepairEnterprises(vec); });
 
 
 	/* Filter Workers by employment*/
@@ -91,6 +98,13 @@ AdminInterface::show()
 			[this](){ return(this->museum_network.getEnterprises());}, // Initialize vector with all enterprises of the network
 			false, {0});
 
+	/* List Repair Enterprises */
+	vector<MenuFilter<vector<RepairEnterprise>>*> listRepairEnterprisesOpt =
+		{&RepEnterpriseSelected, &RepEnterpriseLocation, &RepEnterpriseName};
+	MenuOptionsFilter<vector<RepairEnterprise>> listRepairEnterprises("List Repair Enterprises", listRepairEnterprisesOpt,
+			[this](vector<RepairEnterprise>&vec){ return vector<RepairEnterprise>(); },
+			[this](){ return(this->museum_network.getRepairEnterprises());}, // Initialize vector with all enterprises of the network
+			false, {0});
 
 	/* List Events */
 	vector<MenuFilter<vector<Event>>*> listEventsOpt=
@@ -118,7 +132,7 @@ AdminInterface::show()
 
 	/* List Network Options */
 	MenuOptions list_network("List Network Options",
-			std::vector<Menu*>{&listEvents, &listMuseums, &listEnterprises, &listCards, &listWorkers});
+			std::vector<Menu*>{&listEvents, &listMuseums, &listEnterprises, &listRepairEnterprises, &listCards, &listWorkers});
 
 
 	/* Remove Events */
@@ -189,6 +203,29 @@ AdminInterface::show()
 			false, {0});
 
 
+	/* Remove Repair Enterprises */
+	MenuSelectFilter<vector<RepairEnterprise>> removeRepEnterprisesSelected("Remove selected repair-enterprises",
+		[this](vector<RepairEnterprise> &vec){
+			if(vec.size() == this->museum_network.getRepairEnterprises().size()) // If user has all of them selected
+				cout << "Warning! You will remove all of them!!\n";
+			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+			if(a=='y' || a=='Y') {
+				this->museum_network.removeRepairEnterprises(vec);
+				cout <<	"Enterprise(s) removed!"; utl::pauseConsole();
+				vec.erase(vec.begin(), vec.end());
+			}
+			else
+				cout << "Operation aborted" << endl;
+		});
+	vector<MenuFilter<vector<RepairEnterprise>>*> removeRepairEnterprisesOpt =
+		{&RepEnterpriseSelected, &RepEnterpriseLocation, &RepEnterpriseName, &removeRepEnterprisesSelected};
+	MenuOptionsFilter<vector<RepairEnterprise>> removeRepairEnterprises("Remove Repair-Enterprises", removeRepairEnterprisesOpt,
+			[this](vector<RepairEnterprise>&vec){ return; },
+			[this](){ return(this->museum_network.getRepairEnterprises());},
+			false, {0});
+
+
 	/* Remove Cards */
 	MenuSelectFilter<vector<Card*>> removeCardsSelected("Remove all selected cards",
 		[this](vector<Card*> &vec){
@@ -237,7 +274,7 @@ AdminInterface::show()
 
 	/* Remove Network Options */
 	MenuOptions remove_network("Network Remove Options",
-			std::vector<Menu*>{&removeEvents, &removeMuseums, &removeEnterprises, &removeCards, &removeWorkers});
+			std::vector<Menu*>{&removeEvents, &removeMuseums, &removeEnterprises, &removeRepairEnterprises, &removeCards, &removeWorkers});
 
 
 	/* Add User */
@@ -297,6 +334,26 @@ AdminInterface::show()
 			});
 
 
+	/* Add Repair Enterprise */
+	MenuSelect addRepairEnterpirse("Add a new repair-enterprise", [this](){
+				RepairEnterprise rep_enter;
+				RepairEnterprise::cin_read_repairenterprise(rep_enter);
+				if (cin.fail()) {
+					utl::stream_clear(cin);
+					throw(UserInputReadingFailure("Invalid repair enterprise formatting\n"));
+				}
+
+				cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if (!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+
+				if (a=='y' || a=='Y') {
+					this->museum_network.addRepairEnterprise(rep_enter);
+				}
+				else
+					cout << "Operation aborted" << endl;
+			});
+
+
 	/* Add Event */
 	MenuSelectFilter<vector<Enterprise>> addEventToNetwork("Add an event to the selected enterprise",
 			[this](vector<Enterprise>&vec) {
@@ -342,7 +399,7 @@ AdminInterface::show()
 
 	/* Add Options */
 	MenuOptions add_network("Add Network Options",
-			std::vector<Menu*>{&addEnterpirse, &addEvent, &addMuseum, &addUser, &addStateWorker});
+			std::vector<Menu*>{&addEnterpirse, &addRepairEnterpirse, &addEvent, &addMuseum, &addUser, &addStateWorker});
 
 
 	/* Modify Museums*/
@@ -403,6 +460,7 @@ AdminInterface::show()
 								throw(UserInputReadingFailure("Invalid number of visits"));
 							mus.set_numvisits(nvisits);
 						});
+
 				MenuSelectFilter<Museum> modifyMuseumFee("Modify fee",
 						[](Museum &mus){
 							cout << "Fee?" << endl;
@@ -479,6 +537,80 @@ AdminInterface::show()
 			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0});
 
 
+	/* Modify Enterprises */
+
+	MenuSelectFilter<vector<RepairEnterprise>> modifyRepairEnterpriseMenu("Modify the selected Repair-Enterprise",
+			[this](vector<RepairEnterprise>&vec){
+				/* Opens menu that changes the current enterprise */
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple RepairEnterprises selected"));
+				RepairEnterprise old_rep_enter = vec.at(0);
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseName("Modify Name",
+						[](RepairEnterprise &enter){
+							cout << "Name?\n";
+							string name; getline(cin, name);
+							enter.set_name(name);
+						});
+
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseCoordinates("Modify coordinates",
+						[](RepairEnterprise &rep_enter){
+							tuple<float, float> coord;
+							cout << "GPS coordinates:\n"
+								 << "  X: ";
+							cin >> get<0>(coord);
+							utl::ignore(cin);
+							cout << "  Y: ";
+							cin >> get<1>(coord);
+							utl::ignore(cin);
+
+							if (cin.fail())
+							  throw UserInputReadingFailure("given coordinates are not numbers");
+							rep_enter.set_coords(coord);
+						});
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseContact("Modify Contact",
+						[](RepairEnterprise &enter){
+							cout << "Contact?\n";
+							string contact; getline(cin, contact);
+							enter.set_contact(contact);
+						});
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseAddress("Modify Address",
+						[](RepairEnterprise &enter){
+							cout << "Address (street name/XXXX-XXX/region name  or	region)?\n";
+							Address address; cin >> address;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid Address"));
+							enter.set_address(address);
+						});
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseNumVisits("Modify number of jobs done",
+						[](RepairEnterprise &rep_enter){
+							cout << "Number of jobs?" << endl;
+							unsigned int njobs; cin >> njobs;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid number of jobs"));
+							rep_enter.set_numjobs(njobs);
+						});
+
+				MenuSelectFilter<RepairEnterprise> modifyRepairEnterpriseCommit("Commit changes",
+						[this, &old_rep_enter](RepairEnterprise &enter){
+							this->museum_network.modifyRepairEnterprise(old_rep_enter, enter);
+						});
+
+				MenuOptionsFilter<RepairEnterprise> modifyRepairEnterprise("Modify the selected Repair-Enterprise",
+						{&modifyRepairEnterpriseAddress, &modifyRepairEnterpriseContact, &modifyRepairEnterpriseName,
+						&modifyRepairEnterpriseNumVisits, &modifyRepairEnterpriseCoordinates, &modifyRepairEnterpriseCommit});
+
+				modifyRepairEnterprise.show(vec.at(0)); // Initialize the menu with the selected enterprise
+			});
+
+	vector<MenuFilter<vector<RepairEnterprise>>*> modifyRepairEnterpriseOpt = listRepairEnterprisesOpt;
+	modifyRepairEnterpriseOpt.push_back(&modifyRepairEnterpriseMenu);
+	MenuOptionsFilter<vector<RepairEnterprise>> modifyRepairEnterpriseSelection("Modify Repair-Enterprises", modifyRepairEnterpriseOpt,
+			[](vector<RepairEnterprise>&vec){},[this](){ return(this->museum_network.getRepairEnterprises());}, false, {0});
 
 
 	/* Modify Events */
@@ -596,13 +728,51 @@ AdminInterface::show()
 
 
 	/* Modify Network Options */
-	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyMuseumSelection, &modifyEventSelection});
+	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyRepairEnterpriseSelection,
+			&modifyMuseumSelection, &modifyEventSelection});
 
+	MenuSelect repair_network("Send a repair enteprise to repair a network's building",
+			[this](){
+				tuple<float, float> coord;
+				float distance;
+				cout << "GPS Coordinates of the building to repair\n"
+					 << "  X: ";
+				cin >> get<0>(coord);
+				utl::ignore(cin);
+				cout << "  Y: ";
+				cin >> get<1>(coord);
+				utl::ignore(cin);
+				if (cin.fail())
+				  throw UserInputReadingFailure("given coordinates are not numbers");
+
+				cout << "Maximum distance to the building\n";
+				cin >> distance;
+				utl::ignore(cin);
+				if (cin.fail())
+				  throw UserInputReadingFailure("given distance is not number");
+				utl::clearConsole();
+
+				vector<RepairEnterprise> vec = this->museum_network.getRepairEnterprises();
+				flt::FilterRepairEnterprisesByCoordinates(vec, coord, distance);
+
+				if (vec.size() == 0)
+					throw(MenuForceExit("No repair-enteprise matches the given criteria"));
+
+				cout << "The following repair-enteprise is the enterprise with most experience which follows the given criteria:\n";
+				cout << vec.at(0) << endl;
+
+
+				cout << "Are you that you want to contact this repair-enterprise? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+				if(a == 'y' || a == 'Y')
+					this->museum_network.contactRepairEnterprise(vec.at(0));
+
+			});
 
 
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as ADMIN",
-			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network});
+			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network, &repair_network});
 
 
 	main_menu.show();

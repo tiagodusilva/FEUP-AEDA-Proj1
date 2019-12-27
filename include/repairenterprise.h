@@ -44,6 +44,10 @@ public:
   std::tuple<float, float> get_coords() const { return this->coordinates; }
   unsigned int get_numjobs() const { return this->njobs; }
 
+  /* SETTERS */
+  void set_coords(std::tuple<float, float> coords);
+  void set_numjobs(unsigned int num_jobs);
+
   /* OTHER */
   /** @brief  Increase this enterprise number of jobs done for the network. */
   void hire() { ++this->njobs; }

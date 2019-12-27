@@ -12,6 +12,7 @@
 #include "date.h"
 #include "cards.h"
 #include "stateworker.h"
+#include "repairenterprise.h"
 #include "museum.h"
 
 using namespace std;
@@ -146,6 +147,15 @@ namespace flt
 	 */
 	void FilterCardByInvalidity(vector<Card*> &vec);
 
+	/**
+	 * @brief	Removes all RepairEnterprises in the given vector which distance to a given point
+	 *	surpasses a given maximum distance
+	 *
+	 * @param vec	Vector to be filtered
+	 * @param coord	Coordiantes of the point
+	 * @param distance	Maximum distance between the given point and each of the RepairEnterprises
+	 */
+	void FilterRepairEnterprisesByCoordinates(vector<RepairEnterprise> &vec, tuple<float, float> coord, float distance);
 	/**
 	 * @brief	Remove all workers present in the given vector that aren't employed by the network:
 	 *

@@ -18,6 +18,18 @@ RepairEnterprise::RepairEnterprise(const std::string& name,
   this->njobs       = njobs;
 }
 
+void
+RepairEnterprise::set_coords(tuple<float, float> coords)
+{
+  this->coordinates = coords;
+}
+
+void
+RepairEnterprise::set_numjobs(unsigned int num_jobs)
+{
+	this->njobs = num_jobs;
+}
+
 std::ostream&
 operator<<(std::ostream& outstream, const RepairEnterprise& ent)
 {
