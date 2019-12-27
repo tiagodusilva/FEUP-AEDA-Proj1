@@ -349,43 +349,67 @@ AdminInterface::show()
 
 	MenuSelectFilter<vector<Museum>> modifyMuseumMenu("Modify the selected Museum",
 			[this](vector<Museum>&vec){
-				/* Opens menu that changes the current enterprise */
+				/* Opens menu that changes the current musprise */
 				if(vec.size() != 1)
 					throw(UserInputReadingFailure("Multiple Museums selected"));
 				Museum old_museum = vec.at(0); // Store selected museum as backup for later modifying
 
 				MenuSelectFilter<Museum> modifyMuseumName("Modify Name",
-						[](Museum &enter){
+						[](Museum &mus){
 							cout << "Name?" << endl;
 							string name; getline(cin, name);
-							enter.set_name(name);
+							mus.set_name(name);
 						});
 
 				MenuSelectFilter<Museum> modifyMuseumClosingTime("Modify closing time",
-						[](Museum &enter){
+						[](Museum &mus){
 							cout << "Closing time? (hour:min)" << endl;
 							Time close_time; cin >> close_time;
 							if(cin.fail())
 								throw(UserInputReadingFailure("Invalid closing time"));
-							enter.set_close(close_time);
+							mus.set_close(close_time);
+						});
+
+				MenuSelectFilter<Museum> modifyMuseumCoordinates("Modify coordinates",
+						[](Museum &mus){
+							tuple<float, float> coord;
+							cout << "GPS coordinates:\n"
+								 << "  X: ";
+							cin >> get<0>(coord);
+							utl::ignore(cin);
+							cout << "  Y: ";
+							cin >> get<1>(coord);
+							utl::ignore(cin);
+
+							if (cin.fail())
+							  throw UserInputReadingFailure("given coordinates are not numbers");
+							mus.set_coords(coord);
 						});
 
 				MenuSelectFilter<Museum> modifyMuseumOpeningTime("Modify opening time",
-						[](Museum &enter){
+						[](Museum &mus){
 							cout << "Opening time? (hour:min)" << endl;
 							Time open_time; cin >> open_time;
 							if(cin.fail())
 								throw(UserInputReadingFailure("Invalid opening time"));
-							enter.set_open(open_time);
+							mus.set_open(open_time);
 						});
 
+				MenuSelectFilter<Museum> modifyMuseumNumVisits("Modify number of visits",
+						[](Museum &mus){
+							cout << "Number of visits?" << endl;
+							unsigned int nvisits; cin >> nvisits;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid number of visits"));
+							mus.set_numvisits(nvisits);
+						});
 				MenuSelectFilter<Museum> modifyMuseumFee("Modify fee",
-						[](Museum &enter){
+						[](Museum &mus){
 							cout << "Fee?" << endl;
 							float fee; cin >> fee;
 							if(cin.fail())
 								throw(UserInputReadingFailure("Invalid fee"));
-							enter.set_fee(fee);
+							mus.set_fee(fee);
 						});
 
 				MenuSelectFilter<Museum> modifyMuseumCommit("Commit changes",
@@ -394,7 +418,8 @@ AdminInterface::show()
 						});
 
 				MenuOptionsFilter<Museum> modifyMuseum("Modify the selected Enterprise",
-						{&modifyMuseumName, &modifyMuseumOpeningTime, &modifyMuseumClosingTime, &modifyMuseumFee, &modifyMuseumCommit});
+						{&modifyMuseumName, &modifyMuseumOpeningTime, &modifyMuseumClosingTime, &modifyMuseumFee,
+						&modifyMuseumNumVisits, &modifyMuseumCoordinates,&modifyMuseumCommit});
 
 				modifyMuseum.show(vec.at(0)); // Initialize the menu with the selected enterprise
 			});
@@ -642,7 +667,7 @@ void MemberInterface::show() {
 	/* Filter Museums */
 	MenuSelectFilter<vector<Museum>> MuseumsLocation("Filter by location", flt::FilterByLocationCin<Museum>);
 	MenuSelectFilter<vector<Museum>> MuseumsName("Filter by name", flt::FilterByName<Museum>);
-	MenuSelectFilter<vector<Museum>> MuseumsSelected("List current selected events",
+	MenuSelectFilter<vector<Museum>> MuseumsSelected("List current selected museums",
 			[this](vector<Museum>&vec) { this->museum_network.listMuseums(vec); });
 
 
@@ -728,7 +753,22 @@ void MemberInterface::show() {
 			[this](vector<Event>&vec){},
 			[this](){ return(this->museum_network.getEvents()); }, false, {1});
 
+	/* Visit Museum */
+	MenuSelectFilter<vector<Museum>> visitMuseum("Visit selected museum",
+			[this](vector<Museum>&vec){
+				if (vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple museums selected"));
 
+				Museum m = vec.at(0);
+				vec.at(0).set_numvisits(m.get_numvisits() + 1);
+				this->museum_network.modifyMuseum(m, vec.at(0));
+			});
+
+	vector<MenuFilter<vector<Museum>>*> visitMuseumOpt =
+		{&MuseumsSelected, &visitMuseum, &MuseumsName, &MuseumsLocation};
+	MenuOptionsFilter<vector<Museum>> visitMuseumMenu("Visit Museum", visitMuseumOpt,
+			[this](vector<Museum>&vec){},
+			[this](){ return(this->museum_network.getMuseums()); }, false, {0, 1});
 
 	/* Change current Member */
 	MenuSelect changeContact("Change your contact",
@@ -787,7 +827,7 @@ void MemberInterface::show() {
 
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as " + to_string(this->member_card->get_cc()),
-			vector<Menu*>{&list_network, &renewCard, &listUser, &purchaseEventMenu, &changeMember, &removeMember});
+			vector<Menu*>{&list_network, &renewCard, &listUser, &purchaseEventMenu, &visitMuseumMenu, &changeMember, &removeMember});
 
 	main_menu.show();
 }
@@ -819,7 +859,7 @@ void UserInterface::show(){
 	/* Filter Museums */
 	MenuSelectFilter<vector<Museum>> MuseumsLocation("Filter by location", flt::FilterByLocationCin<Museum>);
 	MenuSelectFilter<vector<Museum>> MuseumsName("Filter by name", flt::FilterByName<Museum>);
-	MenuSelectFilter<vector<Museum>> MuseumsSelected("List current selected events",
+	MenuSelectFilter<vector<Museum>> MuseumsSelected("List current selected museums",
 			[this](vector<Museum>&vec) { this->museum_network.listMuseums(vec); });
 
 

@@ -62,13 +62,6 @@ MuseumNetwork::listCards(const std::string& delim) const
   listCards(this->getCards(), delim);
 }
 
-void
-MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
-{
-    this->museums.erase(old_museum);
-    this->museums.insert(new_museum);
-}
-
 float
 MuseumNetwork::getDiscount(const unsigned int card_type) const
 {
@@ -174,6 +167,13 @@ MuseumNetwork::removeMuseums(std::vector<Museum>& museums_to_be_removed)
 }
 
 void
+MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
+{
+    this->museums.erase(old_museum);
+    this->museums.insert(new_museum);
+}
+
+void
 MuseumNetwork::removeMuseum(const Museum& museum)
 {
     this->museums.erase(museum);
@@ -183,9 +183,11 @@ void
 MuseumNetwork::listMuseums(const vector<Museum>& museums_to_be_listed,
                            const string& delim) const
 {
-  for (const auto &museum: this->museums) {
+  for (const auto &museum: museums_to_be_listed) {
       cout << museum << delim;
   }
+  cout << setw(MUSEUM_OUPUT_DELIM) <<
+	  "Note: The folllowing museums are ordered by number of visits and, when tied, are ordered by alphabetical order" << endl;
   cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n" << endl;
 }
 

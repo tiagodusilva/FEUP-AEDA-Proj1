@@ -101,6 +101,18 @@ Museum::set_fee(float new_entry_fee)
   this->entry_fee = new_entry_fee;
 }
 
+void
+Museum::set_coords(tuple<float, float> coords)
+{
+	this->coordinates = coords;
+}
+
+void
+Museum::set_numvisits(unsigned int nvisits)
+{
+	this->nvisits = nvisits;
+}
+
 /* STREAMS */
 std::ostream&
 operator<<(std::ostream& outstream, const Museum& museum)

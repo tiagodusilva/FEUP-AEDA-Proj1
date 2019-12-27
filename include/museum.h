@@ -129,6 +129,19 @@ public:
    */
   void set_fee(float new_entry_fee);
 
+  /**
+   * @brief Setter for the coordinates
+   * @param coords	The new coordinates for this Museum
+   */
+  void set_coords(std::tuple<float, float> coords);
+
+  /**
+   * @brief Setter for the number of visits
+   *
+   * @param nvisits	The new number of visits for this Museum
+   */
+  void set_numvisits(unsigned int nvisits);
+
   /* OVERLOADED COMPARISON OPERATORS */
   /**
    * @brief     Overloaded equality test operator
