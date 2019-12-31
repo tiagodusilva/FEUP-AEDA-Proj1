@@ -155,7 +155,7 @@ public:
    */
   inline bool operator==(const Museum& museum) const
   {
-    return *this < museum && museum < *this;
+    return this->get_coords() == museum.get_coords() && this->get_name() == museum.get_name();
   };
   /**
    * @brief     Overloaded inequality test operator

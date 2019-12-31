@@ -321,8 +321,9 @@ MuseumNetwork::listMuseums(const string& delim) const
 void
 MuseumNetwork::addMuseum(Museum museum)
 {
-  if (museums.find(museum) != museums.end())
-      throw ObjectAlreadyExists(museum.get_name(), "Museum");
+  for(auto it = museums.begin(); it != museums.end(); ++it)
+	  if (*it == museum)
+		  throw ObjectAlreadyExists(museum.get_name(), "Museum");
 
   museums.insert(museum);
 }
