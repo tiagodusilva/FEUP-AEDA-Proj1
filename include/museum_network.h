@@ -273,13 +273,6 @@ public:
    * network
    */
   void removeMuseum(const Museum& museum_to_be_removed);
-  /**
-   * @brief	Search for the given Museums on the network and remove them
-   *
-   * @param museum_to_be_removed	Vector of Museums to be removed from the
-   * network
-   */
-  void removeMuseums(std::vector<Museum>& museum_to_be_removed);
 
   /**
    * @brief	Search for a given Museum and change its content to a new given
@@ -307,7 +300,7 @@ public:
    * @param delim   String delimiter to be printed between museums
    * @param museum_to_be_listed	Vector of Museums to be listed
    */
-  void listMuseums(const std::vector<Museum>& museum_to_be_listed,
+  void listMuseums(const std::set<Museum>& museum_to_be_listed,
                    const std::string& delim = '\n' + std::string(64, '-') +
                                               '\n') const;
 
@@ -585,7 +578,7 @@ public:
    *
    * @return	Vector of all Museums present in the network
    */
-  std::vector<Museum> getMuseums() const;
+  std::set<Museum> getMuseums() const;
   /**
    * @brief	Getter for all Events present in the network
    *

@@ -278,18 +278,6 @@ MuseumNetwork::contactRepairEnterprise(const RepairEnterprise& rep_enter)
 /* Museums */
 
 void
-MuseumNetwork::removeMuseums(std::vector<Museum>& museums_to_be_removed)
-{
-  /* Given a vector of museums, remove all of the museums in the network are
-  present in the given vector. */
-
-  size_t i;
-  for (i = 0; i < museums_to_be_removed.size(); ++i) {
-    removeMuseum(museums_to_be_removed.at(i));
-  }
-}
-
-void
 MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 {
     this->museums.erase(old_museum);
@@ -299,11 +287,14 @@ MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 void
 MuseumNetwork::removeMuseum(const Museum& museum)
 {
+	if (this->museums.find(museum) == museums.end())
+		throw(NoSuchObject(museum.get_name(), "Museum"));
+
     this->museums.erase(museum);
 }
 
 void
-MuseumNetwork::listMuseums(const vector<Museum>& museums_to_be_listed,
+MuseumNetwork::listMuseums(const set<Museum>& museums_to_be_listed,
                            const string& delim) const
 {
   for (const auto &museum: museums_to_be_listed) {
@@ -327,16 +318,10 @@ MuseumNetwork::addMuseum(Museum museum)
       throw ObjectAlreadyExists(museum.get_name(), "Museum");
 }
 
-vector<Museum>
+set<Museum>
 MuseumNetwork::getMuseums() const
 {
-	vector<Museum> result;
-	result.reserve(museums.size());
-
-	for(auto it=museums.begin(); it != museums.end(); ++it)
-		result.push_back(*it);
-
-	return result;
+	return this->museums;
 }
 
 /* Events */
