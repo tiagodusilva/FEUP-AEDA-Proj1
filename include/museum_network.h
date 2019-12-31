@@ -265,6 +265,12 @@ public:
   void addMuseum(Museum museum);
 
   /**
+   * @brief Searches for each museum in a given set in the network and deletes them
+   *
+   * @param museums_to_delete	Set of museums to find and delete from the network
+   */
+  void removeMuseums(const std::set<Museum>& museums_to_delete);
+  /**
    * @brief	Search for the given Museum on the network and remove it
    *
    * @throws  NoSuchObject  Thrown if museum_to_be_removed doesn't exist in the

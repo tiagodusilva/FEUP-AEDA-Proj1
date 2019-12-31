@@ -285,6 +285,13 @@ MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 }
 
 void
+MuseumNetwork::removeMuseums(const set<Museum>& museums_to_delete)
+{
+	for (auto it=museums_to_delete.begin(); it != museums_to_delete.end(); ++it)
+		removeMuseum(*it);
+}
+
+void
 MuseumNetwork::removeMuseum(const Museum& museum)
 {
 	if (this->museums.find(museum) == museums.end())
@@ -314,8 +321,10 @@ MuseumNetwork::listMuseums(const string& delim) const
 void
 MuseumNetwork::addMuseum(Museum museum)
 {
-  if (!this->museums.insert(museum).second)
+  if (museums.find(museum) != museums.end())
       throw ObjectAlreadyExists(museum.get_name(), "Museum");
+
+  museums.insert(museum);
 }
 
 set<Museum>
