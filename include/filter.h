@@ -170,6 +170,35 @@ namespace flt
 	 */
 	void FilterWorkersByNonEmployment(vector<StateWorker> &vec);
 
+	/* TEMPLATE SORTS */
+	/**
+	 * @brief	Sort elements from given vector, 'vec', that have a given name
+	 * @note	The given object has to have a 'get_name' public member-function (that returns a String)
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to sort
+	 */
+	template<typename T>
+	void SortByName(vector<T> &vec) {
+		sort(vec.begin(), vec.end(),
+			[](T &elem1, T &elem2) {
+				return elem1.get_name() < elem2.get_name();
+			});
+	}
+
+	/**
+	 * @brief	Sort elements from given vector, 'vec', that have a given location name
+	 * @note	The given object has to have a 'get_location_name' public member-function (that returns a String)
+	 *
+	 * @tparam T	Object type of the elements to match
+	 * @param vec	Vector that contains the elements to sort
+	 */
+	template<typename T>
+	void SortByLocation(vector<T> &vec) {
+		sort(vec.begin(), vec.end(),
+				[](T &elem1, T &elem2) { return elem1.get_location_name() < elem2.get_location_name(); });
+	}
+
 	/* TEMPLATE FILTERS */
 	/**
 	 * @brief	Remove elements from given vector, 'vec', that have a given name

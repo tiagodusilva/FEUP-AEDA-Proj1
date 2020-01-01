@@ -609,6 +609,7 @@ MuseumNetwork::importWorkers(const std::string& worker_file_name)
   ifstream input_stream(worker_file_name);
   bool sucess;
   unsigned worker_cnt;
+  HashTabStateWorker aux;
 
   input_stream >> worker_cnt;
   utl::ignore(input_stream);
@@ -616,15 +617,14 @@ MuseumNetwork::importWorkers(const std::string& worker_file_name)
     StateWorker worker;
     input_stream >> worker;
 
-	sucess = (workers.insert(worker)).second;
+	sucess = (aux.insert(worker)).second;
 
     if (input_stream.fail() || !sucess)
-	{
-	  workers.clear();
       throw FileReadingFailed(worker_file_name);
-	}
     utl::ignore(input_stream);
   }
+
+  workers = aux;
 }
 
 void
@@ -680,7 +680,7 @@ MuseumNetwork::exportEnterprises(const std::string& enterprises_file_name) const
   output_stream << "" << enterprises_cnt << endl;
 
   for (size_t i = 0; i < enterprises_cnt; ++i)
-    output_stream << enterprises.at(i) << endl;
+    output_stream << enterprises.at(i);
 }
 
 void

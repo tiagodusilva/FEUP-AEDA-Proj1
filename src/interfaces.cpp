@@ -23,6 +23,21 @@ AdminInterface::show()
 	 * The design of the menus didn't consider this, and as such there is some repetition of code
 	*/
 
+	/* Sort Cards */
+	MenuSelectFilter<vector<Card*>> CardsSortName("By name",
+			[](vector<Card*> &vec){
+				sort(vec.begin(), vec.end(), [](Card* c1, Card* c2){ return c1->get_name() < c2->get_name(); }); });
+	MenuSelectFilter<vector<Card*>> CardsSortCC("By CC",
+			[](vector<Card*> &vec){
+				sort(vec.begin(), vec.end(), [](Card* c1, Card* c2){ return c1->get_cc() < c2->get_cc(); }); });
+	MenuSelectFilter<vector<Card*>> CardsSortBirthDate("By Birth Date",
+			[](vector<Card*> &vec){
+				sort(vec.begin(), vec.end(), [](Card* c1, Card* c2){ return c1->get_birth_date() < c2->get_birth_date(); }); });
+
+	MenuOptionsFilter<vector<Card*>> CardsSort("Sort currently selected cards", {&CardsSortName, &CardsSortCC, &CardsSortBirthDate},
+			[](vector<Card*>) {}, [](){ return vector<Card*>(); }, true);
+
+
 	/* Filter Cards by validity*/
 	MenuSelectFilter<vector<Card*>> CardsValidity("By validity", flt::FilterCardByValidity);
 	MenuSelectFilter<vector<Card*>> CardsInvalidity("By invalidity", flt::FilterCardByInvalidity);
@@ -35,6 +50,19 @@ AdminInterface::show()
 			[](){return(vector<Card*>());}, true);
 	MenuSelectFilter<vector<Card*>> CardsSelect("List current selected cards",
 			[this](vector<Card*>&vec) { this->museum_network.listCards(vec); });
+
+
+	/* Sort Events */
+	MenuSelectFilter<vector<Event>> EventsSortName("By name", flt::SortByName<Event>);
+	MenuSelectFilter<vector<Event>> EventsSortFee("By Fee",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_fee() < c2.get_fee(); }); });
+	MenuSelectFilter<vector<Event>> EventsSortCurrCapacity("By Current Capacity",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_current_capacity() < c2.get_current_capacity(); }); });
+	MenuOptionsFilter<vector<Event>> EventSort("Sort currently selected Events",
+			{&EventsSortName, &EventsSortFee, &EventsSortCurrCapacity},
+			[](vector<Event>) {}, [](){ return vector<Event>(); }, true);
 
 
 	/* Filter Events between Dates*/
@@ -55,6 +83,19 @@ AdminInterface::show()
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
 
 
+	/* Sort Enterprises */
+	MenuSelectFilter<vector<Enterprise>> EnterprisesSortName("By name", flt::SortByName<Enterprise>);
+	MenuSelectFilter<vector<Enterprise>> EnterprisesSortNumEvents("By number of Events",
+			[](vector<Enterprise> &vec){
+				sort(vec.begin(), vec.end(), [](Enterprise c1, Enterprise c2){
+					return c1.get_events().size() < c2.get_events().size();
+				});
+			});
+	MenuOptionsFilter<vector<Enterprise>> EnterpriseSort("Sort currently selected Enterprises",
+			{&EnterprisesSortName, &EnterprisesSortNumEvents},
+			[](vector<Enterprise>) {}, [](){ return vector<Enterprise>(); }, true);
+
+
 	/* Filter Enterprises */
 	MenuSelectFilter<vector<Enterprise>> EnterpriseLocation("Filter by location", flt::FilterByLocationCin<Enterprise>);
 	MenuSelectFilter<vector<Enterprise>> EnterpriseName("Filter by name", flt::FilterByName<Enterprise>);
@@ -63,11 +104,37 @@ AdminInterface::show()
 			[this](vector<Enterprise>&vec) { this->museum_network.listEnterprises(vec); });
 
 
+	/* Sort RepairEnterprises */
+	MenuSelectFilter<vector<RepairEnterprise>> RepEnterprisesSortName("By name", flt::SortByName<RepairEnterprise>);
+	MenuSelectFilter<vector<RepairEnterprise>> RepEnterprisesSortNumJobs("By number of jobs done",
+			[](vector<RepairEnterprise> &vec){
+				sort(vec.begin(), vec.end(), [](RepairEnterprise c1, RepairEnterprise c2){
+					return c1.get_numjobs() < c2.get_numjobs();
+				});
+			});
+	MenuOptionsFilter<vector<RepairEnterprise>> RepEnterpriseSort("Sort currently selected RepairEnterprises",
+			{&RepEnterprisesSortName, &RepEnterprisesSortNumJobs},
+			[](vector<RepairEnterprise>) {}, [](){ return vector<RepairEnterprise>(); }, true);
+
+
 	/* Filter RepairEnterprises */
 	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseLocation("Filter by location", flt::FilterByLocationCin<RepairEnterprise>);
 	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseName("Filter by name", flt::FilterByName<RepairEnterprise>);
 	MenuSelectFilter<vector<RepairEnterprise>> RepEnterpriseSelected("List currently selected repair-enterprises",
 			[this](vector<RepairEnterprise>&vec) { this->museum_network.listRepairEnterprises(vec); });
+
+
+	/* Sort Workers */
+	MenuSelectFilter<vector<StateWorker>> WorkersSortName("By name", flt::SortByName<StateWorker>);
+	MenuSelectFilter<vector<StateWorker>> WorkersSortCC("By CC",
+			[](vector<StateWorker> &vec){
+				sort(vec.begin(), vec.end(), [](StateWorker c1, StateWorker c2){
+					return c1.get_cc() < c2.get_cc();
+				});
+			});
+	MenuOptionsFilter<vector<StateWorker>> WorkerSort("Sort currently selected Workers",
+			{&WorkersSortName, &WorkersSortCC},
+			[](vector<StateWorker>) {}, [](){ return vector<StateWorker>(); }, true);
 
 
 	/* Filter Workers by employment*/
@@ -85,35 +152,37 @@ AdminInterface::show()
 
 
 	/* List Cards */
-	vector<MenuFilter<vector<Card*>>*> listCardsOpt = {&CardsSelect, &CardsName, &CardsValidityOptions};
+	vector<MenuFilter<vector<Card*>>*> listCardsOpt = {&CardsSelect, &CardsSort, &CardsName, &CardsValidityOptions};
 	MenuOptionsFilter<vector<Card*>> listCards("List Cards", listCardsOpt,
 			[this](vector<Card*>&vec){ return vector<Card*>(); },
 			[this](){ return(this->museum_network.getCards());}, // Initialize vector with all cards of the network
-			false, {0});
+			false, {0, 1});
 
 
 	/* List Enterprises */
-	vector<MenuFilter<vector<Enterprise>>*> listEnterprisesOpt = {&EnterpriseSelected, &EnterpriseLocation, &EnterpriseEvent, &EnterpriseName};
+	vector<MenuFilter<vector<Enterprise>>*> listEnterprisesOpt =
+	{&EnterpriseSelected, &EnterpriseSort, &EnterpriseLocation, &EnterpriseEvent, &EnterpriseName};
+
 	MenuOptionsFilter<vector<Enterprise>> listEnterprises("List Enterprises", listEnterprisesOpt,
 			[this](vector<Enterprise>&vec){ return vector<Enterprise>(); },
 			[this](){ return(this->museum_network.getEnterprises());}, // Initialize vector with all enterprises of the network
-			false, {0});
+			false, {0, 1});
 
 	/* List Repair Enterprises */
 	vector<MenuFilter<vector<RepairEnterprise>>*> listRepairEnterprisesOpt =
-		{&RepEnterpriseSelected, &RepEnterpriseLocation, &RepEnterpriseName};
+		{&RepEnterpriseSelected, &RepEnterpriseSort, &RepEnterpriseLocation, &RepEnterpriseName};
 	MenuOptionsFilter<vector<RepairEnterprise>> listRepairEnterprises("List Repair Enterprises", listRepairEnterprisesOpt,
 			[this](vector<RepairEnterprise>&vec){ return vector<RepairEnterprise>(); },
 			[this](){ return(this->museum_network.getRepairEnterprises());}, // Initialize vector with all enterprises of the network
-			false, {0});
+			false, {0, 1});
 
 	/* List Events */
 	vector<MenuFilter<vector<Event>>*> listEventsOpt=
-		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
+		{&EventsSelected, &EventSort, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
 			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
-			false, {0});
+			false, {0, 1});
 
 
 	/* List Museums */
@@ -158,11 +227,11 @@ AdminInterface::show()
 
 
 	/* List Workers */
-	vector<MenuFilter<vector<StateWorker>>*> listWorkersOpt = {&WorkerSelected, &WorkerName, &WorkerHired};
+	vector<MenuFilter<vector<StateWorker>>*> listWorkersOpt = {&WorkerSelected, &WorkerSort, &WorkerName, &WorkerHired};
 	MenuOptionsFilter<vector<StateWorker>> listWorkers("List Workers", listWorkersOpt,
 			[this](vector<StateWorker>&vec){ return vector<StateWorker>(); },
 			[this](){ return(this->museum_network.getWorkers());}, // Initialize vector with all museums of the network
-			false, {0});
+			false, {0, 1});
 
 	/* List Network Options */
 	MenuOptions list_network("List Network Options",
@@ -189,7 +258,7 @@ AdminInterface::show()
 	MenuOptionsFilter<vector<Event>> removeEvents("Remove Events", removeEventsOpt,
 			[this](vector<Event>&vec){ return; },
 			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
-			false, {0});
+			false, {0, 1});
 
 
 	/* Remove Museum */
@@ -269,7 +338,7 @@ AdminInterface::show()
 	MenuOptionsFilter<vector<Enterprise>> removeEnterprises("Remove Enterprises", removeEnterprisesOpt,
 			[this](vector<Enterprise>&vec){ return; },
 			[this](){ return(this->museum_network.getEnterprises());},
-			false, {0});
+			false, {0, 1});
 
 
 	/* Remove Repair Enterprises */
@@ -292,7 +361,7 @@ AdminInterface::show()
 	MenuOptionsFilter<vector<RepairEnterprise>> removeRepairEnterprises("Remove Repair-Enterprises", removeRepairEnterprisesOpt,
 			[this](vector<RepairEnterprise>&vec){ return; },
 			[this](){ return(this->museum_network.getRepairEnterprises());},
-			false, {0});
+			false, {0, 1});
 
 
 	/* Remove Cards */
@@ -315,7 +384,7 @@ AdminInterface::show()
 	MenuOptionsFilter<vector<Card*>> removeCards("Remove Cards", removeCardsOpt,
 			[this](vector<Card*>&vec){ return; },
 			[this](){ return(this->museum_network.getCards());},
-			false, {0});
+			false, {0, 1});
 
 
 	/* Remove Workers */
@@ -338,7 +407,7 @@ AdminInterface::show()
 	MenuOptionsFilter<vector<StateWorker>> removeWorkers("Remove Workers", removeWorkersOpt,
 			[this](vector<StateWorker>&vec){ return; },
 			[this](){ return(this->museum_network.getWorkers());},
-			false, {0});
+			false, {0, 1});
 
 
 	/* Remove Network Options */
@@ -656,7 +725,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Enterprise>>*> modifyEnterpriseOpt = listEnterprisesOpt;
 	modifyEnterpriseOpt.push_back(&modifyEnterpriseMenu);
 	MenuOptionsFilter<vector<Enterprise>> modifyEnterpriseSelection("Modify Enterprises", modifyEnterpriseOpt,
-			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0});
+			[](vector<Enterprise>&vec){},[this](){ return(this->museum_network.getEnterprises());}, false, {0, 1});
 
 
 	/* Modify Enterprises */
@@ -741,7 +810,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<RepairEnterprise>>*> modifyRepairEnterpriseOpt = listRepairEnterprisesOpt;
 	modifyRepairEnterpriseOpt.push_back(&modifyRepairEnterpriseMenu);
 	MenuOptionsFilter<vector<RepairEnterprise>> modifyRepairEnterpriseSelection("Modify Repair-Enterprises", modifyRepairEnterpriseOpt,
-			[](vector<RepairEnterprise>&vec){},[this](){ return(this->museum_network.getRepairEnterprises());}, false, {0});
+			[](vector<RepairEnterprise>&vec){},[this](){ return(this->museum_network.getRepairEnterprises());}, false, {0, 1});
 
 
 	/* Modify Events */
@@ -859,7 +928,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<Event>>*> modifyEventOpt = listEventsOpt;
 	modifyEventOpt.push_back(&modifyEventMenu);
 	MenuOptionsFilter<vector<Event>> modifyEventSelection("Modify Events", modifyEventOpt,
-			[](vector<Event>&vec){},[this](){ return(this->museum_network.getEvents());}, false, {0});
+			[](vector<Event>&vec){},[this](){ return(this->museum_network.getEvents());}, false, {0, 1});
 
 
 	/* Modify Network Options */
@@ -954,29 +1023,45 @@ void MemberInterface::show() {
 	}
 
 
+	/* Sort Events */
+	MenuSelectFilter<vector<Event>> EventsSortName("By name", flt::SortByName<Event>);
+	MenuSelectFilter<vector<Event>> EventsSortFee("By Fee",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_fee() < c2.get_fee(); }); });
+	MenuSelectFilter<vector<Event>> EventsSortCurrCapacity("By Current Capacity",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_current_capacity() < c2.get_current_capacity(); }); });
+	MenuOptionsFilter<vector<Event>> EventSort("Sort currently selected Events",
+			{&EventsSortName, &EventsSortFee, &EventsSortCurrCapacity},
+			[](vector<Event>) {}, [](){ return vector<Event>(); }, true);
+
+
 	/* Filter Events between Dates*/
 	MenuSelectFilter<vector<Event>> EventsBetweenDates("Between dates", flt::FilterBetweenDates<Event>);
 	MenuSelectFilter<vector<Event>> EventsInADate("In a date", flt::FilterInDate<Event>);
 	vector<MenuFilter<vector<Event>>*> dateOpt = {&EventsBetweenDates, &EventsInADate};
 
 	/* Filter Events */
-	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt);
+	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt,
+			[](vector<Event>&){},
+			[](){return(vector<Event>());}, true);
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
-	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
-	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
 	MenuSelectFilter<vector<Event>> EventsId("Select by id", flt::FilterEventById);
+	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
+	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
 	MenuSelectFilter<vector<Event>> EventsSelected("List current selected events",
-			[this](vector<Event>&vec) { this->museum_network.listEvents(vec, this->member_card->get_type()); });
+			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
 
 
 	/* List Events */
-	vector<MenuFilter<vector<Event>>*> listEventsOpt =
-		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
+	vector<MenuFilter<vector<Event>>*> listEventsOpt=
+		{&EventsSelected, &EventSort, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
-			[this](){ return(this->museum_network.getEvents());},
-			false, {0});
+			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
+			false, {0, 1});
+
 
 	/* List Museums */
 	MenuSelect listMuseums("List Museums", [this](){
@@ -1209,35 +1294,48 @@ UserInterface::UserInterface(MuseumNetwork &rnm) : museum_network(rnm) {
 }
 
 void UserInterface::show(){
-	/* Filter Events between Dates */
+	/* Sort Events */
+	MenuSelectFilter<vector<Event>> EventsSortName("By name", flt::SortByName<Event>);
+	MenuSelectFilter<vector<Event>> EventsSortFee("By Fee",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_fee() < c2.get_fee(); }); });
+	MenuSelectFilter<vector<Event>> EventsSortCurrCapacity("By Current Capacity",
+			[](vector<Event> &vec){
+				sort(vec.begin(), vec.end(), [](Event c1, Event c2){ return c1.get_current_capacity() < c2.get_current_capacity(); }); });
+	MenuOptionsFilter<vector<Event>> EventSort("Sort currently selected Events",
+			{&EventsSortName, &EventsSortFee, &EventsSortCurrCapacity},
+			[](vector<Event>) {}, [](){ return vector<Event>(); }, true);
+
+
+	/* Filter Events between Dates*/
 	MenuSelectFilter<vector<Event>> EventsBetweenDates("Between dates", flt::FilterBetweenDates<Event>);
 	MenuSelectFilter<vector<Event>> EventsInADate("In a date", flt::FilterInDate<Event>);
 	vector<MenuFilter<vector<Event>>*> dateOpt = {&EventsBetweenDates, &EventsInADate};
 
 	/* Filter Events */
-	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt);
+	MenuOptionsFilter<vector<Event>> EventsDate("Filter by dates", dateOpt,
+			[](vector<Event>&){},
+			[](){return(vector<Event>());}, true);
 	MenuSelectFilter<vector<Event>> EventsLocation("Filter by location", flt::FilterByLocationCin<Event>);
 	MenuSelectFilter<vector<Event>> EventsLocationName("Filter by location name", flt::FilterEventByLocationName);
-	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
 	MenuSelectFilter<vector<Event>> EventsId("Select by id", flt::FilterEventById);
 	MenuSelectFilter<vector<Event>> EventsTimeframe("Filter in a timeframe", flt::FilterEventByTimeFrame);
+	MenuSelectFilter<vector<Event>> EventsName("Filter by name", flt::FilterByName<Event>);
 	MenuSelectFilter<vector<Event>> EventsSelected("List current selected events",
 			[this](vector<Event>&vec) { this->museum_network.listEvents(vec); });
 
 	/* Filter Museums */
-//	MenuSelectFilter<set<Museum>> MuseumsLocation("Filter by location", flt::FilterByLocationCin<Museum>);
-//	MenuSelectFilter<set<Museum>> MuseumsName("Filter by name", flt::FilterByName<Museum>);
 	MenuSelectFilter<set<Museum>> MuseumsSelected("List current selected museums",
 			[this](set<Museum>&mus) { this->museum_network.listMuseums(mus); });
 
 
 	/* List Events */
-	vector<MenuFilter<vector<Event>>*> listEventsOpt =
-		{&EventsSelected, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsId, &EventsTimeframe};
+	vector<MenuFilter<vector<Event>>*> listEventsOpt=
+		{&EventsSelected, &EventSort, &EventsLocation, &EventsLocationName, &EventsName, &EventsDate, &EventsTimeframe, &EventsId};
 	MenuOptionsFilter<vector<Event>> listEvents("List Events", listEventsOpt,
 			[this](vector<Event>){return;},
-			[this](){ return(this->museum_network.getEvents());},
-			false, {0});
+			[this](){ return(this->museum_network.getEvents());}, // Initialize vector with all events of the network
+			false, {0, 1});
 
 	/* List Museums */
 	MenuSelect listMuseums("List Museums", [this](){
