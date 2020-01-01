@@ -166,6 +166,8 @@ StateWorker::cin_read_worker(StateWorker& w)
       w.is_hired = true;
       cout << "Associated museum name: ";
       cin >> w.associated_museum;
+      if (utl::isStrEmpty(w.associated_museum))
+        throw UserInputReadingFailure("Tried to associate to an invalid museum");
 
       cout << "GPS coordinates:\n"
            << "  X: ";
@@ -238,7 +240,7 @@ operator<<(std::ofstream& outstream, const StateWorker& w)
   outstream << w.address << endl;
   outstream << w.birth_date << endl;
   outstream << to_string(w.is_hired) << endl;
-  outstream << w.associated_museum  << endl;
+  outstream << w.associated_museum << endl;
   outstream << fixed << setprecision(2) << get<0>(w.coordinates) << endl;
   outstream << fixed << setprecision(2) << get<1>(w.coordinates);
 
