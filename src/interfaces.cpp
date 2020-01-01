@@ -989,7 +989,7 @@ AdminInterface::show()
 				throw UserInputReadingFailure("Multiple workers selected");
 
 			StateWorker to_hire = vec.at(0);
-			MenuSelect listMuseums("List Museums", [this, &to_hire](){
+			MenuSelect selectMuseum("Select Museum", [this, &to_hire](){
 				set<Museum> mus = this->museum_network.getMuseums();
 
 				function<bool(Museum, string)> name_filter = [](Museum m, string name) { return false; };
@@ -1029,16 +1029,19 @@ AdminInterface::show()
 						throw UserInputReadingFailure("Multiple museums selected");
 
 					this->museum_network.hireWorker(to_hire, *mus.begin());
+					cout << "Operation completed with success";
+					throw MenuForceExit(": Operation Completed with success");
 				});
 
 				MenuOptions listMenu("Select Museum", {&listMuseums, &commitMuseum, &FilterName, &FilterAddress, &hireWorker});
 				listMenu.show();
 			});
+			selectMuseum.show();
 
 	});
 
 	vector<MenuFilter<vector<StateWorker>>*> hireWorkersOpt = {&WorkerSelected, &WorkerSort, &WorkerName, &hireSelectedWorker};
-	MenuOptionsFilter<vector<StateWorker>> hireWorkers("Hire Workers", listWorkersOpt,
+	MenuOptionsFilter<vector<StateWorker>> hireWorkers("Hire Workers", hireWorkersOpt,
 			[this](vector<StateWorker>&vec){ return vector<StateWorker>(); },
 			[this](){ // Initialize vector with all museums of the network filtered by non employment
 			  vector<StateWorker> vec = this->museum_network.getWorkers();
