@@ -502,13 +502,47 @@ MuseumNetwork::getWorkers() const
 }
 
 void
+MuseumNetwork::hireWorker(StateWorker worker, const Museum &mus)
+{
+  auto iter = workers.find(worker);
+
+  if (iter == workers.end()) // If worker already registered
+	  throw NoSuchObject(to_string(worker.get_cc()), "Worker");
+
+  /* Add worker as being hired */
+  workers.erase(iter);
+  worker.hire(mus.get_name(), mus.get_coords());
+  workers.insert(worker);
+}
+
+void
 MuseumNetwork::addWorker(StateWorker worker)
 {
-  bool sucess = (this->workers.insert(worker)).second;
+  // ta ta ta eu tive a ler isso agora ta ta
+  auto iter = workers.find(worker);
 
-  if (!sucess)
-	  throw(ObjectAlreadyExists(to_string(worker.get_cc()), "Worker"));
+  Museum mus(worker.get_associated_museum(), Time(0, 0), Time(0, 0), 0, Address(), worker.get_museum_coordinates());
+
+  /* Search for museum of the worker */
+  if (worker.ishired())
+  {
+	  bool found = false;
+	  for(auto it=museums.begin(); it != museums.end(); ++it)
+		  if (*it == mus) {
+			  found = true;
+			  break;
+		  }
+	  if (!found)
+		  throw NoSuchObject(worker.get_associated_museum(), "Worker's Museum");
+  }
+
+
+  if (iter != workers.end()) // If worker already registered
+	throw ObjectAlreadyExists(to_string(iter->get_cc()), "Worker");
+
+  workers.insert(worker);
 }
+
 
 void
 MuseumNetwork::listWorkers(const vector<StateWorker> &vec, const string& delim) const

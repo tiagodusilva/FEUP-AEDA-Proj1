@@ -109,11 +109,6 @@ public:
 
   /* SETTERS */
   /**
-   * @brief	Setter for the name
-   * @param new_name	The new name for this Museum
-   */
-  void set_name(const std::string& new_name);
-  /**
    * @brief	Setter for the opening Time
    * @param new_open	The new opening Time for this Museum
    */
@@ -128,12 +123,6 @@ public:
    * @param new_entry_fee	The new entry fee for this Museum
    */
   void set_fee(float new_entry_fee);
-
-  /**
-   * @brief Setter for the coordinates
-   * @param coords	The new coordinates for this Museum
-   */
-  void set_coords(std::tuple<float, float> coords);
 
   /**
    * @brief Setter for the number of visits

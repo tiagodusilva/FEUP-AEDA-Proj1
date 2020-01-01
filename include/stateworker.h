@@ -159,6 +159,19 @@ public:
    * @return	worker's address
    */
   Address get_address() const;
+  /**
+   * @brief	get worker's saved museum name
+   *
+   * @return	worker's museum name
+   */
+  std::string get_associated_museum() const;
+
+  /**
+   * @brief	get worker's saved museum coordinates
+   *
+   * @return	worker's museum coordinates
+   */
+  std::tuple<float, float> get_museum_coordinates() const;
 
   /* INSERTION OPERATOR OVERLOAD */
   /**

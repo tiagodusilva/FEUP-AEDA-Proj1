@@ -414,12 +414,21 @@ public:
   /* METHODS FOR WORKERS */
 
   /**
-   * @brief	Add a new StateWorker to the network
+   * @brief	Add a new StateWorker to the network.
    * @throws  ObjectAlreadyExists  Thrown if the StateWorker is already in the
    * network
    * @param worker	Worker to be added to the network
    */
   void addWorker(StateWorker worker);
+
+  /**
+   * @brief Searches for a given worker in the network and hires it to a given
+   * museum
+   *
+   * @param worker	Worker to hire
+   * @param mus		Museum that the worker will work in
+   */
+  void hireWorker(StateWorker worker, const Museum &mus);
 
   /**
    * @brief	Lists all Workers present in the network

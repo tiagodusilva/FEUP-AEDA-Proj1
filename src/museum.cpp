@@ -67,15 +67,6 @@ Museum::get_numvisits() const
 
 /* SETTERS */
 void
-Museum::set_name(const std::string& new_name)
-{
-  if (utl::isStrEmpty(new_name))
-    throw UserInputReadingFailure(
-      "Name must not be be considered an empty string");
-  this->name = new_name;
-}
-
-void
 Museum::set_open(const Time& new_open)
 {
   if (new_open > this->close)
@@ -99,12 +90,6 @@ Museum::set_fee(float new_entry_fee)
   if (new_entry_fee < 0)
     throw UserInputReadingFailure("Museum's entry fee must not be negative");
   this->entry_fee = new_entry_fee;
-}
-
-void
-Museum::set_coords(tuple<float, float> coords)
-{
-	this->coordinates = coords;
 }
 
 void

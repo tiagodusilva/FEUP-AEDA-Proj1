@@ -584,13 +584,6 @@ AdminInterface::show()
 			Museum old_museum = *mus.begin(); // Store selected museum as backup for later modifying
 			Museum new_museum = *mus.begin();
 
-			MenuSelectFilter<Museum> modifyMuseumName("Modify Name",
-					[](Museum &mus){
-						cout << "Name?" << endl;
-						string name; getline(cin, name);
-						mus.set_name(name);
-					});
-
 			MenuSelectFilter<Museum> modifyMuseumClosingTime("Modify closing time",
 					[](Museum &mus){
 						cout << "Closing time? (hour:min)" << endl;
@@ -598,22 +591,6 @@ AdminInterface::show()
 						if(cin.fail())
 							throw(UserInputReadingFailure("Invalid closing time"));
 						mus.set_close(close_time);
-					});
-
-			MenuSelectFilter<Museum> modifyMuseumCoordinates("Modify coordinates",
-					[](Museum &mus){
-						tuple<float, float> coord;
-						cout << "GPS coordinates:\n"
-							 << "  X: ";
-						cin >> get<0>(coord);
-						utl::ignore(cin);
-						cout << "  Y: ";
-						cin >> get<1>(coord);
-						utl::ignore(cin);
-
-						if (cin.fail())
-						  throw UserInputReadingFailure("given coordinates are not numbers");
-						mus.set_coords(coord);
 					});
 
 			MenuSelectFilter<Museum> modifyMuseumOpeningTime("Modify opening time",
@@ -662,8 +639,8 @@ AdminInterface::show()
 					});
 
 			MenuOptionsFilter<Museum> modifyMuseum("Modify the selected Museum",
-					{&modifyMuseumName, &modifyMuseumOpeningTime, &modifyMuseumClosingTime, &modifyMuseumFee,
-					&modifyMuseumNumVisits, &modifyMuseumCoordinates,&modifyMuseumCommit});
+					{&modifyMuseumOpeningTime, &modifyMuseumClosingTime, &modifyMuseumFee,
+					&modifyMuseumNumVisits,&modifyMuseumCommit});
 
 			modifyMuseum.show(new_museum); // Initialize the menu with the selected museum
 		});
@@ -1006,10 +983,74 @@ AdminInterface::show()
 		listMenu.show();
 	});
 
+	MenuSelectFilter<vector<StateWorker>> hireSelectedWorker("Hire Selected Worker",
+		[this](vector<StateWorker> &vec) {
+			if (vec.size() != 1)
+				throw UserInputReadingFailure("Multiple workers selected");
+
+			StateWorker to_hire = vec.at(0);
+			MenuSelect listMuseums("List Museums", [this, &to_hire](){
+				set<Museum> mus = this->museum_network.getMuseums();
+
+				function<bool(Museum, string)> name_filter = [](Museum m, string name) { return false; };
+				function<bool(Museum, Address)> local_filter = [](Museum m, Address addr) { return false; };
+
+				string name;
+				Address addr;
+
+				MenuSelect FilterName("Filter by Name", [&name_filter, &name]() {
+							cout << "Name?\n"; getline(cin, name);
+							name_filter = [](Museum m, string n) { return m.get_name() != n; };
+						});
+
+				MenuSelect FilterAddress("Filter by Address", [&local_filter, &addr]() {
+					cout << "Address (street name/XXXX-XXX/region name  or	region)?\n"; cin >> addr;
+					if (cin.fail()) {
+						utl::stream_clear(cin);
+						throw(UserInputReadingFailure("Invalid name formatting\n"));
+					}
+					local_filter = [](Museum m, Address add) { return !(m.get_address() == add); };
+				});
+
+				MenuSelect commitMuseum("Commit Filters", [&mus, &local_filter, &name_filter, &name, &addr]() {
+					for(auto it=mus.begin(); it != mus.end();)
+						if (local_filter(*it, addr) || name_filter(*it, name))
+							mus.erase(it++);
+						else
+							++it;
+				});
+
+				MenuSelect listMuseums("List Museums", [this, &mus] {
+					this->museum_network.listMuseums(mus);
+				});
+
+				MenuSelect hireWorker("Hire worker to the selected museum", [this, &mus, &to_hire] {
+					if (mus.size() != 1)
+						throw UserInputReadingFailure("Multiple museums selected");
+
+					this->museum_network.hireWorker(to_hire, *mus.begin());
+				});
+
+				MenuOptions listMenu("Select Museum", {&listMuseums, &commitMuseum, &FilterName, &FilterAddress, &hireWorker});
+				listMenu.show();
+			});
+
+	});
+
+	vector<MenuFilter<vector<StateWorker>>*> hireWorkersOpt = {&WorkerSelected, &WorkerSort, &WorkerName, &hireSelectedWorker};
+	MenuOptionsFilter<vector<StateWorker>> hireWorkers("Hire Workers", listWorkersOpt,
+			[this](vector<StateWorker>&vec){ return vector<StateWorker>(); },
+			[this](){ // Initialize vector with all museums of the network filtered by non employment
+			  vector<StateWorker> vec = this->museum_network.getWorkers();
+			  flt::FilterWorkersByNonEmployment(vec);
+			  return vec;
+			},
+			false, {0, 1});
+
+
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as ADMIN",
-			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network, &repairMuseums});
-
+			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network, &repairMuseums, &hireWorkers});
 
 	main_menu.show();
 }
