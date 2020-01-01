@@ -935,48 +935,80 @@ AdminInterface::show()
 	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyRepairEnterpriseSelection,
 			&modifyEventSelection, &modifyMuseums});
 
-	MenuSelect repair_network("Send a repair enteprise to repair a network's building",
-			[this](){
-				tuple<float, float> coord;
-				float distance;
-				cout << "GPS Coordinates of the building to repair\n"
-					 << "  X: ";
-				cin >> get<0>(coord);
-				utl::ignore(cin);
-				cout << "  Y: ";
-				cin >> get<1>(coord);
-				utl::ignore(cin);
-				if (cin.fail())
-				  throw UserInputReadingFailure("given coordinates are not numbers");
+	/* Repair Museum */
+	MenuSelect repairMuseums("Repair Museum", [this](){
+		set<Museum> mus = this->museum_network.getMuseums();
 
-				cout << "Maximum distance to the building\n";
-				cin >> distance;
-				utl::ignore(cin);
-				if (cin.fail())
-				  throw UserInputReadingFailure("given distance is not number");
-				utl::clearConsole();
+		function<bool(Museum, string)> name_filter = [](Museum m, string name) { return false; };
+		function<bool(Museum, Address)> local_filter = [](Museum m, Address addr) { return false; };
 
-				vector<RepairEnterprise> vec = this->museum_network.getRepairEnterprises();
-				flt::FilterRepairEnterprisesByCoordinates(vec, coord, distance);
+		string name;
+		Address addr;
 
-				if (vec.size() == 0)
-					throw(MenuForceExit("No repair-enteprise matches the given criteria"));
+		MenuSelect FilterName("Filter by Name", [&name_filter, &name]() {
+					cout << "Name?\n"; getline(cin, name);
+					name_filter = [](Museum m, string n) { return m.get_name() != n; };
+				});
 
-				cout << "The following repair-enteprise is the enterprise with most experience which follows the given criteria:\n";
-				cout << vec.at(0) << endl;
+		MenuSelect FilterAddress("Filter by Address", [&local_filter, &addr]() {
+			cout << "Address (street name/XXXX-XXX/region name  or	region)?\n"; cin >> addr;
+			if (cin.fail()) {
+				utl::stream_clear(cin);
+				throw(UserInputReadingFailure("Invalid name formatting\n"));
+			}
+			local_filter = [](Museum m, Address add) { return !(m.get_address() == add); };
+		});
+
+		MenuSelect commitMuseum("Commit Filters", [&mus, &local_filter, &name_filter, &name, &addr]() {
+			for(auto it=mus.begin(); it != mus.end();)
+				if (local_filter(*it, addr) || name_filter(*it, name))
+					mus.erase(it++);
+				else
+					++it;
+		});
+
+		MenuSelect listMuseum("List Museums", [this, &mus] {
+			this->museum_network.listMuseums(mus);
+		});
+
+		MenuSelect repairSelectedMuseum("Send a repair enteprise to repair the selected museum",
+				[this, &mus](){
+					if (mus.size() != 1)
+						throw UserInputReadingFailure("Select only one museum!");
+
+					float distance;
+					cout << "Maximum distance to the building\n";
+					cin >> distance;
+					utl::ignore(cin);
+					if (cin.fail())
+					  throw UserInputReadingFailure("given distance is not number");
+					utl::clearConsole();
+
+					vector<RepairEnterprise> vec = this->museum_network.getRepairEnterprises();
+					flt::FilterRepairEnterprisesByCoordinates(vec, mus.begin()->get_coords(), distance);
+
+					if (vec.size() == 0)
+						throw(MenuForceExit("No repair-enteprise matches the given criteria"));
+
+					cout << "The following repair-enteprise is the enterprise with most experience which follows the given criteria:\n";
+					cout << vec.at(0) << endl;
 
 
-				cout << "Are you that you want to contact this repair-enterprise? (y/n)\n"; int a = getchar(); utl::ignore(cin);
-				if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
-				if(a == 'y' || a == 'Y')
-					this->museum_network.contactRepairEnterprise(vec.at(0));
+					cout << "Are you that you want to contact this repair-enterprise? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+					if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+					if(a == 'y' || a == 'Y')
+						this->museum_network.contactRepairEnterprise(vec.at(0));
 
-			});
+				});
 
+
+		MenuOptions listMenu("List Museums", {&listMuseum, &commitMuseum, &FilterName, &FilterAddress, &repairSelectedMuseum});
+		listMenu.show();
+	});
 
 	/* Main Menu */
 	MenuOptions main_menu("Logged in as ADMIN",
-			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network, &repair_network});
+			vector<Menu*>{&list_network, &remove_network, &add_network, &modify_network, &repairMuseums});
 
 
 	main_menu.show();
