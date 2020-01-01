@@ -87,6 +87,18 @@ StateWorker::get_address() const
   return this->address;
 }
 
+std::string
+StateWorker::get_associated_museum() const
+{
+	return this->associated_museum;
+}
+
+std::tuple<float, float>
+StateWorker::get_museum_coordinates() const
+{
+	return this->coordinates;
+}
+
 /* OPERATOR OVERLOAD */
 bool
 operator==(const StateWorker& lhs, const StateWorker& rhs)
