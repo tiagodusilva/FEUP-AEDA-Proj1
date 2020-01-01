@@ -239,15 +239,14 @@ operator<<(std::ofstream& outstream, const StateWorker& w)
   outstream << w.contact << endl;
   outstream << w.address << endl;
   outstream << w.birth_date << endl;
-  outstream << to_string(w.is_hired) << endl;
 
-  if (w.associated_museum == "")
-	  outstream << " " << endl;
-  else
-	  outstream << w.associated_museum << endl;
-
-  outstream << fixed << setprecision(2) << get<0>(w.coordinates) << endl;
-  outstream << fixed << setprecision(2) << get<1>(w.coordinates);
+  /* hiring status */
+  outstream << to_string(w.is_hired);
+  if (w.is_hired) {
+	  outstream << endl << w.associated_museum << endl;
+    outstream << fixed << setprecision(2) << get<0>(w.coordinates) << endl;
+    outstream << fixed << setprecision(2) << get<1>(w.coordinates);
+  }
 
   return outstream;
 }
@@ -288,9 +287,16 @@ operator>>(std::ifstream& instream, StateWorker& w)
 
     /* hiring status */
     instream >> w.is_hired;
-    instream >> w.associated_museum;
-    instream >> get<0>(w.coordinates);
-    instream >> get<1>(w.coordinates);
+    if (w.is_hired) {
+      instream >> w.associated_museum;
+      if (utl::isStrEmpty(w.contact))
+        throw FileReadingFailed("given associated museum name is empty");
+
+      instream >> get<0>(w.coordinates);
+      instream >> get<1>(w.coordinates);
+      if (instream.fail())
+        throw "Coordinates reading failure";
+    }
   }
   catch (char const* e) {
     /* In this case the exception has already been taken care of by another
