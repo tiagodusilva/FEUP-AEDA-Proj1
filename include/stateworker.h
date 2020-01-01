@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <tuple>
 
 #include "address.h"
 #include "date.h"
@@ -17,7 +18,7 @@
  */
 
 /** @brief	for formatted outputs */
-#define WORKER_OUTPUT_DELIM 15
+#define WORKER_OUTPUT_DELIM 17
 
 /** @brief  Object that saves the information of a state worker. */
 class StateWorker
@@ -35,6 +36,10 @@ private:
   Address address;
   /** @brief  Indicates if this worker is currently hired */
   bool is_hired;
+  /** @brief  Name of the museum where this person works */
+  std::string associated_museum;
+  /** @brief  GPS decimal coordinates of the associated museum */
+  std::tuple<float, float> coordinates;
 
 public:
   /* CONSTRUCTORS */
@@ -75,8 +80,13 @@ public:
    *          false, otherwise.
    */
   bool ishired() const;
-  /** @brief Hire this worker */
-  void hire();
+  /**
+   * @brief Hire this worker
+   *
+   * @param museum_name Name of the museum associated with this worker.
+   * @param museum_coord Coords of the museum associated with this worker.
+   */
+  void hire(std::string museum_name, std::tuple<float, float>museum_coord);
   /** @brief Fire this worker */
   void fire();
 

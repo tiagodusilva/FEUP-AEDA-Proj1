@@ -9,13 +9,18 @@ StateWorker::StateWorker(const std::string name,
                          const unsigned int cc,
                          const Date& birth_date,
                          const Address& address)
-  : is_hired()
 {
   this->name       = name;
   this->contact    = contact;
   this->cc         = cc;
   this->birth_date = birth_date;
   this->address    = address;
+
+  /* associated museum */
+  this->is_hired            = false;
+  this->associated_museum   = "";
+  get<0>(this->coordinates) = 0;
+  get<1>(this->coordinates) = 0;
 }
 
 /* GETTERS */
@@ -26,19 +31,27 @@ StateWorker::ishired() const
 }
 
 void
-StateWorker::hire()
+StateWorker::hire(std::string museum_name,
+                  std::tuple<float, float> museum_coord)
 {
   if (this->ishired())
     throw UserInputReadingFailure("This worker is already hired.");
-  else
-    this->is_hired = true;
+  else {
+    this->is_hired          = true;
+    this->associated_museum = museum_name;
+    this->coordinates       = museum_coord;
+  }
 }
 
 void
 StateWorker::fire()
 {
-  if (this->ishired())
-    this->is_hired = false;
+  if (this->ishired()) {
+    this->is_hired            = false;
+    this->associated_museum   = "";
+    get<0>(this->coordinates) = 0;
+    get<1>(this->coordinates) = 0;
+  }
   else
     throw UserInputReadingFailure(
       "This worker doesn't work for the state currently.");
@@ -128,7 +141,7 @@ StateWorker::cin_read_worker(StateWorker& w)
     /* hiring status */
     string ans = "";
     do {
-      cout << "Is this worker being/currently hired? (y/n/q)";
+      cout << "Is this worker being/currently hired? (y/n/q) ";
       getline(std::cin, ans);
     } while (ans != "Y" && ans != "N" && ans != "y" && ans != "n" &&
              ans != "q" && ans != "Q");
@@ -137,10 +150,27 @@ StateWorker::cin_read_worker(StateWorker& w)
       throw UserInputReadingFailure(
         "Quit in the middle of the worker creation operation");
 
-    if (ans == "Y" || ans == "y")
+    if (ans == "Y" || ans == "y") {
       w.is_hired = true;
-    else
-      w.is_hired = false;
+      cout << "Associated museum name: ";
+      cin >> w.associated_museum;
+
+      cout << "GPS coordinates:\n"
+           << "  X: ";
+      cin >> get<0>(w.coordinates);
+      utl::ignore(cin);
+      cout << "  Y: ";
+      cin >> get<1>(w.coordinates);
+      utl::ignore(cin);
+      if (cin.fail())
+        throw UserInputReadingFailure("given coordinates are not numbers");
+    }
+    else {
+      w.is_hired            = false;
+      w.associated_museum   = "";
+      get<0>(w.coordinates) = 0;
+      get<1>(w.coordinates) = 0;
+    }
   }
   catch (char const* e) {
     /* In this case the exception has already been taken care of by another
@@ -171,9 +201,15 @@ operator<<(std::ostream& outstream, const StateWorker& w)
             << left << setw(WORKER_OUTPUT_DELIM) << "Birth date"
             << " : " << right << w.birth_date << endl;
 
-  if (w.is_hired)
+  if (w.is_hired) {
     outstream << left << setw(WORKER_OUTPUT_DELIM) << "Is hired"
-              << " : " << right << "yes";
+              << " : " << right << "yes" << endl
+              << left << setw(WORKER_OUTPUT_DELIM) << "Associated museum"
+              << " : " << right << w.associated_museum << endl
+              << left << setw(WORKER_OUTPUT_DELIM) << "Museum GPS coords"
+              << " : " << right << "(" << get<0>(w.coordinates) << ", "
+              << get<1>(w.coordinates) << ")" << endl;
+  }
   else
     outstream << left << setw(WORKER_OUTPUT_DELIM) << "Is hired"
               << " : " << right << "no";
@@ -189,7 +225,10 @@ operator<<(std::ofstream& outstream, const StateWorker& w)
   outstream << w.contact << endl;
   outstream << w.address << endl;
   outstream << w.birth_date << endl;
-  outstream << to_string(w.is_hired);
+  outstream << to_string(w.is_hired) << endl;
+  outstream << w.associated_museum  << endl;
+  outstream << fixed << setprecision(2) << get<0>(w.coordinates) << endl;
+  outstream << fixed << setprecision(2) << get<1>(w.coordinates);
 
   return outstream;
 }
@@ -218,12 +257,10 @@ operator>>(std::ifstream& instream, StateWorker& w)
 
     /* address */
     instream >> w.address;
-    if (instream.fail())
-	{
-		cerr << "F";
+    if (instream.fail()) {
+      cerr << "F";
       throw "Address reading failed";
-
-	}
+    }
 
     /* date */
     instream >> w.birth_date;
@@ -232,6 +269,9 @@ operator>>(std::ifstream& instream, StateWorker& w)
 
     /* hiring status */
     instream >> w.is_hired;
+    instream >> w.associated_museum;
+    instream >> get<0>(w.coordinates);
+    instream >> get<1>(w.coordinates);
   }
   catch (char const* e) {
     /* In this case the exception has already been taken care of by another
