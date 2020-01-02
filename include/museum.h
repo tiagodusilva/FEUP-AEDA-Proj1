@@ -211,10 +211,8 @@ public:
 
   /**
    * @brief   Overloaded less-than operator.
-   *
    * @note    Mostly used to organize Museums in BST trees.
    *
-   * @param lhs Reference to one of the Museum object to compare.
    * @param rhs Reference to one of the Museum object to compare.
    *
    * @return  true, if lhs is considered less-than rhs,\n

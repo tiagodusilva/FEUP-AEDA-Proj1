@@ -26,11 +26,13 @@ public:
   /* CONSTRUCTORS */
   RepairEnterprise() = default;
   /**
-   * @brief Complete Enterprise constructor
+   * @brief Complete Enterprise constructor.
    *
-   * @param name		  The name of the Enterprise
-   * @param contact	  The contact of the Enterprise
-   * @param address	  The address of the Enterprise
+   * @param name		The name of the Enterprise.
+   * @param contact	The contact of the Enterprise.
+   * @param address	The address of the Enterprise.
+   * @param coord	  The address coordinates of the Enterprise.
+   * @param njobs   The number of jobs done by the Enterprise.
    */
   RepairEnterprise(const std::string& name,
                    const std::string& contact,
@@ -53,10 +55,8 @@ public:
   void hire() { ++this->njobs; }
   /**
    * @brief   Overloaded less-than operator.
-   *
    * @note    Mostly used to organize RepairEnterprise in min-heaps.
    *
-   * @param lhs Reference to one of the RepairEnterprise object to compare.
    * @param rhs Reference to one of the RepairEnterprise object to compare.
    *
    * @return  true, if lhs is considered less-than rhs,\n

@@ -1,6 +1,7 @@
 #include "../include/museum_network.h"
 
 #include <iomanip>
+#include <stack>
 
 using namespace std;
 
@@ -152,19 +153,52 @@ MuseumNetwork::addEnterprise(Enterprise enterprise)
   this->enterprises.push_back(enterprise);
 }
 
-
 /* Repair Enterprises */
+RepairEnterprise
+MuseumNetwork::getBestRepairEnterprise(std::tuple<float, float> mcoord,
+                                       float dist)
+{
+  stack<RepairEnterprise> temp;
+  RepairEnterprise curr;
+
+  bool found = false;
+  while (!this->repair_ent.empty() && !found) {
+    curr = repair_ent.top();
+    if (utl::coord_dist(curr.get_coords(), mcoord) > dist) {
+      temp.push(curr);
+      repair_ent.pop();
+    }
+    else {
+      found = true;
+    }
+  }
+
+  while (!temp.empty()) {
+    repair_ent.push(temp.top());
+    temp.pop();
+  }
+
+  if (found)
+    return curr;
+
+  return RepairEnterprise();
+}
+
+std::priority_queue<RepairEnterprise>
+MuseumNetwork::getRepairEnterprises() const
+{
+  return this->repair_ent;
+}
 
 vector<RepairEnterprise>
-MuseumNetwork::getRepairEnterprises() const
+MuseumNetwork::getRepairEnterprisesvec() const
 {
   priority_queue<RepairEnterprise> aux = this->repair_ent;
   vector<RepairEnterprise> result;
   result.reserve(aux.size());
 
-  while(!aux.empty())
-  {
-	result.push_back(aux.top());
+  while (!aux.empty()) {
+    result.push_back(aux.top());
     aux.pop();
   }
 
@@ -174,39 +208,41 @@ MuseumNetwork::getRepairEnterprises() const
 void
 MuseumNetwork::addRepairEnterprise(RepairEnterprise repair_enterprise)
 {
-    bool found = false;
-    priority_queue<RepairEnterprise> aux = repair_ent;
-    while(!aux.empty() && !found)
-    {
-      if (aux.top() == repair_enterprise)
-        found = true;
+  bool found                           = false;
+  priority_queue<RepairEnterprise> aux = repair_ent;
+  while (!aux.empty() && !found) {
+    if (aux.top() == repair_enterprise)
+      found = true;
 
-      aux.pop();
-    }
+    aux.pop();
+  }
 
-    if (found)
-      throw(ObjectAlreadyExists(repair_enterprise.get_name(), "Repair Enteprise"));
+  if (found)
+    throw(
+      ObjectAlreadyExists(repair_enterprise.get_name(), "Repair Enteprise"));
 
-	repair_ent.push(repair_enterprise);
+  repair_ent.push(repair_enterprise);
 }
 
 void
-MuseumNetwork::listRepairEnterprises(const vector<RepairEnterprise> &vec, const string& delim) const
+MuseumNetwork::listRepairEnterprises(const vector<RepairEnterprise>& vec,
+                                     const string& delim) const
 {
-	for(auto it=vec.begin(); it != vec.end(); ++it)
-	{
-		cout << *it;
-		cout << delim;
-	}
+  for (auto it = vec.begin(); it != vec.end(); ++it) {
+    cout << *it;
+    cout << delim;
+  }
 
-	cout << setw(MUSEUM_OUPUT_DELIM) <<
-		"Note: The folllowing repair enteprises are ordered by number of jobs successfully done" << endl;
+  cout << setw(MUSEUM_OUPUT_DELIM)
+       << "Note: The folllowing repair enteprises are ordered by number of "
+          "jobs successfully done"
+       << endl;
 }
 
 void
 MuseumNetwork::listRepairEnterprises(const string& delim) const
 {
-	this->listRepairEnterprises(getRepairEnterprises(), delim);
+  this->listRepairEnterprises(getRepairEnterprisesvec(), delim);
 }
 void
 MuseumNetwork::removeRepairEnterprise(const RepairEnterprise& repair_enterprise)
@@ -214,20 +250,18 @@ MuseumNetwork::removeRepairEnterprise(const RepairEnterprise& repair_enterprise)
   bool found = false;
   priority_queue<RepairEnterprise> aux;
 
-  while(!repair_ent.empty() && !found)
-  {
-	if (repair_enterprise == repair_ent.top())
-	  found = true;
-	else
-	  aux.push(repair_ent.top());
+  while (!repair_ent.empty() && !found) {
+    if (repair_enterprise == repair_ent.top())
+      found = true;
+    else
+      aux.push(repair_ent.top());
 
-	repair_ent.pop();
+    repair_ent.pop();
   }
 
-  while (!aux.empty())
-  {
+  while (!aux.empty()) {
     repair_ent.push(aux.top());
-	aux.pop();
+    aux.pop();
   }
 
   if (!found)
@@ -235,22 +269,23 @@ MuseumNetwork::removeRepairEnterprise(const RepairEnterprise& repair_enterprise)
 }
 
 void
-MuseumNetwork::removeRepairEnterprises(const vector<RepairEnterprise>& repair_enterprises)
+MuseumNetwork::removeRepairEnterprises(
+  const vector<RepairEnterprise>& repair_enterprises)
 {
-  for(auto it=repair_enterprises.begin(); it != repair_enterprises.end(); ++it)
+  for (auto it = repair_enterprises.begin(); it != repair_enterprises.end();
+       ++it)
     removeRepairEnterprise(*it);
 }
 
 void
-MuseumNetwork::modifyRepairEnterprise(const RepairEnterprise& old_rep_enter, const RepairEnterprise& new_rep_enter)
+MuseumNetwork::modifyRepairEnterprise(const RepairEnterprise& old_rep_enter,
+                                      const RepairEnterprise& new_rep_enter)
 {
   /* Check if new enteprise won't overwritte any of the existing ones */
-  if (old_rep_enter != new_rep_enter)
-  {
-    bool found = false;
+  if (old_rep_enter != new_rep_enter) {
+    bool found                           = false;
     priority_queue<RepairEnterprise> aux = repair_ent;
-    while(!aux.empty() && !found)
-    {
+    while (!aux.empty() && !found) {
       if (aux.top() == new_rep_enter)
         found = true;
 
@@ -260,7 +295,6 @@ MuseumNetwork::modifyRepairEnterprise(const RepairEnterprise& old_rep_enter, con
     if (found)
       throw(ObjectAlreadyExists(new_rep_enter.get_name(), "Repair Enteprise"));
   }
-
 
   /* Find and replace old enteprise */
   removeRepairEnterprise(old_rep_enter);
@@ -274,7 +308,6 @@ MuseumNetwork::contactRepairEnterprise(const RepairEnterprise& rep_enter)
   this->modifyRepairEnterprise(rep_enter, new_enter);
 }
 
-
 /* Museums */
 
 bool
@@ -282,11 +315,11 @@ MuseumNetwork::findMuseum(string museum_name, tuple<float, float> museum_coords)
 {
   bool found = false;
   Museum mus(museum_name, Time(0, 0), Time(0, 0), 0, Address(), museum_coords);
-  for(auto it=museums.begin(); it != museums.end(); ++it)
-	  if (*it == mus) {
-		  found = true;
-		  break;
-	  }
+  for (auto it = museums.begin(); it != museums.end(); ++it)
+    if (*it == mus) {
+      found = true;
+      break;
+    }
 
   return found;
 }
@@ -294,60 +327,61 @@ MuseumNetwork::findMuseum(string museum_name, tuple<float, float> museum_coords)
 void
 MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 {
-	if (museums.find(old_museum) == museums.end())
-		throw NoSuchObject(old_museum.get_name(), "Museum");
+  if (museums.find(old_museum) == museums.end())
+    throw NoSuchObject(old_museum.get_name(), "Museum");
 
-	/* If new museum won't replace the old one */
-	if (old_museum != new_museum)
-	{
-		/* If it will override an existing museum in the network */
-		if (museums.find(new_museum) != museums.end())
-			throw ObjectAlreadyExists(new_museum.get_name(), "Museum");
-	}
+  /* If new museum won't replace the old one */
+  if (old_museum != new_museum) {
+    /* If it will override an existing museum in the network */
+    if (museums.find(new_museum) != museums.end())
+      throw ObjectAlreadyExists(new_museum.get_name(), "Museum");
+  }
 
-    this->museums.erase(old_museum);
-    this->museums.insert(new_museum);
+  this->museums.erase(old_museum);
+  this->museums.insert(new_museum);
 }
 
 void
 MuseumNetwork::removeMuseums(const set<Museum>& museums_to_delete)
 {
-	for (auto it=museums_to_delete.begin(); it != museums_to_delete.end(); ++it)
-		removeMuseum(*it);
+  for (auto it = museums_to_delete.begin(); it != museums_to_delete.end(); ++it)
+    removeMuseum(*it);
 }
 
 void
 MuseumNetwork::removeMuseum(const Museum& museum)
 {
-	if (this->museums.find(museum) == museums.end())
-		throw(NoSuchObject(museum.get_name(), "Museum"));
+  if (this->museums.find(museum) == museums.end())
+    throw(NoSuchObject(museum.get_name(), "Museum"));
 
-	/* Iterate through all workers and fire all of them that work in the museum to be deleted */
-	for(auto it=this->workers.begin(); it != this->workers.end(); ++it)
-	{
-		if (it->get_associated_museum() == museum.get_name() &&
-			it->get_museum_coordinates() == museum.get_coords())
-		{
-			StateWorker to_add = *it;
-			to_add.fire();
-			workers.erase(it);
-			workers.insert(to_add);
-		}
-	}
+  /* Iterate through all workers and fire all of them that work in the museum to
+   * be deleted */
+  for (auto it = this->workers.begin(); it != this->workers.end(); ++it) {
+    if (it->get_associated_museum() == museum.get_name() &&
+        it->get_museum_coordinates() == museum.get_coords()) {
+      StateWorker to_add = *it;
+      to_add.fire();
+      workers.erase(it);
+      workers.insert(to_add);
+    }
+  }
 
-    this->museums.erase(museum);
+  this->museums.erase(museum);
 }
 
 void
 MuseumNetwork::listMuseums(const set<Museum>& museums_to_be_listed,
                            const string& delim) const
 {
-  for (const auto &museum: museums_to_be_listed) {
-      cout << museum << delim;
+  for (const auto& museum : museums_to_be_listed) {
+    cout << museum << delim;
   }
-  cout << setw(MUSEUM_OUPUT_DELIM) <<
-	  "Note: The folllowing museums are ordered by number of visits and, when tied, are ordered by alphabetical order" << endl;
-  cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n" << endl;
+  cout << setw(MUSEUM_OUPUT_DELIM)
+       << "Note: The folllowing museums are ordered by number of visits and, "
+          "when tied, are ordered by alphabetical order"
+       << endl;
+  cout << setw(MUSEUM_OUPUT_DELIM) << "Note: Museum fees are free for members\n"
+       << endl;
 }
 
 void
@@ -359,9 +393,9 @@ MuseumNetwork::listMuseums(const string& delim) const
 void
 MuseumNetwork::addMuseum(Museum museum)
 {
-  for(auto it = museums.begin(); it != museums.end(); ++it)
-	  if (*it == museum)
-		  throw ObjectAlreadyExists(museum.get_name(), "Museum");
+  for (auto it = museums.begin(); it != museums.end(); ++it)
+    if (*it == museum)
+      throw ObjectAlreadyExists(museum.get_name(), "Museum");
 
   museums.insert(museum);
 }
@@ -369,7 +403,7 @@ MuseumNetwork::addMuseum(Museum museum)
 set<Museum>
 MuseumNetwork::getMuseums() const
 {
-	return this->museums;
+  return this->museums;
 }
 
 /* Events */
@@ -524,28 +558,27 @@ MuseumNetwork::purchaseEvent(const unsigned cc, Event event)
   throw NoSuchObject(to_string(event.get_id()), "Event");
 }
 
-
 /* Worker */
 
 vector<StateWorker>
 MuseumNetwork::getWorkers() const
 {
-	vector<StateWorker> result;
-	result.reserve(workers.size());
+  vector<StateWorker> result;
+  result.reserve(workers.size());
 
-	for(auto it=workers.begin(); it != workers.end(); ++it)
-		result.push_back(*it);
+  for (auto it = workers.begin(); it != workers.end(); ++it)
+    result.push_back(*it);
 
-	return result;
+  return result;
 }
 
 void
-MuseumNetwork::hireWorker(StateWorker worker, const Museum &mus)
+MuseumNetwork::hireWorker(StateWorker worker, const Museum& mus)
 {
   auto iter = workers.find(worker);
 
   if (iter == workers.end()) // If worker already registered
-	  throw NoSuchObject(to_string(worker.get_cc()), "Worker");
+    throw NoSuchObject(to_string(worker.get_cc()), "Worker");
 
   /* Add worker as being hired */
   workers.erase(iter);
@@ -559,66 +592,68 @@ MuseumNetwork::addWorker(StateWorker worker)
   // ta ta ta eu tive a ler isso agora ta ta
   auto iter = workers.find(worker);
 
-
   /* Search for museum of the worker */
   if (worker.ishired())
-    if (!findMuseum(worker.get_associated_museum(), worker.get_museum_coordinates()))
-		throw NoSuchObject(worker.get_associated_museum(), "Worker's Museum");
-
+    if (!findMuseum(worker.get_associated_museum(),
+                    worker.get_museum_coordinates()))
+      throw NoSuchObject(worker.get_associated_museum(), "Worker's Museum");
 
   if (iter != workers.end()) // If worker already registered
-	throw ObjectAlreadyExists(to_string(iter->get_cc()), "Worker");
+    throw ObjectAlreadyExists(to_string(iter->get_cc()), "Worker");
 
   workers.insert(worker);
 }
 
-
 void
-MuseumNetwork::listWorkers(const vector<StateWorker> &vec, const string& delim) const
+MuseumNetwork::listWorkers(const vector<StateWorker>& vec,
+                           const string& delim) const
 {
-	for(auto it=vec.begin(); it != vec.end(); ++it)
-	{
-		cout << (*it);
-		cout << delim;
-	}
+  for (auto it = vec.begin(); it != vec.end(); ++it) {
+    cout << (*it);
+    cout << delim;
+  }
 }
 
 void
 MuseumNetwork::listWorkers(const string& delim) const
 {
-	this->listWorkers(getWorkers(), delim);
+  this->listWorkers(getWorkers(), delim);
 }
 
 void
 MuseumNetwork::removeWorker(const StateWorker& worker_to_be_removed)
 {
-	this->workers.erase(worker_to_be_removed);
+  this->workers.erase(worker_to_be_removed);
 }
 
 void
 MuseumNetwork::removeWorkers(const vector<StateWorker>& workers_to_be_removed)
 {
-	for(size_t i=0; i<workers_to_be_removed.size(); ++i)
-		removeWorker(workers_to_be_removed.at(i));
+  for (size_t i = 0; i < workers_to_be_removed.size(); ++i)
+    removeWorker(workers_to_be_removed.at(i));
 }
 
 void
-MuseumNetwork::modifyWorker(const StateWorker& old_worker, const StateWorker& new_worker)
+MuseumNetwork::modifyWorker(const StateWorker& old_worker,
+                            const StateWorker& new_worker)
 {
-	if (new_worker.ishired())
-		if (!findMuseum(new_worker.get_associated_museum(), new_worker.get_museum_coordinates()))
-			throw (NoSuchObject(new_worker.get_associated_museum(), "Worker's Museum"));
+  if (new_worker.ishired())
+    if (!findMuseum(new_worker.get_associated_museum(),
+                    new_worker.get_museum_coordinates()))
+      throw(
+        NoSuchObject(new_worker.get_associated_museum(), "Worker's Museum"));
 
-	if (workers.find(old_worker) == workers.end())
-		throw NoSuchObject(old_worker.get_name(), "Worker");
+  if (workers.find(old_worker) == workers.end())
+    throw NoSuchObject(old_worker.get_name(), "Worker");
 
-	/* If new_worker won't replace old_worker */
-	if (old_worker != new_worker)
-		if (workers.find(new_worker) != workers.end())  // If new_worker will override an existing worker
-			throw ObjectAlreadyExists(new_worker.get_name(), "Worker");
+  /* If new_worker won't replace old_worker */
+  if (old_worker != new_worker)
+    if (workers.find(new_worker) !=
+        workers.end()) // If new_worker will override an existing worker
+      throw ObjectAlreadyExists(new_worker.get_name(), "Worker");
 
-	workers.erase(old_worker);
-	workers.insert(new_worker);
+  workers.erase(old_worker);
+  workers.insert(new_worker);
 }
 
 /* File Methods */
@@ -684,7 +719,6 @@ MuseumNetwork::importEnterprises(const std::string& enterprise_file_name)
   this->enterprises = vec_enterprises;
 }
 
-
 void
 MuseumNetwork::importWorkers(const std::string& worker_file_name)
 {
@@ -699,7 +733,7 @@ MuseumNetwork::importWorkers(const std::string& worker_file_name)
     StateWorker worker;
     input_stream >> worker;
 
-	sucess = (aux.insert(worker)).second;
+    sucess = (aux.insert(worker)).second;
 
     if (input_stream.fail() || !sucess)
       throw FileReadingFailed(worker_file_name);
@@ -710,24 +744,25 @@ MuseumNetwork::importWorkers(const std::string& worker_file_name)
 }
 
 void
-MuseumNetwork::importRepairEnterprises(const std::string& repair_enterprise_file_name)
+MuseumNetwork::importRepairEnterprises(
+  const std::string& repair_enterprise_file_name)
 {
-    ifstream input_stream(repair_enterprise_file_name);
-    int repair_cnt;
-    priority_queue<RepairEnterprise> pq_repair;
+  ifstream input_stream(repair_enterprise_file_name);
+  int repair_cnt;
+  priority_queue<RepairEnterprise> pq_repair;
 
-    input_stream >> repair_cnt;
+  input_stream >> repair_cnt;
+  utl::ignore(input_stream);
+  for (int i = 0; i < repair_cnt; ++i) {
+    RepairEnterprise repair;
+    input_stream >> repair;
+    if (input_stream.fail())
+      throw FileReadingFailed(repair_enterprise_file_name);
+    pq_repair.push(repair);
     utl::ignore(input_stream);
-    for (int i = 0; i < repair_cnt; ++i) {
-        RepairEnterprise repair;
-        input_stream >> repair;
-        if (input_stream.fail())
-            throw FileReadingFailed(repair_enterprise_file_name);
-        pq_repair.push(repair);
-		utl::ignore(input_stream);
-    }
+  }
 
-    this->repair_ent = pq_repair;
+  this->repair_ent = pq_repair;
 }
 
 void
@@ -747,10 +782,9 @@ MuseumNetwork::exportMuseums(const std::string& museum_file_name) const
   ofstream output_stream(museum_file_name);
 
   output_stream << "" << this->museums.size() << endl;
-  for (const auto &museum: this->museums) {
-      output_stream << museum << endl;
+  for (const auto& museum : this->museums) {
+    output_stream << museum << endl;
   }
-
 }
 
 void
@@ -772,21 +806,22 @@ MuseumNetwork::exportWorkers(const std::string& worker_file_name) const
 
   unsigned int worker_cnt = this->workers.size();
   output_stream << "" << worker_cnt << endl;
-  for (auto it=workers.begin(); it != workers.end(); ++it)
+  for (auto it = workers.begin(); it != workers.end(); ++it)
     output_stream << *it << endl;
 }
 
 void
-MuseumNetwork::exportRepairEnterprises(const std::string& repair_enterprise_file_name) const
+MuseumNetwork::exportRepairEnterprises(
+  const std::string& repair_enterprise_file_name) const
 {
-    ofstream output_stream(repair_enterprise_file_name);
-    priority_queue<RepairEnterprise> aux = this->repair_ent;
+  ofstream output_stream(repair_enterprise_file_name);
+  priority_queue<RepairEnterprise> aux = this->repair_ent;
 
-    output_stream << "" << aux.size() << endl;
-    while (!aux.empty()) {
-        output_stream << aux.top() << endl;
-        aux.pop();
-    }
+  output_stream << "" << aux.size() << endl;
+  while (!aux.empty()) {
+    output_stream << aux.top() << endl;
+    aux.pop();
+  }
 }
 
 void
@@ -794,14 +829,15 @@ MuseumNetwork::exportFiles(const string& cards_file_name,
                            const string& museum_file_name,
                            const string& enterprise_file_name,
                            const string& repair_enterprise_file_name,
-						   const string& worker_file_name,
+                           const string& worker_file_name,
                            const std::string& config_file_name) const
 {
   ofstream output_stream(config_file_name);
   output_stream << "cards_file_name: " << cards_file_name << endl;
   output_stream << "museum_file_name: " << museum_file_name << endl;
   output_stream << "enterprise_file_name: " << enterprise_file_name << endl;
-  output_stream << "repair_enterprise_file_name: " << repair_enterprise_file_name << endl;
+  output_stream << "repair_enterprise_file_name: "
+                << repair_enterprise_file_name << endl;
   output_stream << "worker_file_name: " << worker_file_name << endl;
   output_stream << "individual::cost: " << cost[0] << endl;
   output_stream << "individual::discount: " << discount[0] << endl;
@@ -822,7 +858,7 @@ MuseumNetwork::importFiles(const string& network_file_name)
 {
   ifstream input_stream(network_file_name);
   string museum_file_name, enterprise_file_name, cards_file_name,
-		 repair_enterprise_file_name, worker_file_name;
+    repair_enterprise_file_name, worker_file_name;
   string temp_str;
 
   input_stream >> temp_str;
@@ -898,7 +934,7 @@ MuseumNetwork::importFiles(const string& network_file_name)
   if (!utl::file_exists(cards_file_name))
     throw FileNotFound(cards_file_name);
   if (!utl::file_exists(repair_enterprise_file_name))
-      throw FileNotFound(repair_enterprise_file_name);
+    throw FileNotFound(repair_enterprise_file_name);
 
   this->importCards(cards_file_name);
   this->importMuseums(museum_file_name);

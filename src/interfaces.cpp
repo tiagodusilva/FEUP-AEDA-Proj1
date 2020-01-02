@@ -145,7 +145,7 @@ AdminInterface::show()
 
 	/* Filter Workers */
 	MenuSelectFilter<vector<StateWorker>> WorkerName("Filter by name", flt::FilterByName<StateWorker>);
-	MenuOptionsFilter<vector<StateWorker>> WorkerHired("Filter by employment", employmentOpt, [](vector<StateWorker>&){},
+	MenuOptionsFilter<vector<StateWorker>> WorkerHired("Filter by employment status", employmentOpt, [](vector<StateWorker>&){},
 			[](){ return(vector<StateWorker>()); }, true);
 	MenuSelectFilter<vector<StateWorker>> WorkerSelected("List currently selected workers",
 			[this](const vector<StateWorker>&vec) { this->museum_network.listWorkers(vec); });
@@ -173,7 +173,7 @@ AdminInterface::show()
 		{&RepEnterpriseSelected, &RepEnterpriseSort, &RepEnterpriseLocation, &RepEnterpriseName};
 	MenuOptionsFilter<vector<RepairEnterprise>> listRepairEnterprises("List Repair Enterprises", listRepairEnterprisesOpt,
 			[this](vector<RepairEnterprise>&vec){ return vector<RepairEnterprise>(); },
-			[this](){ return(this->museum_network.getRepairEnterprises());}, // Initialize vector with all enterprises of the network
+			[this](){ return(this->museum_network.getRepairEnterprisesvec());}, // Initialize vector with all enterprises of the network
 			false, {0, 1});
 
 	/* List Events */
@@ -344,7 +344,7 @@ AdminInterface::show()
 	/* Remove Repair Enterprises */
 	MenuSelectFilter<vector<RepairEnterprise>> removeRepEnterprisesSelected("Remove selected repair-enterprises",
 		[this](vector<RepairEnterprise> &vec){
-			if(vec.size() == this->museum_network.getRepairEnterprises().size()) // If user has all of them selected
+			if(vec.size() == this->museum_network.getRepairEnterprisesvec().size()) // If user has all of them selected
 				cout << "Warning! You will remove all of them!!\n";
 			cout << "Are you sure? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 			if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
@@ -360,7 +360,7 @@ AdminInterface::show()
 		{&RepEnterpriseSelected, &RepEnterpriseSort, &RepEnterpriseLocation, &RepEnterpriseName, &removeRepEnterprisesSelected};
 	MenuOptionsFilter<vector<RepairEnterprise>> removeRepairEnterprises("Remove Repair-Enterprises", removeRepairEnterprisesOpt,
 			[this](vector<RepairEnterprise>&vec){ return; },
-			[this](){ return(this->museum_network.getRepairEnterprises());},
+			[this](){ return(this->museum_network.getRepairEnterprisesvec());},
 			false, {0, 1});
 
 
@@ -787,7 +787,7 @@ AdminInterface::show()
 	vector<MenuFilter<vector<RepairEnterprise>>*> modifyRepairEnterpriseOpt = listRepairEnterprisesOpt;
 	modifyRepairEnterpriseOpt.push_back(&modifyRepairEnterpriseMenu);
 	MenuOptionsFilter<vector<RepairEnterprise>> modifyRepairEnterpriseSelection("Modify Repair-Enterprises", modifyRepairEnterpriseOpt,
-			[](vector<RepairEnterprise>&vec){},[this](){ return(this->museum_network.getRepairEnterprises());}, false, {0, 1});
+			[](vector<RepairEnterprise>&vec){},[this](){ return(this->museum_network.getRepairEnterprisesvec());}, false, {0, 1});
 
 
 	/* Modify Events */
@@ -1049,20 +1049,19 @@ AdminInterface::show()
 					  throw UserInputReadingFailure("given distance is not number");
 					utl::clearConsole();
 
-					vector<RepairEnterprise> vec = this->museum_network.getRepairEnterprises();
-					flt::FilterRepairEnterprisesByCoordinates(vec, mus.begin()->get_coords(), distance);
 
-					if (vec.size() == 0)
+          RepairEnterprise r = this->museum_network.getBestRepairEnterprise(mus.begin()->get_coords(), distance);
+					if (r == RepairEnterprise())
 						throw(MenuForceExit("No repair-enteprise matches the given criteria"));
 
 					cout << "The following repair-enteprise is the enterprise with most experience which follows the given criteria:\n";
-					cout << vec.at(0) << endl;
+					cout << r << endl;
 
 
 					cout << "Are you that you want to contact this repair-enterprise? (y/n)\n"; int a = getchar(); utl::ignore(cin);
 					if(!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
 					if(a == 'y' || a == 'Y')
-						this->museum_network.contactRepairEnterprise(vec.at(0));
+						this->museum_network.contactRepairEnterprise(r);
 
 				});
 

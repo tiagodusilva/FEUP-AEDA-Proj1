@@ -5,18 +5,18 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <queue>
 #include <set>
 #include <string>
 #include <unordered_set>
 #include <vector>
-#include <queue>
 
 #include "cards.h"
 #include "enterprise.h"
 #include "exceptions.h"
 #include "museum.h"
-#include "stateworker.h"
 #include "repairenterprise.h"
+#include "stateworker.h"
 
 /**
  * @mainpage	First project for the AEDA chair (FEUP MIEIC 2019/2020)
@@ -67,23 +67,28 @@ private:
   std::vector<Card*> cards;
   /** @brief	List of all the Enterprises associated with the MuseumNetwork */
   std::vector<Enterprise> enterprises;
-  /** @brief	Set (BST) of all the Museums that are part of the Museum Network */
+  /** @brief	Set (BST) of all the Museums that are part of the Museum Network
+   */
   /** @brief  BST containing the most visited museums */
   std::set<Museum> museums;
   /** @brief  Hash table containing all the state workers registers */
-  HashTabStateWorker workers;  // TODO
-  /** @brief Pritority Queue containing all the repair enterprises, having the one with the most repairs always at the top */
-  std::priority_queue<RepairEnterprise> repair_ent;  // TODO
+  HashTabStateWorker workers; // TODO
+  /** @brief Pritority Queue containing all the repair enterprises, having the
+   * one with the most repairs always at the top */
+  std::priority_queue<RepairEnterprise> repair_ent; // TODO
 
   /**
-   * @brief Searches for a Museum with the given museum_name and museum_coords in the network
+   * @brief Searches for a Museum with the given museum_name and museum_coords
+   * in the network
    *
    * @param museum_name	Name of the museum to search
    * @param museum_coords	Coordinates of the museum to search
    *
    * @return	True if the museum is found, false otherwise
    */
-  bool findMuseum(std::string museum_name, std::tuple<float, float> museum_coords);
+  bool findMuseum(std::string museum_name,
+                  std::tuple<float, float> museum_coords);
+
 public:
   /* CONSTRUCTORS */
   /**
@@ -274,15 +279,17 @@ public:
   void addMuseum(Museum museum);
 
   /**
-   * @brief Searches for each museum in a given set in the network and deletes them
+   * @brief Searches for each museum in a given set in the network and deletes
+   * them
    *
-   * @param museums_to_delete	Set of museums to find and delete from the network
+   * @param museums_to_delete	Set of museums to find and delete from the
+   * network
    */
   void removeMuseums(const std::set<Museum>& museums_to_delete);
   /**
    * @brief	Search for the given Museum on the network and remove it.
-   * All workers present in the network that work in the museum_to_be_removed will be
-   * fired
+   * All workers present in the network that work in the museum_to_be_removed
+   * will be fired
    *
    * @throws  NoSuchObject  Thrown if museum_to_be_removed doesn't exist in the
    * network
@@ -439,14 +446,15 @@ public:
    * @param worker	Worker to hire
    * @param mus		Museum that the worker will work in
    */
-  void hireWorker(StateWorker worker, const Museum &mus);
+  void hireWorker(StateWorker worker, const Museum& mus);
 
   /**
    * @brief	Lists all Workers present in the network
    *
    * @param delim   String delimiter to be printed between Workers
    */
-  void listWorkers(const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  void listWorkers(const std::string& delim = '\n' + std::string(64, '-') +
+                                              '\n') const;
 
   /**
    * @brief	Lists all Workers present in a given vector
@@ -454,8 +462,9 @@ public:
    * @param vec	  Vector of StateWorker that will be listed
    * @param delim   String delimiter to be printed between Workers
    */
-  void listWorkers(const std::vector<StateWorker> &vec,
-		  const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  void listWorkers(const std::vector<StateWorker>& vec,
+                   const std::string& delim = '\n' + std::string(64, '-') +
+                                              '\n') const;
 
   /**
    * @brief	Remove a given StateWorker from the network
@@ -470,24 +479,27 @@ public:
   /**
    * @brief	Search for the given Workers on the network and remove them
    *
-   * @param workers_to_be_removed	Vector of StateWorker to be removed from the
-   * network
+   * @param workers_to_be_removed	Vector of StateWorker to be removed from
+   * the network
    */
   void removeWorkers(const std::vector<StateWorker>& workers_to_be_removed);
 
   /**
-   * @brief	Search for a given StateWorker and change its content to a new given
+   * @brief	Search for a given StateWorker and change its content to a new
+   given
    * Worker (new_worker)
    *
    * @throws  NoSuchObject  Thrown if the old_worker doesn't exist in the
-   * network or the new_worker is being employed in a museum that isn't in the networ
+   * network or the new_worker is being employed in a museum that isn't in the
+   networ
    k
    * @throws  ObjectAlreadyExists	Thrown if the new_worker would
    * overwritte one of the already resgistred workers
    * @param old_worker	Worker that will be changed
    * @param new_worker	Worker whose content will replace the old one
    */
-  void modifyWorker(const StateWorker& old_worker, const StateWorker& new_worker);
+  void modifyWorker(const StateWorker& old_worker,
+                    const StateWorker& new_worker);
 
   /**
    * @brief	Imports Workers written in a file to the workers
@@ -506,12 +518,11 @@ public:
    */
   void exportWorkers(const std::string& worker_file_name) const;
 
-
   /* METHODS FOR REPAIR ENTEPRISES */
   /**
    * @brief		Add a new RepairEnterprise to the network
-   * @throws	ObjectAlreadyExists  Thrown if the RepairEnterprise is already in the
-   * network
+   * @throws	ObjectAlreadyExists  Thrown if the RepairEnterprise is already
+   * in the network
    * @param repair_enterprise	RepairEnterprise to be added to the network
    */
   void addRepairEnterprise(RepairEnterprise repair_enterprise);
@@ -520,65 +531,75 @@ public:
    *
    * @param delim   String delimiter to be printed between RepairEnterprises
    */
-  void listRepairEnterprises(const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  void listRepairEnterprises(const std::string& delim = '\n' +
+                                                        std::string(64, '-') +
+                                                        '\n') const;
   /**
    * @brief	Lists all RepairEnterprises present in a given vector
    *
    * @param vec	  Vector of RepairEnterprises that will be listed
    * @param delim   String delimiter to be printed between RepEnterprises
    */
-  void listRepairEnterprises(const std::vector<RepairEnterprise> &vec,
-		  const std::string& delim = '\n' + std::string(64, '-') + '\n') const;
+  void listRepairEnterprises(const std::vector<RepairEnterprise>& vec,
+                             const std::string& delim = '\n' +
+                                                        std::string(64, '-') +
+                                                        '\n') const;
   /**
    * @brief	Remove a given RepairEnterprise from the network
    *
-   * @throws  NoSuchObject  Thrown if the given RepairEnterprise doesn't exist in the
-   * network
+   * @throws  NoSuchObject  Thrown if the given RepairEnterprise doesn't exist
+   * in the network
    * @param repair_enterprise	RepairEnterprise to find and remove from the
    * network
    */
   void removeRepairEnterprise(const RepairEnterprise& repair_enterprise);
   /**
-   * @brief	Search for the given RepairEnterprises on the network and remove them
+   * @brief	Search for the given RepairEnterprises on the network and remove
+   * them
    *
-   * @param repair_enterprises	Vector of RepairEnterprises to be removed from the
-   * network
+   * @param repair_enterprises	Vector of RepairEnterprises to be removed from
+   * the network
    */
-  void removeRepairEnterprises(const std::vector<RepairEnterprise>& repair_enterprises);
+  void removeRepairEnterprises(
+    const std::vector<RepairEnterprise>& repair_enterprises);
   /**
-   * @brief	Search for a given RepairEnterprise and change its content to a new given
-   * RepairEnterprise (old_rep_enter)
+   * @brief	Search for a given RepairEnterprise and change its content to a
+   * new given RepairEnterprise (old_rep_enter)
    *
    * @throws  NoSuchObject  Thrown if the old_rep_enter doesn't exist in the
    * network
    * @throws  ObjectAlreadyExists	Thrown if the new_rep_enter would
    * overwritte one of the already resgistred RepairEnterprises
    * @param old_rep_enter	RepairEnterprise that will be changed
-   * @param new_rep_enter	RepairEnterprise whose content will replace the old one
+   * @param new_rep_enter	RepairEnterprise whose content will replace the
+   * old one
    */
-  void modifyRepairEnterprise(const RepairEnterprise& old_rep_enter, const RepairEnterprise& new_rep_enter);
+  void modifyRepairEnterprise(const RepairEnterprise& old_rep_enter,
+                              const RepairEnterprise& new_rep_enter);
   /**
-   * @brief	Contacts a given RepairEnterprise to do a maintenance service, increasing its number of jobs
+   * @brief	Contacts a given RepairEnterprise to do a maintenance service,
+   * increasing its number of jobs
    *
    * @param rep_enter	RepairEnterprise to contact
    */
   void contactRepairEnterprise(const RepairEnterprise& rep_enter);
   /**
-   * @brief	Imports repair enterprises written in a file to the repair enterprises controlled by
-   * the network
+   * @brief	Imports repair enterprises written in a file to the repair
+   * enterprises controlled by the network
    *
-   * @param repair_enterprise_file_name	Name of the file associated with the repair enterprises'
-   * information
+   * @param repair_enterprise_file_name	Name of the file associated with the
+   * repair enterprises' information
    */
   void importRepairEnterprises(const std::string& repair_enterprise_file_name);
   /**
-   * @brief	Exports all repair enterprises registered in the network to a file
+   * @brief	Exports all repair enterprises registered in the network to a
+   * file
    *
-   * @param repair_enterprise_file_name	Name of the file that will be overwritten with
-   * the repair enterprises' information
+   * @param repair_enterprise_file_name	Name of the file that will be
+   * overwritten with the repair enterprises' information
    */
-  void exportRepairEnterprises(const std::string& repair_enterprise_file_name) const;
-
+  void exportRepairEnterprises(
+    const std::string& repair_enterprise_file_name) const;
 
   /* GETTERS */
 
@@ -588,6 +609,8 @@ public:
    * @return	Vector of pointers to all Cards subscribed in the network
    */
   std::vector<Card*> getCards() const { return this->cards; };
+  RepairEnterprise getBestRepairEnterprise(std::tuple<float, float> mcoord,
+                                           float dist);
   /**
    * @brief	Getter for all Enterprises present in the network
    *
@@ -599,7 +622,15 @@ public:
    *
    * @return	Vector of all RepairEnterprises present in the network
    */
-  std::vector<RepairEnterprise> getRepairEnterprises() const;
+  std::priority_queue<RepairEnterprise> getRepairEnterprises() const;
+  /**
+   * @brief	Getter for all RepairEnterprises present in the network (in a
+   * vector)
+   *
+   * @return	Vector of all RepairEnterprises present in the network (in a
+   * vector)
+   */
+  std::vector<RepairEnterprise> getRepairEnterprisesvec() const;
   /**
    * @brief	Getter for all Museums present in the network
    *
@@ -634,17 +665,21 @@ public:
    * @brief Exports current network information to 4 files (cards, museum,
    * enterprise and config) whose names are given
    *
-   * @param cards_file_name	Name of the cards file to export to
-   * @param museum_file_name	Name of the museum file to export to
-   * @param enterprise_file_name	Name of the enterprise file to export to
-   * @param config_file_name	Name of the config file to export to
+   * @param cards_file_name	            Name of the cards file to export to
+   * @param museum_file_name	          Name of the museum file to export to
+   * @param enterprise_file_name	      Name of the enterprise file to export
+   * to
+   * @param repair_enterprise_file_name Name of the museum file to export to
+   * @param worker_file_name	          Name of the enterprise file to export
+   * to
+   * @param config_file_name	          Name of the config file to export to
    */
   void exportFiles(
     const std::string& cards_file_name,
     const std::string& museum_file_name,
     const std::string& enterprise_file_name,
     const std::string& repair_enterprise_file_name,
-	const std::string& worker_file_name,
+    const std::string& worker_file_name,
     const std::string& config_file_name = "files/network_config.sadjson") const;
 };
 
