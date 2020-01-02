@@ -334,7 +334,7 @@ AdminInterface::show()
 				cout << "Operation aborted" << endl;
 		});
 	vector<MenuFilter<vector<Enterprise>>*> removeEnterprisesOpt =
-		{&EnterpriseSelected, &EnterpriseLocation, &EnterpriseEvent, &EnterpriseName, &removeEnterprisesSelected};
+		{&EnterpriseSelected, &EnterpriseSort, &EnterpriseLocation, &EnterpriseEvent, &EnterpriseName, &removeEnterprisesSelected};
 	MenuOptionsFilter<vector<Enterprise>> removeEnterprises("Remove Enterprises", removeEnterprisesOpt,
 			[this](vector<Enterprise>&vec){ return; },
 			[this](){ return(this->museum_network.getEnterprises());},
@@ -357,7 +357,7 @@ AdminInterface::show()
 				cout << "Operation aborted" << endl;
 		});
 	vector<MenuFilter<vector<RepairEnterprise>>*> removeRepairEnterprisesOpt =
-		{&RepEnterpriseSelected, &RepEnterpriseLocation, &RepEnterpriseName, &removeRepEnterprisesSelected};
+		{&RepEnterpriseSelected, &RepEnterpriseSort, &RepEnterpriseLocation, &RepEnterpriseName, &removeRepEnterprisesSelected};
 	MenuOptionsFilter<vector<RepairEnterprise>> removeRepairEnterprises("Remove Repair-Enterprises", removeRepairEnterprisesOpt,
 			[this](vector<RepairEnterprise>&vec){ return; },
 			[this](){ return(this->museum_network.getRepairEnterprises());},
@@ -380,7 +380,7 @@ AdminInterface::show()
 				cout << "Operation aborted" << endl;
 		});
 	vector<MenuFilter<vector<Card*>>*> removeCardsOpt =
-		{&CardsSelect, &CardsName, &CardsValidity, &removeCardsSelected};
+		{&CardsSelect, &CardsSort, &CardsName, &CardsValidity, &removeCardsSelected};
 	MenuOptionsFilter<vector<Card*>> removeCards("Remove Cards", removeCardsOpt,
 			[this](vector<Card*>&vec){ return; },
 			[this](){ return(this->museum_network.getCards());},
@@ -403,7 +403,7 @@ AdminInterface::show()
 				cout << "Operation aborted" << endl;
 		});
 	vector<MenuFilter<vector<StateWorker>>*> removeWorkersOpt =
-		{&WorkerSelected, &WorkerName, &WorkerHired, &removeWorkersSelected};
+		{&WorkerSelected, &WorkerSort, &WorkerName, &WorkerHired, &removeWorkersSelected};
 	MenuOptionsFilter<vector<StateWorker>> removeWorkers("Remove Workers", removeWorkersOpt,
 			[this](vector<StateWorker>&vec){ return; },
 			[this](){ return(this->museum_network.getWorkers());},
@@ -1067,7 +1067,7 @@ AdminInterface::show()
 				});
 
 
-		MenuOptions listMenu("List Museums", {&listMuseum, &commitMuseum, &FilterName, &FilterAddress, &repairSelectedMuseum});
+		MenuOptions listMenu("Repair Museums", {&listMuseum, &commitMuseum, &FilterName, &FilterAddress, &repairSelectedMuseum});
 		listMenu.show();
 	});
 
