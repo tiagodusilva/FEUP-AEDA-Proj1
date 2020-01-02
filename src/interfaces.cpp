@@ -908,9 +908,97 @@ AdminInterface::show()
 			[](vector<Event>&vec){},[this](){ return(this->museum_network.getEvents());}, false, {0, 1});
 
 
+	/* Modify Workers */
+	MenuSelectFilter<vector<StateWorker>> modifyWorkerMenu("Modify the selected Workers",
+			[this](vector<StateWorker>&vec){
+				/* Opens menu that changes the current enterprise */
+				if(vec.size() != 1)
+					throw(UserInputReadingFailure("Multiple Workers selected"));
+				StateWorker old_worker = vec.at(0); // Store selected enterprise as backup for later modifying
+
+				MenuSelectFilter<StateWorker> modifyWorkerName("Modify Name",
+						[](StateWorker &worker){
+							cout << "Name?\n";
+							string name; getline(cin, name);
+							cerr << name;
+							worker.set_name(name);
+						});
+
+				MenuSelectFilter<StateWorker> modifyWorkerContact("Modify Contact",
+						[](StateWorker &worker){
+							cout << "Contact?\n";
+							string contact; getline(cin, contact);
+							worker.set_contact(contact);
+						});
+
+				MenuSelectFilter<StateWorker> modifyWorkerAddress("Modify Address",
+						[](StateWorker &worker){
+							cout << "Address (street name/XXXX-XXX/region name  or	region)?\n";
+							Address address; cin >> address;
+							if(cin.fail())
+								throw(UserInputReadingFailure("Invalid Address"));
+							worker.set_address(address);
+						});
+
+				MenuSelectFilter<StateWorker> modifyWorkerMuseum("Modify Employment",
+						[](StateWorker &worker){
+							cout << "Set status to unemployed? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+							if (!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+							if (a=='y' || a=='Y') {
+								if (worker.ishired())
+									worker.fire();
+							}
+							else
+							{
+								string m_name; tuple<float, float> m_coords;
+								cout << "Museum name?\n"; cin >> m_name;
+
+								cout << "GPS coordinates:\n"
+									 << "  X: ";
+								cin >> get<0>(m_coords);
+								utl::ignore(cin);
+								cout << "  Y: ";
+								cin >> get<1>(m_coords);
+								utl::ignore(cin);
+
+								if(cin.fail())
+									throw(UserInputReadingFailure("Invalid Coordinates"));
+
+								if (worker.ishired())
+									worker.fire();
+								worker.hire(m_name, m_coords);
+							}
+						});
+
+				MenuSelectFilter<StateWorker> modifyWorkerCommit("Commit changes",
+						[this, &old_worker](StateWorker &new_worker){
+							cout << "Previous Worker: " << endl; cout << old_worker << endl; utl::pauseConsole();
+							cout << "Updated Worker: " << endl;	cout << new_worker << endl << endl;
+
+
+							cout << "Are you sure that you want to update? (y/n)\n"; int a = getchar(); utl::ignore(cin);
+							if (!(a == 'y' || a == 'Y' || a == 'n' || a == 'N')) throw(UserInputReadingFailure("Type y or n"));
+							if (a=='y' || a=='Y')
+								this->museum_network.modifyWorker(old_worker, new_worker);
+							else
+								cout << "Operation aborted";
+						});
+
+				MenuOptionsFilter<StateWorker> modifyStateWorker("Modify the selected StateWorker",
+						{&modifyWorkerAddress, &modifyWorkerContact, &modifyWorkerName, &modifyWorkerMuseum, &modifyWorkerCommit});
+
+				modifyStateWorker.show(vec.at(0)); // Initialize the menu with the selected enterprise
+			});
+
+	vector<MenuFilter<vector<StateWorker>>*> modifyWorkerOpt = listWorkersOpt;
+	modifyWorkerOpt.push_back(&modifyWorkerMenu);
+	MenuOptionsFilter<vector<StateWorker>> modifyWorkerSelection("Modify StateWorkers", modifyWorkerOpt,
+			[](vector<StateWorker>&vec){},[this](){ return(this->museum_network.getWorkers());}, false, {0, 1});
+
+
 	/* Modify Network Options */
 	MenuOptions modify_network("Modify Network Options", {&modifyEnterpriseSelection, &modifyRepairEnterpriseSelection,
-			&modifyEventSelection, &modifyMuseums});
+			&modifyEventSelection, &modifyMuseums, &modifyWorkerSelection});
 
 	/* Repair Museum */
 	MenuSelect repairMuseums("Repair Museum", [this](){
@@ -1029,7 +1117,7 @@ AdminInterface::show()
 						throw UserInputReadingFailure("Multiple museums selected");
 
 					this->museum_network.hireWorker(to_hire, *mus.begin());
-					cout << "Operation completed with success";
+
 					throw MenuForceExit(": Operation Completed with success");
 				});
 

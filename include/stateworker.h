@@ -110,7 +110,7 @@ public:
    */
   void set_name(const std::string& name)
   {
-    if (utl::isStrEmpty(name))
+    if (!utl::isStrEmpty(name))
       this->name = name;
     else
       throw UserInputReadingFailure("Empty name!");

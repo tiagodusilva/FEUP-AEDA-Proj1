@@ -75,6 +75,15 @@ private:
   /** @brief Pritority Queue containing all the repair enterprises, having the one with the most repairs always at the top */
   std::priority_queue<RepairEnterprise> repair_ent;  // TODO
 
+  /**
+   * @brief Searches for a Museum with the given museum_name and museum_coords in the network
+   *
+   * @param museum_name	Name of the museum to search
+   * @param museum_coords	Coordinates of the museum to search
+   *
+   * @return	True if the museum is found, false otherwise
+   */
+  bool findMuseum(std::string museum_name, std::tuple<float, float> museum_coords);
 public:
   /* CONSTRUCTORS */
   /**
@@ -271,7 +280,9 @@ public:
    */
   void removeMuseums(const std::set<Museum>& museums_to_delete);
   /**
-   * @brief	Search for the given Museum on the network and remove it
+   * @brief	Search for the given Museum on the network and remove it.
+   * All workers present in the network that work in the museum_to_be_removed will be
+   * fired
    *
    * @throws  NoSuchObject  Thrown if museum_to_be_removed doesn't exist in the
    * network
@@ -469,13 +480,14 @@ public:
    * Worker (new_worker)
    *
    * @throws  NoSuchObject  Thrown if the old_worker doesn't exist in the
-   * network
+   * network or the new_worker is being employed in a museum that isn't in the networ
+   k
    * @throws  ObjectAlreadyExists	Thrown if the new_worker would
    * overwritte one of the already resgistred workers
    * @param old_worker	Worker that will be changed
    * @param new_worker	Worker whose content will replace the old one
    */
-  void modifyWorker(const StateWorker& old_worker, const StateWorker& new_workeworker);
+  void modifyWorker(const StateWorker& old_worker, const StateWorker& new_worker);
 
   /**
    * @brief	Imports Workers written in a file to the workers

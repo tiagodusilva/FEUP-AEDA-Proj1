@@ -277,9 +277,34 @@ MuseumNetwork::contactRepairEnterprise(const RepairEnterprise& rep_enter)
 
 /* Museums */
 
+bool
+MuseumNetwork::findMuseum(string museum_name, tuple<float, float> museum_coords)
+{
+  bool found = false;
+  Museum mus(museum_name, Time(0, 0), Time(0, 0), 0, Address(), museum_coords);
+  for(auto it=museums.begin(); it != museums.end(); ++it)
+	  if (*it == mus) {
+		  found = true;
+		  break;
+	  }
+
+  return found;
+}
+
 void
 MuseumNetwork::modifyMuseum(const Museum& old_museum, const Museum& new_museum)
 {
+	if (museums.find(old_museum) == museums.end())
+		throw NoSuchObject(old_museum.get_name(), "Museum");
+
+	/* If new museum won't replace the old one */
+	if (old_museum != new_museum)
+	{
+		/* If it will override an existing museum in the network */
+		if (museums.find(new_museum) != museums.end())
+			throw ObjectAlreadyExists(new_museum.get_name(), "Museum");
+	}
+
     this->museums.erase(old_museum);
     this->museums.insert(new_museum);
 }
@@ -296,6 +321,19 @@ MuseumNetwork::removeMuseum(const Museum& museum)
 {
 	if (this->museums.find(museum) == museums.end())
 		throw(NoSuchObject(museum.get_name(), "Museum"));
+
+	/* Iterate through all workers and fire all of them that work in the museum to be deleted */
+	for(auto it=this->workers.begin(); it != this->workers.end(); ++it)
+	{
+		if (it->get_associated_museum() == museum.get_name() &&
+			it->get_museum_coordinates() == museum.get_coords())
+		{
+			StateWorker to_add = *it;
+			to_add.fire();
+			workers.erase(it);
+			workers.insert(to_add);
+		}
+	}
 
     this->museums.erase(museum);
 }
@@ -521,20 +559,11 @@ MuseumNetwork::addWorker(StateWorker worker)
   // ta ta ta eu tive a ler isso agora ta ta
   auto iter = workers.find(worker);
 
-  Museum mus(worker.get_associated_museum(), Time(0, 0), Time(0, 0), 0, Address(), worker.get_museum_coordinates());
 
   /* Search for museum of the worker */
   if (worker.ishired())
-  {
-	  bool found = false;
-	  for(auto it=museums.begin(); it != museums.end(); ++it)
-		  if (*it == mus) {
-			  found = true;
-			  break;
-		  }
-	  if (!found)
-		  throw NoSuchObject(worker.get_associated_museum(), "Worker's Museum");
-  }
+    if (!findMuseum(worker.get_associated_museum(), worker.get_museum_coordinates()))
+		throw NoSuchObject(worker.get_associated_museum(), "Worker's Museum");
 
 
   if (iter != workers.end()) // If worker already registered
@@ -571,6 +600,25 @@ MuseumNetwork::removeWorkers(const vector<StateWorker>& workers_to_be_removed)
 {
 	for(size_t i=0; i<workers_to_be_removed.size(); ++i)
 		removeWorker(workers_to_be_removed.at(i));
+}
+
+void
+MuseumNetwork::modifyWorker(const StateWorker& old_worker, const StateWorker& new_worker)
+{
+	if (new_worker.ishired())
+		if (!findMuseum(new_worker.get_associated_museum(), new_worker.get_museum_coordinates()))
+			throw (NoSuchObject(new_worker.get_associated_museum(), "Worker's Museum"));
+
+	if (workers.find(old_worker) == workers.end())
+		throw NoSuchObject(old_worker.get_name(), "Worker");
+
+	/* If new_worker won't replace old_worker */
+	if (old_worker != new_worker)
+		if (workers.find(new_worker) != workers.end())  // If new_worker will override an existing worker
+			throw ObjectAlreadyExists(new_worker.get_name(), "Worker");
+
+	workers.erase(old_worker);
+	workers.insert(new_worker);
 }
 
 /* File Methods */
