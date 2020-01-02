@@ -131,7 +131,7 @@ namespace flt
 	{
 		vector<RepairEnterprise>::iterator iter = remove_if(vec.begin(), vec.end(),
 				[&distance, &coord](RepairEnterprise elem) {
-					return(utl::getDistance(elem.get_coords(), coord) > distance);
+					return(utl::coord_dist(elem.get_coords(), coord) > distance);
 				});
 		vec.erase(iter, vec.end());
 
