@@ -1,0 +1,3 @@
+<map id="ObjectAlreadyExists" name="ObjectAlreadyExists">
+<area shape="rect" id="node1" title="Thrown when attempting to instantiate a duplicate of an Object that can&#39;t have duplicates." alt="" coords="5,5,184,83"/>
+</map>

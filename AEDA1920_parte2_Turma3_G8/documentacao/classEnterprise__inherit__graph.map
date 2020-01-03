@@ -1,0 +1,4 @@
+<map id="Enterprise" name="Enterprise">
+<area shape="rect" id="node1" title="Class that simulates the Event Enterprises our Network would have established contracts with." alt="" coords="5,307,220,648"/>
+<area shape="rect" id="node2" href="$classBaseEnterprise.html" title="Base enterprise object." alt="" coords="35,5,191,259"/>
+</map>

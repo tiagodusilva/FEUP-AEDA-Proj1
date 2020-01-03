@@ -1,0 +1,3 @@
+<map id="MenuForceExit" name="MenuForceExit">
+<area shape="rect" id="node1" title="Thrown by a menu to forcefully kill itself." alt="" coords="5,5,148,83"/>
+</map>

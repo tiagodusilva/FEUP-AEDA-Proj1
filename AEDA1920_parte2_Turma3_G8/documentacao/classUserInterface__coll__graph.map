@@ -1,0 +1,4 @@
+<map id="UserInterface" name="UserInterface">
+<area shape="rect" id="node1" title="Interface instanciated when a NON&#45;REGISTERED user signs in." alt="" coords="38,1201,185,1308"/>
+<area shape="rect" id="node2" href="$classMuseumNetwork.html" title="Network that handles the Museums and the relationship with Event companies." alt="" coords="5,5,217,1139"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="RepairEnterprise" name="RepairEnterprise">
+<area shape="rect" id="node1" title="Enterprise that provides repair services to a museum." alt="" coords="5,307,219,531"/>
+<area shape="rect" id="node2" href="$classBaseEnterprise.html" title="Base enterprise object." alt="" coords="34,5,190,259"/>
+</map>

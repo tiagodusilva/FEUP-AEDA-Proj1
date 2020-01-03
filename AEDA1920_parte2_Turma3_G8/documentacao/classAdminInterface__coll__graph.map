@@ -1,0 +1,4 @@
+<map id="AdminInterface" name="AdminInterface">
+<area shape="rect" id="node1" title="Interface instanciated when an ADMIN signs in." alt="" coords="32,1201,191,1308"/>
+<area shape="rect" id="node2" href="$classMuseumNetwork.html" title="Network that handles the Museums and the relationship with Event companies." alt="" coords="5,5,217,1139"/>
+</map>
