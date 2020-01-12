@@ -287,6 +287,7 @@ operator>>(std::ifstream& instream, StateWorker& w)
 
     /* hiring status */
     instream >> w.is_hired;
+    utl::ignore(instream); // TODO Rosetti
     if (w.is_hired) {
       getline(instream, w.associated_museum);
       if (utl::isStrEmpty(w.associated_museum))

@@ -911,16 +911,15 @@ AdminInterface::show()
 	/* Modify Workers */
 	MenuSelectFilter<vector<StateWorker>> modifyWorkerMenu("Modify the selected Workers",
 			[this](vector<StateWorker>&vec){
-				/* Opens menu that changes the current enterprise */
+				/* Opens menu that changes the current state worker */
 				if(vec.size() != 1)
 					throw(UserInputReadingFailure("Multiple Workers selected"));
-				StateWorker old_worker = vec.at(0); // Store selected enterprise as backup for later modifying
+				StateWorker old_worker = vec.at(0); // Store selected state worker as backup for later modifying
 
 				MenuSelectFilter<StateWorker> modifyWorkerName("Modify Name",
 						[](StateWorker &worker){
 							cout << "Name?\n";
 							string name; getline(cin, name);
-							cerr << name;
 							worker.set_name(name);
 						});
 

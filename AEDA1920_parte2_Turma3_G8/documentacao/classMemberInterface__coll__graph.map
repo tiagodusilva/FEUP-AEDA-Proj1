@@ -1,7 +1,0 @@
-<map id="MemberInterface" name="MemberInterface">
-<area shape="rect" id="node1" title="Interface instanciated when a MEMBER signs in." alt="" coords="119,1591,290,1697"/>
-<area shape="rect" id="node2" href="$classMuseumNetwork.html" title="Network that handles the Museums and the relationship with Event companies." alt="" coords="5,395,217,1528"/>
-<area shape="rect" id="node3" href="$classCard.html" title="Abstract class to save and handle registered users information and their cards." alt="" coords="241,783,419,1139"/>
-<area shape="rect" id="node4" href="$classAddress.html" title="Class that saves and handles address information in our project." alt="" coords="173,57,321,251"/>
-<area shape="rect" id="node5" href="$classDate.html" title="Class that saves and handles date information in our project." alt="" coords="345,5,480,303"/>
-</map>

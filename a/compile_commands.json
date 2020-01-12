@@ -1,0 +1,77 @@
+[
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/address.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/address.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/address.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/cards.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/cards.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/cards.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/date.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/date.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/date.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/enterprise.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/enterprise.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/enterprise.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/event.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/event.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/event.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/filter.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/filter.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/filter.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/interfaces.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/interfaces.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/interfaces.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/menu.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/menu.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/menu.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/museum.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/museum.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/museum.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/museum_network.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/museum_network.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/museum_network.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/repairenterprise.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/repairenterprise.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/repairenterprise.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/stateworker.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/stateworker.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/stateworker.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/time.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/time.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/time.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/src/utilities.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/utilities.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/src/utilities.cpp"
+},
+{
+  "directory": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/a",
+  "command": "/usr/bin/c++      -std=gnu++11 -o CMakeFiles/FEUP-AEDA-Proj1.dir/main.cpp.o -c /home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/main.cpp",
+  "file": "/home/joao/Documents/UniStuff/2_1things/AEDA/FEUP-AEDA-Proj1/main.cpp"
+}
+]
